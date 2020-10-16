@@ -24,6 +24,7 @@ services:
     command: npm run dev
 
   db:
+    container_name: database
     image: mysql:5.7
     volumes:
       - mysql-db:/var/lib/mysql
