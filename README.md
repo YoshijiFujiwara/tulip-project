@@ -29,35 +29,35 @@ $ docker-compose up
 |      | `docker-compose down`  | /        | ローカル開発のサーバーを止める                                                                                   |
 |      | **`make codegen-dc`**  | /        | **フロントエンド用の API リクエストコードを自動生成する。`/client/openapi`ディレクトリにコードが生成されます。** |
 
-#### client ディレクトリ系
+#### frontend ディレクトリ系
 
-まず、下記のコマンドで client コンテナに入ります
+まず、下記のコマンドで frontend コンテナに入ります
 
 ```
-$ docker-compose exec client sh
+$ docker-compose exec frontend sh
 ```
 
-そうすると、client コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
+そうすると、frontend コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
 
 | 種類   | コマンド          | 実行場所 | 効果                                 |
 | ------ | ----------------- | -------- | ------------------------------------ |
-| client | `npm run lintfix` | /        | フロントエンドのコードフォーマット   |
+| frontend | `npm run lintfix` | /        | フロントエンドのコードフォーマット   |
 | 〃     | `npm run lint`    | /        | フロントエンドのコードの文法チェック |
 | 〃     | `npm run test`    | /        | フロントエンドのテスト               |
 
-#### api ディレクトリ系
+#### backend ディレクトリ系
 
-まず、下記のコマンドで api コンテナに入ります
+まず、下記のコマンドで backend コンテナに入ります
 
 ```
-$ docker-compose exec api sh
+$ docker-compose exec backend sh
 ```
 
-そうすると、api コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
+そうすると、backend コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
 
 | 種類 | コマンド         | 実行場所 | 効果                               |
 | ---- | ---------------- | -------- | ---------------------------------- |
-| api  | `npm run format` | /        | バックエンドのコードフォーマット   |
+| backend  | `npm run format` | /        | バックエンドのコードフォーマット   |
 | 〃   | `npm run lint`   | /        | バックエンドのコードの文法チェック |
 | 〃   | `npm run test`   | /        | バックエンドのテスト               |
 
