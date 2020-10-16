@@ -11,6 +11,8 @@ services:
     ports:
       - 3001:3001
     command: npm run start:dev
+    depends_on:
+      - database
 
   frontend:
     container_name: frontend
@@ -22,3 +24,20 @@ services:
     ports:
       - 3000:3000
     command: npm run dev
+    depends_on:
+      - backend
+
+
+  database:
+    container_name: database
+    image: mysql:5.7
+    volumes:
+      - mysql-db:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=api
+
+volumes:
+  mysql-db:
+    driver: local
