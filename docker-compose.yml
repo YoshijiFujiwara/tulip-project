@@ -11,6 +11,8 @@ services:
     ports:
       - 3001:3001
     command: npm run start:dev
+    depends_on:
+      - database
 
   frontend:
     container_name: frontend
@@ -22,6 +24,9 @@ services:
     ports:
       - 3000:3000
     command: npm run dev
+    depends_on:
+      - backend
+
 
   db:
     container_name: database
