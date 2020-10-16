@@ -27,7 +27,6 @@ services:
     depends_on:
       - backend
 
-
   database:
     container_name: database
     image: mysql:5.7
