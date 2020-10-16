@@ -38,6 +38,7 @@ services:
       MYSQL_DATABASE: api
 
   phpmyadmin:
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - 8888:80
