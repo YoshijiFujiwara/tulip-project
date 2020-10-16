@@ -16,9 +16,7 @@ $ docker-compose up
 |                             | URL                                | 備考                               |
 | --------------------------- | ---------------------------------- | ---------------------------------- |
 | アプリケーション URL        | http://localhost:3000             |                                    |
-| API リファレンス            | http://localhost:3001/swagger/    |                                    |
-| API リファレンス(JSON 形式) | http://localhost:3001/swagger-json/ |                                    |
-| phpmyadmin                  | http://localhost:8888   | username: `root`, password: `root` |
+
 
 ### 基本コマンド
 
@@ -27,39 +25,4 @@ $ docker-compose up
 |      | `docker-compose up`    | /        | ローカル開発のサーバーを動かす                                                                                   |
 |      | `docker-compose up -d` | /        | ローカル開発のサーバーをバックグラウンドで動かす                                                                 |
 |      | `docker-compose down`  | /        | ローカル開発のサーバーを止める                                                                                   |
-|      | **`make codegen-dc`**  | /        | **フロントエンド用の API リクエストコードを自動生成する。`/client/openapi`ディレクトリにコードが生成されます。** |
 
-#### frontend ディレクトリ系
-
-まず、下記のコマンドで frontend コンテナに入ります
-
-```
-$ docker-compose exec frontend sh
-```
-
-そうすると、frontend コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
-
-| 種類   | コマンド          | 実行場所 | 効果                                 |
-| ------ | ----------------- | -------- | ------------------------------------ |
-| frontend | `npm run lintfix` | /        | フロントエンドのコードフォーマット   |
-| 〃     | `npm run lint`    | /        | フロントエンドのコードの文法チェック |
-| 〃     | `npm run test`    | /        | フロントエンドのテスト               |
-
-#### backend ディレクトリ系
-
-まず、下記のコマンドで backend コンテナに入ります
-
-```
-$ docker-compose exec backend sh
-```
-
-そうすると、backend コンテナ（仮想環境）の中に ssh で入ってる感じになるので、そこで下記のコマンドを実行できる
-
-| 種類 | コマンド         | 実行場所 | 効果                               |
-| ---- | ---------------- | -------- | ---------------------------------- |
-| backend  | `npm run format` | /        | バックエンドのコードフォーマット   |
-| 〃   | `npm run lint`   | /        | バックエンドのコードの文法チェック |
-| 〃   | `npm run test`   | /        | バックエンドのテスト               |
-
-## プロダクション環境
-### URL 一覧
