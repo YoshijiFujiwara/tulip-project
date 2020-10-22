@@ -7,6 +7,8 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: process.env.MYSQL_USERNAME,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE_NAME,
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  entities: [`${__dirname}/../**/*.entity.{js,ts}`],
+  migrations: [`${__dirname}/../migrations/*.migration.{js,ts}`],
+  cli: { migrationsDir: `${__dirname}/../migrations` },
   synchronize: false,
 };
