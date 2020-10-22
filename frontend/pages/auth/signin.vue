@@ -9,25 +9,19 @@
     <v-text-field
       class="mt-7"
       label="パスワード"
-
       outlined
       required
     ></v-text-field>
-    <v-btn block large color="primary" @click="onSubmit"
-      >ログイン</v-btn
-    >
-
+    <v-btn block large color="primary" @click="onSubmit">ログイン</v-btn>
   </v-form>
 </template>
 
 <script lang="ts">
-
 export default {
-
-methods: {
-  onSubmit() {
-    alert("aaaaaaaaaa")
-  }
-}
+  methods: {
+    onSubmit() {
+      alert('aaaaaaaaaa')
+    },
+  },
 }
 </script>
