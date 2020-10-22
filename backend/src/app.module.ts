@@ -3,10 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { typeOrmConfig } from './config/typeorm.config';
+import { ExhibitorModule } from './exhibitor/exhibitor.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig)
+    TypeOrmModule.forRoot(typeOrmConfig),
+    ExhibitorModule
   ],
   controllers: [AppController],
   providers: [AppService],
