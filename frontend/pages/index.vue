@@ -7,8 +7,9 @@
       </div>
       <v-card>
         <v-card-title class="headline">
-          WelcomeWelcomeWelcomeWelcomeWelcomeWelcomeWelcomeWelcome
+          WelcomeWelcomeWelcomeWelcomeWelcomeWelcomeWelcomeWelcome fa
         </v-card-title>
+
         <v-card-text>
           <p>
             Vuetify is a progressive Material Design component framework for
