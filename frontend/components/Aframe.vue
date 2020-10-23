@@ -13,10 +13,6 @@
       >
         <a-animation easing="linear" attribute="rotation" repeat="indefinite" dur="30000" to="0 405 0"></a-animation>
       </a-entity>
-
-
-
-      
       <a-sky color="#FDFDFD"></a-sky>
     </a-scene>
     <div 
