@@ -25,8 +25,8 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: himawari-local-secrets
-                  key: MYSQL_ROOT_PASSWORD
+                  name: tulip-local-secrets
+                  key: MYSQL_PASSWORD
 ---
 apiVersion: v1
 kind: Service
