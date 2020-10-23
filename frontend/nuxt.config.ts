@@ -20,7 +20,9 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: [
+    { src: '@/plugins/aframe.js', ssr: false }
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -70,4 +72,9 @@ export default {
       poll: true,
     },
   },
+  script: [
+  {
+    src: 'https://aframe.io/releases/0.7.1/aframe.min.js'
+  }
+],
 }
