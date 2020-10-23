@@ -1,8 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
-import { ExhibitorEntity } from '../auth/exhibitor.entity';
 
 export class createExhibitorsTable1603424284188 implements MigrationInterface {
-  constructor(public exhibitorEntity: ExhibitorEntity) {}
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({

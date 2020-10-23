@@ -1,4 +1,4 @@
-import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
+import { ExhibitorSerializer } from '../auth/serializer/exhibitor.serializer';
 import {
   BaseEntity,
   Column,
