@@ -1,4 +1,7 @@
 {
   "eslint.workingDirectories": ["backend", "frontend"],
-  "editor.formatOnSave": true
+  // "editor.formatOnSave": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
