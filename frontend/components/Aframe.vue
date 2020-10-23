@@ -15,12 +15,6 @@
       </a-entity>
       <a-sky color="#FDFDFD"></a-sky>
     </a-scene>
-    <div 
-      class="aframe" 
-      v-for="aframe in aframes" 
-      :key="aframe.id" 
-      v-html="aframe.scene" 
-    />
 </template>
 
 <script lang="js">
