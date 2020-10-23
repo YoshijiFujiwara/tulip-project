@@ -24,12 +24,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: tulip-local-secrets
-                  key: MYSQL_ROOT_PASSWORD
+                  key: MYSQL_PASSWORD
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: tulip-local-secrets
-                  key: MYSQL_DATABASE_NAME
+                  key: MYSQL_DATABASE
 ---
 apiVersion: v1
 kind: Service
