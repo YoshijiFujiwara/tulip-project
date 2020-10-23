@@ -13,6 +13,11 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
+    script: [
+      {
+        src: 'https://aframe.io/releases/1.0.4/aframe.min.js',
+      },
+    ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
