@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+      - www.tulipgumi.xyz
+      secretName: tulip-tls
+  rules:
+    # ローカルのPCのhostsファイルに設定してからアクセスできる
+    - host: www.tulipgumi-phpmyadmin.xyz
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: api-phpmyadmin-srv
+              servicePort: 80
+    # プロダクションのdomain name
+    - host: www.tulipgumi.xyz
+      http:
+        paths:
+          - path: /api/?(.*)
+            backend:
+              serviceName: backend-srv
+              servicePort: 3000
+          # ingress-nginxは、上からマッチするルートが選ばれる
+          # client-srvは最後に置くこと！
+          - path: /?(.*)
+            backend:
+              serviceName: frontend-srv
+              servicePort: 3000
