@@ -31,11 +31,11 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: MYSQL_PASSWORD
-            - name: MYSQL_DATABASE_NAME
+            - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: tulip-local-secrets
-                  key: MYSQL_DATABASE_NAME
+                  key: MYSQL_DATABASE
             - name: MYSQL_PORT
               valueFrom:
                 secretKeyRef:
