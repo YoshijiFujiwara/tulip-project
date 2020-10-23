@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity({
-  name: 'exhibitor',
+  name: 'exhibitors',
 })
 export class ExhibitorEntity extends BaseEntity {
   @PrimaryColumn({
