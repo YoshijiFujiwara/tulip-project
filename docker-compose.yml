@@ -9,7 +9,7 @@ services:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - ${BACKEND_PORT}:3001
+      - ${BACKEND_PORT}:${BACKEND_INNER_PORT}
     command: npm run start:dev
     environment:
       MYSQL_HOST: database
@@ -17,6 +17,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE}
       MYSQL_PORT: ${MYSQL_PORT}
+      BACKEND_INNER_PORT: ${BACKEND_INNER_PORT}
     depends_on:
       - database
 
