@@ -1,3 +1,4 @@
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 import {
   BaseEntity,
   Column,
@@ -48,4 +49,14 @@ export class ExhibitorEntity extends BaseEntity {
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
   updatedAt: Date;
+
+  transformToSerializer = (): ExhibitorSerializer => {
+    const exhibitorSerializer = new ExhibitorSerializer();
+    exhibitorSerializer.id = this.id;
+    exhibitorSerializer.studentNumebr = this.studentNumebr;
+    exhibitorSerializer.name = this.name;
+    exhibitorSerializer.lastLoggedinAt = this.lastLoggedinAt;
+
+    return exhibitorSerializer;
+  };
 }
