@@ -17,6 +17,7 @@ services:
       MYSQL_DATABASE_NAME: ${MYSQL_DATABASE}
       MYSQL_PORT: ${MYSQL_PORT}
       BACKEND_INNER_PORT: ${BACKEND_INNER_PORT}
+      ENABLED_CORS: ${ENABLED_CORS}
     depends_on:
       - database
 

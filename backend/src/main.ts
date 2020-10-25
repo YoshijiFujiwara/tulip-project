@@ -5,11 +5,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+  if (process.env.ENABLED_CORS) {
+    app.enableCors();
+  }
 
   const options = new DocumentBuilder()
     .setTitle('API description')
     .setVersion('1.0')
-    .addServer(`http://localhost:${process.env.BACKEND_INNER_PORT}/`)
+    .addServer(`http://localhost:${process.env.BACKEND_PORT}`)
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
