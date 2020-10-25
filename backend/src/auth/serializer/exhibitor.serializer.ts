@@ -3,8 +3,6 @@ export class ExhibitorSerializer {
 
   studentNumebr: string;
 
-  password: string;
-
   name: string;
 
   lastLoggedinAt: Date;
