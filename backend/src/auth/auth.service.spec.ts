@@ -1,18 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
+import { ExhibitorRepository } from './exhibitor.repository';
+
+const mockExhibitorRepository = () => ({
+  validatePassword: jest.fn(),
+});
 
 describe('AuthService', () => {
-  let service: AuthService;
+  let authService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthService],
+      providers: [
+        AuthService,
+        { provide: ExhibitorRepository, useFactory: mockExhibitorRepository },
+      ],
     }).compile();
 
-    service = module.get<AuthService>(AuthService);
+    authService = await module.get<AuthService>(AuthService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(authService).toBeDefined();
   });
 });
