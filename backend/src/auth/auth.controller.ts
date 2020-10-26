@@ -5,7 +5,11 @@ import {
   Post,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
@@ -18,7 +22,11 @@ export class AuthController {
   @Post('/sign_in')
   @HttpCode(200)
   @ApiOkResponse({
+    type: AccessTokenSerializer,
     description: '出展者ログイン完了',
+  })
+  @ApiUnauthorizedResponse({
+    description: '学籍番号またはパスワードの不一致による出展者ログイン失敗',
   })
   signIn(
     @Body(ValidationPipe) signInExhibitorDto: SignInExhibitorDto,
