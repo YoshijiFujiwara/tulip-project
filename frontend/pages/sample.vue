@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import dateFns from 'date-fns'
 
 export default Vue.extend({
   data() {
