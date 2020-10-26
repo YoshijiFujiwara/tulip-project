@@ -1,7 +1,4 @@
 # frontend, backendのライブラリを一括インストール
-install:
-	cd frontend && npm install && cd ../backend && npm install 
-
 # ============== コンテナに入る基本コマンド ================ 
 # frontendのコンテナに入る
 enter-frontend:
