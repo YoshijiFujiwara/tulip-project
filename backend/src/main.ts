@@ -9,7 +9,7 @@ async function bootstrap() {
   const options = new DocumentBuilder()
     .setTitle('API description')
     .setVersion('1.0')
-    .addServer(`http://localhost:${process.env.BACKEND_INNER_PORT}/`)
+    .addServer('/')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
