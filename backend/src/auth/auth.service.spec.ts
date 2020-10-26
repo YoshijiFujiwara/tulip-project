@@ -1,9 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { ExhibitorRepository } from './exhibitor.repository';
+import { JwtService } from '@nestjs/jwt';
 
 const mockExhibitorRepository = () => ({
   validatePassword: jest.fn(),
+});
+const mockJwtService = () => ({
+  signAsync: jest.fn(),
+  verifyAsync: jest.fn(),
 });
 
 describe('AuthService', () => {
@@ -14,6 +19,7 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         { provide: ExhibitorRepository, useFactory: mockExhibitorRepository },
+        { provide: JwtService, useFactory: mockJwtService },
       ],
     }).compile();
 
