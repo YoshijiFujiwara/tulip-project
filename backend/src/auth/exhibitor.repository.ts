@@ -4,8 +4,8 @@ import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 
 @EntityRepository(ExhibitorEntity)
 export class ExhibitorRepository extends Repository<ExhibitorEntity> {
-  async validatePassword({ studentNumebr, password }: SignInExhibitorDto) {
-    const user = await this.findOne({ studentNumebr, password });
+  async validatePassword({ studentNumber, password }: SignInExhibitorDto) {
+    const user = await this.findOne({ studentNumber, password });
     return user;
   }
 }

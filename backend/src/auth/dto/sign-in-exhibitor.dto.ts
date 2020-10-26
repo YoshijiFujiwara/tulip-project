@@ -12,7 +12,7 @@ export class SignInExhibitorDto {
   @MinLength(8)
   @MaxLength(8)
   @IsNotEmpty({ message: '学籍番号の入力は必須です。' })
-  studentNumebr: string;
+  studentNumber: string;
 
   @ApiProperty({
     example: 'hogeho',

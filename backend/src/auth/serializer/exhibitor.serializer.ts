@@ -4,7 +4,7 @@ export class ExhibitorSerializer {
   id: string;
 
   @ApiProperty()
-  studentNumebr: string;
+  studentNumber: string;
 
   @ApiProperty()
   name: string;
