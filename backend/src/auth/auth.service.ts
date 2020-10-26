@@ -1,16 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExhibitorRepository } from './exhibitor.repository';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
+import { JwtPayload } from './interface/jwt-payload.interface';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(ExhibitorRepository)
     private exhibitorRepository: ExhibitorRepository,
+    private readonly jwtService: JwtService,
   ) {}
 
   async signIn(signInExhibitorDto: SignInExhibitorDto) {
-    return await this.exhibitorRepository.validatePassword(signInExhibitorDto);
+    const studentNumber = await this.exhibitorRepository.validatePassword(
+      signInExhibitorDto,
+    );
+    if (!studentNumber) {
+      throw new UnauthorizedException('学籍番号またはパスワードが違います');
+    }
+
+    const payload: JwtPayload = {
+      studentNumber,
+    };
+    const accessToken = await this.jwtService.signAsync(payload);
+    return { accessToken };
   }
 }
