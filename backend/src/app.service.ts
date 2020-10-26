@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 export class AppService {
   getHello(): string {
     // ライブラリ追加テスト用
-    console.log(format(new Date(2017, 6, 6), 'MM/DD/YYYY'));
+    console.log(format(new Date(2017, 6, 6), 'MM/dd/yyyy'));
     return 'Hello World!';
   }
 }
