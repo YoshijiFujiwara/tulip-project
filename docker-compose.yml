@@ -29,6 +29,8 @@ services:
       - ./frontend:/usr/src/app
     ports:
       - ${FRONTEND_PORT}:3000
+    environment:
+      BACKEND_PORT: ${BACKEND_PORT}
     command: npm run dev
 
   database:
