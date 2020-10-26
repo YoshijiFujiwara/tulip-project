@@ -1,6 +1,7 @@
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ExhibitorRepository } from './exhibitor.repository';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -8,8 +9,9 @@ describe('AuthController', () => {
 
   beforeEach(() => {
     let exhibitorRepository: ExhibitorRepository;
+    let jwtService: JwtService;
 
-    authService = new AuthService(exhibitorRepository);
+    authService = new AuthService(exhibitorRepository, jwtService);
     authController = new AuthController(authService);
   });
 
