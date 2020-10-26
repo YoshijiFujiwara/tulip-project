@@ -1,7 +1,7 @@
 export class ExhibitorSerializer {
   id: string;
 
-  studentNumebr: string;
+  studentNumber: string;
 
   name: string;
 

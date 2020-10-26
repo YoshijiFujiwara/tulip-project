@@ -22,7 +22,7 @@ export class ExhibitorEntity extends BaseEntity {
     unique: true,
     length: 10,
   })
-  studentNumebr: string;
+  studentNumber: string;
 
   @Column({
     length: 20,
@@ -53,7 +53,7 @@ export class ExhibitorEntity extends BaseEntity {
   transformToSerializer = (): ExhibitorSerializer => {
     const exhibitorSerializer = new ExhibitorSerializer();
     exhibitorSerializer.id = this.id;
-    exhibitorSerializer.studentNumebr = this.studentNumebr;
+    exhibitorSerializer.studentNumber = this.studentNumber;
     exhibitorSerializer.name = this.name;
     exhibitorSerializer.lastLoggedinAt = this.lastLoggedinAt;
 
