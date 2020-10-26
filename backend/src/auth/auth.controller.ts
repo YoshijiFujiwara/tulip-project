@@ -1,4 +1,10 @@
-import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
@@ -9,6 +15,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/sign_in')
+  @HttpCode(200)
   @ApiOkResponse({
     description: '出展者ログイン完了',
   })
