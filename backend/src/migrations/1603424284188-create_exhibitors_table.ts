@@ -22,7 +22,7 @@ export class createExhibitorsTable1603424284188 implements MigrationInterface {
           {
             name: 'password',
             type: 'varchar',
-            length: '20',
+            length: '255',
           },
           {
             name: 'name',
