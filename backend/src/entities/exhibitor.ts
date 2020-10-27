@@ -25,7 +25,7 @@ export class ExhibitorEntity extends BaseEntity {
   studentNumber: string;
 
   @Column({
-    length: 20,
+    length: 255,
   })
   password: string;
 
