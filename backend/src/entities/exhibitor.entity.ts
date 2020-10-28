@@ -28,18 +28,14 @@ export class ExhibitorEntity extends BaseEntity {
   @Column({
     length: 255,
     transformer: {
-      async to(raw: string) {
-        return await bcrypt.hash(raw, 5);
-      },
-      from(hashed: string) {
-        return hashed;
-      },
+      to: (raw: string) => bcrypt.hashSync(raw, 5),
+      from: (hashed: string) => hashed,
     },
   })
   password: string;
 
   @Column({
-    length: 10,
+    length: 25,
   })
   name: string;
 
