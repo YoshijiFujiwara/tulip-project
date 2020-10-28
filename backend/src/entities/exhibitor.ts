@@ -1,4 +1,5 @@
 import { ExhibitorSerializer } from '../auth/serializer/exhibitor.serializer';
+import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,
   Column,
@@ -14,7 +15,7 @@ import {
 export class ExhibitorEntity extends BaseEntity {
   @PrimaryColumn({
     unique: true,
-    length: 11,
+    length: 36,
   })
   id: string;
 
@@ -26,6 +27,14 @@ export class ExhibitorEntity extends BaseEntity {
 
   @Column({
     length: 255,
+    transformer: {
+      async to(raw: string) {
+        return await bcrypt.hash(raw, 5);
+      },
+      from(hashed: string) {
+        return hashed;
+      },
+    },
   })
   password: string;
 
