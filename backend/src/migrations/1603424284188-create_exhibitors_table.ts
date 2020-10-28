@@ -11,7 +11,7 @@ export class createExhibitorsTable1603424284188 implements MigrationInterface {
             type: 'varchar',
             isPrimary: true,
             isUnique: true,
-            length: '11',
+            length: '36',
           },
           {
             name: 'studentNumber',
