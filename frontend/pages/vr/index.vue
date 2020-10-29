@@ -6,7 +6,7 @@
       </a-assets>
       <a-obj-model
         position="5 0 0"
-        rotation="180 0 0"
+        rotation="270 0 0"
         src="#gym-obj"
       ></a-obj-model>
     </a-scene>
