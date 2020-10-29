@@ -8,10 +8,10 @@ export class createExhibitorsTable1603424284188 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'varchar',
+            type: 'integer',
             isPrimary: true,
-            isUnique: true,
-            length: '36',
+            isGenerated: true,
+            generationStrategy: 'increment',
           },
           {
             name: 'studentNumber',

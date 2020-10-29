@@ -5,18 +5,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({
   name: 'exhibitors',
 })
 export class ExhibitorEntity extends BaseEntity {
-  @PrimaryColumn({
-    unique: true,
-    length: 36,
-  })
+  @PrimaryGeneratedColumn()
+  @ApiProperty()
   id: string;
 
   @Column({
