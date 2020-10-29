@@ -17,11 +17,14 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
+  layout: 'exibitors/guest',
   methods: {
     onSubmit() {
       alert('aaaaaaaaaa')
     },
   },
-}
+})
 </script>
