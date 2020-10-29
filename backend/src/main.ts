@@ -6,6 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
 
+  app.enableCors();
+
   const options = new DocumentBuilder()
     .setTitle('API description')
     .setVersion('1.0')
