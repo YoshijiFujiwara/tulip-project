@@ -74,6 +74,7 @@ export default Vue.extend({
 .title {
   background-color: #5f439a;
   font-size: 3rem;
+  color: #cbbee7;
 }
 .top {
   background-color: #14082c;
