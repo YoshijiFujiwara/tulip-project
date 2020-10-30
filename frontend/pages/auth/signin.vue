@@ -9,36 +9,46 @@
       <v-container class="grey lighten-5">
         <v-img max-width="1114px" :src="require('@/assets/logo_main.png')" />
         <v-row justify="center" class="md-6" no-gutters>
-          <v-col cols="12" align="center">
-            <h1 dark>SIGN IN</h1>
+          <v-col md="12" offset-md="4" align="center" class="title">
+            <span class="title px-10">SIGN IN</span>
           </v-col>
-          <v-col cols="12" sm="6" md="8" lg="6" class="top" align="center">
+        </v-row>
+        <v-row align="center" justify="center" class="md-1" no-gutters>
+          <v-col offset-md="4" md="12" class="top" align="center">
             <v-form ref="form">
-              <v-text-field
-                background-color="#281252"
-                dark
-                class="mt-10"
-                label="学籍番号"
-                outlined
-                required
-              ></v-text-field>
-              <v-text-field
-                background-color="#281252"
-                dark
-                class="mt-7"
-                label="パスワード"
-                outlined
-                required
-              ></v-text-field>
-              <v-btn
-                block
-                large
-                dark
-                color="#27144e"
-                class="signin-btn"
-                @click="onSubmit"
-                >Log in</v-btn
-              >
+              <v-row justify="center" class="pa-10">
+                <v-col cols="12">
+                  <v-text-field
+                    background-color="#281252"
+                    dark
+                    class="mt-10"
+                    label="学籍番号"
+                    outlined
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    background-color="#281252"
+                    dark
+                    class="mt-7"
+                    label="パスワード"
+                    outlined
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn
+                    block
+                    large
+                    dark
+                    color="#27144e"
+                    class="signin-btn ma-5"
+                    @click="onSubmit"
+                    >Log in</v-btn
+                  >
+                </v-col>
+              </v-row>
             </v-form>
           </v-col>
         </v-row>
@@ -61,8 +71,9 @@ export default Vue.extend({
 </script>
 
 <style>
-h1 {
+.title {
   background-color: #5f439a;
+  font-size: 3rem;
 }
 .top {
   background-color: #14082c;
