@@ -8,11 +8,11 @@ import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([ExhibitorRepository]),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
+    TypeOrmModule.forFeature([ExhibitorRepository]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
