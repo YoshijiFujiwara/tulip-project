@@ -72,9 +72,8 @@ export default Vue.extend({
       form: {
         password: '',
       },
-      rules: {
-        showPasswordIcon: false,
-      },
+      rules: {},
+      showPasswordIcon: false,
     }
   },
   methods: {
