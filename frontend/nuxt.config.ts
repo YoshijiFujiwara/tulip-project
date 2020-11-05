@@ -79,9 +79,11 @@ export default {
     },
   },
 
-  // router: {
-  //   middleware: ['auth'],
-  // },
+  // ログインしていなかったら、強制的にログイン画面へリダイレクトする
+  // ログインしていている状態でログイン画面にアクセスしようとするとホームへリダイレクトする
+  router: {
+    middleware: ['auth'],
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {

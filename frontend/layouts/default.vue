@@ -3,7 +3,7 @@
     <v-app-bar fixed app>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn> ログアウト(仮) </v-btn>
+      <v-btn @click="logout"> ログアウト(仮) </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -13,12 +13,19 @@
   </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   data() {
     return {
       title: 'Vuetify.js',
     }
   },
-}
+  methods: {
+    async logout() {
+      await this.$auth.logout()
+    },
+  },
+})
 </script>
