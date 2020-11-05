@@ -1,21 +1,21 @@
 import { ExhibitorSerializer } from '../auth/serializer/exhibitor.serializer';
+import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({
   name: 'exhibitors',
 })
 export class ExhibitorEntity extends BaseEntity {
-  @PrimaryColumn({
-    unique: true,
-    length: 11,
-  })
+  @PrimaryGeneratedColumn()
+  @ApiProperty()
   id: string;
 
   @Column({
@@ -26,11 +26,15 @@ export class ExhibitorEntity extends BaseEntity {
 
   @Column({
     length: 255,
+    transformer: {
+      to: (raw: string) => bcrypt.hashSync(raw, 5),
+      from: (hashed: string) => hashed,
+    },
   })
   password: string;
 
   @Column({
-    length: 10,
+    length: 25,
   })
   name: string;
 

@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class SignInExhibitorDto {
   @ApiProperty({
-    example: 'ohs12345',
+    example: 'ohs70001',
     type: 'string',
     minLength: 8,
     maxLength: 8,
@@ -15,7 +15,7 @@ export class SignInExhibitorDto {
   studentNumber: string;
 
   @ApiProperty({
-    example: 'hogeho',
+    example: 'B19990101',
     type: 'string',
     minLength: 6,
     maxLength: 20,
