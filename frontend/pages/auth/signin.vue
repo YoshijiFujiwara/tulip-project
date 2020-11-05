@@ -19,6 +19,7 @@
               <v-row justify="center" class="pa-10">
                 <v-col cols="12">
                   <v-text-field
+                    v-model="form.studentNumber"
                     background-color="#281252"
                     dark
                     class="mt-10"
@@ -29,6 +30,7 @@
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
+                    v-model="form.password"
                     background-color="#281252"
                     dark
                     class="mt-7"

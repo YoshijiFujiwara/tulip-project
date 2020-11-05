@@ -70,7 +70,7 @@ export default {
           login: {
             url: '/auth/sign_in',
             method: 'post',
-            propertyName: 'token',
+            propertyName: 'accessToken',
           },
           logout: false,
           user: false,

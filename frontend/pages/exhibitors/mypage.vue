@@ -1,10 +1,22 @@
 <template>
   <div>
     <h3>MyPage</h3>
-    <p>hogeeeeeeeeeeeeeeeeee</p>
+    <p>トークン確認用: {{ token }}</p>
   </div>
 </template>
 
 <script lang="ts">
-export default {}
+import Vue from 'vue'
+
+export default Vue.extend({
+  data() {
+    return {
+      token: '',
+    }
+  },
+  created() {
+    // トークン確認用
+    this.token = this.$store.$auth.getToken('local') || 'まだない'
+  },
+})
 </script>
