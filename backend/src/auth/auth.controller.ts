@@ -1,12 +1,17 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   Post,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
+  ApiBearerAuth,
   ApiOkResponse,
+  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -32,5 +37,12 @@ export class AuthController {
     @Body(ValidationPipe) signInExhibitorDto: SignInExhibitorDto,
   ): Promise<AccessTokenSerializer> {
     return this.authService.signIn(signInExhibitorDto);
+  }
+
+  @Get('/me')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  me() {
+    return 'hogehoge';
   }
 }
