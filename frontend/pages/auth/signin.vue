@@ -3,7 +3,6 @@
     <v-img
       width="1800px"
       height="1024px"
-      :src="src"
       gradient="to top, rgba(61, 31, 122, .8), rgba(0,0,0,.8)"
     >
       <v-container class="grey lighten-5">
