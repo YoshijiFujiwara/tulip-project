@@ -59,10 +59,10 @@ export default {
   // AuthModuleの設定
   auth: {
     redirect: {
-      login: '/auth/signin',
-      logout: '/auth/signin',
-      callback: false,
-      home: '/exhibitors/mypage',
+      login: '/auth/signin', // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
+      logout: '/auth/signin', // ログアウト時のリダイレクトURL
+      callback: false, // Oauth認証等で必要となる コールバックルート
+      home: '/exhibitors/mypage', // ログイン後のリダイレクトURL
     },
     strategies: {
       local: {
@@ -70,7 +70,7 @@ export default {
           login: {
             url: '/auth/sign_in',
             method: 'post',
-            propertyName: 'accessToken',
+            propertyName: 'token',
           },
           logout: false,
           user: false,
