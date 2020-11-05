@@ -7,52 +7,50 @@
     >
       <v-container class="grey lighten-5">
         <v-img max-width="1114px" :src="require('@/assets/logo_main.png')" />
-        <v-row justify="center" class="md-6" no-gutters>
-          <v-col md="12" offset-md="4" align="center" class="title">
+        <v-row align="center" justify-center no-gutters cols="12">
+          <v-col cols="6" align="center" class="title" offset="6">
             <span class="title px-10">SIGN IN</span>
           </v-col>
         </v-row>
-        <v-row align="center" justify="center" class="md-1" no-gutters>
-          <v-col offset-md="4" md="12" class="top" align="center">
-            <v-form ref="form">
-              <v-row justify="center" class="pa-10">
-                <v-col cols="12">
-                  <v-text-field
-                    v-model="form.studentNumber"
-                    background-color="#281252"
-                    dark
-                    class="mt-10"
-                    label="学籍番号"
-                    outlined
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                  <v-text-field
-                    v-model="form.password"
-                    background-color="#281252"
-                    dark
-                    class="mt-7"
-                    label="パスワード"
-                    outlined
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12">
-                  <v-btn
-                    block
-                    large
-                    dark
-                    color="#27144e"
-                    class="signin-btn ma-5"
-                    @click="onSubmit"
-                    >Log in</v-btn
-                  >
-                </v-col>
-              </v-row>
-            </v-form>
-          </v-col>
-        </v-row>
+        <!-- <v-row align="center" justify="center" class="md-1" no-gutters> -->
+        <v-col offset-md="4" md="6" class="top" align="center">
+          <v-form ref="form">
+            <v-col cols="6">
+              <v-text-field
+                v-model="form.studentNumber"
+                background-color="#281252"
+                dark
+                class="mt-10"
+                label="学籍番号"
+                outlined
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                v-model="form.password"
+                background-color="#281252"
+                dark
+                class="mt-7"
+                label="パスワード"
+                outlined
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="6">
+              <v-btn
+                block
+                large
+                dark
+                color="#27144e"
+                class="signin-btn ma-5"
+                @click="onSubmit"
+                >Log in</v-btn
+              >
+            </v-col>
+          </v-form>
+        </v-col>
+        <!-- </v-row> -->
       </v-container>
     </v-img>
   </v-row>
