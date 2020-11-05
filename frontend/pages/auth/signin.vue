@@ -29,12 +29,17 @@
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
+                    v-model="form.password"
                     background-color="#281252"
                     dark
                     class="mt-7"
                     label="パスワード"
+                    :type="showPasswordIcon ? 'text' : 'password'"
+                    :rules="rules.password"
                     outlined
                     required
+                    :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="showPasswordIcon = !showPasswordIcon"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
@@ -62,6 +67,16 @@ import Vue from 'vue'
 
 export default Vue.extend({
   layout: 'exibitors/guest',
+  data() {
+    return {
+      form: {
+        password: '',
+      },
+      rules: {
+        showPasswordIcon: false,
+      },
+    }
+  },
   methods: {
     onSubmit() {
       alert('aaaaaaaaaa')
