@@ -19,6 +19,7 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/axios",
+      "@nuxtjs/auth",
       "@types/jest",
       "@nuxtjs/vuetify"
     ]

@@ -3,7 +3,6 @@
     <v-img
       width="1800px"
       height="1024px"
-      :src="src"
       gradient="to top, rgba(61, 31, 122, .8), rgba(0,0,0,.8)"
     >
       <v-container class="grey lighten-5">
@@ -19,6 +18,7 @@
               <v-row justify="center" class="pa-10">
                 <v-col cols="12">
                   <v-text-field
+                    v-model="form.studentNumber"
                     background-color="#281252"
                     dark
                     class="mt-10"
@@ -29,6 +29,7 @@
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
+                    v-model="form.password"
                     background-color="#281252"
                     dark
                     class="mt-7"
@@ -62,9 +63,29 @@ import Vue from 'vue'
 
 export default Vue.extend({
   layout: 'exibitors/guest',
+  auth: 'guest',
+  data() {
+    return {
+      form: {
+        studentNumber: '',
+        password: '',
+      },
+    }
+  },
   methods: {
-    onSubmit() {
-      alert('aaaaaaaaaa')
+    async onSubmit() {
+      await this.$auth
+        .loginWith('local', {
+          data: this.form,
+        })
+        .then(
+          (response) => {
+            return response
+          },
+          (error) => {
+            return error
+          }
+        )
     },
   },
 })
