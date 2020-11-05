@@ -62,6 +62,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   layout: 'exibitors/guest',
+  auth: 'guest',
   data() {
     return {
       form: {

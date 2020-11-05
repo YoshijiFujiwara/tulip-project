@@ -70,7 +70,7 @@ export default {
           login: {
             url: '/auth/sign_in',
             method: 'post',
-            propertyName: false,
+            propertyName: 'accessToken',
           },
           logout: false,
           user: false,
@@ -79,9 +79,9 @@ export default {
     },
   },
 
-  router: {
-    middleware: ['auth'],
-  },
+  // router: {
+  //   middleware: ['auth'],
+  // },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
