@@ -14,9 +14,5 @@ export default Vue.extend({
       token: '',
     }
   },
-  created() {
-    // トークン確認用
-    this.token = this.$store.$auth.getToken('local') || 'まだない'
-  },
 })
 </script>
