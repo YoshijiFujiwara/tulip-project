@@ -5,10 +5,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { GroupEntity } from './group.entity';
 
 @Entity({
   name: 'exhibitors',
@@ -16,13 +19,14 @@ import { ApiProperty } from '@nestjs/swagger';
 export class ExhibitorEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   @ApiProperty()
-  id: string;
+  id!: number;
 
   @Column({
     unique: true,
     length: 10,
   })
-  studentNumber: string;
+  @ApiProperty()
+  studentNumber!: string;
 
   @Column({
     length: 255,
@@ -31,28 +35,43 @@ export class ExhibitorEntity extends BaseEntity {
       from: (hashed: string) => hashed,
     },
   })
-  password: string;
+  @ApiProperty()
+  password!: string;
 
   @Column({
     length: 25,
   })
-  name: string;
+  @ApiProperty()
+  name!: string;
 
   @Column({ type: 'timestamp' })
-  lastLoggedinAt: Date;
+  @ApiProperty()
+  lastLoggedinAt!: Date;
 
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
-  createdAt: Date;
+  @ApiProperty()
+  createdAt!: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
   })
-  updatedAt: Date;
+  @ApiProperty()
+  updatedAt!: Date;
+
+  @Column()
+  groupId!: number;
+
+  @ManyToOne(
+    () => GroupEntity,
+    group => group.exhibitors,
+  )
+  @JoinColumn({ name: 'groupId' })
+  group: GroupEntity;
 
   transformToSerializer = (): ExhibitorSerializer => {
     const exhibitorSerializer = new ExhibitorSerializer();
