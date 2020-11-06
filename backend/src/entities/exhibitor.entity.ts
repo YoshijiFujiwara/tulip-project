@@ -64,6 +64,7 @@ export class ExhibitorEntity extends BaseEntity {
   updatedAt!: Date;
 
   @Column()
+  @ApiProperty()
   groupId!: number;
 
   @ManyToOne(
