@@ -1,11 +1,16 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   Post,
+  Req,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
+  ApiBearerAuth,
   ApiOkResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -13,6 +18,7 @@ import {
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -32,5 +38,17 @@ export class AuthController {
     @Body(ValidationPipe) signInExhibitorDto: SignInExhibitorDto,
   ): Promise<AccessTokenSerializer> {
     return this.authService.signIn(signInExhibitorDto);
+  }
+
+  @Get('/me')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    type: ExhibitorSerializer,
+    description: 'ログイン展示者の情報を取得',
+  })
+  me(@Req() req): ExhibitorSerializer {
+    return req.user.transformToSerializer();
   }
 }

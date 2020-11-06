@@ -10,15 +10,15 @@
         </v-row>
         <v-row align="center" justify="center" class="row-wrap" no-gutters>
           <v-col cols="12" class="top" align="center">
-            <v-form ref="form">
+            <v-form ref="form" v-model="valid">
               <v-col cols="8">
                 <v-text-field
                   v-model="form.studentNumber"
                   background-color="#281252"
                   dark
-                  prepend-inner-icon="mdi-account"
                   class="mt-10"
                   label="学籍番号"
+                  :rules="rules.studentNumber"
                   outlined
                   required
                 ></v-text-field>
@@ -26,12 +26,16 @@
               <v-col cols="8">
                 <v-text-field
                   v-model="form.password"
-                  prepend-inner-icon="mdi-lock"
                   background-color="#281252"
                   dark
+                  class="mt-7"
                   label="パスワード"
+                  :type="showPasswordIcon ? 'text' : 'password'"
+                  :rules="rules.password"
                   outlined
                   required
+                  :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="showPasswordIcon = !showPasswordIcon"
                 ></v-text-field>
               </v-col>
               <v-col cols="8">
@@ -41,6 +45,7 @@
                   dark
                   color="#27144e"
                   class="signin-btn ma-5"
+                  :disabled="!valid"
                   @click="onSubmit"
                   >Log in</v-btn
                 >
@@ -61,10 +66,16 @@ export default Vue.extend({
   auth: 'guest',
   data() {
     return {
+      valid: false,
       form: {
         studentNumber: '',
         password: '',
       },
+      rules: {
+        studentNumber: [(v: string) => !!v || '学籍番号は必須です。'],
+        password: [(v: string) => !!v || 'パスワードは必須です。'],
+      },
+      showPasswordIcon: false,
     }
   },
   methods: {
