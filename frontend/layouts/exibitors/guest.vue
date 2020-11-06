@@ -1,8 +1,6 @@
 <template>
-  <v-main class="wrapper">
-    <v-container fluid class="pa-0">
-      <nuxt />
-    </v-container>
+  <v-main>
+    <nuxt />
   </v-main>
 </template>
 

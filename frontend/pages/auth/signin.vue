@@ -1,61 +1,63 @@
 <template>
-  <v-row justify="center">
-    <v-img class="mx-auto" :src="require('@/assets/signin_background.png')">
-      <v-container>
-        <v-img :src="require('@/assets/logo_main.png')" />
-        <v-row id="signin-wrap" class="row-wrap" no-gutters>
-          <v-col cols="12" align="center" class="title">
-            <span class="SIGN-IN">SIGN IN</span>
-          </v-col>
-        </v-row>
-        <v-row align="center" justify="center" class="row-wrap" no-gutters>
-          <v-col cols="12" class="top" align="center">
-            <v-form ref="form" v-model="valid">
-              <v-col cols="8">
-                <v-text-field
-                  v-model="form.studentNumber"
-                  background-color="#281252"
-                  dark
-                  class="mt-10"
-                  label="学籍番号"
-                  :rules="rules.studentNumber"
-                  outlined
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="8">
-                <v-text-field
-                  v-model="form.password"
-                  background-color="#281252"
-                  dark
-                  class="mt-7"
-                  label="パスワード"
-                  :type="showPasswordIcon ? 'text' : 'password'"
-                  :rules="rules.password"
-                  outlined
-                  required
-                  :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="showPasswordIcon = !showPasswordIcon"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="8">
-                <v-btn
-                  block
-                  large
-                  dark
-                  color="#27144e"
-                  class="signin-btn ma-5"
-                  :disabled="!valid"
-                  @click="onSubmit"
-                  >Log in</v-btn
-                >
-              </v-col>
-            </v-form>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-img>
-  </v-row>
+  <v-parallax
+    id="parallax-full-height"
+    height="100%"
+    :src="require('@/assets/signin_background.png')"
+  >
+    <v-container>
+      <v-img :src="require('@/assets/logo_main.png')" />
+      <v-row id="signin-wrap" class="row-wrap" no-gutters>
+        <v-col cols="12" align="center" class="title">
+          <span class="SIGN-IN">SIGN IN</span>
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center" class="row-wrap" no-gutters>
+        <v-col cols="12" class="top" align="center">
+          <v-form ref="form" v-model="valid">
+            <v-col cols="8">
+              <v-text-field
+                v-model="form.studentNumber"
+                background-color="#281252"
+                dark
+                class="mt-10"
+                label="学籍番号"
+                :rules="rules.studentNumber"
+                outlined
+                required
+              ></v-text-field>
+            </v-col>
+            <v-col cols="8">
+              <v-text-field
+                v-model="form.password"
+                background-color="#281252"
+                dark
+                class="mt-7"
+                label="パスワード"
+                :type="showPasswordIcon ? 'text' : 'password'"
+                :rules="rules.password"
+                outlined
+                required
+                :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="showPasswordIcon = !showPasswordIcon"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="8">
+              <v-btn
+                block
+                large
+                dark
+                color="#27144e"
+                class="signin-btn ma-5"
+                :disabled="!valid"
+                @click="onSubmit"
+                >Log in</v-btn
+              >
+            </v-col>
+          </v-form>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-parallax>
 </template>
 
 <script lang="ts">
@@ -78,6 +80,10 @@ export default Vue.extend({
       showPasswordIcon: false,
     }
   },
+  mounted() {
+    // parallaxコンポーネントを無理やり、高さを合わせる（汚いやり方だけど、仕方ない）
+    document.getElementById('parallax-full-height').style.height = '100vh'
+  },
   methods: {
     async onSubmit() {
       await this.$auth
@@ -96,7 +102,6 @@ export default Vue.extend({
   },
 })
 </script>
-
 <style>
 .title {
   background-color: rgba(255, 255, 255, 0.18);
