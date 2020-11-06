@@ -1,5 +1,16 @@
 import colors from 'vuetify/es5/util/colors'
 
+import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { Auth } from 'nuxtjs__auth'
+
+// ここのひとかたまりを追加
+declare module 'vue/types/vue' {
+  interface Vue {
+    $auth: Auth
+    $axios: NuxtAxiosInstance
+  }
+}
+
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -42,7 +53,37 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
+
+  // AuthModuleの設定
+  auth: {
+    redirect: {
+      login: '/auth/signin', // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
+      logout: '/auth/signin', // ログアウト時のリダイレクトURL
+      callback: false, // Oauth認証等で必要となる コールバックルート
+      home: '/exhibitors/mypage', // ログイン後のリダイレクトURL
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/sign_in',
+            method: 'post',
+            propertyName: 'accessToken',
+          },
+          logout: false,
+          user: false,
+        },
+      },
+    },
+  },
+
+  // ログインしていなかったら、強制的にログイン画面へリダイレクトする
+  // ログインしていている状態でログイン画面にアクセスしようとするとホームへリダイレクトする
+  router: {
+    middleware: ['auth'],
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
