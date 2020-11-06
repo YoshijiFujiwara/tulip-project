@@ -1,19 +1,15 @@
 <template>
   <v-row justify="center">
-    <v-img
-      width="1800px"
-      height="1024px"
-      gradient="to top, rgba(61, 31, 122, .8), rgba(0,0,0,.8)"
-    >
-      <v-container class="grey lighten-5">
-        <v-img max-width="1114px" :src="require('@/assets/logo_main.png')" />
-        <v-row id="signin-wrap" justify="center" class="row-wrap" no-gutters>
-          <v-col cols="12" align="center" offset="2" class="title">
+    <v-img class="mx-auto" :src="require('@/assets/signin_background.png')">
+      <v-container>
+        <v-img :src="require('@/assets/logo_main.png')" />
+        <v-row id="signin-wrap" class="row-wrap" no-gutters>
+          <v-col cols="12" align="center" class="title">
             <span class="SIGN-IN">SIGN IN</span>
           </v-col>
         </v-row>
         <v-row align="center" justify="center" class="row-wrap" no-gutters>
-          <v-col md="12" class="top" align="center">
+          <v-col cols="12" class="top" align="center">
             <v-form ref="form">
               <v-col cols="8">
                 <v-text-field
