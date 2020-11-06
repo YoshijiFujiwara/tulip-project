@@ -32,5 +32,7 @@
 </template>
 
 <script lang="ts">
-export default {}
+export default {
+  auth: false,
+}
 </script>
