@@ -20,3 +20,5 @@ seeding-run:
 	docker container exec -it backend sh -c "npm run typeorm:local:seed:run"
 schema-drop:
 	docker container exec -it backend sh -c "npm run typeorm:schema:drop"
+schema-sync:
+	docker container exec -it backend sh -c "npm run typeorm:schema:drop && npm run typeorm:local:migration:run && npm run typeorm:local:seed:run"
