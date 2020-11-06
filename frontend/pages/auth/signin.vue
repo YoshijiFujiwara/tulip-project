@@ -6,54 +6,51 @@
   >
     <v-container>
       <v-img :src="require('@/assets/logo_main.png')" />
-      <v-row id="signin-wrap" class="row-wrap" no-gutters>
-        <v-col cols="12" align="center" class="title">
-          <span class="SIGN-IN">SIGN IN</span>
-        </v-col>
-      </v-row>
-      <v-row align="center" justify="center" class="row-wrap" no-gutters>
-        <v-col cols="12" class="top" align="center">
-          <v-form ref="form" v-model="valid">
-            <v-col cols="8">
-              <v-text-field
-                v-model="form.studentNumber"
-                background-color="#281252"
-                dark
-                class="mt-10"
-                label="学籍番号"
-                :rules="rules.studentNumber"
-                outlined
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="8">
-              <v-text-field
-                v-model="form.password"
-                background-color="#281252"
-                dark
-                class="mt-7"
-                label="パスワード"
-                :type="showPasswordIcon ? 'text' : 'password'"
-                :rules="rules.password"
-                outlined
-                required
-                :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="showPasswordIcon = !showPasswordIcon"
-              ></v-text-field>
-            </v-col>
-            <v-col cols="8">
-              <v-btn
-                block
-                large
-                dark
-                color="#27144e"
-                class="signin-btn ma-5"
-                :disabled="!valid"
-                @click="onSubmit"
-                >Log in</v-btn
-              >
-            </v-col>
-          </v-form>
+      <v-row>
+        <v-col class="mx-auto" cols="7">
+          <div id="form-wrapper">
+            <div id="title-wrapper" class="py-5">SIGN IN</div>
+            <v-row align="center" justify="center" class="row-wrap" no-gutters>
+              <v-col cols="8" class="top" align="center">
+                <v-form ref="form" v-model="valid" class="py-10">
+                  <v-text-field
+                    v-model="form.studentNumber"
+                    background-color="rgba(255, 255, 255, 0.16)"
+                    dark
+                    prepend-inner-icon="mdi-account"
+                    label="student ID No."
+                    counter="8"
+                    :rules="rules.studentNumber"
+                    outlined
+                    required
+                  ></v-text-field>
+                  <v-text-field
+                    v-model="form.password"
+                    background-color="rgba(255, 255, 255, 0.16)"
+                    dark
+                    prepend-inner-icon="mdi-lock"
+                    label="password"
+                    :type="showPasswordIcon ? 'text' : 'password'"
+                    :rules="rules.password"
+                    outlined
+                    required
+                    :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="showPasswordIcon = !showPasswordIcon"
+                  ></v-text-field>
+                  <v-btn
+                    id="signin-button"
+                    block
+                    large
+                    dark
+                    color="rgba(255, 255, 255, 0.23)"
+                    :disabled="!valid"
+                    @click="onSubmit"
+                    >Log in</v-btn
+                  >
+                </v-form>
+              </v-col>
+            </v-row>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -102,48 +99,19 @@ export default Vue.extend({
   },
 })
 </script>
-<style>
-.title {
-  background-color: rgba(255, 255, 255, 0.18);
-  font-size: 3rem;
-}
-.row-wrap {
-  max-width: 600px;
-  margin: 0 auto;
+<style lang="scss">
+// 色情報 from https://tulipgumi.slack.com/archives/C01D34DJC5P/p1604650600001100
+// それをrgbaに変換してます
+#form-wrapper {
   background-color: rgba(20, 8, 44, 0.59);
 }
-.top {
-  background-color: #14082c;
-}
-.signin-btn {
-  border: solid 3px rgba(255, 255, 255, 0.37);
-
-  background-color: rgba(255, 255, 255, 0.23);
-}
-.SIGN-IN {
-  width: 228px;
-
-  height: 66px;
-
+#title-wrapper {
+  background-color: rgba(255, 255, 255, 0.18);
   font-family: MeiryoUI;
-
   font-size: 52px;
-
   font-weight: bold;
-
-  font-stretch: normal;
-
-  font-style: normal;
-
   line-height: 0.69;
-
-  letter-spacing: normal;
-
   text-align: center;
-
   color: rgba(255, 255, 255, 0.76);
-}
-#signin-wrap {
-  margin-top: 50px;
 }
 </style>
