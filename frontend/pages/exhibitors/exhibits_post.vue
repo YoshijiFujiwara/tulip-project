@@ -24,8 +24,8 @@
     ></v-select>
 
     <v-file-input
+      v-model="files.image"
       class="mt-7"
-      v-model="files"
       color="deep-purple accent-4"
       counter
       accept="image/png, image/jpeg, image/bmp"
@@ -44,14 +44,14 @@
           v-else-if="index === 2"
           class="overline grey--text text--darken-3 mx-2"
         >
-          +{{ files.length - 2 }} File(s)
+          +{{ files.image.length - 2 }} File(s)
         </span>
       </template>
     </v-file-input>
 
     <v-file-input
+      v-model="files.image"
       class="mt-7"
-      v-model="files"
       color="deep-purple accent-4"
       counter
       accept="image/png, image/jpeg, image/bmp"
@@ -70,7 +70,7 @@
           v-else-if="index === 2"
           class="overline grey--text text--darken-3 mx-2"
         >
-          +{{ files.length - 2 }} File(s)
+          +{{ files.image.length - 2 }} File(s)
         </span>
       </template>
     </v-file-input>
@@ -80,12 +80,30 @@
 
 <script lang="ts">
 export default {
-  data: () => ({
-    items: ['ゲーム', '音楽', '映像', 'IT'],
-  }),
+  data() {
+    return {
+      items: ['ゲーム', '音楽', '映像', 'IT'],
+      files: {
+        image: (null as unknown) as File,
+      },
+    }
+  },
   methods: {
-    onSubmit() {
-      alert('aaaaaaaaaa')
+    async onSubmit() {
+      // cloudinaryに画像のアップロードをする
+      if (this.files.image) {
+        const data = new FormData()
+        data.append('file', this.files.image)
+        // FIXME: nuxt buildの時に、環境変数の読み込みが出来ないため直書きしている
+        data.append('upload_preset', 'himawari')
+        data.append('cloud_name', 'db32y726v')
+
+        this.$axios.setBaseURL(
+          `https://api.cloudinary.com/v1_1/${'db32y726v'}/`
+        )
+        const res = await this.$axios.$post('/image/upload', data)
+        console.log(res)
+      }
     },
   },
 }
