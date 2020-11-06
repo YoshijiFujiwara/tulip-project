@@ -1,8 +1,8 @@
 <template>
   <v-form v-model="valid">
     <v-text-field
-      prepend-icon="mdi-format-title"
       v-model="form.title"
+      prepend-icon="mdi-format-title"
       :rules="rules.title"
       class="mt-7"
       label="作品タイトル"
@@ -10,8 +10,8 @@
       required
     ></v-text-field>
     <v-text-field
-      prepend-icon="mdi-pencil-box"
       v-model="form.description"
+      prepend-icon="mdi-pencil-box"
       :rules="rules.description"
       class="mt-7"
       label="説明"
@@ -20,9 +20,9 @@
     ></v-text-field>
 
     <v-select
+      v-model="form.genre"
       class="mt-7"
       prepend-icon="mdi-form-select"
-      v-model="form.genre"
       :rules="rules.genre"
       :items="items"
       label="ジャンル"
@@ -30,8 +30,8 @@
     ></v-select>
 
     <v-file-input
-      class="mt-7"
       v-model="form.thumbnail"
+      class="mt-7"
       :rules="rules.thumbnail"
       color="deep-purple accent-4"
       counter
@@ -58,8 +58,8 @@
     </v-file-input>
 
     <v-file-input
-      class="mt-7"
       v-model="form.presentationData"
+      class="mt-7"
       :rules="rules.presentationData"
       color="deep-purple accent-4"
       counter
