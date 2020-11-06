@@ -1,4 +1,3 @@
-import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 import {
   Body,
   Controller,
@@ -13,13 +12,13 @@ import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBearerAuth,
   ApiOkResponse,
-  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 
 @ApiTags('auth')
 @Controller('auth')

@@ -2,6 +2,9 @@
   <div>
     <h3>MyPage</h3>
     <p>トークン確認用: {{ token }}</p>
+    <v-btn @click="openCreateExhibitsModal"
+      >作品登録用モーダルを開く仮のボタン</v-btn
+    >
   </div>
 </template>
 
@@ -14,9 +17,10 @@ export default Vue.extend({
       token: '',
     }
   },
-  created() {
-    // トークン確認用
-    this.token = this.$store.$auth.getToken('local') || 'まだない'
+  methods: {
+    openCreateExhibitsModal() {
+      // 作品登録用モーダルを開く処理を書く
+    },
   },
 })
 </script>
