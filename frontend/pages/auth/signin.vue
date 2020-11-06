@@ -3,7 +3,6 @@
     <v-img
       width="1800px"
       height="1024px"
-      :src="src"
       gradient="to top, rgba(61, 31, 122, .8), rgba(0,0,0,.8)"
     >
       <v-container class="grey lighten-5">
@@ -70,6 +69,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   layout: 'exibitors/guest',
+  auth: 'guest',
   data() {
     return {
       valid: false,
@@ -85,11 +85,19 @@ export default Vue.extend({
     }
   },
   methods: {
-    onSubmit() {
-      alert(
-        'loooooooooooooooooooooooooooooooooooooooooogin\nマイページに飛びます。'
-      )
-      this.$router.push('/mypage/0')
+    async onSubmit() {
+      await this.$auth
+        .loginWith('local', {
+          data: this.form,
+        })
+        .then(
+          (response) => {
+            return response
+          },
+          (error) => {
+            return error
+          }
+        )
     },
   },
 })
