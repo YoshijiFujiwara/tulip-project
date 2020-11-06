@@ -1,6 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export class createExhibitorsTable1603424284188 implements MigrationInterface {
+export class createExhibitorsTable1604548191769 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -35,6 +40,10 @@ export class createExhibitorsTable1603424284188 implements MigrationInterface {
             default: 'now()',
           },
           {
+            name: 'groupId',
+            type: 'integer',
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',
@@ -48,6 +57,15 @@ export class createExhibitorsTable1603424284188 implements MigrationInterface {
         ],
       }),
     );
+
+    const foreignKey = new TableForeignKey({
+      columnNames: ['groupId'],
+      referencedColumnNames: ['id'],
+      referencedTableName: 'groups',
+      onDelete: 'CASCADE',
+    });
+
+    await queryRunner.createForeignKey('exhibitors', foreignKey);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

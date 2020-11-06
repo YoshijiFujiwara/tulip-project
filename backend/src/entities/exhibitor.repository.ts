@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { ExhibitorEntity } from '../entities/exhibitor.entity';
-import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
+import { ExhibitorEntity } from './exhibitor.entity';
+import { SignInExhibitorDto } from '../auth/dto/sign-in-exhibitor.dto';
 import * as bcrypt from 'bcrypt';
 
 @EntityRepository(ExhibitorEntity)
