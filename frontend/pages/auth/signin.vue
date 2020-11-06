@@ -14,7 +14,7 @@
         </v-row>
         <v-row align="center" justify="center" class="md-1" no-gutters>
           <v-col offset-md="4" md="12" class="top" align="center">
-            <v-form ref="form">
+            <v-form ref="form" v-model="valid">
               <v-row justify="center" class="pa-10">
                 <v-col cols="12">
                   <v-text-field
@@ -23,6 +23,7 @@
                     dark
                     class="mt-10"
                     label="学籍番号"
+                    :rules="rules.studentNumber"
                     outlined
                     required
                   ></v-text-field>
@@ -49,6 +50,7 @@
                     dark
                     color="#27144e"
                     class="signin-btn ma-5"
+                    :disabled="!valid"
                     @click="onSubmit"
                     >Log in</v-btn
                   >
@@ -70,11 +72,15 @@ export default Vue.extend({
   auth: 'guest',
   data() {
     return {
+      valid: false,
       form: {
         studentNumber: '',
         password: '',
       },
-      rules: {},
+      rules: {
+        studentNumber: [(v: string) => !!v || '学籍番号は必須です。'],
+        password: [(v: string) => !!v || 'パスワードは必須です。'],
+      },
       showPasswordIcon: false,
     }
   },
