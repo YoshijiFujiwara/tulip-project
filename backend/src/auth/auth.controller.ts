@@ -43,6 +43,11 @@ export class AuthController {
   @Get('/me')
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
+  @ApiResponse({
+    status: 200,
+    type: ExhibitorSerializer,
+    description: 'ログイン展示者の情報を取得',
+  })
   me(@Req() req): ExhibitorSerializer {
     return req.user.transformToSerializer();
   }
