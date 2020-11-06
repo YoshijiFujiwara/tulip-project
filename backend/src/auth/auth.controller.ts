@@ -1,9 +1,11 @@
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 import {
   Body,
   Controller,
   Get,
   HttpCode,
   Post,
+  Req,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
@@ -42,7 +44,12 @@ export class AuthController {
   @Get('/me')
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
-  me() {
-    return 'hogehoge';
+  @ApiResponse({
+    status: 200,
+    type: ExhibitorSerializer,
+    description: 'ログイン展示者の情報を取得',
+  })
+  me(@Req() req): ExhibitorSerializer {
+    return req.user.transformToSerializer();
   }
 }
