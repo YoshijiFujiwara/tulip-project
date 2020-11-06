@@ -6,8 +6,10 @@
         <a-asset-item id="shop-mtl" src="/shop.mtl"></a-asset-item>
       </a-assets>
       <a-obj-model
-        position="0 -1 0"
-        rotation="-90 0 0"
+        v-for="(n, i) in 20"
+        :key="i"
+        :position="`${i * 10} -1 ${i % 2 == 0 ? 20 : 0}`"
+        :rotation="`-90 0 ${i % 2 == 0 ? 180 : 0}`"
         src="#shop-obj"
         mtl="#shop-mtl"
         scale="0.05 0.05 0.05"
