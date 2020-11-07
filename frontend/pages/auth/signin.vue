@@ -84,26 +84,6 @@ export default class Signin extends Vue {
     if (document.getElementById('parallax-full-height')) {
       document.getElementById('parallax-full-height').style.height = '100vh'
     }
-<<<<<<< HEAD
-  },
-  methods: {
-    async onSubmit() {
-      await this.$auth
-        .loginWith('local', {
-          data: this.form,
-        })
-        .then(
-          (response) => {
-            return response
-          },
-          (error) => {
-            return error
-          }
-        )
-    },
-  },
-})
-=======
   }
 
   async onSubmit() {
@@ -121,7 +101,6 @@ export default class Signin extends Vue {
       )
   }
 }
->>>>>>> 757496122d13842d78a988c5c9e046b07a7cbc48
 </script>
 <style lang="scss">
 // 色情報 from https://tulipgumi.slack.com/archives/C01D34DJC5P/p1604650600001100
