@@ -14,20 +14,21 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import Component from 'nuxt-class-component'
 // import Gorilla from '~/components/Gorilla.vue'
 import Booth from '~/components/Booth.vue'
-export default {
+
+@Component({
   auth: false,
   components: {
     Booth,
   },
-  data() {
-    return {
-      imgs: [
-        { name: 'gorilla', url: '/gori.jpg', position: '0 0 -5' },
-        { name: 'dog', url: '/dog.jpg', position: '7 0 -5' },
-      ],
-    }
-  },
+})
+export default class Exhibition extends Vue {
+  imgs = [
+    { name: 'gorilla', url: '/gori.jpg', position: '0 0 -5' },
+    { name: 'dog', url: '/dog.jpg', position: '7 0 -5' },
+  ]
 }
 </script>
