@@ -18,7 +18,6 @@
       outlined
       required
     ></v-text-field>
-
     <v-select
       v-model="form.genre"
       class="mt-7"
@@ -28,13 +27,11 @@
       label="ジャンル"
       outlined
     ></v-select>
-
     <v-file-input
-      v-model="form.thumbnail"
+      v-model="form.thumbnailImage"
       class="mt-7"
-      :rules="rules.thumbnail"
+      :rules="rules.thumbnailImage"
       color="deep-purple accent-4"
-      counter
       accept="image/png, image/jpeg, image/bmp"
       label="サムネール"
       prepend-icon="mdi-camera"
@@ -42,27 +39,12 @@
       outlined
       required
       :show-size="1000"
-    >
-      <template v-slot:selection="{ index, text }">
-        <v-chip v-if="index < 2" color="deep-purple accent-4" dark label small>
-          {{ text }}
-        </v-chip>
-
-        <span
-          v-else-if="index === 2"
-          class="overline grey--text text--darken-3 mx-2"
-        >
-          +{{ form.thumbnail.length - 2 }} File(s)
-        </span>
-      </template>
-    </v-file-input>
-
+    ></v-file-input>
     <v-file-input
-      v-model="form.presentationData"
+      v-model="form.presentationImage"
       class="mt-7"
-      :rules="rules.presentationData"
+      :rules="rules.presentationImage"
       color="deep-purple accent-4"
-      counter
       accept="image/png, image/jpeg, image/bmp"
       label="プレゼンデータ"
       prepend-icon="mdi-camera"
@@ -70,20 +52,7 @@
       outlined
       required
       :show-size="1000"
-    >
-      <template v-slot:selection="{ index, text }">
-        <v-chip v-if="index < 2" color="deep-purple accent-4" dark label small>
-          {{ text }}
-        </v-chip>
-
-        <span
-          v-else-if="index === 2"
-          class="overline grey--text text--darken-3 mx-2"
-        >
-          +{{ form.presentationData.length - 2 }} File(s)
-        </span>
-      </template>
-    </v-file-input>
+    ></v-file-input>
     <v-btn block large color="primary" :disabled="!valid" @click="onSubmit"
       >登録</v-btn
     >
@@ -91,39 +60,53 @@
 </template>
 
 <script lang="ts">
-export default {
-  data: () => ({
-    items: ['ゲーム', '音楽', '映像', 'IT'],
-    valid: false,
-    form: {
-      title: '',
-      description: '',
-      genre: '',
-      file: '',
-      presentationData: '',
-    },
-    rules: {
-      title: [
-        (v: string) => !!v || 'タイトルは必須です',
-        // (v: string) =>
-        //   (v && v.length <= 20) || 'グループ名は20文字以内で入力してください',
-      ],
-      description: [(v: string) => !!v || '説明文は必須です'],
-      genre: [(v: string) => !!v || 'ジャンルは必須です'],
-      thumbnail: [
-        (v) => !!v || 'サムネイル画像は必須です',
-        (v) => (v && v.size > 0) || 'サムネイル画像は必須です',
-      ],
-      presentationData: [
-        (v) => !!v || 'プレゼンデータ画像は必須です',
-        (v) => (v && v.size > 0) || 'プレゼンデータ画像は必須です',
-      ],
-    },
-  }),
+import Vue from 'vue'
+// cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
+import { uploadImageCloudinary } from '../../utils/functions'
+
+export default Vue.extend({
+  data() {
+    return {
+      items: ['ゲーム', '音楽', '映像', 'IT'],
+      valid: false,
+      form: {
+        title: '',
+        description: '',
+        genre: '',
+        thumbnailImage: (null as unknown) as File,
+        presentationImage: (null as unknown) as File,
+      },
+      rules: {
+        title: [(v: string) => !!v || 'タイトルは必須です'],
+        description: [(v: string) => !!v || '説明文は必須です'],
+        genre: [(v: string) => !!v || 'ジャンルは必須です'],
+        thumbnailImage: [(v: string) => !!v || 'サムネイル画像は必須です'],
+        presentationImage: [
+          (v: string) => !!v || 'プレゼンデータ画像は必須です',
+        ],
+      },
+    }
+  },
   methods: {
-    onSubmit() {
-      alert('aaaaaaaaaa')
+    async onSubmit() {
+      let thumbnailImageUrl: string
+      let presentationImageUrl: string
+
+      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+      if (this.form.thumbnailImage && this.form.presentationImage) {
+        thumbnailImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.thumbnailImage
+        )
+        presentationImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.presentationImage
+        )
+        console.log('thumnailImageUrl', thumbnailImageUrl)
+        console.log('presentationImageUrl', presentationImageUrl)
+      }
     },
   },
-}
+})
 </script>

@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 import colors from 'vuetify/es5/util/colors'
 
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
@@ -14,6 +16,20 @@ declare module 'vue/types/vue' {
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
+
+  // 環境変数
+  env: {
+    cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  },
+
+  // server proxy setting ()
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'tulip.local-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'tulip.local.pem')),
+    },
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -88,6 +104,8 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.AXIOS_BASE_URL,
+    proxyHeaders: false,
+    credentials: false,
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
