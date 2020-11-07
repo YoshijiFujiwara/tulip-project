@@ -1,9 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as fs from 'fs';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  // localhostでのhttps化に必要なファイルの読み込み
+
+  const keyFile = fs.readFileSync(__dirname + '/../tulip.local-key.pem');
+  const certFile = fs.readFileSync(__dirname + '/../tulip.local.pem');
+
+  const app = await NestFactory.create(AppModule, {
+    // https設定
+    httpsOptions: {
+      key: keyFile,
+      cert: certFile,
+    },
+  });
+
   app.setGlobalPrefix('api');
 
   app.enableCors();

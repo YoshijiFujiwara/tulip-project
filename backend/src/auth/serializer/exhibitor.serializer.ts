@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 export class ExhibitorSerializer {
   @ApiProperty()
-  id: string;
+  id: number;
 
   @ApiProperty()
   studentNumber: string;
@@ -11,4 +11,7 @@ export class ExhibitorSerializer {
 
   @ApiProperty()
   lastLoggedinAt: Date;
+
+  @ApiProperty()
+  groupId: number;
 }
