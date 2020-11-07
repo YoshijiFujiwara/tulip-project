@@ -26,8 +26,8 @@ export default {
   // server proxy setting ()
   server: {
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+      key: fs.readFileSync(path.resolve(__dirname, 'tulip.local-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'tulip.local.pem')),
     },
   },
 
