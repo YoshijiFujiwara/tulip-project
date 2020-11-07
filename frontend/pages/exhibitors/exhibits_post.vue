@@ -2,9 +2,9 @@
   <v-form ref="form" v-model="valid">
     <v-card-title class="headline"> 作品登録 </v-card-title>
     <v-textarea
-      v-model="title"
+      v-model="form.title"
       class="pt-7"
-      :rules="rules"
+      :rules="rules.title"
       label="作品タイトル"
       placeholder="作品について説明するタイトルを追加しましょう"
       auto-grow
@@ -14,8 +14,8 @@
       outlined
     ></v-textarea>
     <v-textarea
-      v-model="description"
-      :rules="rules"
+      v-model="form.description"
+      :rules="rules.description"
       label="説明"
       placeholder="来場者に向けて作品の内容を紹介しましょう"
       counter="40"
