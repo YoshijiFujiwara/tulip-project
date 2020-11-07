@@ -28,9 +28,9 @@
       outlined
     ></v-select>
     <v-file-input
-      v-model="form.thumbnail"
+      v-model="form.thumbnailImage"
       class="mt-7"
-      :rules="rules.thumbnail"
+      :rules="rules.thumbnailImage"
       color="deep-purple accent-4"
       accept="image/png, image/jpeg, image/bmp"
       label="サムネール"
@@ -53,7 +53,7 @@
       required
       :show-size="1000"
     ></v-file-input>
-    <v-btn block large color="primary" :disabled="false" @click="onSubmit"
+    <v-btn block large color="primary" :disabled="!valid" @click="onSubmit"
       >登録</v-btn
     >
   </v-form>
@@ -61,28 +61,26 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
+import { uploadImageCloudinary } from '../../utils/functions'
 
 export default Vue.extend({
   data() {
     return {
-      genreItems: ['ゲーム', '音楽', '映像', 'IT'],
+      items: ['ゲーム', '音楽', '映像', 'IT'],
       valid: false,
       form: {
         title: '',
         description: '',
         genre: '',
-        thumbnail: (null as unknown) as File,
+        thumbnailImage: (null as unknown) as File,
         presentationImage: (null as unknown) as File,
       },
       rules: {
-        title: [
-          (v: string) => !!v || 'タイトルは必須です',
-          // (v: string) =>
-          //   (v && v.length <= 20) || 'グループ名は20文字以内で入力してください',
-        ],
+        title: [(v: string) => !!v || 'タイトルは必須です'],
         description: [(v: string) => !!v || '説明文は必須です'],
         genre: [(v: string) => !!v || 'ジャンルは必須です'],
-        thumbnail: [(v: string) => !!v || 'サムネイル画像は必須です'],
+        thumbnailImage: [(v: string) => !!v || 'サムネイル画像は必須です'],
         presentationImage: [
           (v: string) => !!v || 'プレゼンデータ画像は必須です',
         ],
@@ -91,19 +89,22 @@ export default Vue.extend({
   },
   methods: {
     async onSubmit() {
-      // cloudinaryに画像のアップロードをする
-      if (this.form.thumbnail) {
-        const data = new FormData()
-        data.append('file', this.form.thumbnailImage)
-        // FIXME: nuxt buildの時に、環境変数の読み込みが出来ないため直書きしている
-        data.append('upload_preset', 'himawari')
-        data.append('cloud_name', 'db32y726v')
+      let thumbnailImageUrl: string
+      let presentationImageUrl: string
 
-        this.$axios.setBaseURL(
-          `https://api.cloudinary.com/v1_1/${'db32y726v'}/`
+      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+      if (this.form.thumbnailImage && this.form.presentationImage) {
+        thumbnailImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.thumbnailImage
         )
-        const res = await this.$axios.$post('/image/upload', data)
-        console.log(res)
+        presentationImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.presentationImage
+        )
+        console.log('thumnailImageUrl', thumbnailImageUrl)
+        console.log('presentationImageUrl', presentationImageUrl)
       }
     },
   },
