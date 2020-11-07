@@ -61,52 +61,48 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Component from 'nuxt-class-component'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../utils/functions'
 
-export default Vue.extend({
-  data() {
-    return {
-      items: ['ゲーム', '音楽', '映像', 'IT'],
-      valid: false,
-      form: {
-        title: '',
-        description: '',
-        genre: '',
-        thumbnailImage: (null as unknown) as File,
-        presentationImage: (null as unknown) as File,
-      },
-      rules: {
-        title: [(v: string) => !!v || 'タイトルは必須です'],
-        description: [(v: string) => !!v || '説明文は必須です'],
-        genre: [(v: string) => !!v || 'ジャンルは必須です'],
-        thumbnailImage: [(v: string) => !!v || 'サムネイル画像は必須です'],
-        presentationImage: [
-          (v: string) => !!v || 'プレゼンデータ画像は必須です',
-        ],
-      },
-    }
-  },
-  methods: {
-    async onSubmit() {
-      let thumbnailImageUrl: string
-      let presentationImageUrl: string
+@Component
+export default class ExhibitsPost extends Vue {
+  items = ['ゲーム', '音楽', '映像', 'IT']
+  valid = false
+  form = {
+    title: '',
+    description: '',
+    genre: '',
+    thumbnailImage: (null as unknown) as File,
+    presentationImage: (null as unknown) as File,
+  }
 
-      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-      if (this.form.thumbnailImage && this.form.presentationImage) {
-        thumbnailImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.thumbnailImage
-        )
-        presentationImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.presentationImage
-        )
-        console.log('thumnailImageUrl', thumbnailImageUrl)
-        console.log('presentationImageUrl', presentationImageUrl)
-      }
-    },
-  },
-})
+  rules = {
+    title: [(v: string) => !!v || 'タイトルは必須です'],
+    description: [(v: string) => !!v || '説明文は必須です'],
+    genre: [(v: string) => !!v || 'ジャンルは必須です'],
+    thumbnailImage: [(v: string) => !!v || 'サムネイル画像は必須です'],
+    presentationImage: [(v: string) => !!v || 'プレゼンデータ画像は必須です'],
+  }
+
+  async onSubmit() {
+    let thumbnailImageUrl: string
+    let presentationImageUrl: string
+
+    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    if (this.form.thumbnailImage && this.form.presentationImage) {
+      thumbnailImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.thumbnailImage
+      )
+      presentationImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.presentationImage
+      )
+      console.log('thumnailImageUrl', thumbnailImageUrl)
+      console.log('presentationImageUrl', presentationImageUrl)
+    }
+  }
+}
 </script>

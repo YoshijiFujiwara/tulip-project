@@ -32,7 +32,11 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue'
+import Component from 'nuxt-class-component'
+
+@Component({
   auth: false,
-}
+})
+export default class Texture extends Vue {}
 </script>
