@@ -13,7 +13,7 @@ import Vue from 'vue'
 import Component from 'nuxt-class-component'
 
 @Component
-export default class YourComponent extends Vue {
+export default class MyPage extends Vue {
   token = ''
 
   openCreateExhibitsModal() {
