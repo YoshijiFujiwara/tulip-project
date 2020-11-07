@@ -18,5 +18,11 @@
 </template>
 
 <script lang="ts">
-export default {}
+import Vue from 'vue'
+import Component from 'nuxt-class-component'
+
+@Component({
+  auth: false,
+})
+export default class Ironman extends Vue {}
 </script>
