@@ -81,13 +81,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Component from 'nuxt-class-component'
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
-export default {
+@Component({
   components: {
     Logo,
     VuetifyLogo,
   },
-}
+})
+export default class Index extends Vue {}
 </script>
