@@ -11,7 +11,6 @@
       rows="1"
       row-height="20"
       counter="20"
-      filled
       outlined
     ></v-textarea>
     <v-textarea
@@ -23,7 +22,7 @@
       auto-grow
       rows="2"
       row-height="40"
-      filled
+      outlined
     ></v-textarea>
     <v-select
       v-model="form.genre"
