@@ -10,17 +10,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Component from 'nuxt-class-component'
 
-export default Vue.extend({
-  data() {
-    return {
-      token: '',
-    }
-  },
-  methods: {
-    openCreateExhibitsModal() {
-      // 作品登録用モーダルを開く処理を書く
-    },
-  },
-})
+@Component
+export default class MyPage extends Vue {
+  token = ''
+
+  openCreateExhibitsModal() {
+    // 作品登録用モーダルを開く
+  }
+}
 </script>
