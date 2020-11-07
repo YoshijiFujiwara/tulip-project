@@ -27,7 +27,6 @@
     <v-select
       v-model="form.genre"
       class="mt-7"
-      prepend-icon="mdi-form-select"
       :rules="rules.genre"
       :items="items"
       label="ジャンル"
