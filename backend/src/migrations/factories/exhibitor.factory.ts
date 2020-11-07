@@ -5,16 +5,18 @@ import { randomJapaneseFullName } from '../../func/random.func';
 
 interface Context {
   id: number;
+  groupId: number;
 }
 
 define(ExhibitorEntity, (_: typeof Faker, context: Context) => {
-  const { id } = context;
+  const { id, groupId } = context;
 
   const exhibitor = new ExhibitorEntity();
   exhibitor.studentNumber = `ohs7${('0000' + id).slice(-4)}`;
   exhibitor.password = 'B19990101';
   exhibitor.name = `${randomJapaneseFullName()}`;
   exhibitor.lastLoggedinAt = new Date();
+  exhibitor.groupId = groupId;
 
   return exhibitor;
 });

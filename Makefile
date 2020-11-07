@@ -1,4 +1,3 @@
-# frontend, backendのライブラリを一括インストール
 # ============== コンテナに入る基本コマンド ================ 
 # frontendのコンテナに入る
 enter-frontend:
@@ -13,10 +12,12 @@ enter-database:
 	docker container exec -it database sh
 
 migration-run:
-	docker container exec -it backend sh -c "npm run typeorm:migration:run"
+	docker container exec -it backend sh -c "npm run typeorm:local:migration:run"
 migration-revert:
-	docker container exec -it backend sh -c "npm run typeorm:migration:revert"
+	docker container exec -it backend sh -c "npm run typeorm:local:migration:revert"
 seeding-run:
-	docker container exec -it backend sh -c "npm run typeorm:seed:run"
+	docker container exec -it backend sh -c "npm run typeorm:local:seed:run"
 schema-drop:
 	docker container exec -it backend sh -c "npm run typeorm:schema:drop"
+schema-sync:
+	docker container exec -it backend sh -c "npm run typeorm:schema:drop && npm run typeorm:local:migration:run && npm run typeorm:local:seed:run"

@@ -1,6 +1,6 @@
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { ExhibitorRepository } from './exhibitor.repository';
+import { ExhibitorRepository } from '../entities/exhibitor.repository';
 import { JwtService } from '@nestjs/jwt';
 
 describe('AuthController', () => {

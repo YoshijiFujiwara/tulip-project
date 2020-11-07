@@ -21,7 +21,8 @@
       "@nuxtjs/axios",
       "@nuxtjs/auth",
       "@types/jest",
-      "@nuxtjs/vuetify"
+      "@nuxtjs/vuetify",
+      "@nuxt/vue-app",
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]

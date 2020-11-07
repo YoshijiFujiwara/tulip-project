@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 import colors from 'vuetify/es5/util/colors'
 
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
@@ -14,6 +16,20 @@ declare module 'vue/types/vue' {
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
+
+  // 環境変数
+  env: {
+    cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  },
+
+  // server proxy setting ()
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'tulip.local-key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'tulip.local.pem')),
+    },
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -88,22 +104,28 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: process.env.AXIOS_BASE_URL,
+    proxyHeaders: false,
+    credentials: false,
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
-        dark: {
-          primary: colors.blue.darken2,
+        light: {
+          // 基本の色
+          primary: '#1996fe',
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+          error: '#F2135D',
           success: colors.green.accent3,
+
+          // ログインページ関連
+          color_signinFormHeader: 'rgba(255, 255, 255, 0.18)',
         },
       },
     },
