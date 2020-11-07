@@ -110,14 +110,8 @@ export default {
       ],
       description: [(v: string) => !!v || '説明文は必須です'],
       genre: [(v: string) => !!v || 'ジャンルは必須です'],
-      thumbnail: [
-        (v) => !!v || 'サムネイル画像は必須です',
-        (v) => (v && v.size > 0) || 'サムネイル画像は必須です',
-      ],
-      presentationData: [
-        (v) => !!v || 'プレゼンデータ画像は必須です',
-        (v) => (v && v.size > 0) || 'プレゼンデータ画像は必須です',
-      ],
+      thumbnail: [(v: string) => !!v || 'サムネイル画像は必須です'],
+      presentationData: [(v: string) => !!v || 'プレゼンデータ画像は必須です'],
     },
   }),
   methods: {
