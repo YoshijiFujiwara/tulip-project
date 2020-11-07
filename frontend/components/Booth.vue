@@ -10,7 +10,9 @@
 
 <script>
 import Vue from 'vue'
-export default Vue.extend({
+import Component from 'nuxt-class-component'
+
+@Component({
   props: {
     img: {
       type: Array,
@@ -18,4 +20,5 @@ export default Vue.extend({
     },
   },
 })
+export default class Booth extends Vue {}
 </script>
