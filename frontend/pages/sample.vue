@@ -11,12 +11,16 @@
       subtitle2="ぱおん"
       subtitle3="悲しくて"
     />
+
+    <!-- vuexの情報の表示 -->
+    {{ localData }}
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import Sampleyade from '@/components/Sampleyade.vue'
+const pathfinder = namespace('pathfinder')
 
 @Component({
   auth: false,
@@ -27,6 +31,29 @@ import Sampleyade from '@/components/Sampleyade.vue'
 export default class Sample extends Vue {
   message = 'メッセージやで'
   responseData = null
+
+  // vuexのサンプル用
+  public localData: object = {}
+
+  // vuexのステート
+  @pathfinder.State
+  public info!: object
+
+  // vuexのゲッター
+  @pathfinder.Getter
+  public fullInfo!: string
+
+  // vuexのmutation
+  @pathfinder.Mutation
+  public updateInfo!: (data: object) => void
+
+  mounted() {
+    this.localData = { ...this.localData, ...this.info }
+  }
+
+  public update(): void {
+    this.updateInfo(this.localData)
+  }
 
   async onClickButton() {
     // nestjsに最初からあるサンプルAPI叩く
