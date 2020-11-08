@@ -8,17 +8,11 @@
   ></a-image>
 </template>
 
-<script>
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
+<script lang="ts">
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
-@Component({
-  props: {
-    img: {
-      type: Array,
-      required: true,
-    },
-  },
-})
-export default class Booth extends Vue {}
+@Component
+export default class Booth extends Vue {
+  @Prop({ required: true }) img!: object
+}
 </script>

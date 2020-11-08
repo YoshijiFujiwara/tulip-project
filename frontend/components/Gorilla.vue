@@ -26,8 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class Gorilla extends Vue {}
