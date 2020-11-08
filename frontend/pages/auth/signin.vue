@@ -58,8 +58,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({
   layout: 'exibitors/guest',
@@ -93,9 +92,13 @@ export default class Signin extends Vue {
       })
       .then(
         (response) => {
+          this.$toast.success('ログインしました')
           return response
         },
         (error) => {
+          this.$toast.error(
+            'ログインに失敗しました。入力内容を確認してください。'
+          )
           return error
         }
       )
