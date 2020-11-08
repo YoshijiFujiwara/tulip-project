@@ -81,7 +81,7 @@ export default class Signin extends Vue {
   mounted() {
     // parallaxコンポーネントを無理やり、高さを合わせる（汚いやり方だけど、仕方ない）
     if (document.getElementById('parallax-full-height')) {
-      document.getElementById('parallax-full-height').style.height = '100vh'
+      document.getElementById('parallax-full-height')!.style.height = '100vh'
     }
   }
 
