@@ -60,8 +60,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
+import { Component, Vue } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../utils/functions'
 
