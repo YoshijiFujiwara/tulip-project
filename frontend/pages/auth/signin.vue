@@ -92,9 +92,13 @@ export default class Signin extends Vue {
       })
       .then(
         (response) => {
+          this.$toast.success('ログインしました')
           return response
         },
         (error) => {
+          this.$toast.error(
+            'ログインに失敗しました。入力内容を確認してください。'
+          )
           return error
         }
       )

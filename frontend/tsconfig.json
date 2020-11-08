@@ -20,6 +20,7 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@nuxtjs/auth",
+      "@nuxtjs/toast",
       "@types/jest",
       "@nuxtjs/vuetify",
       "@nuxt/vue-app",
