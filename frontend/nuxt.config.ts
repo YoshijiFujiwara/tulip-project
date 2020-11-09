@@ -107,7 +107,7 @@ export default {
             propertyName: 'accessToken',
           },
           logout: false,
-          user: false,
+          user: { url: '/auth/me', method: 'get', propertyName: false },
         },
       },
     },
