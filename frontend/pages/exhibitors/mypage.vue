@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>MyPage</h3>
-    <p>トークン確認用: {{ token }}</p>
+    <p>ログインユーザー確認用: {{ user }}</p>
     <v-btn @click="openCreateExhibitsModal"
       >作品登録用モーダルを開く仮のボタン</v-btn
     >
@@ -13,10 +13,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class MyPage extends Vue {
-  token = ''
+  user: object = null
 
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
+  }
+
+  async created() {
+    this.user = await this.$auth.user
   }
 }
 </script>
