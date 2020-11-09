@@ -20,8 +20,10 @@
       "@nuxt/types",
       "@nuxtjs/axios",
       "@nuxtjs/auth",
+      "@nuxtjs/toast",
       "@types/jest",
-      "@nuxtjs/vuetify"
+      "@nuxtjs/vuetify",
+      "@nuxt/vue-app",
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
