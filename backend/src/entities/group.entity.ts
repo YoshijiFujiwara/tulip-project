@@ -11,6 +11,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { ExhibitorEntity } from './exhibitor.entity';
 import { ExhibitEntity } from './exhibit.entity';
+import { GroupSerializer } from './serializer/group.serizlier';
 
 @Entity({
   name: 'groups',
@@ -52,4 +53,20 @@ export class GroupEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): GroupSerializer => {
+    const groupSerializer = new GroupSerializer();
+    groupSerializer.id = this.id;
+    groupSerializer.name = this.name;
+    if (this.exhibitors) {
+      groupSerializer.exhibitors = this.exhibitors.map(exhibitor =>
+        exhibitor.transformToSerializer(),
+      );
+    }
+    if (this.exhibit) {
+      groupSerializer.exhibit = this.exhibit.transformToSerializer();
+    }
+
+    return groupSerializer;
+  };
 }
