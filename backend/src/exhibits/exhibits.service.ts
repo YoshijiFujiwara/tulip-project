@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExhibitRepsitory } from '../entities/exhibit.repository';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
@@ -19,11 +23,17 @@ export class ExhibitsService {
     createExhibitDto: CreateExhibitDto,
     exhibitor: ExhibitorEntity,
   ): Promise<ExhibitEntity> {
-    const group = await this.groupRepository.findOne({ id: exhibitor.groupId });
+    const group = await this.groupRepository.findOne({
+      relations: ['exhibit'],
+      where: { id: exhibitor.groupId },
+    });
     if (!group) {
       throw new ForbiddenException(
         '作品を登録するには、グループに所属する必要があります',
       );
+    }
+    if (group.exhibit) {
+      throw new ConflictException('作品は登録済みです');
     }
 
     return await this.exhibitRepsitory.createExhibit(createExhibitDto, group);
