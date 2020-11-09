@@ -13,7 +13,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class MyPage extends Vue {
-  user: object = null
+  user: object = {}
 
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
