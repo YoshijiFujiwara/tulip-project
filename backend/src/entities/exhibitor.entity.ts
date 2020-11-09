@@ -1,4 +1,4 @@
-import { ExhibitorSerializer } from '../auth/serializer/exhibitor.serializer';
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,

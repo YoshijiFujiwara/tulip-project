@@ -18,7 +18,7 @@ import {
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
-import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
+import { ExhibitorSerializer } from '../entities/serializer/exhibitor.serializer';
 import { GetUser } from './get-user-decorator';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
 

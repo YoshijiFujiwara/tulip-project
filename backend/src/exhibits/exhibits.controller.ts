@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpCode,
   Post,
   UseGuards,
   ValidationPipe,
@@ -11,7 +12,7 @@ import { ExhibitsService } from './exhibits.service';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { GetUser } from '../auth/get-user-decorator';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
-import { ExhibitSerializer } from './serializer/exhibit.serializer';
+import { ExhibitSerializer } from '../entities/serializer/exhibit.serializer';
 
 @ApiTags('exhibits')
 @Controller('exhibits')
@@ -21,8 +22,9 @@ export class ExhibitsController {
   constructor(private exhibitsService: ExhibitsService) {}
 
   @Post()
+  @HttpCode(201)
   @ApiOkResponse({
-    type: 'string',
+    type: ExhibitSerializer,
     description: '作品登録完了',
   })
   async createExhibits(

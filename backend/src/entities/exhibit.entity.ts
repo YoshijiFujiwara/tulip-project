@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
-import { ExhibitSerializer } from '../exhibits/serializer/exhibit.serializer';
+import { ExhibitSerializer } from './serializer/exhibit.serializer';
 
 export enum GENRE {
   GAME = 'game',
@@ -94,6 +94,7 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.thumbnail = this.thumbnail;
     exhibitSerializer.genre = this.genre;
     exhibitSerializer.presentationImage = this.presentationImage;
+    exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
     }

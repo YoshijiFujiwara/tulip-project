@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { GENRE } from '../../entities/exhibit.entity';
-import { GroupSerializer } from '../../entities/serializer/group.serizlier';
+import { GENRE } from '../exhibit.entity';
+import { GroupSerializer } from './group.serizlier';
 
 export class ExhibitSerializer {
   @ApiProperty()
