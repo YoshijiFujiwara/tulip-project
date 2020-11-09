@@ -58,46 +58,52 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'nuxt-property-decorator'
 
-export default Vue.extend({
+@Component({
   layout: 'exibitors/guest',
   auth: 'guest',
-  data() {
-    return {
-      valid: false,
-      form: {
-        studentNumber: '',
-        password: '',
-      },
-      rules: {
-        studentNumber: [(v: string) => !!v || '学籍番号は必須です。'],
-        password: [(v: string) => !!v || 'パスワードは必須です。'],
-      },
-      showPasswordIcon: false,
-    }
-  },
+})
+export default class Signin extends Vue {
+  valid = false
+  form = {
+    studentNumber: '',
+    password: '',
+  }
+
+  rules = {
+    studentNumber: [(v: string) => !!v || '学籍番号は必須です。'],
+    password: [(v: string) => !!v || 'パスワードは必須です。'],
+  }
+
+  showPasswordIcon = false
+
   mounted() {
     // parallaxコンポーネントを無理やり、高さを合わせる（汚いやり方だけど、仕方ない）
-    document.getElementById('parallax-full-height').style.height = '100vh'
-  },
-  methods: {
-    async onSubmit() {
-      await this.$auth
-        .loginWith('local', {
-          data: this.form,
-        })
-        .then(
-          (response) => {
-            return response
-          },
-          (error) => {
-            return error
-          }
-        )
-    },
-  },
-})
+    if (document.getElementById('parallax-full-height')) {
+      document.getElementById('parallax-full-height')!.style.height = '100vh'
+    }
+  }
+
+  async onSubmit() {
+    await this.$auth
+      .loginWith('local', {
+        data: this.form,
+      })
+      .then(
+        (response) => {
+          this.$toast.success('ログインしました')
+          return response
+        },
+        (error) => {
+          this.$toast.error(
+            'ログインに失敗しました。入力内容を確認してください。'
+          )
+          return error
+        }
+      )
+  }
+}
 </script>
 <style lang="scss">
 // 色情報 from https://tulipgumi.slack.com/archives/C01D34DJC5P/p1604650600001100

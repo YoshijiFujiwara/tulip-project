@@ -3,6 +3,7 @@ import fs from 'fs'
 import colors from 'vuetify/es5/util/colors'
 
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { Toasted } from 'vue-toasted'
 import { Auth } from 'nuxtjs__auth'
 
 // ここのひとかたまりを追加
@@ -10,6 +11,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $auth: Auth
     $axios: NuxtAxiosInstance
+    $toast: Toasted
   }
 }
 
@@ -70,7 +72,23 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/toast',
   ],
+
+  // トースト通知設定
+  toast: {
+    position: 'top-center',
+    register: [
+      // ここにカスタム通知をセットする
+      {
+        name: 'error',
+        message: 'エラーが発生しました。時間をおいて、再度お試しください',
+        options: {
+          type: 'error',
+        },
+      },
+    ],
+  },
 
   // AuthModuleの設定
   auth: {
@@ -89,7 +107,7 @@ export default {
             propertyName: 'accessToken',
           },
           logout: false,
-          user: false,
+          user: { url: '/auth/me', method: 'get', propertyName: false },
         },
       },
     },

@@ -1,26 +1,37 @@
 <template>
   <div>
     <h3>MyPage</h3>
-    <p>トークン確認用: {{ token }}</p>
+    <p>ログインユーザー確認用: {{ user }}</p>
     <v-btn @click="openCreateExhibitsModal"
       >作品登録用モーダルを開く仮のボタン</v-btn
     >
+
+    <CreateExhibitDialog v-model="isOpenCreateExhibitDialog" />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'nuxt-property-decorator'
+import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 
-export default Vue.extend({
-  data() {
-    return {
-      token: '',
-    }
-  },
-  methods: {
-    openCreateExhibitsModal() {
-      // 作品登録用モーダルを開く処理を書く
-    },
+@Component({
+  components: {
+    CreateExhibitDialog,
   },
 })
+export default class MyPage extends Vue {
+  user: object = {}
+
+  // 展示物作成モーダルの開閉
+  isOpenCreateExhibitDialog: boolean = false
+
+  openCreateExhibitsModal() {
+    // 作品登録用モーダルを開く
+    this.isOpenCreateExhibitDialog = true
+  }
+
+  async created() {
+    this.user = await this.$auth.user
+  }
+}
 </script>

@@ -20,7 +20,10 @@
 </template>
 
 <script lang="ts">
-export default {
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component({
   auth: false,
-}
+})
+export default class Shop extends Vue {}
 </script>
