@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog'
+import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 
 @Component({
   components: {
