@@ -7,7 +7,12 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiConflictResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ExhibitsService } from './exhibits.service';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { GetUser } from '../auth/get-user-decorator';
@@ -26,6 +31,9 @@ export class ExhibitsController {
   @ApiOkResponse({
     type: ExhibitSerializer,
     description: '作品登録完了',
+  })
+  @ApiConflictResponse({
+    description: '作品重複登録時のエラー',
   })
   async createExhibits(
     @Body(ValidationPipe) createExhibitDto: CreateExhibitDto,
