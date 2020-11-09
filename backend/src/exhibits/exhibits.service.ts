@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExhibitRepsitory } from '../entities/exhibit.repository';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
@@ -27,11 +23,6 @@ export class ExhibitsService {
       relations: ['exhibit'],
       where: { id: exhibitor.groupId },
     });
-    if (!group) {
-      throw new ForbiddenException(
-        '作品を登録するには、グループに所属する必要があります',
-      );
-    }
     if (group.exhibit) {
       throw new ConflictException('作品は登録済みです');
     }
