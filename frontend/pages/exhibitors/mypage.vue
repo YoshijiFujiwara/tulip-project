@@ -1,8 +1,8 @@
 <template>
   <div>
     <h3>MyPage</h3>
-    <p>トークン確認用: {{ token }}</p>
-    <v-btn color="primary" @click="openCreateExhibitsModal"
+    <p>ログインユーザー確認用: {{ user }}</p>
+    <v-btn @click="openCreateExhibitsModal"
       >作品登録用モーダルを開く仮のボタン</v-btn
     >
 
@@ -20,7 +20,7 @@ import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDia
   },
 })
 export default class MyPage extends Vue {
-  token = ''
+  user: object = {}
 
   // 展示物作成モーダルの開閉
   isOpenCreateExhibitDialog: boolean = false
@@ -28,6 +28,10 @@ export default class MyPage extends Vue {
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
     this.isOpenCreateExhibitDialog = true
+  }
+
+  async created() {
+    this.user = await this.$auth.user
   }
 }
 </script>
