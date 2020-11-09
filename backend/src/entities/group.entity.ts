@@ -6,9 +6,11 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExhibitorEntity } from './exhibitor.entity';
+import { ExhibitEntity } from './exhibit.entity';
 
 @Entity({
   name: 'groups',
@@ -29,6 +31,12 @@ export class GroupEntity extends BaseEntity {
     exhibitor => exhibitor.group,
   )
   exhibitors: ExhibitorEntity[];
+
+  @OneToOne(
+    () => ExhibitEntity,
+    exhibit => exhibit.group,
+  )
+  exhibit: ExhibitEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
