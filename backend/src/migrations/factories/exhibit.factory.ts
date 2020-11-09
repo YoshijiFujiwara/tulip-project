@@ -9,18 +9,8 @@ interface Context {
 
 define(ExhibitEntity, (_: typeof Faker, context: Context) => {
   const { groupNum, groupId } = context;
-  const genre = (() => {
-    switch (groupNum % 4) {
-      case 1:
-        return GENRE.IT;
-      case 2:
-        return GENRE.MOVIE;
-      case 3:
-        return GENRE.MUSIC;
-      default:
-        return GENRE.GAME;
-    }
-  })();
+  const genres: GENRE[] = Object.keys(GENRE).map(k => GENRE[k]);
+  const genre = genres[groupNum % genres.length];
 
   const exhibit = new ExhibitEntity();
   exhibit.title = `作品${groupNum}`;
