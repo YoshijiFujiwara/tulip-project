@@ -56,6 +56,9 @@
     <v-btn block large color="primary" :disabled="!valid" @click="onSubmit"
       >登録</v-btn
     >
+    <v-btn block large color="primary" class="mt-10" @click="onSubmitTest"
+      >ダミー</v-btn
+    >
   </v-form>
 </template>
 
@@ -102,6 +105,28 @@ export default class ExhibitsPost extends Vue {
       console.log('thumnailImageUrl', thumbnailImageUrl)
       console.log('presentationImageUrl', presentationImageUrl)
     }
+  }
+
+  async onSubmitTest() {
+    const response = await this.$axios.post(
+      '/exhibits',
+      {
+        title: 'テストラゴン',
+        description:
+          '次世代型の文化祭をVRで体験できるサービスです。オンラインでもリアルな交流を体験出来ます！',
+        thumbnail: 'https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg',
+        genre: 'it',
+        presentationImage:
+          'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD',
+      },
+      {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50TnVtYmVyIjoib2hzNzAwMDEiLCJpYXQiOjE2MDQ5MjU5MzIsImV4cCI6MTYwNDkyOTUzMn0._ruVgeN9EfQ4iddziRh8N8_uTwAnjHQHKpHZ3vznX8Y',
+        },
+      }
+    )
+    console.log(response)
   }
 }
 </script>
