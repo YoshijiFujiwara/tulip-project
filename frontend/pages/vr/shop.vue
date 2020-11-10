@@ -2,8 +2,8 @@
   <div>
     <a-scene>
       <a-assets timeout="200000">
-        <a-asset-item id="shop-obj" src="/shop.obj"></a-asset-item>
-        <a-asset-item id="shop-mtl" src="/shop.mtl"></a-asset-item>
+        <a-asset-item id="shop-obj" src="/vr/model/shop.obj"></a-asset-item>
+        <a-asset-item id="shop-mtl" src="/vr/model/shop.mtl"></a-asset-item>
       </a-assets>
       <a-obj-model
         v-for="(n, i) in 20"
