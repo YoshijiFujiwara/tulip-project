@@ -2,12 +2,12 @@
   <div>
     <a-scene>
       <a-assets>
-        <div v-for="(img, i) in imgs" :key="i">
-          <img :id="img.name" :src="img.url" />
+        <div v-for="(booth, i) in booths" :key="i">
+          <img :id="booth.name" :src="booth.url" />
         </div>
       </a-assets>
 
-      <booth v-for="(img, i) in imgs" :key="i" :img="img" />
+      <booth v-for="(booth, i) in booths" :key="i" :booth="booth" />
       <a-sky color="#000"></a-sky>
     </a-scene>
   </div>
@@ -25,10 +25,17 @@ import Booth from '~/components/Booth.vue'
   },
 })
 export default class Exhibition extends Vue {
-  imgs = [
-    { name: 'gorilla', url: '/vr/img/gori.jpg', position: '0 0 -5' },
-    { name: 'dog', url: '/vr/img/dog.jpg', position: '7 0 -5' },
-    { name: 'dog2', url: '/vr/img/dog2.jpg', position: '14 0 -5' },
+  booths = [
+    {
+      name: 'dog',
+      url: '/vr/img/dog.jpg',
+      rightWall: '7 0 -5',
+      leftWall: '-0.01 0 -5',
+      backWall: '3.4 0 -7',
+      imgPosition: '3.4 0 -6',
+    },
+    // { name: 'dog', url: '/vr/img/dog.jpg', position: '7 0 -5' },
+    // { name: 'dog2', url: '/vr/img/dog2.jpg', position: '14 0 -5' },
   ]
 }
 </script>
