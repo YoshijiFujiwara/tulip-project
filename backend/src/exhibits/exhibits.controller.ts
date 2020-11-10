@@ -49,6 +49,10 @@ export class ExhibitsController {
   }
 
   @Put(':id')
+  @ApiOkResponse({
+    type: ExhibitSerializer,
+    description: '作品更新完了',
+  })
   exhibitUpdate(){
     const exhibit1 = new ExhibitEntity();
     exhibit1.title = '作品名1やで';
