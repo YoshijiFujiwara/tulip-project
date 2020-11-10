@@ -1,11 +1,12 @@
 <template>
   <!-- spanとかdivで囲むと表示されなくなる -->
-  <a-image
+  <a-box
     :src="`#${img.name}`"
     width="6"
     height="6"
+    depth="6"
     :position="img.position"
-  ></a-image>
+  ></a-box>
 </template>
 
 <script lang="ts">

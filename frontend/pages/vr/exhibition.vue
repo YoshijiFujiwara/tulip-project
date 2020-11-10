@@ -26,8 +26,9 @@ import Booth from '~/components/Booth.vue'
 })
 export default class Exhibition extends Vue {
   imgs = [
-    { name: 'gorilla', url: '/gori.jpg', position: '0 0 -5' },
-    { name: 'dog', url: '/dog.jpg', position: '7 0 -5' },
+    { name: 'gorilla', url: '/vr/img/gori.jpg', position: '0 0 -5' },
+    { name: 'dog', url: '/vr/img/dog.jpg', position: '7 0 -5' },
+    { name: 'dog2', url: '/vr/img/dog2.jpg', position: '14 0 -5' },
   ]
 }
 </script>
