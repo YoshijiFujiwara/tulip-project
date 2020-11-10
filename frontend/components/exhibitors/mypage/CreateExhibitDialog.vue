@@ -1,11 +1,13 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600px">
+  <v-dialog v-model="dialog" max-width="700px">
     <v-card>
-      <v-form ref="form" v-model="valid">
-        <v-card-title class="headline"> 作品登録 </v-card-title>
+      <v-card-title class="display-1 font-weight-bold pt-8">
+        作品登録
+      </v-card-title>
+      <v-form ref="form" v-model="valid" class="ml-8 mr-8 pb-9">
         <v-textarea
           v-model="form.title"
-          class="pt-7"
+          class="pt-6 pb-3"
           :rules="rules.title"
           label="作品タイトル"
           placeholder="作品について説明するタイトルを追加しましょう"
@@ -20,6 +22,7 @@
           :rules="rules.description"
           label="説明"
           placeholder="来場者に向けて作品の内容を紹介しましょう"
+          class="pb-3"
           counter="40"
           auto-grow
           rows="2"
@@ -28,45 +31,52 @@
         ></v-textarea>
         <v-select
           v-model="form.genre"
-          class="mt-7"
+          class="pb-3"
           :rules="rules.genre"
           :items="items"
           label="ジャンル"
           placeholder="選択"
           outlined
         ></v-select>
-        <p>サムネイル</p>
         <p>
+          <span class="font-weight-bold">サムネイル<br /></span>
           作品の内容がわかる画像をアップロードします。来場者の目を引くサムネイルにしましょう。
         </p>
         <v-file-input
           v-model="form.thumbnailImage"
-          class="mt-7"
+          class="pb-3"
           :rules="rules.thumbnailImage"
           color="deep-purple accent-4"
           accept="image/png, image/jpeg, image/bmp"
-          label="サムネール"
+          label="サムネイルをアップロード"
           prepend-icon="mdi-camera"
-          placeholder="サムネール"
           outlined
           required
           :show-size="1000"
         ></v-file-input>
+        <p>
+          <span class="font-weight-bold">プレゼン資料の画像<br /></span>
+          作品のプレゼン資料をアップロードしましょう。
+        </p>
         <v-file-input
           v-model="form.presentationImage"
-          class="mt-7"
+          class="pb-5"
           :rules="rules.presentationImage"
           color="deep-purple accent-4"
           accept="image/png, image/jpeg, image/bmp"
-          label="プレゼンデータ"
-          prepend-icon="mdi-file"
-          placeholder="プレゼンデータ"
+          label="プレゼン資料をアップロード"
           outlined
           required
           :show-size="1000"
         ></v-file-input>
-        <v-btn block large color="primary" :disabled="!valid" @click="onSubmit"
-          >登録</v-btn
+        <v-btn
+          block
+          large
+          class="white--text"
+          color="deep-purple darken-4"
+          :disabled="!valid"
+          @click="onSubmit"
+          >作品を登録する</v-btn
         >
       </v-form>
     </v-card>
