@@ -1,4 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { GroupSerializer } from './group.serizlier';
+
 export class ExhibitorSerializer {
   @ApiProperty()
   id: number;
@@ -14,4 +16,9 @@ export class ExhibitorSerializer {
 
   @ApiProperty()
   groupId: number;
+
+  @ApiPropertyOptional({
+    type: () => [GroupSerializer],
+  })
+  group?: GroupSerializer;
 }
