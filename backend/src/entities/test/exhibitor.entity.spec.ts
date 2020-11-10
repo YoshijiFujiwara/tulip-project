@@ -1,4 +1,5 @@
 import { ExhibitorEntity } from '../exhibitor.entity';
+import { hasProperty } from '../../func/test.func';
 
 describe('ExhibitorEntity', () => {
   let exhibitor: ExhibitorEntity;
@@ -32,6 +33,3 @@ describe('ExhibitorEntity', () => {
     });
   });
 });
-
-const hasProperty = (obj, key) =>
-  !!obj && Object.prototype.hasOwnProperty.call(obj, key);

@@ -1,5 +1,6 @@
 import { GroupEntity } from '../group.entity';
 import { ExhibitorEntity } from '../exhibitor.entity';
+import { hasProperty } from '../../func/test.func';
 
 describe('GroupEntity', () => {
   let group: GroupEntity;
@@ -42,6 +43,3 @@ describe('GroupEntity', () => {
     });
   });
 });
-
-const hasProperty = (obj, key) =>
-  !!obj && Object.prototype.hasOwnProperty.call(obj, key);
