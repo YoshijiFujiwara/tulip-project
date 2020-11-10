@@ -1,7 +1,23 @@
-import { Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  Post,
+  UseGuards,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiConflictResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ExhibitsService } from './exhibits.service';
+import { ExhibitorEntity } from '../entities/exhibitor.entity';
+import { GetUser } from '../auth/get-user-decorator';
+import { CreateExhibitDto } from './dto/create-exhibit.dto';
+import { ExhibitSerializer } from '../entities/serializer/exhibit.serializer';
 
 @ApiTags('exhibits')
 @Controller('exhibits')
@@ -11,11 +27,22 @@ export class ExhibitsController {
   constructor(private exhibitsService: ExhibitsService) {}
 
   @Post()
+  @HttpCode(201)
   @ApiOkResponse({
-    type: 'string',
+    type: ExhibitSerializer,
     description: '作品登録完了',
   })
-  async createExhibits(): Promise<string> {
-    return 'hogehoge';
+  @ApiConflictResponse({
+    description: '作品重複登録時のエラー',
+  })
+  async createExhibits(
+    @Body(ValidationPipe) createExhibitDto: CreateExhibitDto,
+    @GetUser() exhibitor: ExhibitorEntity,
+  ): Promise<ExhibitSerializer> {
+    const exhibit = await this.exhibitsService.createExhibit(
+      createExhibitDto,
+      exhibitor,
+    );
+    return exhibit.transformToSerializer();
   }
 }

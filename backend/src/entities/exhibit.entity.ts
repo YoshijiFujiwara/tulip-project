@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
+import { ExhibitSerializer } from './serializer/exhibit.serializer';
 
 export enum GENRE {
   GAME = 'game',
@@ -42,7 +43,7 @@ export class ExhibitEntity extends BaseEntity {
     type: 'text',
   })
   @ApiProperty()
-  thumbnail: string;
+  thumbnail!: string;
 
   @Column({
     type: 'enum',
@@ -57,11 +58,11 @@ export class ExhibitEntity extends BaseEntity {
     type: 'text',
   })
   @ApiProperty()
-  presentationImage: string;
+  presentationImage!: string;
 
   @Column()
   @ApiProperty()
-  groupId: number;
+  groupId!: number;
 
   @OneToOne(
     () => GroupEntity,
@@ -84,4 +85,20 @@ export class ExhibitEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): ExhibitSerializer => {
+    const exhibitSerializer = new ExhibitSerializer();
+    exhibitSerializer.id = this.id;
+    exhibitSerializer.title = this.title;
+    exhibitSerializer.description = this.description;
+    exhibitSerializer.thumbnail = this.thumbnail;
+    exhibitSerializer.genre = this.genre;
+    exhibitSerializer.presentationImage = this.presentationImage;
+    exhibitSerializer.groupId = this.groupId;
+    if (this.group) {
+      exhibitSerializer.group = this.group.transformToSerializer();
+    }
+
+    return exhibitSerializer;
+  };
 }

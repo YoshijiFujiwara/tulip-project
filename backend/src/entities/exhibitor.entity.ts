@@ -1,4 +1,4 @@
-import { ExhibitorSerializer } from '../auth/serializer/exhibitor.serializer';
+import { ExhibitorSerializer } from './serializer/exhibitor.serializer';
 import * as bcrypt from 'bcrypt';
 import {
   BaseEntity,
@@ -80,6 +80,10 @@ export class ExhibitorEntity extends BaseEntity {
     exhibitorSerializer.studentNumber = this.studentNumber;
     exhibitorSerializer.name = this.name;
     exhibitorSerializer.lastLoggedinAt = this.lastLoggedinAt;
+    exhibitorSerializer.groupId = this.groupId;
+    if (this.group) {
+      exhibitorSerializer.group = this.group.transformToSerializer();
+    }
 
     return exhibitorSerializer;
   };
