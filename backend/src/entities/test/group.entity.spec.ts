@@ -4,6 +4,7 @@ import { hasProperty } from '../../func/test.func';
 
 describe('GroupEntity', () => {
   let group: GroupEntity;
+  let mockExhibitors: ExhibitorEntity[];
 
   beforeEach(() => {
     group = new GroupEntity();
@@ -11,8 +12,8 @@ describe('GroupEntity', () => {
     group.name = 'チームA';
     group.createdAt = new Date();
     group.updatedAt = new Date();
-    group.exhibitors = [];
 
+    mockExhibitors = [];
     ['山田花子', '佐藤二朗'].map((name, id) => {
       const mockExhibitor = new ExhibitorEntity();
       mockExhibitor.id = id + 1;
@@ -25,8 +26,9 @@ describe('GroupEntity', () => {
       mockExhibitor.lastLoggedinAt = addUserDate;
       mockExhibitor.createdAt = addUserDate;
       mockExhibitor.updatedAt = addUserDate;
-      group.exhibitors = [...group.exhibitors, mockExhibitor];
+      mockExhibitors = [...mockExhibitors, mockExhibitor];
     });
+    group.exhibitors = mockExhibitors;
   });
 
   describe('transformToSerializer', () => {
@@ -35,8 +37,9 @@ describe('GroupEntity', () => {
       expect(result.id).toEqual(group.id);
       expect(result.name).toEqual(group.name);
       expect(result.exhibitors).toEqual(
-        group.exhibitors.map(e => e.transformToSerializer()),
+        mockExhibitors.map(e => e.transformToSerializer()),
       );
+
       expect(hasProperty(result, 'createdAt')).toEqual(false);
       expect(hasProperty(result, 'updatedAt')).toEqual(false);
     });
