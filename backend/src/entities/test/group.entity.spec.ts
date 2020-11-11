@@ -1,17 +1,32 @@
 import { GroupEntity } from '../group.entity';
 import { ExhibitorEntity } from '../exhibitor.entity';
 import { hasProperty } from '../../func/test.func';
+import { ExhibitEntity, GENRE } from '../exhibit.entity';
 
 describe('GroupEntity', () => {
   let group: GroupEntity;
   let mockExhibitors: ExhibitorEntity[];
+  let mockExhibit: ExhibitEntity;
 
   beforeEach(() => {
+    mockExhibit = new ExhibitEntity();
+    mockExhibit.id = 1;
+    mockExhibit.title = '作品A';
+    mockExhibit.description = 'hogehoge';
+    mockExhibit.thumbnail = 'hogehoge';
+    mockExhibit.genre = GENRE.IT;
+    mockExhibit.presentationImage = 'hogehoge';
+    mockExhibit.groupId = 1;
+    const date = new Date();
+    mockExhibit.createdAt = date;
+    mockExhibit.updatedAt = date;
+
     group = new GroupEntity();
-    group.id = 1;
+    group.id = mockExhibit.groupId;
     group.name = 'チームA';
-    group.createdAt = new Date();
-    group.updatedAt = new Date();
+    group.exhibit = mockExhibit;
+    group.createdAt = date;
+    group.updatedAt = date;
 
     mockExhibitors = [];
     ['山田花子', '佐藤二朗'].map((name, id) => {
@@ -36,6 +51,7 @@ describe('GroupEntity', () => {
       const result = group.transformToSerializer();
       expect(result.id).toEqual(group.id);
       expect(result.name).toEqual(group.name);
+      expect(result.exhibit).toEqual(mockExhibit.transformToSerializer());
       expect(result.exhibitors).toEqual(
         mockExhibitors.map(e => e.transformToSerializer()),
       );
