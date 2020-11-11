@@ -19,7 +19,6 @@ describe('GroupEntity', () => {
       mockExhibitor.studentNumber = `ohs7000${mockExhibitor.id}`;
       mockExhibitor.password = 'B19990101';
       mockExhibitor.name = name;
-      mockExhibitor.group = group;
       mockExhibitor.groupId = group.id;
 
       const addUserDate = new Date();
