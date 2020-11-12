@@ -86,7 +86,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-import { uploadImageCloudinary } from '../../../utils/functions'
+// import { uploadImageCloudinary } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 
 @Component
