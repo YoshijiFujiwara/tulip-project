@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-scene>
-      <a-assets>
-        <div v-for="(booth, i) in booths" :key="i">
-          <img :id="booth.name" :src="booth.url" />
+      <a-assets timeout="200000">
+        <div v-for="(exhibit, i) in exhibits" :key="i">
+          <img :id="`exhibit-${i}`" :src="exhibit.thumbnail" />
         </div>
-        ]<img id="sky" src="/vr/img/sky.jpg" />
+        <img id="sky" src="/vr/img/sky.jpg" />
       </a-assets>
       <a-plane
         color="#696"
@@ -14,7 +14,12 @@
         position="0 -3 -3"
         rotation="-90 0 0"
       ></a-plane>
-      <booth v-for="(booth, i) in booths" :key="i" :booth="booth" />
+      <booth
+        v-for="(exhibit, i) in exhibits"
+        :key="i"
+        :exhibit="exhibit"
+        :exhibit-id="`exhibit-${i}`"
+      />
       <a-sky src="#sky"></a-sky>
     </a-scene>
   </div>
@@ -24,6 +29,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import exhibit from '../../plugins/axios/modules/exhibit'
 import Booth from '~/components/Booth.vue'
 
 @Component({
@@ -34,23 +40,30 @@ import Booth from '~/components/Booth.vue'
 })
 export default class Exhibition extends Vue {
   exhibits: object = {}
-  async created() {
-    const response = await ExhibitApi.getExhibits()
-    this.exhibits = response
-    console.log('response', this.exhibits)
-  }
-
-  booths = [
+  position = [
     {
-      name: 'dog',
-      url: '/vr/img/dog.jpg',
       rightWall: '7 0 -5',
       leftWall: '-0.01 0 -5',
       backWall: '3.4 0 -6.9',
       imgPosition: '3.4 0 -6',
     },
-    // { name: 'dog', url: '/vr/img/dog.jpg', position: '7 0 -5' },
-    // { name: 'dog2', url: '/vr/img/dog2.jpg', position: '14 0 -5' },
+    {
+      rightWall: '17 0 -5',
+      leftWall: '9.99. 0 -5',
+      backWall: '13.4 0 -6.9',
+      imgPosition: '13.4 0 -6',
+    },
   ]
+
+  async created() {
+    const response = await ExhibitApi.getExhibits()
+    this.exhibits = response.map((exhibit, index) => {
+      return {
+        ...exhibit,
+        ...this.position[index],
+      }
+    })
+    console.log(this.exhibits)
+  }
 }
 </script>
