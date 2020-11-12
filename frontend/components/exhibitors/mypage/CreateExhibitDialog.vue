@@ -94,7 +94,7 @@ export default class CreateExhibitDialog extends Vue {
   // モーダルの開閉のために必要なprops
   @Prop({ required: true }) value: boolean = false
 
-  items = ['ゲーム', '音楽', '映像', 'IT']
+  items = ['game', 'music', 'movie', 'it']
   valid = false
   form = {
     title: '',
@@ -107,8 +107,8 @@ export default class CreateExhibitDialog extends Vue {
   setdata = {
     title: '',
     description: '',
+    thumbnail: '',
     genre: '',
-    thumbnailImage: '',
     presentationImage: '',
   }
 
@@ -121,34 +121,41 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async onSubmit() {
-    let thumbnailImageUrl: string
-    let presentationImageUrl: string
+    // let thumbnailImageUrl: string
+    // let presentationImageUrl: string
 
     // cloudinaryにサムネイルとプレゼン画像のアップロードをする
     // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    if (this.form.thumbnailImage && this.form.presentationImage) {
-      thumbnailImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.thumbnailImage
-      )
-      presentationImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.presentationImage
-      )
-      console.log('thumnailImageUrl', thumbnailImageUrl)
-      console.log('presentationImageUrl', presentationImageUrl)
-    }
+    // if (this.form.thumbnailImage && this.form.presentationImage) {
+    //   thumbnailImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.thumbnailImage
+    //   )
+    //   presentationImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.presentationImage
+    //   )
+    //   console.log('thumnailImageUrl', thumbnailImageUrl)
+    //   console.log('presentationImageUrl', presentationImageUrl)
+    // }
 
-    if (thumbnailImageUrl && presentationImageUrl) {
-      this.setdata.title = this.form.title
-      this.setdata.description = this.form.description
-      this.setdata.genre = this.form.genre
-      this.setdata.thumbnailImage = thumbnailImageUrl
-      this.setdata.presentationImage = presentationImageUrl
+    // ダミーURL
+    const thumbnailImageUrlDummy =
+      'https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg'
+    const presentationImageUrlDummy =
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD'
 
-      const response2 = await ExhibitApi.createExhibit(this.setdata)
-      console.log('response2', response2)
-    }
+    // if (thumbnailImageUrl && presentationImageUrl) {
+    this.setdata.title = this.form.title
+    this.setdata.description = this.form.description
+    this.setdata.genre = this.form.genre
+    this.setdata.thumbnail = thumbnailImageUrlDummy
+    this.setdata.presentationImage = presentationImageUrlDummy
+
+    console.log('setdata', this.setdata)
+    const response = await ExhibitApi.createExhibit(this.setdata)
+    console.log('responseCreateExhibit', response)
+    // }
   }
 
   // モーダルの開閉のために必要
