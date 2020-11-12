@@ -31,7 +31,7 @@ export default class Exhibition extends Vue {
       url: '/vr/img/dog.jpg',
       rightWall: '7 0 -5',
       leftWall: '-0.01 0 -5',
-      backWall: '3.4 0 -7',
+      backWall: '3.4 0 -6.9',
       imgPosition: '3.4 0 -6',
     },
     // { name: 'dog', url: '/vr/img/dog.jpg', position: '7 0 -5' },
