@@ -42,6 +42,12 @@
           <span class="font-weight-bold">サムネイル<br /></span>
           作品の内容がわかる画像をアップロードします。来場者の目を引くサムネイルにしましょう。
         </p>
+        <v-card class="ml-8 mx-auto my-4" max-width="300">
+          <v-img
+            v-if="uploadThumbnailImageUrl"
+            :src="uploadThumbnailImageUrl"
+          ></v-img>
+        </v-card>
         <v-file-input
           v-model="form.thumbnailImage"
           class="pb-3"
@@ -53,11 +59,19 @@
           outlined
           required
           :show-size="1000"
+          dense
+          @change="onThumbnailImagePicked"
         ></v-file-input>
         <p>
           <span class="font-weight-bold">プレゼン資料の画像<br /></span>
           作品のプレゼン資料をアップロードしましょう。
         </p>
+        <v-card class="ml-8 mx-auto my-4" max-width="300">
+          <v-img
+            v-if="uploadPresentationImageUrl"
+            :src="uploadPresentationImageUrl"
+          ></v-img>
+        </v-card>
         <v-file-input
           v-model="form.presentationImage"
           class="pb-5"
@@ -67,7 +81,9 @@
           label="プレゼン資料をアップロード"
           outlined
           required
+          dense
           :show-size="1000"
+          @change="onPresentationImagePicked"
         ></v-file-input>
         <v-btn
           block
@@ -95,6 +111,9 @@ export default class CreateExhibitDialog extends Vue {
 
   items = ['ゲーム', '音楽', '映像', 'IT']
   valid = false
+  uploadThumbnailImageUrl = ''
+  uploadPresentationImageUrl = ''
+
   form = {
     title: '',
     description: '',
@@ -126,8 +145,44 @@ export default class CreateExhibitDialog extends Vue {
         this.$axios,
         this.form.presentationImage
       )
-      console.log('thumnailImageUrl', thumbnailImageUrl)
+      console.log('thumbnailImageUrl', thumbnailImageUrl)
       console.log('presentationImageUrl', presentationImageUrl)
+    }
+  }
+
+  // thumbnailImageのプレビュー
+  onThumbnailImagePicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        if (typeof fr.result === 'string') {
+          this.uploadThumbnailImageUrl = fr.result
+        }
+      })
+    } else {
+      this.uploadThumbnailImageUrl = ''
+    }
+  }
+
+  // presentationImageのプレビュー
+  onPresentationImagePicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        if (typeof fr.result === 'string') {
+          this.uploadPresentationImageUrl = fr.result
+        }
+      })
+    } else {
+      this.uploadPresentationImageUrl = ''
     }
   }
 
