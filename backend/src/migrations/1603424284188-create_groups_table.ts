@@ -18,6 +18,17 @@ export class createGroupsTable1603424284188 implements MigrationInterface {
             type: 'varchar',
             length: '25',
           },
+          {
+            name: 'createdAt',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updatedAt',
+            type: 'timestamp',
+            default: 'now()',
+            onUpdate: 'now()',
+          },
         ],
       }),
     );
