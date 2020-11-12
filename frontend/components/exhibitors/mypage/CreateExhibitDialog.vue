@@ -11,6 +11,7 @@
           :rules="rules.title"
           label="作品タイトル"
           placeholder="作品について説明するタイトルを追加しましょう"
+          color="deep-purple darken-4"
           auto-grow
           rows="1"
           row-height="20"
@@ -25,6 +26,7 @@
           class="pb-3"
           counter="40"
           auto-grow
+          color="deep-purple darken-4"
           rows="2"
           row-height="40"
           outlined
@@ -36,6 +38,7 @@
           :items="items"
           label="ジャンル"
           placeholder="選択"
+          color="deep-purple darken-4"
           outlined
         ></v-select>
         <p>
