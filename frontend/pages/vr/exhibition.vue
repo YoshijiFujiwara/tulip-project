@@ -5,15 +5,24 @@
         <div v-for="(booth, i) in booths" :key="i">
           <img :id="booth.name" :src="booth.url" />
         </div>
-        ]<img id="sky" src="/vr/img/sky.jpg" />
+        <img id="sky" src="/vr/img/sky.jpg" />
+        <img id="floor" src="/vr/img/floor.png" />
       </a-assets>
-      <a-plane
-        color="#696"
-        width="10000"
-        height="10000"
-        position="0 -3 -3"
-        rotation="-90 0 0"
-      ></a-plane>
+      <a-entity v-for="(n, l) in 2" :key="l">
+        <a-entity v-for="(m, k) in 2" :key="k">
+          <a-entity v-for="(b, j) in 10" :key="j">
+            <a-plane
+              v-for="(v, i) in 10"
+              :key="i"
+              src="#floor"
+              width="10"
+              height="10"
+              :position="`${i * 10 - k * 10} -3 ${j * 10 - l * 10}`"
+              :rotation="`-90 0 0`"
+            ></a-plane>
+          </a-entity>
+        </a-entity>
+      </a-entity>
       <booth v-for="(booth, i) in booths" :key="i" :booth="booth" />
       <a-sky src="#sky"></a-sky>
     </a-scene>
