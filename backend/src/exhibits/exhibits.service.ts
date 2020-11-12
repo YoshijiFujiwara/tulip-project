@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExhibitRepsitory } from '../entities/exhibit.repository';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
@@ -28,5 +32,16 @@ export class ExhibitsService {
     }
 
     return await this.exhibitRepsitory.createExhibit(createExhibitDto, group);
+  }
+
+  async getExhibit(id: number): Promise<ExhibitEntity> {
+    const exhibit = await this.exhibitRepsitory.findOne({
+      relations: ['group'],
+      where: { id },
+    });
+    if (!exhibit) {
+      throw new NotFoundException('該当する作品が存在しません。');
+    }
+    return exhibit;
   }
 }

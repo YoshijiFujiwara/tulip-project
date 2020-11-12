@@ -14,6 +14,7 @@ import { AuthGuard } from '@nestjs/passport';
 import {
   ApiBearerAuth,
   ApiConflictResponse,
+  ApiNotFoundResponse,
   ApiOkResponse,
   ApiResponse,
   ApiTags,
@@ -107,22 +108,13 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: '作品情報を取得',
   })
+  @ApiNotFoundResponse({
+    description: 'IDに該当する作品情報が存在しなかった',
+  })
   async getExhibit(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<ExhibitSerializer> {
-    const exhibit = new ExhibitEntity();
-    exhibit.id = id;
-    exhibit.title = '作品名1やで';
-    exhibit.description = 'hogehogs1';
-    exhibit.thumbnail =
-      'https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg';
-    exhibit.presentationImage =
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD';
-    exhibit.genre = GENRE.IT;
-    exhibit.groupId = id;
-    exhibit.createdAt = new Date();
-    exhibit.updatedAt = new Date();
-
-    return await exhibit.transformToSerializer();
+    const exhibit = await this.exhibitsService.getExhibit(id);
+    return exhibit.transformToSerializer();
   }
 }
