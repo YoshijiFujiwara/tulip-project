@@ -37,8 +37,8 @@ export default class MyPage extends Vue {
     const response = await ExhibitApi.getExhibits()
     console.log('response', response)
 
-    const response2 = await ExhibitApi.createExhibit()
-    console.log('response2', response2)
+    // const response2 = await ExhibitApi.createExhibit()
+    // console.log('response2', response2)
   }
 }
 </script>
