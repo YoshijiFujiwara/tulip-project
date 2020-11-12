@@ -87,6 +87,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../../utils/functions'
+import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
@@ -101,6 +102,14 @@ export default class CreateExhibitDialog extends Vue {
     genre: '',
     thumbnailImage: (null as unknown) as File,
     presentationImage: (null as unknown) as File,
+  }
+
+  setdata = {
+    title: '',
+    description: '',
+    genre: '',
+    thumbnailImage: '',
+    presentationImage: '',
   }
 
   rules = {
@@ -128,6 +137,17 @@ export default class CreateExhibitDialog extends Vue {
       )
       console.log('thumnailImageUrl', thumbnailImageUrl)
       console.log('presentationImageUrl', presentationImageUrl)
+    }
+
+    if (thumbnailImageUrl && presentationImageUrl) {
+      this.setdata.title = this.form.title
+      this.setdata.description = this.form.description
+      this.setdata.genre = this.form.genre
+      this.setdata.thumbnailImage = thumbnailImageUrl
+      this.setdata.presentationImage = presentationImageUrl
+
+      const response2 = await ExhibitApi.createExhibit(this.setdata)
+      console.log('response2', response2)
     }
   }
 
