@@ -2,8 +2,14 @@
   <div>
     <a-scene>
       <a-assets timeout="200000">
-        <a-asset-item id="ironman-obj" src="/ironman.obj"></a-asset-item>
-        <a-asset-item id="ironman-mtl" src="/ironman.mtl"></a-asset-item>
+        <a-asset-item
+          id="ironman-obj"
+          src="/vr/model/ironman.obj"
+        ></a-asset-item>
+        <a-asset-item
+          id="ironman-mtl"
+          src="/vr/model/ironman.mtl"
+        ></a-asset-item>
       </a-assets>
       <a-obj-model
         position="0 -8 -2"
