@@ -15,7 +15,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-// import Gorilla from '~/components/Gorilla.vue'
+
+import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import Booth from '~/components/Booth.vue'
 
 @Component({
@@ -25,6 +26,13 @@ import Booth from '~/components/Booth.vue'
   },
 })
 export default class Exhibition extends Vue {
+  exhibits: object = {}
+  async created() {
+    const response = await ExhibitApi.getExhibits()
+    this.exhibits = response
+    console.log('response', this.exhibits)
+  }
+
   booths = [
     {
       name: 'dog',
