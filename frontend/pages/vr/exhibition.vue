@@ -5,10 +5,17 @@
         <div v-for="(booth, i) in booths" :key="i">
           <img :id="booth.name" :src="booth.url" />
         </div>
+        ]<img id="sky" src="/vr/img/sky.jpg" />
       </a-assets>
-
+      <a-plane
+        color="#696"
+        width="10000"
+        height="10000"
+        position="0 -3 -3"
+        rotation="-90 0 0"
+      ></a-plane>
       <booth v-for="(booth, i) in booths" :key="i" :booth="booth" />
-      <a-sky color="#000"></a-sky>
+      <a-sky src="#sky"></a-sky>
     </a-scene>
   </div>
 </template>
