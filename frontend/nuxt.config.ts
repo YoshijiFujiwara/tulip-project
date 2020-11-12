@@ -54,7 +54,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['@/plugins/axios/index'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -107,7 +107,7 @@ export default {
             propertyName: 'accessToken',
           },
           logout: false,
-          user: false,
+          user: { url: '/auth/me', method: 'get', propertyName: false },
         },
       },
     },
@@ -120,10 +120,9 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  // FIXME: plugins/axiosディレクトリとの設定の整理が必要そうかな
   axios: {
     baseURL: process.env.AXIOS_BASE_URL,
-    proxyHeaders: false,
-    credentials: false,
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
