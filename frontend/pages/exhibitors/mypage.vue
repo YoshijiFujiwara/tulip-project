@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
+import ExhibitApi from '../../plugins/axios/modules/exhibit'
 
 @Component({
   components: {
@@ -32,6 +33,12 @@ export default class MyPage extends Vue {
 
   async created() {
     this.user = await this.$auth.user
+
+    const response = await ExhibitApi.getExhibits()
+    console.log('response', response)
+
+    const response2 = await ExhibitApi.createExhibit()
+    console.log('response2', response2)
   }
 }
 </script>
