@@ -1,13 +1,97 @@
 <template>
-  <div>
-    <h3>MyPage</h3>
-    <p>ログインユーザー確認用: {{ user }}</p>
-    <v-btn @click="openCreateExhibitsModal"
-      >作品登録用モーダルを開く仮のボタン</v-btn
-    >
+  <v-row>
+    <v-col cols="12">
+      <h3>ようこそ、{{ user.studentNumber }}さん</h3>
+      <p>ログインユーザー確認用: {{ user }}</p>
+    </v-col>
+    <v-card color="#0f1642" width="100%">
+      <v-row class="pa-10">
+        <v-col cols="4">
+          <v-row>
+            <v-col cols="12">
+              <v-list dark color="#0f1642">
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>出展ステータス</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#389c0a">mdi-check-circle</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>作品登録</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon color="#ff5252">mdi-close-circle</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>ブース作成</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>出展まで</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-icon>
+                    <v-icon>mdi-clock-outline</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      あと
+                      <span class="text-h4 mr-2">99日</span>
+                      <span class="text-h4">23:59</span>
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col cols="6" class="production">
+              <v-card color="rgb(255, 0, 0, 0)" dark outline tile>
+                <a class="text-h5 text-center" @click="openCreateExhibitsModal">
+                  <div>
+                    <v-icon dark size="120">mdi-clipboard-text</v-icon>
+                  </div>
+                  <div>作品設定</div>
+                </a>
+              </v-card>
+            </v-col>
+            <v-col cols="6" class="booth">
+              <v-card color="rgb(255, 0, 0, 0)" dark outline tile>
+                <a class="text-h5 text-center" @click="openBoothSettingAlert">
+                  <div><v-icon dark size="120">mdi-apps</v-icon></div>
+                  <div>ブース設定</div>
+                </a>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="8" class="">
+          <v-img max-width="1086px" max-height="608px"
+            >画像ダミー
+            <v-card class="ma-auto" outlined>
+              <v-card-title class="justify-center">
+                <v-icon>mdi-information-outline</v-icon>
+                ただいまテストサーバで公開中です。
+              </v-card-title>
+              <v-card-actions class="justify-center">
+                <v-btn large class="px-15" @click="connectEntrance">入場</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-img>
+        </v-col>
+      </v-row>
+    </v-card>
 
     <CreateExhibitDialog v-model="isOpenCreateExhibitDialog" />
-  </div>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -31,6 +115,17 @@ export default class MyPage extends Vue {
     this.isOpenCreateExhibitDialog = true
   }
 
+  openBoothSettingAlert() {
+    // ブース設定用モーダル（仮）
+    alert(
+      'boooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooth'
+    )
+  }
+
+  connectEntrance() {
+    alert('入場')
+  }
+
   async created() {
     this.user = await this.$auth.user
 
@@ -42,3 +137,10 @@ export default class MyPage extends Vue {
   }
 }
 </script>
+
+<style>
+.bg {
+  background-color: #0f1642;
+  color: #389c0a;
+}
+</style>
