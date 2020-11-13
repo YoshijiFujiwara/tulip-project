@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExhibitRepsitory } from '../entities/exhibit.repository';
@@ -71,5 +72,31 @@ export class ExhibitsService {
     exhibit.genre = genre;
     exhibit.presentationImage = presentationImage;
     return await exhibit.save();
+  }
+
+  async deleteExhibit(
+    exhibitId: number,
+    exhibitor: ExhibitorEntity,
+  ): Promise<void> {
+    // ログインしているユーザーがグループを持っているか？
+    const group = await this.groupRepository.findOne({
+      relations: ['exhibit'],
+      where: { id: exhibitor.groupId },
+    });
+    // グループがないとき~ == ユーザーがグループに属していない
+    if (!group) {
+      throw new BadRequestException('グループが見つかりません');
+    }
+
+    // グループの作品が存在しているか & 作品IDが一致しているか？
+    if (!group.exhibit || exhibitId !== group.exhibit.id) {
+      throw new BadRequestException('作品がまだ登録されていません');
+    }
+
+    const result = await this.exhibitRepsitory.delete({ id: exhibitId });
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`Task with ID "${exhibitId}" not found`);
+    }
   }
 }
