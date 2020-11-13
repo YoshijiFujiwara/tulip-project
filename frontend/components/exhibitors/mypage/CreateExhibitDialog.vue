@@ -143,23 +143,25 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async onSubmit() {
-    let thumbnailImageUrl: string
-    let presentationImageUrl: string
+    // FIXME: cloudinaryアップロードが出来ないので、ダミーURLで対応する
 
-    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    if (this.form.thumbnailImage && this.form.presentationImage) {
-      thumbnailImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.thumbnailImage
-      )
-      presentationImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.presentationImage
-      )
-      console.log('thumbnailImageUrl', thumbnailImageUrl)
-      console.log('presentationImageUrl', presentationImageUrl)
-    }
+    // let thumbnailImageUrl: string
+    // let presentationImageUrl: string
+
+    // // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    // if (this.form.thumbnailImage && this.form.presentationImage) {
+    //   thumbnailImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.thumbnailImage
+    //   )
+    //   presentationImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.presentationImage
+    //   )
+    //   console.log('thumbnailImageUrl', thumbnailImageUrl)
+    //   console.log('presentationImageUrl', presentationImageUrl)
+    // }
 
     // ダミーURL
     const thumbnailImageUrlDummy =
