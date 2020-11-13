@@ -3,7 +3,11 @@
     <a-scene>
       <a-assets timeout="200000">
         <div v-for="(exhibit, i) in exhibits" :key="i">
-          <img :id="`exhibit-${i}`" :src="exhibit.thumbnail" />
+          <img
+            :id="`exhibit-${i}`"
+            :src="exhibit.thumbnail"
+            crossorigin="anonymous"
+          />
         </div>
         <img id="sky" src="/vr/img/sky.jpg" />
 
