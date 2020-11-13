@@ -50,12 +50,10 @@ export class ExhibitsService {
     }: UpdateExhibitDto,
     exhibitor: ExhibitorEntity,
   ): Promise<ExhibitEntity> {
-    // ログインしているユーザーがグループを持っているか？
     const group = await this.groupRepository.findOne({
       relations: ['exhibit'],
       where: { id: exhibitor.groupId },
     });
-    // グループがないとき~ == ユーザーがグループに属していない
     if (!group) {
       throw new BadRequestException('グループが見つかりません');
     }
@@ -78,23 +76,18 @@ export class ExhibitsService {
     exhibitId: number,
     exhibitor: ExhibitorEntity,
   ): Promise<void> {
-    // ログインしているユーザーがグループを持っているか？
     const group = await this.groupRepository.findOne({
       relations: ['exhibit'],
       where: { id: exhibitor.groupId },
     });
-    // グループがないとき~ == ユーザーがグループに属していない
     if (!group) {
       throw new BadRequestException('グループが見つかりません');
     }
-
-    // グループの作品が存在しているか & 作品IDが一致しているか？
     if (!group.exhibit || exhibitId !== group.exhibit.id) {
       throw new BadRequestException('作品がまだ登録されていません');
     }
 
     const result = await this.exhibitRepsitory.delete({ id: exhibitId });
-
     if (result.affected === 0) {
       throw new NotFoundException(`Exhibits with ID "${exhibitId}" not found`);
     }
