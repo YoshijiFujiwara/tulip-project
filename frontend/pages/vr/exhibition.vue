@@ -40,7 +40,6 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
-import exhibit from '../../plugins/axios/modules/exhibit'
 import Booth from '~/components/Booth.vue'
 
 @Component({
