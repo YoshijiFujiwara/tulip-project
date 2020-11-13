@@ -1,6 +1,7 @@
-export let axios
+// eslint-disable-next-line import/no-mutable-exports
+export let axios: any
 
-export default ({ store, $axios }) => {
+export default ({ store, $axios }: any) => {
   $axios.onRequest((config: any) => {
     const bearerToken = store.$auth.getToken('local')
     if (store.$auth.getToken('local')) {
@@ -9,11 +10,11 @@ export default ({ store, $axios }) => {
     config.headers.common.Accept = 'application/json'
   })
 
-  $axios.onResponse((response) => {
+  $axios.onResponse((response: any) => {
     return Promise.resolve(response)
   })
 
-  $axios.onError((error) => {
+  $axios.onError((error: any) => {
     return Promise.reject(error.response)
   })
 
