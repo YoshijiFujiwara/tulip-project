@@ -92,7 +92,7 @@ export class ExhibitsController {
     @Param('id', ParseIntPipe) id: number,
     @GetUser() exhibitor: ExhibitorEntity,
   ): Promise<void> {
-    return await this.exhibitsService.deleteExhibit(id, exhibitor);
+    await this.exhibitsService.deleteExhibit(id, exhibitor);
   }
 
   // 作品一覧は、参加者が叩くので、JWT認証はしない

@@ -96,7 +96,7 @@ export class ExhibitsService {
     const result = await this.exhibitRepsitory.delete({ id: exhibitId });
 
     if (result.affected === 0) {
-      throw new NotFoundException(`Task with ID "${exhibitId}" not found`);
+      throw new NotFoundException(`Exhibits with ID "${exhibitId}" not found`);
     }
   }
 }
