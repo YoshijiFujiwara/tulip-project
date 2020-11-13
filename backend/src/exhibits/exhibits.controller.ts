@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
@@ -16,13 +17,13 @@ import {
   ApiBearerAuth,
   ApiConflictResponse,
   ApiNotFoundResponse,
+  ApiNoContentResponse,
   ApiOkResponse,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { ExhibitsService } from './exhibits.service';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
-import { ExhibitEntity, GENRE } from '../entities/exhibit.entity';
 import { GetUser } from '../auth/get-user-decorator';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
 import { ExhibitSerializer } from '../entities/serializer/exhibit.serializer';
@@ -76,6 +77,23 @@ export class ExhibitsController {
       exhibitor,
     );
     return exhibit.transformToSerializer();
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  @ApiNoContentResponse({
+    description: '作品削除完了',
+  })
+  @ApiBadRequestResponse({
+    description: '作品またはグループが存在しませんでした',
+  })
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  async deleteExhibit(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() exhibitor: ExhibitorEntity,
+  ): Promise<void> {
+    await this.exhibitsService.deleteExhibit(id, exhibitor);
   }
 
   // 作品一覧は、参加者が叩くので、JWT認証はしない
