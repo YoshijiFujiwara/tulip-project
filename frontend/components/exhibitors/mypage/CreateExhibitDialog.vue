@@ -11,6 +11,7 @@
           :rules="rules.title"
           label="作品タイトル"
           placeholder="作品について説明するタイトルを追加しましょう"
+          color="deep-purple darken-4"
           auto-grow
           rows="1"
           row-height="20"
@@ -25,6 +26,7 @@
           class="pb-3"
           counter="40"
           auto-grow
+          color="deep-purple darken-4"
           rows="2"
           row-height="40"
           outlined
@@ -36,12 +38,19 @@
           :items="items"
           label="ジャンル"
           placeholder="選択"
+          color="deep-purple darken-4"
           outlined
         ></v-select>
         <p>
           <span class="font-weight-bold">サムネイル<br /></span>
           作品の内容がわかる画像をアップロードします。来場者の目を引くサムネイルにしましょう。
         </p>
+        <v-card class="ml-8 mx-auto my-4" max-width="300">
+          <v-img
+            v-if="uploadThumbnailImageUrl"
+            :src="uploadThumbnailImageUrl"
+          ></v-img>
+        </v-card>
         <v-file-input
           v-model="form.thumbnailImage"
           class="pb-3"
@@ -53,11 +62,19 @@
           outlined
           required
           :show-size="1000"
+          dense
+          @change="onThumbnailImagePicked"
         ></v-file-input>
         <p>
           <span class="font-weight-bold">プレゼン資料の画像<br /></span>
           作品のプレゼン資料をアップロードしましょう。
         </p>
+        <v-card class="ml-8 mx-auto my-4" max-width="300">
+          <v-img
+            v-if="uploadPresentationImageUrl"
+            :src="uploadPresentationImageUrl"
+          ></v-img>
+        </v-card>
         <v-file-input
           v-model="form.presentationImage"
           class="pb-5"
@@ -67,7 +84,9 @@
           label="プレゼン資料をアップロード"
           outlined
           required
+          dense
           :show-size="1000"
+          @change="onPresentationImagePicked"
         ></v-file-input>
         <v-btn
           block
@@ -87,20 +106,32 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../../utils/functions'
+import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
   // モーダルの開閉のために必要なprops
   @Prop({ required: true }) value: boolean = false
 
-  items = ['ゲーム', '音楽', '映像', 'IT']
+  items = ['game', 'music', 'movie', 'it']
   valid = false
+  uploadThumbnailImageUrl = ''
+  uploadPresentationImageUrl = ''
+
   form = {
     title: '',
     description: '',
     genre: '',
     thumbnailImage: (null as unknown) as File,
     presentationImage: (null as unknown) as File,
+  }
+
+  setdata = {
+    title: '',
+    description: '',
+    thumbnail: '',
+    genre: '',
+    presentationImage: '',
   }
 
   rules = {
@@ -112,22 +143,78 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async onSubmit() {
-    let thumbnailImageUrl: string
-    let presentationImageUrl: string
+    // FIXME: cloudinaryアップロードが出来ないので、ダミーURLで対応する
 
-    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    if (this.form.thumbnailImage && this.form.presentationImage) {
-      thumbnailImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.thumbnailImage
-      )
-      presentationImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.presentationImage
-      )
-      console.log('thumnailImageUrl', thumbnailImageUrl)
-      console.log('presentationImageUrl', presentationImageUrl)
+    // let thumbnailImageUrl: string
+    // let presentationImageUrl: string
+
+    // // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    // if (this.form.thumbnailImage && this.form.presentationImage) {
+    //   thumbnailImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.thumbnailImage
+    //   )
+    //   presentationImageUrl = await uploadImageCloudinary(
+    //     this.$axios,
+    //     this.form.presentationImage
+    //   )
+    //   console.log('thumbnailImageUrl', thumbnailImageUrl)
+    //   console.log('presentationImageUrl', presentationImageUrl)
+    // }
+
+    // ダミーURL
+    const thumbnailImageUrlDummy =
+      'https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg'
+    const presentationImageUrlDummy =
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD'
+
+    // if (thumbnailImageUrl && presentationImageUrl) {
+    this.setdata.title = this.form.title
+    this.setdata.description = this.form.description
+    this.setdata.genre = this.form.genre
+    this.setdata.thumbnail = thumbnailImageUrlDummy
+    this.setdata.presentationImage = presentationImageUrlDummy
+
+    console.log('setdata', this.setdata)
+    const response = await ExhibitApi.createExhibit(this.setdata)
+    console.log('responseCreateExhibit', response)
+    // }
+  }
+
+  // thumbnailImageのプレビュー
+  onThumbnailImagePicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        if (typeof fr.result === 'string') {
+          this.uploadThumbnailImageUrl = fr.result
+        }
+      })
+    } else {
+      this.uploadThumbnailImageUrl = ''
+    }
+  }
+
+  // presentationImageのプレビュー
+  onPresentationImagePicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        if (typeof fr.result === 'string') {
+          this.uploadPresentationImageUrl = fr.result
+        }
+      })
+    } else {
+      this.uploadPresentationImageUrl = ''
     }
   }
 
