@@ -50,30 +50,18 @@ import Booth from '~/components/Booth.vue'
 })
 export default class Exhibition extends Vue {
   exhibits: object = {}
-  position = [
-    {
-      rightWall: '7 0 -5',
-      leftWall: '-0.01 0 -5',
-      backWall: '3.4 0 -6.9',
-      imgPosition: '3.4 0 -6',
-    },
-    {
-      rightWall: '17 0 -5',
-      leftWall: '9.99. 0 -5',
-      backWall: '13.4 0 -6.9',
-      imgPosition: '13.4 0 -6',
-    },
-  ]
 
   async created() {
     const response = await ExhibitApi.getExhibits()
-    this.exhibits = response.map((exhibit, index) => {
+    this.exhibits = response.map((exhibit, i) => {
       return {
         ...exhibit,
-        ...this.position[index],
+        rightWall: `${7 + i * 10} 0 -5`,
+        leftWall: `${-0.01 + i * 10} 0 -5`,
+        backWall: `${3.4 + i * 10} 0 -6.9`,
+        imgPosition: `${3.4 + i * 10} 0 -6`,
       }
     })
-    console.log(this.exhibits)
   }
 }
 </script>
