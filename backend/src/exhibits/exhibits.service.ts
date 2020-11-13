@@ -34,6 +34,10 @@ export class ExhibitsService {
     return await this.exhibitRepsitory.createExhibit(createExhibitDto, group);
   }
 
+  async getExhibits(): Promise<ExhibitEntity[]> {
+    return await this.exhibitRepsitory.find();
+  }
+
   async updateExhibit(
     exhibitId: number,
     {
