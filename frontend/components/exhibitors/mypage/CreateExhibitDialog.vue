@@ -156,11 +156,19 @@ export default class CreateExhibitDialog extends Vue {
       this.form.presentationImage
     )
 
-    const response = await ExhibitApi.createExhibit({
+    ExhibitApi.createExhibit({
       ...this.form,
       thumbnail: thumbnailImageUrl,
       presentationImage: presentationImageUrl,
     })
+      .then((_) => {
+        this.$toast.success('作品を登録しました')
+        this.dialog = false
+      })
+      .catch((_) => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+        this.dialog = false
+      })
   }
 
   // thumbnailImageのプレビュー
