@@ -86,7 +86,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-// import { uploadImageCloudinary } from '../../../utils/functions'
+import { uploadImageCloudinary } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 
 @Component
@@ -121,23 +121,23 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async onSubmit() {
-    // let thumbnailImageUrl: string
-    // let presentationImageUrl: string
+    let thumbnailImageUrl: string
+    let presentationImageUrl: string
 
     // cloudinaryにサムネイルとプレゼン画像のアップロードをする
     // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    // if (this.form.thumbnailImage && this.form.presentationImage) {
-    //   thumbnailImageUrl = await uploadImageCloudinary(
-    //     this.$axios,
-    //     this.form.thumbnailImage
-    //   )
-    //   presentationImageUrl = await uploadImageCloudinary(
-    //     this.$axios,
-    //     this.form.presentationImage
-    //   )
-    //   console.log('thumnailImageUrl', thumbnailImageUrl)
-    //   console.log('presentationImageUrl', presentationImageUrl)
-    // }
+    if (this.form.thumbnailImage && this.form.presentationImage) {
+      thumbnailImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.thumbnailImage
+      )
+      presentationImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.presentationImage
+      )
+      console.log('thumnailImageUrl', thumbnailImageUrl)
+      console.log('presentationImageUrl', presentationImageUrl)
+    }
 
     // ダミーURL
     const thumbnailImageUrlDummy =
