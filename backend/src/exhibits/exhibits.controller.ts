@@ -16,6 +16,7 @@ import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiConflictResponse,
+  ApiNoContentResponse,
   ApiOkResponse,
   ApiResponse,
   ApiTags,
@@ -78,8 +79,8 @@ export class ExhibitsController {
   }
 
   @Delete(':id')
-  @ApiOkResponse({
-    type: ExhibitSerializer,
+  @HttpCode(204)
+  @ApiNoContentResponse({
     description: '作品削除完了',
   })
   @ApiBadRequestResponse({
