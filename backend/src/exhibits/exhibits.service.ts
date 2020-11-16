@@ -11,6 +11,7 @@ import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { GroupRepository } from '../entities/group.repository';
 import { ExhibitEntity } from '../entities/exhibit.entity';
 import { UpdateExhibitDto } from './dto/update-exhibit.dto';
+
 @Injectable()
 export class ExhibitsService {
   constructor(
@@ -33,6 +34,17 @@ export class ExhibitsService {
     }
 
     return await this.exhibitRepsitory.createExhibit(createExhibitDto, group);
+  }
+
+  async getExhibit(exhibitId: number): Promise<ExhibitEntity> {
+    const exhibit = await this.exhibitRepsitory.findOne({
+      relations: ['group'],
+      where: { id: exhibitId },
+    });
+    if (!exhibit) {
+      throw new NotFoundException('該当する作品が存在しません。');
+    }
+    return exhibit;
   }
 
   async getExhibits(): Promise<ExhibitEntity[]> {

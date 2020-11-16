@@ -16,6 +16,7 @@ import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiConflictResponse,
+  ApiNotFoundResponse,
   ApiNoContentResponse,
   ApiOkResponse,
   ApiResponse,
@@ -105,5 +106,20 @@ export class ExhibitsController {
   async getExhibits(): Promise<ExhibitSerializer[]> {
     const exhibits = await this.exhibitsService.getExhibits();
     return exhibits.map(e => e.transformToSerializer());
+  }
+
+  @Get(':id')
+  @ApiOkResponse({
+    type: ExhibitSerializer,
+    description: '作品情報を取得',
+  })
+  @ApiNotFoundResponse({
+    description: 'IDに該当する作品情報が存在しなかった',
+  })
+  async getExhibit(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
+    const exhibit = await this.exhibitsService.getExhibit(id);
+    return exhibit.transformToSerializer();
   }
 }
