@@ -39,7 +39,7 @@ export class ExhibitsService {
   async getExhibit(exhibitId: number): Promise<ExhibitEntity> {
     const exhibit = await this.exhibitRepsitory.findOne({
       relations: ['group'],
-      where: { exhibitId },
+      where: { id: exhibitId },
     });
     if (!exhibit) {
       throw new NotFoundException('該当する作品が存在しません。');
