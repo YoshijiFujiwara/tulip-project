@@ -16,5 +16,8 @@ export async function uploadImageCloudinary(
     `https://api.cloudinary.com/v1_1/${process.env.cloudinaryCloudName!}/`
   )
   const res = await axiosInstance.$post('/image/upload', data)
+
+  // baseURLを設定し直す（重要）
+  axiosInstance.setBaseURL(process.env.axiosBaseUrl!)
   return res.url
 }
