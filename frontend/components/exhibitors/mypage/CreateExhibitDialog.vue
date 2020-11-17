@@ -142,6 +142,22 @@ export default class CreateExhibitDialog extends Vue {
     presentationImage: [(v: string) => !!v || 'プレゼンデータ画像は必須です'],
   }
 
+  created() {
+    ExhibitApi.getMyExhibit()
+      .then((response) => {
+        console.log(response)
+        this.form.title = response.title
+        this.form.description = response.description
+        this.form.thumbnailImage = response.thumbnail
+        this.form.genre = response.genre
+        this.form.presentationImage = response.presentationImage
+      })
+      .catch((_) => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+        this.dialog = false
+      })
+  }
+
   async onSubmit() {
     // FIXME: cloudinaryアップロードが出来ないので、ダミーURLで対応する
 
