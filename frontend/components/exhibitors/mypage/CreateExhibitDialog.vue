@@ -161,11 +161,11 @@ export default class CreateExhibitDialog extends Vue {
       thumbnail: thumbnailImageUrl,
       presentationImage: presentationImageUrl,
     })
-      .then((_) => {
+      .then(() => {
         this.$toast.success('作品を登録しました')
         this.dialog = false
       })
-      .catch((_) => {
+      .catch(() => {
         this.$toast.error('作品登録の際にエラーが発生しました')
         this.dialog = false
       })
