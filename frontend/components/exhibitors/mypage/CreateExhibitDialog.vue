@@ -148,9 +148,10 @@ export default class CreateExhibitDialog extends Vue {
         console.log(response)
         this.form.title = response.title
         this.form.description = response.description
-        this.form.thumbnailImage = response.thumbnail
         this.form.genre = response.genre
-        this.form.presentationImage = response.presentationImage
+
+        this.uploadThumbnailImageUrl = response.thumbnail
+        this.uploadPresentationImageUrl = response.presentationImage
       })
       .catch((_) => {
         this.$toast.error('作品登録の際にエラーが発生しました')
