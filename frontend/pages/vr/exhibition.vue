@@ -57,7 +57,7 @@ export default class Exhibition extends Vue {
 
   async created() {
     const response = await ExhibitApi.getExhibits()
-    this.exhibits = response.map((exhibit:object, i:number) => {
+    this.exhibits = response.map((exhibit: any, i: number) => {
       return {
         ...exhibit,
         rightWall: `${7 + i * 10} 0 -5`,
