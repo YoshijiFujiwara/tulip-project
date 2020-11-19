@@ -10,7 +10,6 @@
           />
         </div>
         <img id="sky" src="/vr/img/sky.jpg" />
-
         <img id="floor" src="/vr/img/floor.png" />
       </a-assets>
       <a-entity v-for="(n, l) in 2" :key="`${l}-l`">
