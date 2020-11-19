@@ -55,7 +55,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/axios/index'],
+  plugins: ['@/plugins/axios/index', '@/plugins/aframe'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

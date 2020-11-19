@@ -12,7 +12,12 @@
             <div id="title-wrapper" class="py-5">SIGN IN</div>
             <v-row align="center" justify="center" class="row-wrap" no-gutters>
               <v-col cols="8" class="top" align="center">
-                <v-form ref="form" v-model="valid" class="py-10">
+                <v-form
+                  ref="form"
+                  v-model="valid"
+                  class="py-10"
+                  @submit.prevent="onSubmit"
+                >
                   <v-text-field
                     v-model="form.studentNumber"
                     background-color="rgba(255, 255, 255, 0.16)"
@@ -39,12 +44,12 @@
                   ></v-text-field>
                   <v-btn
                     id="signin-button"
+                    type="submit"
                     block
                     large
                     dark
                     color="rgba(255, 255, 255, 0.23)"
                     :disabled="!valid"
-                    @click="onSubmit"
                     >Log in</v-btn
                   >
                 </v-form>
