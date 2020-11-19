@@ -1,4 +1,4 @@
-import { Controller, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { GENRE } from 'src/entities/exhibit.entity';
@@ -7,11 +7,12 @@ import { GENRE } from 'src/entities/exhibit.entity';
  * 自分の登録してる作品情報やブース情報を扱うcontroller
  * 全てのルートで認証必須
  */
-@ApiTags('exhibits')
+@ApiTags('profile')
 @Controller('profile')
 @UseGuards(AuthGuard('jwt'))
 @ApiBearerAuth()
 export class ProfileController {
+  @Get('exhibit')
   async getExhibit() {
     return {
       id: 1,
