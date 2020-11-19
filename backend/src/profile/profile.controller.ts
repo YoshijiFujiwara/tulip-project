@@ -15,7 +15,7 @@ export class ProfileController {
   @Get('exhibit')
   async getExhibit() {
     return {
-      id: 4,
+      id: 1,
       title: '作品1',
       description: 'hogehoge',
       thumbnail:
@@ -29,6 +29,5 @@ export class ProfileController {
         name: 'チーム1',
       },
     };
-    // return null;
   }
 }

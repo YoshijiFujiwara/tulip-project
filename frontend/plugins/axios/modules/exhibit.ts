@@ -13,7 +13,7 @@ export default {
     return axios.$get('exhibits/1')
   },
 
-  updateExhibit(body: any, id: number) {
+  updateExhibit(id: number, body: any) {
     return axios.$put('exhibits/' + id, body)
   },
 }

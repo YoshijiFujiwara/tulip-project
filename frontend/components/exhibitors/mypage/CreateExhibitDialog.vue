@@ -118,7 +118,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  exhibitId = 0
+  exhibitId: number | null = null
 
   form = {
     title: '',
@@ -147,7 +147,6 @@ export default class CreateExhibitDialog extends Vue {
   created() {
     ProfileApi.getProfileExhibits()
       .then((response: any) => {
-        console.log(response)
         this.form.title = response.title
         this.form.description = response.description
         this.form.genre = response.genre
@@ -166,7 +165,6 @@ export default class CreateExhibitDialog extends Vue {
 
     // cloudinaryにサムネイルとプレゼン画像のアップロードをする
     // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    console.log(this.exhibitId)
     const thumbnailImageUrl = await uploadImageCloudinary(
       this.$axios,
       this.form.thumbnailImage
@@ -176,15 +174,12 @@ export default class CreateExhibitDialog extends Vue {
       this.form.presentationImage
     )
 
-    if (this.exhibitId !== 0) {
-      ExhibitApi.updateExhibit(
-        {
-          ...this.form,
-          thumbnail: thumbnailImageUrl,
-          presentationImage: presentationImageUrl,
-        },
-        this.exhibitId
-      )
+    if (this.exhibitId) {
+      ExhibitApi.updateExhibit(this.exhibitId, {
+        ...this.form,
+        thumbnail: thumbnailImageUrl,
+        presentationImage: presentationImageUrl,
+      })
         .then(() => {
           this.$toast.success('作品を更新しました')
           this.dialog = false
