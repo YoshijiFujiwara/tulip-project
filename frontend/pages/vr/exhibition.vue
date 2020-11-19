@@ -10,12 +10,11 @@
           />
         </div>
         <img id="sky" src="/vr/img/sky.jpg" />
-
         <img id="floor" src="/vr/img/floor.png" />
       </a-assets>
-      <a-entity v-for="(n, l) in 2" :key="l">
-        <a-entity v-for="(m, k) in 2" :key="k">
-          <a-entity v-for="(b, j) in 10" :key="j">
+      <a-entity v-for="(n, l) in 2" :key="`${l}-l`">
+        <a-entity v-for="(m, k) in 2" :key="`${k}-k`">
+          <a-entity v-for="(b, j) in 10" :key="`${j}-j`">
             <a-plane
               v-for="(v, i) in 10"
               :key="i"
