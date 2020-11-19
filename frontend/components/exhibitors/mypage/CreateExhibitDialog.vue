@@ -145,8 +145,7 @@ export default class CreateExhibitDialog extends Vue {
 
   created() {
     ProfileApi.getProfileExhibits()
-      .then((response) => {
-        console.log(response)
+      .then((response: any) => {
         this.form.title = response.title
         this.form.description = response.description
         this.form.genre = response.genre
@@ -154,7 +153,7 @@ export default class CreateExhibitDialog extends Vue {
         this.uploadThumbnailImageUrl = response.thumbnail
         this.uploadPresentationImageUrl = response.presentationImage
       })
-      .catch((_) => {
+      .catch(() => {
         this.$toast.error('作品登録の際にエラーが発生しました')
         this.dialog = false
       })
