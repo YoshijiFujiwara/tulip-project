@@ -12,4 +12,8 @@ export default {
   getMyExhibit() {
     return axios.$get('exhibits/1')
   },
+
+  updateExhibit(body: any, id: number) {
+    return axios.$put('exhibits/' + id, body)
+  },
 }

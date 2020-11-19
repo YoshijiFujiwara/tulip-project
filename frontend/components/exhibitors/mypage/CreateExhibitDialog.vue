@@ -118,6 +118,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
+  exhibitId = 0
 
   form = {
     title: '',
@@ -146,12 +147,13 @@ export default class CreateExhibitDialog extends Vue {
   created() {
     ProfileApi.getProfileExhibits()
       .then((response: any) => {
+        console.log(response)
         this.form.title = response.title
         this.form.description = response.description
         this.form.genre = response.genre
-
         this.uploadThumbnailImageUrl = response.thumbnail
         this.uploadPresentationImageUrl = response.presentationImage
+        this.exhibitId = response.id
       })
       .catch(() => {
         this.$toast.error('作品登録の際にエラーが発生しました')
@@ -164,6 +166,7 @@ export default class CreateExhibitDialog extends Vue {
 
     // cloudinaryにサムネイルとプレゼン画像のアップロードをする
     // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    console.log(this.exhibitId)
     const thumbnailImageUrl = await uploadImageCloudinary(
       this.$axios,
       this.form.thumbnailImage
@@ -173,19 +176,38 @@ export default class CreateExhibitDialog extends Vue {
       this.form.presentationImage
     )
 
-    ExhibitApi.createExhibit({
-      ...this.form,
-      thumbnail: thumbnailImageUrl,
-      presentationImage: presentationImageUrl,
-    })
-      .then(() => {
-        this.$toast.success('作品を登録しました')
-        this.dialog = false
+    if (this.exhibitId !== 0) {
+      ExhibitApi.updateExhibit(
+        {
+          ...this.form,
+          thumbnail: thumbnailImageUrl,
+          presentationImage: presentationImageUrl,
+        },
+        this.exhibitId
+      )
+        .then(() => {
+          this.$toast.success('作品を更新しました')
+          this.dialog = false
+        })
+        .catch(() => {
+          this.$toast.error('作品更新の際にエラーが発生しました')
+          this.dialog = false
+        })
+    } else {
+      ExhibitApi.createExhibit({
+        ...this.form,
+        thumbnail: thumbnailImageUrl,
+        presentationImage: presentationImageUrl,
       })
-      .catch(() => {
-        this.$toast.error('作品登録の際にエラーが発生しました')
-        this.dialog = false
-      })
+        .then(() => {
+          this.$toast.success('作品を登録しました')
+          this.dialog = false
+        })
+        .catch(() => {
+          this.$toast.error('作品登録の際にエラーが発生しました')
+          this.dialog = false
+        })
+    }
   }
 
   // thumbnailImageのプレビュー
