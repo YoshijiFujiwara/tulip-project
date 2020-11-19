@@ -59,6 +59,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({
   auth: false,
+  layout: 'aframe_sandbox',
 })
 export default class Index extends Vue {}
 </script>
