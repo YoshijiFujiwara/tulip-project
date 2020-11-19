@@ -107,6 +107,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
+import ProfileApi from '../../../plugins/axios/modules/profile'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
@@ -140,6 +141,22 @@ export default class CreateExhibitDialog extends Vue {
     genre: [(v: string) => !!v || 'ジャンルは必須です'],
     thumbnailImage: [(v: string) => !!v || 'サムネイル画像は必須です'],
     presentationImage: [(v: string) => !!v || 'プレゼンデータ画像は必須です'],
+  }
+
+  created() {
+    ProfileApi.getProfileExhibits()
+      .then((response: any) => {
+        this.form.title = response.title
+        this.form.description = response.description
+        this.form.genre = response.genre
+
+        this.uploadThumbnailImageUrl = response.thumbnail
+        this.uploadPresentationImageUrl = response.presentationImage
+      })
+      .catch(() => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+        this.dialog = false
+      })
   }
 
   async onSubmit() {
