@@ -107,6 +107,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
 import { uploadImageCloudinary } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
+import ProfileApi from '../../../plugins/axios/modules/profile'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
@@ -143,7 +144,7 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   created() {
-    ExhibitApi.getMyExhibit()
+    ProfileApi.getProfileExhibits()
       .then((response) => {
         console.log(response)
         this.form.title = response.title
