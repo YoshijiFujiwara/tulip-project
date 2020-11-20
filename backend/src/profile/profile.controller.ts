@@ -29,19 +29,12 @@ export class ProfileController {
     type: [ExhibitSerializer],
     description: '自身の作品情報を取得',
   })
-  @ApiNoContentResponse({
-    description: '作品情報が登録されていません',
-  })
-  async getExhibit(
-    @GetUser() exhibitor: ExhibitorEntity,
-    @Res() res: Response,
-  ) {
+  async getExhibit(@GetUser() exhibitor: ExhibitorEntity) {
     const exhibit = await this.profileService.getExhibit(exhibitor.groupId);
     if (exhibit) {
       return exhibit.transformToSerializer();
     } else {
-      // 自身の属するグループ作品情報がない場合、204ステータスを返す
-      return res.status(HttpStatus.NO_CONTENT).json(null);
+      return null;
     }
   }
 }
