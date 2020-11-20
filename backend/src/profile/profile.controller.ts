@@ -37,7 +37,6 @@ export class ProfileController {
     @Res() res: Response,
   ) {
     const exhibit = await this.profileService.getExhibit(exhibitor.groupId);
-    console.log('コンソールログ：：：：', exhibit);
     if (exhibit) {
       return exhibit.transformToSerializer();
     } else {
