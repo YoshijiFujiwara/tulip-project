@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" max-width="700px">
     <v-card>
       <v-card-title class="display-1 font-weight-bold pt-8">
-        作品登録
+        {{ isUpdateMode ? '作品情報を更新' : '作品登録' }}
       </v-card-title>
       <v-form ref="form" v-model="valid" class="ml-8 mr-8 pb-9">
         <v-textarea
@@ -54,7 +54,7 @@
         <v-file-input
           v-model="form.thumbnailImage"
           class="pb-3"
-          :rules="rules.thumbnailImage"
+          :rules="isUpdateMode ? undefined : rules.thumbnailImage"
           color="deep-purple accent-4"
           accept="image/png, image/jpeg, image/bmp"
           label="サムネイルをアップロード"
@@ -78,7 +78,7 @@
         <v-file-input
           v-model="form.presentationImage"
           class="pb-5"
-          :rules="rules.presentationImage"
+          :rules="isUpdateMode ? undefined : rules.presentationImage"
           color="deep-purple accent-4"
           accept="image/png, image/jpeg, image/bmp"
           label="プレゼン資料をアップロード"
@@ -93,10 +93,11 @@
           large
           class="white--text"
           color="deep-purple darken-4"
-          :disabled="!valid"
+          :disabled="!valid || isLoading"
           @click="onSubmit"
-          >作品を登録する</v-btn
         >
+          {{ isUpdateMode ? '作品情報を更新する' : '作品を登録する' }}
+        </v-btn>
       </v-form>
     </v-card>
   </v-dialog>
@@ -114,11 +115,13 @@ export default class CreateExhibitDialog extends Vue {
   // モーダルの開閉のために必要なprops
   @Prop({ required: true }) value: boolean = false
 
+  isLoading: boolean = false // ローディング判定
+
   items = ['game', 'music', 'movie', 'it']
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  exhibitId: number | null = null
+  exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
     title: '',
@@ -126,14 +129,6 @@ export default class CreateExhibitDialog extends Vue {
     genre: '',
     thumbnailImage: (null as unknown) as File,
     presentationImage: (null as unknown) as File,
-  }
-
-  setdata = {
-    title: '',
-    description: '',
-    thumbnail: '',
-    genre: '',
-    presentationImage: '',
   }
 
   rules = {
@@ -144,12 +139,21 @@ export default class CreateExhibitDialog extends Vue {
     presentationImage: [(v: string) => !!v || 'プレゼンデータ画像は必須です'],
   }
 
+  // exhibitIdが入っていれば、更新モードとする
+  get isUpdateMode() {
+    return !!this.exhibitId
+  }
+
   created() {
+    // 自分が登録している作品情報を取得する
     ProfileApi.getProfileExhibits()
       .then((response: any) => {
-        this.form.title = response.title
-        this.form.description = response.description
-        this.form.genre = response.genre
+        this.form = {
+          ...response,
+          thumbnailImage: null,
+          presentationImage: null,
+        }
+
         this.uploadThumbnailImageUrl = response.thumbnail
         this.uploadPresentationImageUrl = response.presentationImage
         this.exhibitId = response.id
@@ -161,48 +165,68 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async onSubmit() {
-    // FIXME: cloudinaryアップロードが出来ないので、ダミーURLで対応する
+    this.isLoading = true
 
-    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-    const thumbnailImageUrl = await uploadImageCloudinary(
-      this.$axios,
-      this.form.thumbnailImage
-    )
-    const presentationImageUrl = await uploadImageCloudinary(
-      this.$axios,
-      this.form.presentationImage
-    )
+    if (this.isUpdateMode) {
+      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+      let thumbnailImageUrl: string | null = null
+      let presentationImageUrl: string | null = null
 
-    if (this.exhibitId) {
+      if (this.form.thumbnailImage) {
+        thumbnailImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.thumbnailImage
+        )
+      }
+      if (this.form.presentationImage) {
+        presentationImageUrl = await uploadImageCloudinary(
+          this.$axios,
+          this.form.presentationImage
+        )
+      }
+
       ExhibitApi.updateExhibit(this.exhibitId, {
         ...this.form,
-        thumbnail: thumbnailImageUrl,
-        presentationImage: presentationImageUrl,
+        thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
+        presentationImage:
+          presentationImageUrl || this.uploadPresentationImageUrl,
       })
         .then(() => {
           this.$toast.success('作品を更新しました')
-          this.dialog = false
         })
         .catch(() => {
           this.$toast.error('作品更新の際にエラーが発生しました')
-          this.dialog = false
         })
     } else {
+      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+      const thumbnailImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.thumbnailImage
+      )
+      const presentationImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.presentationImage
+      )
       ExhibitApi.createExhibit({
         ...this.form,
         thumbnail: thumbnailImageUrl,
         presentationImage: presentationImageUrl,
       })
-        .then(() => {
+        .then((res) => {
+          this.exhibitId = res.id
+          this.form.thumbnailImage = null
+          this.form.presentationImage = null
           this.$toast.success('作品を登録しました')
-          this.dialog = false
         })
         .catch(() => {
           this.$toast.error('作品登録の際にエラーが発生しました')
-          this.dialog = false
         })
     }
+
+    this.dialog = false
+    this.isLoading = false
   }
 
   // thumbnailImageのプレビュー
