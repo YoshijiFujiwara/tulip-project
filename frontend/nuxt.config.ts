@@ -47,6 +47,36 @@ export default {
       {
         src: 'https://aframe.io/releases/1.0.4/aframe.min.js',
       },
+      {
+        src:
+          'https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js',
+      },
+      {
+        src: 'https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js',
+      },
+      {
+        src: '/js/progressive-controls.js',
+      },
+      {
+        src:
+          'https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js',
+      },
+      {
+        scr:
+          'https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js',
+      },
+      {
+        src:
+          'https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js',
+      },
+      {
+        src:
+          'https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js',
+      },
+      {
+        src:
+          'https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

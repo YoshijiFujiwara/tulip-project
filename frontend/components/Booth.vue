@@ -1,6 +1,6 @@
 <template>
   <!-- spanとかdivで囲むと表示されなくなる -->
-  <a-entity sound="src: url(/music/step.mp3); autoplay: true">
+  <a-entity sound="src: url(/vr/music/step.mp3); autoplay: true">
     <a-box
       width="0.2"
       height="6"

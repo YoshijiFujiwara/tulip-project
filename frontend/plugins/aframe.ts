@@ -6,6 +6,7 @@ Vue.config.ignoredElements = [
   'a-camera',
   'a-box',
   'a-ring',
+  'a-asset-item',
   'a-asset-items',
   'a-assets',
   'a-cursor',
@@ -13,4 +14,8 @@ Vue.config.ignoredElements = [
   'a-light',
   'a-plane',
   'a-sky',
+  'a-gltf-model',
+  'a-image',
+  'a-cylinder',
+  'a-circle',
 ]
