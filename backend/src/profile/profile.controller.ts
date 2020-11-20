@@ -1,4 +1,5 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Response } from 'express';
+import { Controller, Get, HttpStatus, Res, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiNoContentResponse,
@@ -33,8 +34,15 @@ export class ProfileController {
   })
   async getExhibit(
     @GetUser() exhibitor: ExhibitorEntity,
-  ): Promise<ExhibitSerializer> {
+    @Res() res: Response,
+  ) {
     const exhibit = await this.profileService.getExhibit(exhibitor.groupId);
-    return exhibit.transformToSerializer();
+    console.log('コンソールログ：：：：', exhibit);
+    if (exhibit) {
+      return exhibit.transformToSerializer();
+    } else {
+      // 自身の属するグループ作品情報がない場合、204ステータスを返す
+      return res.status(HttpStatus.NO_CONTENT).json(null);
+    }
   }
 }
