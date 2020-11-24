@@ -118,14 +118,10 @@
   </a-scene>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  auth: false,
+<script>
+export default {
   layout: 'aframe_sandbox',
-})
-export default class Index extends Vue {
+  auth: false,
   mounted() {
     window.AFRAME.registerComponent('refresh-obj', {
       init() {
@@ -135,6 +131,6 @@ export default class Index extends Vue {
         })
       },
     })
-  }
+  },
 }
 </script>
