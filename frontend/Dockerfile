@@ -1,6 +1,6 @@
 FROM node:12.13-alpine
 
-RUN apk add python make g++
+RUN apk add git python make g++
 
 WORKDIR /usr/src/app
 
