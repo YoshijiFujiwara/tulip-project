@@ -56,7 +56,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 })
 export default class Index extends Vue {
   mounted() {
-    AFRAME.registerComponent('multiple-entities', {
+    window.AFRAME.registerComponent('multiple-entities', {
       schema: {
         num: { type: 'number', default: 5 },
         w: { type: 'number', default: 1 },

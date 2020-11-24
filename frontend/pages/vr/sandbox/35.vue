@@ -87,25 +87,28 @@ export default class Index extends Vue {
       },
     })
 
-    window.AFRAME.registerComponent('change-animated-colorize-property', {
-      schema: {
-        target: { type: 'selector', default: '#red' },
-        newOnClick: { type: 'color', default: '' },
-      },
+    window.AFRAME.registerComponent(
+      'change-animated-colorize-property',
+      {
+        schema: {
+          target: { type: 'selector', default: '#red' },
+          newOnClick: { type: 'color', default: '' },
+        },
 
-      init() {
-        const el = this.el
-        const data = this.data
+        init() {
+          const el = this.el
+          const data = this.data
 
-        el.addEventListener('click', function () {
-          data.target.setAttribute(
-            'animated-colorize',
-            'onClick',
-            data.newOnClick
-          )
-        })
-      },
-    })
+          el.addEventListener('click', function () {
+            data.target.setAttribute(
+              'animated-colorize',
+              'onClick',
+              data.newOnClick
+            )
+          })
+        },
+      }
+    )
 
     window.AFRAME.registerComponent('match-animated-colorize', {
       schema: {

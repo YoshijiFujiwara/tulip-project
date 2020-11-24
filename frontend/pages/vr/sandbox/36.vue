@@ -76,7 +76,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 })
 export default class Index extends Vue {
   mounted() {
-    AFRAME.registerComponent('blink-teleportation', {
+    window.AFRAME.registerComponent('blink-teleportation', {
       schema: {
         pos: { type: 'vec3' },
         dur: { type: 'number', default: 300 },

@@ -83,7 +83,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 })
 export default class Index extends Vue {
   mounted() {
-    AFRAME.registerComponent('play', {
+    window.AFRAME.registerComponent('play', {
       init() {
         const myEl = document.querySelector('#yellow')
         this.el.addEventListener('click', function () {
@@ -91,7 +91,7 @@ export default class Index extends Vue {
         })
       },
     })
-    AFRAME.registerComponent('stop', {
+    window.AFRAME.registerComponent('stop', {
       init() {
         const myEl = document.querySelector('#yellow')
         this.el.addEventListener('click', function () {

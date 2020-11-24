@@ -26,7 +26,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 })
 export default class Index extends Vue {
   mounted() {
-    AFRAME.registerComponent('entity-spawner', {
+    window.AFRAME.registerComponent('entity-spawner', {
       init() {
         const camera = document.querySelector('#cam')
         const scene = document.querySelector('a-scene')

@@ -127,7 +127,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 })
 export default class Index extends Vue {
   mounted() {
-    AFRAME.registerComponent('refresh-obj', {
+    window.AFRAME.registerComponent('refresh-obj', {
       init() {
         this.el.addEventListener('click', function () {
           const myGBcursor = document.querySelector('#myGBcursor')
