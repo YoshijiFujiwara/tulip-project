@@ -182,10 +182,10 @@ export default class Sample extends Vue {
     this.speakers = await this.refreshDevices('audiooutput')
   }
 
-  async refreshDevices(inputType: string): Promise<Device[]> {
+  async refreshDevices(kind: MediaDeviceKind): Promise<Device[]> {
     const enumeratedDevices = await navigator.mediaDevices.enumerateDevices()
     return enumeratedDevices
-      .filter((device) => device.kind === inputType)
+      .filter((device) => device.kind === kind)
       .map((device) => new Device(device))
   }
 }
