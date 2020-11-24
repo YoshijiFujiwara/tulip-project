@@ -18,7 +18,8 @@
     "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "nuxt-property-decorator": "^2.8.8"
+    "nuxt-property-decorator": "^2.8.8",
+    "skyway-js": "^4.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.12.1",
