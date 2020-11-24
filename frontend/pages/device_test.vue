@@ -91,7 +91,7 @@ export default class Sample extends Vue {
   isCameraAccessGranted: boolean | MediaTrackConstraints = false
   isMicrophoneAccessGranted: boolean | MediaTrackConstraints = false
 
-  async mounted() {
+  async created() {
     this.cameras = [
       new Device({
         deviceId: this.selected.camera,
@@ -99,7 +99,6 @@ export default class Sample extends Vue {
         label: '',
       }),
     ]
-
     this.mics = [
       new Device({
         deviceId: this.selected.mic,
@@ -107,7 +106,6 @@ export default class Sample extends Vue {
         label: '',
       }),
     ]
-
     this.speakers = [
       new Device({
         deviceId: this.selected.speaker,
@@ -117,9 +115,7 @@ export default class Sample extends Vue {
     ]
 
     const cameraResult = await navigator.permissions.query({ name: 'camera' })
-    // The state property may be 'denied', 'prompt' and 'granted'
     this.isCameraAccessGranted = cameraResult.state !== 'denied'
-
     const microphoneResult = await navigator.permissions.query({
       name: 'microphone',
     })
@@ -128,9 +124,7 @@ export default class Sample extends Vue {
       audio: this.isMicrophoneAccessGranted,
       video: this.isCameraAccessGranted,
     }
-  }
 
-  created() {
     this.srcObject.getTracks().forEach((track) => {
       track.stop()
     })
@@ -142,12 +136,6 @@ export default class Sample extends Vue {
     })
 
     this.srcObject = await navigator.mediaDevices.getUserMedia(this.constraints)
-
-    // navigator.mediaDevices.ondevicechange = async () => {
-    //   await this.refreshCameras()
-    //   await this.refreshMics()
-    //   await this.refreshSpeakers()
-    // }
   }
 
   @Watch('selected', { deep: true })
@@ -177,22 +165,9 @@ export default class Sample extends Vue {
   }
 
   async refreshCameras() {
-    this.cameras = []
+    this.cameras = await this.refreshDevices('videoinput')
 
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    devices.forEach((device) => {
-      if (device.kind === 'videoinput') {
-        this.cameras = [
-          ...this.cameras,
-          new Device({
-            deviceId: device.deviceId,
-            kind: device.kind,
-            label: device.label,
-          }),
-        ]
-      }
-    })
-
+    // カメラにはdefaultという概念が無い為、アプリケーション側で設定
     this.selected = {
       ...this.selected,
       camera: this.cameras[0].device.advanced![0].deviceId!,
@@ -200,39 +175,18 @@ export default class Sample extends Vue {
   }
 
   async refreshMics() {
-    this.mics = []
-
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    devices.forEach((device) => {
-      if (device.kind === 'audioinput') {
-        this.mics = [
-          ...this.mics,
-          new Device({
-            deviceId: device.deviceId,
-            kind: device.kind,
-            label: device.label,
-          }),
-        ]
-      }
-    })
+    this.mics = await this.refreshDevices('audioinput')
   }
 
   async refreshSpeakers() {
-    this.speakers = []
+    this.speakers = await this.refreshDevices('audiooutput')
+  }
 
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    devices.forEach((device) => {
-      if (device.kind === 'audiooutput') {
-        this.speakers = [
-          ...this.speakers,
-          new Device({
-            deviceId: device.deviceId,
-            kind: device.kind,
-            label: device.label,
-          }),
-        ]
-      }
-    })
+  async refreshDevices(inputType: string): Promise<Device[]> {
+    const enumeratedDevices = await navigator.mediaDevices.enumerateDevices()
+    return enumeratedDevices
+      .filter((device) => device.kind === inputType)
+      .map((device) => new Device(device))
   }
 }
 
