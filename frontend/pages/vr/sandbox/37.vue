@@ -28,8 +28,11 @@ export default {
         const scene = document.querySelector('a-scene')
 
         this.el.addEventListener('click', function () {
+          // eslint-disable-next-line no-undef
           const position = new THREE.Vector3()
+          // eslint-disable-next-line no-undef
           const direction = new THREE.Vector3()
+          // eslint-disable-next-line no-undef
           const target = new THREE.Vector3()
 
           camera.object3D.getWorldPosition(position)
