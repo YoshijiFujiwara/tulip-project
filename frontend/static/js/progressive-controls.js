@@ -1,4 +1,3 @@
-/* global window.AFRAME */
 const gazeDefaultId = 'progressivecontrolsgazedefault'
 const pointDefaultId = 'progressivecontrolspointdefault'
 const touchDefaultId = 'progressivecontrolstouchdefault'
@@ -95,7 +94,7 @@ window.AFRAME.registerComponent('progressive-controls', {
     // default level
     this.currentLevel.set('right', 0)
   },
-  update(oldData) {
+  update(_oldData) {
     const objs = { objects: this.data.objects }
     updateMixin(this.gazeDefault, 'raycaster', objs)
     updateMixin(this.pointDefault, 'raycaster', objs)

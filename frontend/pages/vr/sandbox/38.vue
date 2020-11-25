@@ -85,7 +85,7 @@ export default {
           const alignY = i * (data.h + data.gap) + data.h / 2
           const alignZ = i * (data.d + data.gap)
 
-          var direction
+          let direction
 
           if (data.dir === 'positive') {
             direction = 1
