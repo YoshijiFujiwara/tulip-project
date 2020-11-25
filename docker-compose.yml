@@ -19,6 +19,7 @@ services:
       MYSQL_PORT: ${MYSQL_PORT}
       BACKEND_INNER_PORT: ${BACKEND_INNER_PORT}
       JWT_SECRET: ${JWT_SECRET}
+      SKYWAY_SECRET: ${SKYWAY_SECRET}
     depends_on:
       - database
 
