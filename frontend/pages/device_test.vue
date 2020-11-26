@@ -72,6 +72,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import Peer from 'skyway-js'
 
 @Component({
   auth: false,
@@ -90,6 +91,9 @@ export default class Sample extends Vue {
 
   isCameraAccessGranted: boolean | MediaTrackConstraints = false
   isMicrophoneAccessGranted: boolean | MediaTrackConstraints = false
+  peer = new Peer({
+    key: process.env.SKYWAY_SECRET!,
+  })
 
   async created() {
     this.cameras = [
@@ -124,10 +128,6 @@ export default class Sample extends Vue {
       audio: this.isMicrophoneAccessGranted,
       video: this.isCameraAccessGranted,
     }
-
-    this.srcObject.getTracks().forEach((track) => {
-      track.stop()
-    })
   }
 
   async start() {
