@@ -16,19 +16,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'nuxt-property-decorator'
 
-export default Vue.extend({
-  data() {
-    return {
-      title: 'Vuetify.js',
-    }
-  },
-  methods: {
-    async logout() {
-      await this.$auth.logout()
-      this.$toast.success('ログアウトしました')
-    },
-  },
-})
+@Component
+export default class AframeSandbox extends Vue {}
 </script>
