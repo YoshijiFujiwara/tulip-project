@@ -24,6 +24,7 @@ export default {
     cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     axiosBaseUrl: process.env.AXIOS_BASE_URL,
+    skywaySecret: process.env.SKYWAY_SECRET,
   },
 
   // server proxy setting ()
