@@ -68,7 +68,7 @@
 
         <!-- サムネイル画像 -->
         <a-image
-          src="#exhibit-thumbnail-1"
+          :src="`#exhibit-thumbnail-${exhibits[0].id}`"
           scale="3.60725 3.29728 4.52257"
           position="-5.09833 1.71093 -11.20692"
           material=""
@@ -78,7 +78,7 @@
 
         <!-- プレゼンテーション画像 -->
         <a-image
-          src="#exhibit-presentationImage-1"
+          :src="`#exhibit-presentationImage-${exhibits[0].id}`"
           scale="3.60725 3.29728 4.52257"
           position="-19.69315 1.71093 -6.28015"
           material=""
