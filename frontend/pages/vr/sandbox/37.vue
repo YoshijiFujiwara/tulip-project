@@ -17,23 +17,22 @@
   </a-scene>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  auth: false,
+<script>
+export default {
   layout: 'aframe_sandbox',
-})
-export default class Index extends Vue {
+  auth: false,
   mounted() {
-    AFRAME.registerComponent('entity-spawner', {
+    window.AFRAME.registerComponent('entity-spawner', {
       init() {
         const camera = document.querySelector('#cam')
         const scene = document.querySelector('a-scene')
 
         this.el.addEventListener('click', function () {
+          // eslint-disable-next-line no-undef
           const position = new THREE.Vector3()
+          // eslint-disable-next-line no-undef
           const direction = new THREE.Vector3()
+          // eslint-disable-next-line no-undef
           const target = new THREE.Vector3()
 
           camera.object3D.getWorldPosition(position)
@@ -50,6 +49,6 @@ export default class Index extends Vue {
         })
       },
     })
-  }
+  },
 }
 </script>

@@ -47,16 +47,12 @@
   </a-scene>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  auth: false,
+<script>
+export default {
   layout: 'aframe_sandbox',
-})
-export default class Index extends Vue {
+  auth: false,
   mounted() {
-    AFRAME.registerComponent('multiple-entities', {
+    window.AFRAME.registerComponent('multiple-entities', {
       schema: {
         num: { type: 'number', default: 5 },
         w: { type: 'number', default: 1 },
@@ -89,7 +85,7 @@ export default class Index extends Vue {
           const alignY = i * (data.h + data.gap) + data.h / 2
           const alignZ = i * (data.d + data.gap)
 
-          var direction
+          let direction
 
           if (data.dir === 'positive') {
             direction = 1
@@ -119,6 +115,6 @@ export default class Index extends Vue {
         }
       },
     })
-  }
+  },
 }
 </script>

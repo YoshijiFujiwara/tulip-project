@@ -67,16 +67,12 @@
   </a-scene>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-
-@Component({
-  auth: false,
+<script>
+export default {
   layout: 'aframe_sandbox',
-})
-export default class Index extends Vue {
+  auth: false,
   mounted() {
-    AFRAME.registerComponent('blink-teleportation', {
+    window.AFRAME.registerComponent('blink-teleportation', {
       schema: {
         pos: { type: 'vec3' },
         dur: { type: 'number', default: 300 },
@@ -150,6 +146,6 @@ export default class Index extends Vue {
         })
       },
     })
-  }
+  },
 }
 </script>

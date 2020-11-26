@@ -1,9 +1,9 @@
-/* global AFRAME */
+/* eslint-disable no-case-declarations */
 const gazeDefaultId = 'progressivecontrolsgazedefault'
 const pointDefaultId = 'progressivecontrolspointdefault'
 const touchDefaultId = 'progressivecontrolstouchdefault'
 
-AFRAME.registerComponent('progressive-controls', {
+window.AFRAME.registerComponent('progressive-controls', {
   schema: {
     maxLevel: { default: 'touch', oneOf: ['gaze', 'point', 'touch'] },
     gazeMixin: { default: '' },
@@ -24,7 +24,7 @@ AFRAME.registerComponent('progressive-controls', {
       this.el.sceneEl.querySelector('a-assets') ||
       this.el.sceneEl.appendChild(document.createElement('a-assets'))
     const gazeDefault = (this.gazeDefault = document.createElement('a-mixin'))
-    const shRayConfig = AFRAME.utils.styleParser.stringify({
+    const shRayConfig = window.AFRAME.utils.styleParser.stringify({
       colliderEvent: 'raycaster-intersection',
       colliderEventProperty: 'els',
       colliderEndEvent: 'raycaster-intersection-cleared',
@@ -63,7 +63,7 @@ AFRAME.registerComponent('progressive-controls', {
     if (!this.camera) {
       this.camera = this.el.appendChild(document.createElement('a-camera'))
       // DEPRECATION path: camera y instead of userHeight in verions >= 0.8
-      if (parseFloat(AFRAME.version) > 0.7) {
+      if (parseFloat(window.AFRAME.version) > 0.7) {
         this.camera.setAttribute('position', '0 1.6 0')
       }
     }
@@ -95,7 +95,7 @@ AFRAME.registerComponent('progressive-controls', {
     // default level
     this.currentLevel.set('right', 0)
   },
-  update(oldData) {
+  update(_oldData) {
     const objs = { objects: this.data.objects }
     updateMixin(this.gazeDefault, 'raycaster', objs)
     updateMixin(this.pointDefault, 'raycaster', objs)
@@ -131,6 +131,7 @@ AFRAME.registerComponent('progressive-controls', {
     }
     switch (newLevel) {
       case this.levels.indexOf('gaze'):
+        // eslint-disable-next-line no-case-declarations
         const gazeMixin = this.data.gazeMixin
         this.caster.setAttribute(
           'mixin',
@@ -226,8 +227,8 @@ AFRAME.registerComponent('progressive-controls', {
 })
 
 function updateMixin(mixin, attr, additions) {
-  const stringify = AFRAME.utils.styleParser.stringify
-  const extend = AFRAME.utils.extend
+  const stringify = window.AFRAME.utils.styleParser.stringify
+  const extend = window.AFRAME.utils.extend
   const old = mixin.getAttribute(attr)
   if (old) {
     mixin.setAttribute(attr, stringify(extend(old, additions)))
