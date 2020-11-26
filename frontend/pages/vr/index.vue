@@ -69,21 +69,21 @@
         <!-- サムネイル画像 -->
         <a-image
           src="#exhibit-thumbnail-1"
-          scale="3.60725 3.29728 4.52257"
-          position="-5.09833 1.71093 -11.20692"
+          scale="3.645 3.269 4.351"
+          position="-4.709 1.693 -10.770"
           material=""
           geometry=""
-          rotation="0 129.48903465736117 0"
+          rotation="0.000 129.489 0.000"
         ></a-image>
 
         <!-- プレゼンテーション画像 -->
         <a-image
           src="#exhibit-presentationImage-1"
-          scale="3.60725 3.29728 4.52257"
-          position="-19.69315 1.71093 -6.28015"
+          scale="4.463 2.957 4.523"
+          position="-14.508 1.001 -4.085"
           material=""
           geometry=""
-          rotation="0 129.6454521354319 0"
+          rotation="0 147.350 0"
         ></a-image>
       </a-entity>
 
