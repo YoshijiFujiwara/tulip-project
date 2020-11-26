@@ -2,7 +2,7 @@ import { axios } from '../index'
 import { Exhibit } from '~/types/exhibit'
 
 export default {
-  getProfileExhibits(): Exhibit {
+  getProfileExhibits(): Promise<Exhibit> {
     return axios.$get(`profile/exhibit`)
   },
 }

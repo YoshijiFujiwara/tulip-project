@@ -2,19 +2,19 @@ import { axios } from '../index'
 import { Exhibit } from '~/types/exhibit'
 
 export default {
-  getExhibits(): Exhibit[] {
+  getExhibits(): Promise<Exhibit[]> {
     return axios.$get(`exhibits`)
   },
 
-  createExhibit(body: any): Exhibit {
+  createExhibit(body: any): Promise<Exhibit> {
     return axios.$post('exhibits', body)
   },
 
-  getMyExhibit(): Exhibit {
+  getMyExhibit(): Promise<Exhibit> {
     return axios.$get('exhibits/1')
   },
 
-  updateExhibit(id: number, body: any): Exhibit {
+  updateExhibit(id: number, body: any): Promise<Exhibit> {
     return axios.$put('exhibits/' + id, body)
   },
 }
