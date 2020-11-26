@@ -19,7 +19,6 @@ services:
       MYSQL_PORT: ${MYSQL_PORT}
       BACKEND_INNER_PORT: ${BACKEND_INNER_PORT}
       JWT_SECRET: ${JWT_SECRET}
-      SKYWAY_SECRET: ${SKYWAY_SECRET}
     depends_on:
       - database
 
@@ -37,6 +36,7 @@ services:
       AXIOS_BASE_URL: ${AXIOS_BASE_URL}
       CLOUDINARY_UPLOAD_PRESET: ${CLOUDINARY_UPLOAD_PRESET}
       CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      SKYWAY_SECRET: ${SKYWAY_SECRET}
 
   database:
     container_name: database
