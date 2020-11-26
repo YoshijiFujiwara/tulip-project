@@ -68,6 +68,7 @@
 
         <!-- サムネイル画像 -->
         <a-image
+          v-if="exhibits.length"
           :src="`#exhibit-thumbnail-${exhibits[0].id}`"
           scale="3.60725 3.29728 4.52257"
           position="-5.09833 1.71093 -11.20692"
@@ -78,6 +79,7 @@
 
         <!-- プレゼンテーション画像 -->
         <a-image
+          v-if="exhibits.length"
           :src="`#exhibit-presentationImage-${exhibits[0].id}`"
           scale="3.60725 3.29728 4.52257"
           position="-19.69315 1.71093 -6.28015"
