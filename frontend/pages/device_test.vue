@@ -49,18 +49,29 @@
       </template>
     </select>
 
-    <video
-      id="local_video"
-      width="320px"
-      height="240px"
-      autoplay="1"
-      controls="1"
-      style="border: 1px solid"
-      :srcObject.prop="srcObject"
-      :setSkinId="selected.speaker"
-    ></video>
+    <div class="videosContainer">
+      <video
+        v-for="(video, index) in videos"
+        id="local_video"
+        :key="index"
+        autoplay
+        width="320"
+        height="240"
+        controls="1"
+        muted="true"
+        style="border: 1px solid"
+        :srcObject.prop="video"
+      ></video>
+    </div>
 
-    <button @click="start">スタート</button>
+    <form @submit.prevent="start">
+      <input v-model="roomName" type="text" required />
+      <button type="submit">スタート</button>
+    </form>
+
+    <br />
+
+    id: {{ myId }}
 
     <br />
     {{ constraints }}
@@ -72,7 +83,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'nuxt-property-decorator'
-import Peer from 'skyway-js'
+import Peer, { SfuRoom } from 'skyway-js'
 
 @Component({
   auth: false,
@@ -81,21 +92,29 @@ export default class Sample extends Vue {
   cameras: Device[] = []
   mics: Device[] = []
   speakers: Device[] = []
+  videos: MediaStream[] = []
   constraints: MediaStreamConstraints = { audio: false, video: false }
-  srcObject: MediaStream = new MediaStream()
   selected: devices = {
     camera: 'default',
     mic: 'default',
     speaker: 'default',
   }
 
+  myId: string = ''
+  roomName: string = 'test'
+  room: SfuRoom | null = null
+
   isCameraAccessGranted: boolean | MediaTrackConstraints = false
   isMicrophoneAccessGranted: boolean | MediaTrackConstraints = false
   peer = new Peer({
-    key: process.env.SKYWAY_SECRET!,
+    key: process.env.skywaySecret!,
   })
 
   async created() {
+    this.peer.on('open', (myId) => {
+      this.myId = myId
+    })
+
     this.cameras = [
       new Device({
         deviceId: this.selected.camera,
@@ -128,14 +147,38 @@ export default class Sample extends Vue {
       audio: this.isMicrophoneAccessGranted,
       video: this.isCameraAccessGranted,
     }
+
+    const stream = await navigator.mediaDevices.getUserMedia(this.constraints)
+    this.videos = [stream]
+    this.videos[0].getTracks().forEach((track) => {
+      track.stop()
+    })
   }
 
   async start() {
-    this.srcObject.getTracks().forEach((track) => {
-      track.stop()
-    })
+    if (!this.roomName) {
+      return
+    }
 
-    this.srcObject = await navigator.mediaDevices.getUserMedia(this.constraints)
+    if (this.room) {
+      this.room.close()
+    }
+
+    const stream = await navigator.mediaDevices.getUserMedia(this.constraints)
+
+    this.room = await ((stream) => {
+      const room = this.peer.joinRoom<SfuRoom>(this.roomName, {
+        mode: 'sfu',
+        stream,
+      })
+      console.log('start room')
+      return Promise.resolve(room)
+    })(stream)
+
+    // this.room.on('stream', (stream) => {
+    //   console.log('start stream')
+    //   this.videos = [stream]
+    // })
   }
 
   @Watch('selected', { deep: true })
