@@ -1,4 +1,4 @@
-/* global window.AFRAME */
+/* eslint-disable no-case-declarations */
 const gazeDefaultId = 'progressivecontrolsgazedefault'
 const pointDefaultId = 'progressivecontrolspointdefault'
 const touchDefaultId = 'progressivecontrolstouchdefault'
@@ -95,7 +95,7 @@ window.AFRAME.registerComponent('progressive-controls', {
     // default level
     this.currentLevel.set('right', 0)
   },
-  update(oldData) {
+  update(_oldData) {
     const objs = { objects: this.data.objects }
     updateMixin(this.gazeDefault, 'raycaster', objs)
     updateMixin(this.pointDefault, 'raycaster', objs)
@@ -131,6 +131,7 @@ window.AFRAME.registerComponent('progressive-controls', {
     }
     switch (newLevel) {
       case this.levels.indexOf('gaze'):
+        // eslint-disable-next-line no-case-declarations
         const gazeMixin = this.data.gazeMixin
         this.caster.setAttribute(
           'mixin',

@@ -108,6 +108,7 @@ import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { uploadImageCloudinary } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../../plugins/axios/modules/profile'
+import { Exhibit } from '../../../types/exhibit'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
@@ -146,13 +147,13 @@ export default class CreateExhibitDialog extends Vue {
 
   created() {
     ProfileApi.getProfileExhibits()
-      .then((response: any) => {
-        this.form.title = response.title
-        this.form.description = response.description
-        this.form.genre = response.genre
-        this.uploadThumbnailImageUrl = response.thumbnail
-        this.uploadPresentationImageUrl = response.presentationImage
-        this.exhibitId = response.id
+      .then((exhibit: Exhibit) => {
+        this.form.title = exhibit.title
+        this.form.description = exhibit.description
+        this.form.genre = exhibit.genre
+        this.uploadThumbnailImageUrl = exhibit.thumbnail
+        this.uploadPresentationImageUrl = exhibit.presentationImage
+        this.exhibitId = exhibit.id
       })
       .catch(() => {
         this.$toast.error('作品登録の際にエラーが発生しました')
