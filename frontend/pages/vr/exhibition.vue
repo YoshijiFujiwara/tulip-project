@@ -43,6 +43,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import { Exhibit } from '../../types/exhibit'
 import Booth from '~/components/Booth.vue'
 
 @Component({
@@ -56,7 +57,7 @@ export default class Exhibition extends Vue {
 
   async created() {
     const response = await ExhibitApi.getExhibits()
-    this.exhibits = response.map((exhibit: any, i: number) => {
+    this.exhibits = response.map((exhibit: Exhibit, i: number) => {
       return {
         ...exhibit,
         rightWall: `${7 + i * 10} 0 -5`,
