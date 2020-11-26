@@ -128,8 +128,8 @@ export default class CreateExhibitDialog extends Vue {
     title: '',
     description: '',
     genre: '',
-    thumbnailImage: (null as unknown) as File,
-    presentationImage: (null as unknown) as File,
+    thumbnailImage: (null as unknown) as File | null,
+    presentationImage: (null as unknown) as File | null,
   }
 
   rules = {
@@ -184,7 +184,7 @@ export default class CreateExhibitDialog extends Vue {
         )
       }
 
-      ExhibitApi.updateExhibit(this.exhibitId, {
+      ExhibitApi.updateExhibit(this.exhibitId!, {
         ...this.form,
         thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
         presentationImage:
@@ -201,11 +201,11 @@ export default class CreateExhibitDialog extends Vue {
       // api側には、cloudinaryから返却されたimageのurlを渡す形となる
       const thumbnailImageUrl = await uploadImageCloudinary(
         this.$axios,
-        this.form.thumbnailImage
+        this.form.thumbnailImage!
       )
       const presentationImageUrl = await uploadImageCloudinary(
         this.$axios,
-        this.form.presentationImage
+        this.form.presentationImage!
       )
       ExhibitApi.createExhibit({
         ...this.form,
