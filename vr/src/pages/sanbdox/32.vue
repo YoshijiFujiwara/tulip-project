@@ -1,0 +1,45 @@
+<template>
+  <a-scene background="color: #FFFFFF">
+    <!-- Camera Rig -->
+    <a-entity id="cam-rig" position="0 0 4">
+      <!--Camera -->
+      <a-camera look-controls="pointerLockEnabled: true">
+        <a-cursor></a-cursor>
+      </a-camera>
+    </a-entity>
+
+    <!-- Ground -->
+    <a-plane color="#DDDDDD" shader="flat" rotation="-90 0 0" scale="8 16 1">
+    </a-plane>
+
+    <!-- Blue -->
+    <a-box id="blue" color="#00AAFF" position="-2 3 -4" random-color> </a-box>
+    <!-- Yellow -->
+    <a-box id="yellow" color="#FFAA00" position="-2 0.5 -4" random-color>
+    </a-box>
+
+    <!-- Green -->
+    <a-box id="green" color="#00AA00" position="2 3 -4" random-color> </a-box>
+    <!-- Red -->
+    <a-box id="red" material="color: #AA0000" position="2 0.5 -4" random-color>
+    </a-box>
+  </a-scene>
+</template>
+
+<script>
+export default {
+  mounted() {
+    window.AFRAME.registerComponent('random-color', {
+      init() {
+        const el = this.el
+
+        el.addEventListener('click', function () {
+          const randomHEX = '#' + Math.random().toString(16).substr(-6)
+
+          el.setAttribute('material', 'color', randomHEX)
+        })
+      }
+    })
+  }
+}
+</script>
