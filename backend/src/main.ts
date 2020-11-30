@@ -6,8 +6,8 @@ import * as fs from 'fs';
 async function bootstrap() {
   // localhostでのhttps化に必要なファイルの読み込み
 
-  const keyFile = fs.readFileSync(__dirname + '/../tulip.local-key.pem');
-  const certFile = fs.readFileSync(__dirname + '/../tulip.local.pem');
+  const keyFile = fs.readFileSync(__dirname + '/../localhost-key.pem');
+  const certFile = fs.readFileSync(__dirname + '/../localhost.pem');
 
   const app = await NestFactory.create(AppModule, {
     // https設定
