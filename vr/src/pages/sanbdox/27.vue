@@ -2,7 +2,7 @@
   <a-scene background="color: #FFFFFF">
     <!-- Asset Management System -->
     <a-assets>
-      <img id="footsteps" src="/vr/img/footsteps.png" />
+      <img id="footsteps" src="../../assets/img/footsteps.png" />
     </a-assets>
 
     <!-- Camera Rig -->
@@ -21,7 +21,7 @@
 
     <!-- Curved Image -->
     <a-curvedimage
-      src="/vr/img/curved-image.jpg"
+      src="../../assets/img/curved-image.jpg"
       position="-3 1.5 -16"
       scale="3 3 3"
       theta-length="90"
@@ -75,5 +75,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

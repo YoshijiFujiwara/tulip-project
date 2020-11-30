@@ -2,8 +2,8 @@
   <a-scene background="color: #FFFFFF">
     <!-- Asset Management System -->
     <a-assets>
-      <img id="footsteps" src="/vr/img/footsteps.png" />
-      <img id="black" src="/vr/img/black.png" />
+      <img id="footsteps" src="../../assets/img/footsteps.png" />
+      <img id="black" src="../../assets/img/black.png" />
     </a-assets>
 
     <!-- Ground -->
@@ -18,7 +18,7 @@
 
     <!-- Curved Image -->
     <a-curvedimage
-      src="/vr/img/curved-image.jpg"
+      src="../../assets/img/curved-image.jpg"
       position="-2 1.5 -24"
       scale="3 3 3"
       theta-length="90"
@@ -75,12 +75,12 @@
       movement-controls="controls: checkpoint"
       checkpoint-controls="mode: animate; animateSpeed: 13.0"
       event-set__start="_target: #blink; _event: navigation-start;
-				  					animation.property: opacity;
-				  					animation.to: 1;
-				  					animation.dur: 250;
-				  					animation.easing: easeOutQuart"
+                        animation.property: opacity;
+                        animation.to: 1;
+                        animation.dur: 250;
+                        animation.easing: easeOutQuart"
       event-set__end="_target: #blink; _event: navigation-end;
-				  				  animation.to: 0"
+                        animation.to: 0"
     >
       <!-- Progressive Controls -->
       <a-entity progressive-controls>
@@ -94,5 +94,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

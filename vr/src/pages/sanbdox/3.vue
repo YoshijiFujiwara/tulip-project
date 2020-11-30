@@ -3,7 +3,7 @@
     <a-scene>
       <!-- Asset Management System -->
       <a-assets>
-        <img id="360-panorama" src="/vr/img/360-panorama.jpg" />
+        <img id="360-panorama" src="../../assets/img/360-panorama.jpg" />
       </a-assets>
 
       <!-- 360° Panorama -->
@@ -13,5 +13,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

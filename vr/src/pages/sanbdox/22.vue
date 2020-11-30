@@ -2,7 +2,7 @@
   <a-scene>
     <!-- Asset Management System -->
     <a-assets>
-      <img id="look-at-img" src="/vr/img/look_at.jpg" />
+      <img id="look-at-img" src="../../assets/img/look_at.jpg" />
     </a-assets>
 
     <!-- Floor -->
@@ -23,11 +23,11 @@
       color="#00AAFF"
       position="-1.5 0.5 -6"
       animation="property: position;
-						  to: -1.5 0.5 6;
-						  dir: alternate;
-						  easing: linear;
-						  loop: true;
-						  dur: 6000"
+                  to: -1.5 0.5 6;
+                  dir: alternate;
+                  easing: linear;
+                  loop: true;
+                  dur: 6000"
     >
       <!-- Image -->
       <a-image
@@ -55,5 +55,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

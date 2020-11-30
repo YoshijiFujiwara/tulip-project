@@ -3,8 +3,8 @@
     <!-- Asset Management System -->
     <!-- DOWNLOAD, PRELOAD YOUR VIDEO, AND UPDATE ITS ID AND FILE NAME -->
     <a-assets>
-      <img id="play" src="/vr/img/play.png" />
-      <img id="pause" src="/vr/img/pause.png" />
+      <img id="play" src="../../assets/img/play.png" />
+      <img id="pause" src="../../assets/img/pause.png" />
       <video id="sample_movie" src="/vr/movie/sample1.mp4" loop="true"></video>
     </a-assets>
 
@@ -32,21 +32,21 @@
 <script>
 export default {
   mounted() {
-    window.AFRAME.registerComponent('play-pause', {
+    window.AFRAME.registerComponent("play-pause", {
       init() {
-        const myVideo = document.querySelector('#sample_movie')
-        const videoControls = document.querySelector('#videoControls')
-        this.el.addEventListener('click', function () {
+        const myVideo = document.querySelector("#sample_movie");
+        const videoControls = document.querySelector("#videoControls");
+        this.el.addEventListener("click", function () {
           if (myVideo.paused) {
-            myVideo.play()
-            videoControls.setAttribute('src', '#pause')
+            myVideo.play();
+            videoControls.setAttribute("src", "#pause");
           } else {
-            myVideo.pause()
-            videoControls.setAttribute('src', '#play')
+            myVideo.pause();
+            videoControls.setAttribute("src", "#play");
           }
-        })
-      }
-    })
-  }
-}
+        });
+      },
+    });
+  },
+};
 </script>

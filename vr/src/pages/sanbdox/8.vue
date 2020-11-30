@@ -2,8 +2,8 @@
   <a-scene>
     <!-- Asset Management System -->
     <a-assets>
-      <img id="floor" src="/vr/img/floor.jpg" />
-      <img id="firefox" src="/vr/img/firefox-quantum-1024.png" />
+      <img id="floor" src="../../assets/img/floor.jpg" />
+      <img id="firefox" src="../../assets/img/firefox-quantum-1024.png" />
       <a-asset-item id="room" src="/vr/model/room.gltf"></a-asset-item>
     </a-assets>
 
@@ -130,5 +130,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

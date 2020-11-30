@@ -2,7 +2,7 @@
   <a-scene physics="gravity: -9.8; restitution: 0.7">
     <!-- Assets Management System -->
     <a-assets>
-      <img id="ground" src="/vr/img/floor.jpg" />
+      <img id="ground" src="../../assets/img/floor.jpg" />
     </a-assets>
     <!-- Progressive Controls -->
     <a-entity progressive-controls position="0 0 5"></a-entity>
@@ -62,5 +62,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

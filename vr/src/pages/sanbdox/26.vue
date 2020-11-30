@@ -3,19 +3,19 @@
     <a-scene background="color: #FFFFFF">
       <!-- Asset Management System -->
       <a-assets>
-        <img id="vignette" src="/vr/img/vignette.png" />
+        <img id="vignette" src="../../assets/img/vignette.png" />
       </a-assets>
 
       <!-- Camera Rig -->
       <a-entity
         movement-controls="speed: 0.15"
         event-set__start="_target: #dyn-fov-red; _event: trackpadtouchstart;
-		 							animation.property: opacity;
-		 							animation.to: 1;
-			 						animation.dur: 300;
-			 						animation.easing: easeOutQuad"
+                        animation.property: opacity;
+                        animation.to: 1;
+                        animation.dur: 300;
+                        animation.easing: easeOutQuad"
         event-set__end="_target: #dyn-fov-red; _event: trackpadtouchend;
-		 		  				  animation.to: 0"
+                  animation.to: 0"
       >
         <!-- Camera -->
         <a-entity progressive-controls>
@@ -59,5 +59,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

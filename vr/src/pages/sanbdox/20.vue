@@ -25,18 +25,18 @@
       position="0 0.5 -5"
       class="ui"
       animation__enter="property: material.color; from: #FFAA00; to: #FF7700; 
-								 startEvents: mouseenter; dur: 250; easing: linear"
+                        startEvents: mouseenter; dur: 250; easing: linear"
       animation__leave="property: material.color; from: #FF7700; to: #FFAA00; 
-								 startEvents: mouseleave; dur: 250; easing: linear"
+                        startEvents: mouseleave; dur: 250; easing: linear"
       event-set__scale="_target: #blue; _event: click;
-			   					 animation.property: scale;
-			   					 animation.to: 4 2 0.1;
-			   					 animation.easing: easeInOutBack;
-			   					 animation.dur: 1000"
+                        animation.property: scale;
+                        animation.to: 4 2 0.1;
+                        animation.easing: easeInOutBack;
+                        animation.dur: 1000"
       event-set__position="_target: #grey; _event: click;
-			   						animation.property: position;
-			   						animation.to: 0 1.75 -5;
-			   						animation.dur: 1000"
+                        animation.property: position;
+                        animation.to: 0 1.75 -5;
+                        animation.dur: 1000"
     >
     </a-box>
 
@@ -50,21 +50,21 @@
       scale="0.5 0.5 1"
       class="ui"
       animation__enter="property: material.color; from: #333333; to: #FF0000; 
-								   startEvents: mouseenter; dur: 250; easing: linear"
+                      startEvents: mouseenter; dur: 250; easing: linear"
       animation__leave="property: material.color; from: #FF0000; to: #333333; 
-								   startEvents: mouseleave; dur: 250; easing: linear"
+                      startEvents: mouseleave; dur: 250; easing: linear"
       event-set__position="_event: click;
-			   						  animation.to: 0 3 -5;
-			   						  animation.dur: 250"
+                          animation.to: 0 3 -5;
+                          animation.dur: 250"
       event-set__scale="_target: #blue; _event: click;
-			   					   animation.to: 1 1 1;
-			   					   animation.easing: easeOutExpo;
-			   					   animation.dur: 1500"
+                          animation.to: 1 1 1;
+                          animation.easing: easeOutExpo;
+                          animation.dur: 1500"
     >
     </a-plane>
   </a-scene>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

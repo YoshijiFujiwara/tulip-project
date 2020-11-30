@@ -3,8 +3,8 @@
     <a-scene>
       <!-- Asset Management System -->
       <a-assets>
-        <img id="floor" src="/vr/img/floor.jpg" />
-        <img id="bloodhound" src="/vr/img/bloodhound.png" />
+        <img id="floor" src="../../assets/img/floor.jpg" />
+        <img id="bloodhound" src="../../assets/img/bloodhound.png" />
       </a-assets>
 
       <!-- Ground -->
@@ -57,5 +57,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

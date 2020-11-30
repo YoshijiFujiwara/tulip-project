@@ -2,7 +2,7 @@
   <a-scene renderer="antialias: true">
     <!-- Image -->
     <a-image
-      src="/vr/img/aa.jpg"
+      src="../../assets/img/aa.jpg"
       position="0 1.5 -8"
       height="0.75"
       scale="6 6 1"
@@ -17,5 +17,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

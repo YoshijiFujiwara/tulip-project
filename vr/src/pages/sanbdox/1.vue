@@ -3,16 +3,16 @@
     <a-scene>
       <!-- Asset Management System -->
       <a-assets>
-        <img id="metal-NRM" src="/vr/img/metal.jpg" />
-        <img id="brick" src="/vr/img/brick.jpg" />
-        <img id="brick-NRM" src="/vr/img/brick.jpg" />
+        <img id="metal-NRM" src="../../assets/img/metal.jpg" />
+        <img id="brick" src="../../assets/img/brick.jpg" />
+        <img id="brick-NRM" src="../../assets/img/brick.jpg" />
       </a-assets>
 
       <!-- Light-Blue Box > Metal Room -->
       <!-- To achieve reflection, with v1.0.4 you need to use side="back" (line 34 and 46) -->
       <a-box
         color="#FFFFFF"
-        src="/vr/img/metal.jpg"
+        src="../../assets/img/metal.jpg"
         repeat="1 1"
         normal-map="#metal-NRM"
         normal-texture-repeat="1 1"
@@ -66,5 +66,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

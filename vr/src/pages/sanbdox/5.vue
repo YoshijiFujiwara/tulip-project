@@ -6,7 +6,7 @@
                  that I use in the video. Please download the 3D models yourself, or use your own,
                  and then move them to the ASSETs folder -->
       <a-assets timeout="200000">
-        <img id="sky" src="/vr/img/clear-sunny-sky.jpg" />
+        <img id="sky" src="../../assets/img/clear-sunny-sky.jpg" />
         <a-asset-item
           id="castle_village"
           src="/vr/model/castle_village/scene.gltf"
@@ -28,5 +28,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

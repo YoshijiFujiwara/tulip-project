@@ -3,7 +3,7 @@
     <!-- Asset Management System -->
     <a-assets>
       <!-- IMAGE by Blausen.com staff (2014) | https://tinyurl.com/y9yymdot -->
-      <img id="int-ear" src="/vr/img/InternalEar.jpg" />
+      <img id="int-ear" src="../../assets/img/InternalEar.jpg" />
     </a-assets>
 
     <!-- Camera Rig -->
@@ -25,5 +25,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

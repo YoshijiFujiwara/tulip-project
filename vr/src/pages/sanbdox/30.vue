@@ -16,8 +16,8 @@
       <!-- Teleport Controls -->
       <a-entity
         teleport-controls="cameraRig: #cam-rig;
-										 teleportOrigin: #head;
-										 collisionEntities: #ground"
+                          teleportOrigin: #head;
+                          collisionEntities: #ground"
         gearvr-controls
         oculus-go-controls
       >
@@ -43,5 +43,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

@@ -3,10 +3,10 @@
     <!-- Asset Management System -->
     <!-- DOWNLOAD, PRELOAD YOUR AUDIO FILES, AND UPDATE THEIR FILE NAMES IN THIS DOC -->
     <a-assets>
-      <img id="ground" src="/vr/img/floor.jpg" />
+      <img id="ground" src="../../assets/img/floor.jpg" />
       <audio id="sound_mozart1" src="/vr/music/mozart1.mp3"></audio>
       <audio id="sound_verdi" src="/vr/music/verdi.mp3"></audio>
-      <img id="panorama" src="/vr/img/360-panorama.jpg" />
+      <img id="panorama" src="../../assets/img/360-panorama.jpg" />
       <audio
         id="ambience_sound"
         src="/vr/music/japanese_nightingale_1.mp3"
@@ -30,10 +30,10 @@
       height="5"
       position="-2 2.5 0"
       sound="src: #sound_mozart1;
-        				   on: click;
-        				   volume: 1;
-        				   refDistance: 4;
-        				   rolloffFactor: 4"
+            on: click;
+            volume: 1;
+            refDistance: 4;
+            rolloffFactor: 4"
     >
       <a-entity
         sound="src: #sound_mozart1; autoplay: false"
@@ -77,22 +77,22 @@
 <script>
 export default {
   mounted() {
-    window.AFRAME.registerComponent('play', {
+    window.AFRAME.registerComponent("play", {
       init() {
-        const myEl = document.querySelector('#yellow')
-        this.el.addEventListener('click', function () {
-          myEl.components.sound.playSound()
-        })
-      }
-    })
-    window.AFRAME.registerComponent('stop', {
+        const myEl = document.querySelector("#yellow");
+        this.el.addEventListener("click", function () {
+          myEl.components.sound.playSound();
+        });
+      },
+    });
+    window.AFRAME.registerComponent("stop", {
       init() {
-        const myEl = document.querySelector('#yellow')
-        this.el.addEventListener('click', function () {
-          myEl.components.sound.stopSound()
-        })
-      }
-    })
-  }
-}
+        const myEl = document.querySelector("#yellow");
+        this.el.addEventListener("click", function () {
+          myEl.components.sound.stopSound();
+        });
+      },
+    });
+  },
+};
 </script>
