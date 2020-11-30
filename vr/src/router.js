@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Index from './pages/Index.vue'
-import Sandbox from './pages/sanbdox/Index.vue'
+import Sandbox from './pages/Sandbox.vue'
 
 Vue.use(VueRouter);
 
