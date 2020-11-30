@@ -1,5 +1,5 @@
 {
-  "eslint.workingDirectories": ["backend", "frontend", "vr"],
+  "eslint.workingDirectories": ["backend", "frontend", "vr", "react-vr"],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
