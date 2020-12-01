@@ -4,7 +4,7 @@
     <a-assets>
       <a-asset-item
         id="my-nav-mesh"
-        src="/vr/model/navmesh.gltf"
+        src="../../assets/model/navmesh.gltf"
       ></a-asset-item>
     </a-assets>
 
@@ -44,5 +44,5 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>

@@ -4,7 +4,7 @@
     <a-assets>
       <img id="floor" src="../../assets/img/floor.jpg" />
       <img id="firefox" src="../../assets/img/firefox-quantum-1024.png" />
-      <a-asset-item id="room" src="/vr/model/room.gltf"></a-asset-item>
+      <a-asset-item id="room" src="../../assets/model/room.gltf"></a-asset-item>
     </a-assets>
 
     <!-- Default Lighting In The A-Frame Scene -->

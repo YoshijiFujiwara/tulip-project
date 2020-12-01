@@ -82,4 +82,6 @@
   </a-scene>
 </template>
 
-auth: false,
+<script>
+export default {};
+</script>

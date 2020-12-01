@@ -2,10 +2,13 @@
   <a-scene background="color: FFFFFF" inspector-plugin-recast>
     <!-- Asset Management System -->
     <a-assets timeout="200000">
-      <a-asset-item id="navmesh" src="/vr/model/navmesh.gltf"></a-asset-item>
+      <a-asset-item
+        id="navmesh"
+        src="../../assets/model/navmesh.gltf"
+      ></a-asset-item>
       <a-asset-item
         id="my-navmesh"
-        src="/vr/model/my-navmesh.gltf"
+        src="../../assets/model/my-navmesh.gltf"
       ></a-asset-item>
     </a-assets>
 
