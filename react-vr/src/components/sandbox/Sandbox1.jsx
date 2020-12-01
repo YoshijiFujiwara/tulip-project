@@ -26,13 +26,15 @@ export default function Sandbox() {
       ></Entity>
       <Entity
         primitive="a-box"
-        material="color: #FFFFFF;
-                  src: #brick;
-                  repeat: 2 2;
-                  normal-map: #brick-NRM;
-                  normal-texture-repeat: 2 2;
-                  normal-scale: 1 -1;
-                  roughness: 0.9"
+        material={{
+          color: '#FFFFFF',
+          src: '#brick',
+          repeat: '2 2',
+          normalMap: '#brick-NRM',
+          normalTextureRepeat: '2 2',
+          normalScale: '1 -1',
+          roughness: '0.9',
+        }}
         width="4"
         height="4"
         depth="4"
@@ -42,18 +44,22 @@ export default function Sandbox() {
 
       <Entity
         primitive="a-sphere"
-        material="color: #0000AA;
-                  roughness: 0.2
-                  shader: standard"
+        material={{
+          color: '#0000AA',
+          roughness: '0.2',
+          shader: 'standard',
+        }}
         radius="0.5"
         position="-2 1.5 -8"
       ></Entity>
       <Entity
         primitive="a-sphere"
-        material="color: #AA0000;
-                  roughness: 0.2;
-                  shader: flat;
-                  opacity: 0.5"
+        material={{
+          color: '#AA0000',
+          roughness: '0.2',
+          shader: 'flat',
+          opacity: '0.5',
+        }}
         radius="0.5"
         position="2 1.5 -8"
       ></Entity>

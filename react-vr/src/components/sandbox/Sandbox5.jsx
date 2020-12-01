@@ -7,7 +7,7 @@ export default function Sandbox() {
         <img id="sky" src="/assets/img/clear-sunny-sky.jpg" />
         <a-asset-item
           id="castle_village"
-          src="/assets/model/castle_village/scene.gltf"
+          src="/assets/model/Space Theatre.glb"
         ></a-asset-item>
       </a-assets>
 

@@ -10,11 +10,13 @@ export default function Sandbox() {
 
       <Entity
         primitive="a-plane"
-        material="color: #FFFFFF;
-                        src: #floor;
-                        repeat: 5 5;
-                        normal-map: #floor-NRM;
-                        normal-texture-repeat: 5 5"
+        material={{
+          color: '#FFFFFF',
+          src: '#floor',
+          repeat: '5 5',
+          normalMap: '#floor-NRM',
+          normalTextureRepeat: '5 5',
+        }}
         rotation="-90 0 0"
         scale="10 10 1"
       ></Entity>
