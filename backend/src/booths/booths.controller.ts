@@ -11,6 +11,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { CreateBoothDto } from './dto/create-booth.dto';
 import { GetUser } from '../auth/get-user-decorator';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
+import { BoothSerializer } from '../entities/serializer/booth.serializer';
 
 @ApiTags('booths')
 @Controller('booths')
@@ -23,5 +24,11 @@ export class BoothsController {
   async createBooth(
     @Body(ValidationPipe) createBoothDto: CreateBoothDto,
     @GetUser() exhibitor: ExhibitorEntity,
-  ) {}
+  ): Promise<BoothSerializer> {
+    const booth = await this.boothsService.createBooth(
+      createBoothDto,
+      exhibitor,
+    );
+    return booth.transformToSerializer();
+  }
 }
