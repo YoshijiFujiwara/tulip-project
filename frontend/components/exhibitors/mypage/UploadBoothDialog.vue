@@ -34,9 +34,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import ExhibitApi from '../../../plugins/axios/modules/exhibit'
-import ProfileApi from '../../../plugins/axios/modules/profile'
-import { Exhibit } from '../../../types/exhibit'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
