@@ -1,6 +1,6 @@
 import { Scene, Entity } from 'aframe-react';
 
-export default function Sandbox() {
+export default function Sandbox1() {
   return (
     <Scene>
       <a-assets>

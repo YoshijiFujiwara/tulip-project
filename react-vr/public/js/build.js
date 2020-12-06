@@ -1084,7 +1084,7 @@ class SocketioAdapter {
         }
       }
 
-      console.log('naf socketio conne');
+      NAF.log.write('self wsurl 1', self.wsUrl);
 
       NAF.log.write('Attempting to connect to socket.io');
       const socket = (self.socket = io(self.wsUrl));
@@ -1611,7 +1611,7 @@ class WebrtcAdapter {
         }
       }
 
-      console.log('location.host', location);
+      NAF.log.write('self wsurl 2', self.wsUrl);
 
       NAF.log.write('Attempting to connect to socket.io');
       const socket = (self.socket = io(self.wsUrl, {
@@ -1996,7 +1996,7 @@ AFRAME.registerComponent('networked-audio-source', {
 
 },{"../NafIndex":4}],13:[function(require,module,exports){
 /* global AFRAME, NAF */
-
+console.log(AFRAME);
 AFRAME.registerComponent('networked-scene', {
   schema: {
     serverURL: { default: '/' },

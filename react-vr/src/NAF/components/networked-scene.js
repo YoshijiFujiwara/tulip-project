@@ -1,5 +1,5 @@
 /* global AFRAME, NAF */
-
+console.log(AFRAME);
 AFRAME.registerComponent('networked-scene', {
   schema: {
     serverURL: { default: '/' },

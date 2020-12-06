@@ -69,7 +69,7 @@ class SocketioAdapter {
         }
       }
 
-      console.log('naf socketio conne');
+      NAF.log.write('self wsurl 1', self.wsUrl);
 
       NAF.log.write('Attempting to connect to socket.io');
       const socket = (self.socket = io(self.wsUrl));

@@ -2,63 +2,55 @@
 // import 'aframe-particle-system-component';
 import { Scene, Entity } from 'aframe-react';
 import { useEffect } from 'react';
+import useScript from '../hooks/useScript';
 
 export default function NetWorkedSample() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    // script.async = true;
-    script.innerHTML = `
-    var isMobile = AFRAME.utils.device.isMobile();
-  
-      if (isMobile) {
-        var particles = document.getElementById('particles');
-        particles.parentNode.removeChild(particles);
-      }
-    `;
-    document.body.appendChild(script);
+  useScript(
+    null,
+    `
+  var isMobile = AFRAME.utils.device.isMobile();
 
-    const script2 = document.createElement('script');
-    script2.type = 'text/javascript';
-    // script2.async = true;
-    script2.innerHTML = `
+    if (isMobile) {
+      var particles = document.getElementById('particles');
+      particles.parentNode.removeChild(particles);
+    }
+  `
+  );
+  useScript(
+    null,
+    `
     // Define custom schema for syncing avatar color, set by random-color
-      NAF.schemas.add({
-        template: '#avatar-template',
-        components: [
-          'position',
-          'rotation',
-          {
-            selector: '.head',
-            component: 'material',
-            property: 'color'
-          }
-        ]
-      });
-  
-      // Called by Networked-Aframe when connected to server
-      function onConnect () {
-        console.log("onConnect", new Date());
-      }
-    `;
-    document.body.appendChild(script2);
+    NAF.schemas.add({
+      template: '#avatar-template',
+      components: [
+        'position',
+        'rotation',
+        {
+          selector: '.head',
+          component: 'material',
+          property: 'color'
+        }
+      ]
+    });
 
-    return () => {
-      document.body.removeChild(script);
-      document.body.removeChild(script2);
-    };
-  }, []);
+    // Called by Networked-Aframe when connected to server
+    function onConnect () {
+      console.log("onConnect", new Date());
+    }
+  `
+  );
 
   return (
-    <a-scene
-      networked-scene={{
-        room: 'basic-audio',
-        debug: true,
-        adapter: 'webrtc',
-        audio: true,
-      }}
+    <Scene
+      networked-scene="
+      room: basic-audio;
+      debug: true;
+      adapter: webrtc;
+      audio: true;
+      serverURL: ws://localhost:8080;
+    "
     >
-      <a-assets>
+      <a-assets timeout="69000">
         <img
           id="grid"
           src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png"
@@ -120,7 +112,7 @@ export default function NetWorkedSample() {
         wasd-controls
         look-controls
       >
-        <a-sphere class="head" visible="false" random-color></a-sphere>
+        <a-sphere class="head" visible="false"></a-sphere>
       </a-entity>
 
       <a-entity
@@ -141,6 +133,6 @@ export default function NetWorkedSample() {
 
       <a-sky src="#sky" rotation="0 -90 0"></a-sky>
       <a-entity id="particles" particle-system="preset: snow"></a-entity>
-    </a-scene>
+    </Scene>
   );
 }

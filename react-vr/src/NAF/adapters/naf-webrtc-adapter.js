@@ -354,7 +354,7 @@ class WebrtcAdapter {
         }
       }
 
-      console.log('location.host', location);
+      NAF.log.write('self wsurl 2', self.wsUrl);
 
       NAF.log.write('Attempting to connect to socket.io');
       const socket = (self.socket = io(self.wsUrl, {
