@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// import './NAF/index';
 import 'aframe';
 
 import 'aframe-event-set-component';
@@ -22,17 +21,7 @@ import './aframe-helper/animated-colorize';
 import './aframe-helper/blink-teleportation';
 import './aframe-helper/entity-spawner';
 import './aframe-helper/multiple-entities';
-
-// import 'networked-aframe';
-// import 'aframe-randomizer-components';
-// import 'socket.io';
-
-// Global vars and functions
-// import './NAF/NafIndex';
-// Network components
-// import './NAF/components/networked-scene';
-// import './NAF/components/networked';
-// import './NAF/components/networked-audio-source';
+import './aframe-helper/spawn-in-circle'; // networked-aframeで使うので特に重要
 
 ReactDOM.render(
   <React.StrictMode>
