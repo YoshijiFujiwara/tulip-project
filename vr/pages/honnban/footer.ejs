@@ -1,0 +1,30 @@
+<script>
+  // eslint-disable-next-line no-undef
+  var isMobile = AFRAME.utils.device.isMobile();
+
+  if (isMobile) {
+    var particles = document.getElementById('particles');
+    particles.parentNode.removeChild(particles);
+  }
+</script>
+
+<script>
+  // eslint-disable-next-line no-undef
+  NAF.schemas.add({
+    template: '#avatar-template',
+    components: [
+      'position',
+      'rotation',
+      {
+        selector: '.head',
+        component: 'material',
+        property: 'color',
+      },
+    ],
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  function onConnect() {
+    console.log('onConnect', new Date());
+  }
+</script>

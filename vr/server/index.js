@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express'); // web framework external module
 const fs = require('fs');
 
+// https化に必要な設定
 const privateKey = fs.readFileSync(__dirname + '/localhost-key.pem', 'utf-8');
 const certificate = fs.readFileSync(__dirname + '/localhost.pem', 'utf-8');
 const credentials = {
@@ -19,9 +20,13 @@ const port = process.env.PORT || 8080;
 
 // Setup and configure Express http server.
 const app = express();
+
+// staticメソッドを利用し、指定ディレクトリ以下の静的ファイルを読み込む
+// app.use(express.static(path.resolve(__dirname, '..', 'pages')));
 app.use(express.static(path.resolve(__dirname, '..', 'pages')));
 
-console.log('env', process.env.NODE_ENV);
+// routeの設定
+app.use('/', require('./routes/index.js'));
 
 // Serve the example and build the bundle in development.
 if (process.env.NODE_ENV === 'development') {
