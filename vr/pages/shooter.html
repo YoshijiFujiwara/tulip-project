@@ -7,7 +7,11 @@
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="build.js"></script>
-    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>
+    <script>window.NAF ||
+  document.write(
+    '<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>',
+  );
+</script>
 
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
@@ -30,6 +34,8 @@
         <!-- Templates -->
 
         <!-- Avatar -->
+        
+        
         <template id="avatar-template">
           <a-entity class="avatar">
             <a-sphere class="head"
@@ -119,29 +125,27 @@
     <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
     </style>
 
-    <script>
-      // On mobile remove elements that are resource heavy
-      var isMobile = AFRAME.utils.device.isMobile();
+    <script>// On mobile remove elements that are resource heavy
+var isMobile = AFRAME.utils.device.isMobile();
 
-      if (isMobile) {
-        var particles = document.getElementById('particles');
-        particles.parentNode.removeChild(particles);
-      }
+if (isMobile) {
+  var particles = document.getElementById('particles');
+  particles.parentNode.removeChild(particles);
+}
     </script>
 
-    <script>
-      // Define custom schema for syncing avatar components
-      NAF.schemas.add({
-        template: '#avatar-template',
-        components: [
-          'position',
-          'rotation',
-          {
-            selector: '.head',
-            component: 'material'
-          }
-        ]
-      });
+    <script>// Define custom schema for syncing avatar components
+NAF.schemas.add({
+  template: '#avatar-template',
+  components: [
+    'position',
+    'rotation',
+    {
+      selector: '.head',
+      component: 'material',
+    },
+  ],
+});
     </script>
   </body>
 </html>

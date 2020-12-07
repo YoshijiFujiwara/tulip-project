@@ -5,8 +5,17 @@
     "es6": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "plugins": [
+    "html",
+    "prettier"
+  ],
+  "extends": ["eslint:recommended",  "plugin:prettier/recommended"],
   "rules": {
-    "no-unused-vars": ["error", { "args": "none" }]
+    "no-unused-vars": ["error", { "args": "none" }],
+    "prettier/prettier": "error"
+  },
+  "settings": {
+    "html/html-extensions": [".html"],
+    "html/indent": "+2"  // indentation is the <script> indentation plus two spaces.
   }
 }
