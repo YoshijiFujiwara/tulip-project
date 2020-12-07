@@ -17,98 +17,127 @@
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
     <script src="/js/spawn-in-circle.component.js"></script>
+    <!-- vueスクリプト  -->
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- vuejsのメイン -->
+    <script src="./js/vue.js"></script>
+    <!-- コンポーネント化したいのはこちらに -->
+    <script src="./js/components/sample-component.js"></script>
   </head>
   <body>
-    <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
-    <a-scene
-      networked-scene="
-      room: dev;
-      debug: true;
-      adapter: webrtc;
-    "
-    >
-      <a-assets>
-        <img
-          id="grid"
-          src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png"
-          crossorigin="anonymous"
-        />
-        <img id="sky" src="./assets/img/sky.jpg" crossorigin="anonymous" />
-        <!-- Templates -->
-
-        <!-- Avatar -->
-        <template id="avatar-template">
-          <a-entity class="avatar">
-            <a-sphere
-              class="head"
-              color="#ffffff"
-              scale="0.45 0.5 0.4"
-            ></a-sphere>
-            <a-entity class="face" position="0 0.05 0">
-              <a-sphere
-                class="eye"
-                color="#efefef"
-                position="0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere
-                  class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-              <a-sphere
-                class="eye"
-                color="#efefef"
-                position="-0.16 0.1 -0.35"
-                scale="0.12 0.12 0.12"
-              >
-                <a-sphere
-                  class="pupil"
-                  color="#000"
-                  position="0 0 -1"
-                  scale="0.2 0.2 0.2"
-                ></a-sphere>
-              </a-sphere>
-            </a-entity>
-          </a-entity>
-        </template>
-
-        <!-- /Templates -->
-      </a-assets>
-
-      <a-entity
-        id="player"
-        networked="template:#avatar-template;attachTemplateToLocal:false;"
-        camera
-        position="0 1.6 0"
-        spawn-in-circle="radius:3"
-        wasd-controls
-        look-controls
+    <div id="vue-root">
+      <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
+      <a-scene
+        networked-scene="
+          room: dev;
+          debug: true;
+          adapter: webrtc;
+        "
       >
-        <a-sphere class="head" visible="false" random-color></a-sphere>
-      </a-entity>
+        <a-assets>
+          <img
+            id="grid"
+            src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png"
+            crossorigin="anonymous"
+          />
+          <img id="sky" src="./assets/img/sky.jpg" crossorigin="anonymous" />
 
-      <a-entity
-        position="0 0 0"
-        geometry="primitive: plane; width: 10000; height: 10000;"
-        rotation="-90 0 0"
-        material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"
-      ></a-entity>
+          <!-- 作品の読み込み -->
+          <img
+            v-for="(exhibit, i) in exhibits"
+            :id="`asset-exhibit-thumbnail-${exhibit.id}`"
+            :src="exhibit.thumbnail"
+            crossorigin="anonymous"
+          />
 
-      <a-entity
-        light="color: #ccccff; intensity: 1; type: ambient;"
-        visible=""
-      ></a-entity>
-      <a-entity
-        light="color: #ffaaff; intensity: 1.5"
-        position="5 5 5"
-      ></a-entity>
+          <!-- Templates -->
 
-      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
-      <a-entity id="particles" particle-system="preset: snow"></a-entity>
-    </a-scene>
+          <!-- Avatar -->
+          <template id="avatar-template">
+            <a-entity class="avatar">
+              <a-sphere
+                class="head"
+                color="#ffffff"
+                scale="0.45 0.5 0.4"
+              ></a-sphere>
+              <a-entity class="face" position="0 0.05 0">
+                <a-sphere
+                  class="eye"
+                  color="#efefef"
+                  position="0.16 0.1 -0.35"
+                  scale="0.12 0.12 0.12"
+                >
+                  <a-sphere
+                    class="pupil"
+                    color="#000"
+                    position="0 0 -1"
+                    scale="0.2 0.2 0.2"
+                  ></a-sphere>
+                </a-sphere>
+                <a-sphere
+                  class="eye"
+                  color="#efefef"
+                  position="-0.16 0.1 -0.35"
+                  scale="0.12 0.12 0.12"
+                >
+                  <a-sphere
+                    class="pupil"
+                    color="#000"
+                    position="0 0 -1"
+                    scale="0.2 0.2 0.2"
+                  ></a-sphere>
+                </a-sphere>
+              </a-entity>
+            </a-entity>
+          </template>
+
+          <!-- /Templates -->
+        </a-assets>
+
+        <a-entity
+          id="player"
+          networked="template:#avatar-template;attachTemplateToLocal:false;"
+          camera
+          position="0 1.6 0"
+          spawn-in-circle="radius:3"
+          wasd-controls
+          look-controls
+        >
+          <a-sphere class="head" visible="false" random-color></a-sphere>
+        </a-entity>
+
+        <a-entity
+          position="0 0 0"
+          geometry="primitive: plane; width: 10000; height: 10000;"
+          rotation="-90 0 0"
+          material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"
+        ></a-entity>
+
+        <a-entity
+          light="color: #ccccff; intensity: 1; type: ambient;"
+          visible=""
+        ></a-entity>
+        <a-entity
+          light="color: #ffaaff; intensity: 1.5"
+          position="5 5 5"
+        ></a-entity>
+
+        <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+        <a-entity id="particles" particle-system="preset: snow"></a-entity>
+
+        <!-- 画像表示サンプル -->
+        <a-image
+          v-for="(exhibit, i) in exhibits"
+          :key="`exhibit-thumbnail-${exhibit.id}`"
+          :src="`#asset-exhibit-thumbnail-${exhibit.id}`"
+          scale="2 2 1"
+          :position="`0 1 ${exhibit.id}`"
+        >
+        </a-image>
+      </a-scene>
+    </div>
 
     <script>
       // On mobile remove elements that are resource heavy
