@@ -19,6 +19,7 @@
           router
           link
           exact
+          outlined
         >
           <v-list-item-action>
             <v-icon color="white">{{ item.icon }}</v-icon>
