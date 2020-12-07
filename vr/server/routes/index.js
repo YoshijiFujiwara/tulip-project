@@ -26,8 +26,6 @@ router.get('/honnban/vr', async function (req, res) {
   const result = await axiosInstance.get('https://localhost:3001/api/exhibits');
   exhibits = result.data;
 
-  console.log(exhibits);
-
   const renderData = {
     exhibits,
   };
