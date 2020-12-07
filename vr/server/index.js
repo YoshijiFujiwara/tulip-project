@@ -11,7 +11,7 @@ const port = process.env.PORT || 8080;
 
 // Setup and configure Express http server.
 const app = express();
-app.use(express.static(path.resolve(__dirname, "..", "examples")));
+app.use(express.static(path.resolve(__dirname, "..", "pages")));
 
 console.log('env', process.env.NODE_ENV);
 
