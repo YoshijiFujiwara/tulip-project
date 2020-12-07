@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'aframe';
+// import 'aframe';
 
 import 'aframe-event-set-component';
 import 'super-hands';
@@ -9,6 +9,9 @@ import 'aframe-physics-system/dist/aframe-physics-system'; // https://github.com
 import 'aframe-look-at-component';
 import 'aframe-extras';
 import 'aframe-teleport-controls';
+
+// import 'networked-aframe';
+// import 'socket.io';
 
 // 自作のaframeコンポーネントたち
 import './aframe-helper/change-colorize-property';

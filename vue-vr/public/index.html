@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    <script src="<%= BASE_URL %>js/build.js"></script>
+    <script>window.NAF || document.write('<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>')</script>
+
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+    <script src="<%= BASE_URL %>js/spawn-in-circle.component.js"></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- <script>
+      // On mobile remove elements that are resource heavy
+      var isMobile = AFRAME.utils.device.isMobile();
+
+      if (isMobile) {
+        var particles = document.getElementById('particles');
+        particles.parentNode.removeChild(particles);
+      }
+    </script>
+
+    <script>
+      // Define custom schema for syncing avatar color, set by random-color
+      NAF.schemas.add({
+        template: '#avatar-template',
+        components: [
+          'position',
+          'rotation',
+          {
+            selector: '.head',
+            component: 'material',
+            property: 'color'
+          }
+        ]
+      });
+
+      // Called by Networked-Aframe when connected to server
+      function onConnect () {
+        console.log("onConnect", new Date());
+      }
+    </script> -->
+  </body>
+</html>
