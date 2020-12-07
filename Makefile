@@ -21,3 +21,9 @@ schema-drop:
 	docker container exec -it backend sh -c "npm run typeorm:schema:drop"
 schema-sync:
 	docker container exec -it backend sh -c "npm run typeorm:schema:drop && npm run typeorm:local:migration:run && npm run typeorm:local:seed:run"
+
+# ============== VRディレクトリ系統 ================ 
+setup-vr:
+	cd vr && yarn install
+start-vr:
+	cd vr && yarn dev
