@@ -1,0 +1,36 @@
+<head>
+  <meta charset="utf-8" />
+  <title>文化祭から始まるVR生活</title>
+  <meta name="description" content="文化祭から始まるVR生活" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+  <script src="/build.js"></script>
+  <script>
+    window.NAF ||
+      document.write(
+        '<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js">\x3C/script>',
+      );
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <!-- オブジェクトを掴んで動かす -->
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+  <!-- 瞬間移動 -->
+  <script src="./js/aframe/blink-teleportion.js"></script>
+  <!-- progressive controls -->
+  <script src="./js/aframe/progressive-controls.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+  <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+  <script src="/js/spawn-in-circle.component.js"></script>
+  <!-- vueスクリプト  -->
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- vuejsのメイン -->
+  <script src="./js/vue.js"></script>
+  <!-- Vueのコンポーネント化したいのはこちらに -->
+</head>
