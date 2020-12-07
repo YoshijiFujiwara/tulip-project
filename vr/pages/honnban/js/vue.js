@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
       axios.get(`https://localhost:3001/api/exhibits`).then((res) => {
         const exhibits = res.data;
         this.exhibits = exhibits;
+
+        console.log('exhibits', exhibits);
       });
     },
   });

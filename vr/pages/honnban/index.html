@@ -1,10 +1,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Dev Example — Networked-Aframe</title>
-    <meta name="description" content="Dev Example — Networked-Aframe" />
+    <title>文化祭から始まるVR生活</title>
+    <meta name="description" content="文化祭から始まるVR生活" />
 
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="/build.js"></script>
     <script>
@@ -14,6 +14,16 @@
         );
     </script>
 
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- オブジェクトを掴んで動かす -->
+    <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+    <!-- 瞬間移動 -->
+    <script src="./js/aframe/blink-teleportion.js"></script>
+    <!-- progressive controls -->
+    <script src="./js/aframe/progressive-controls.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
     <script src="/js/spawn-in-circle.component.js"></script>
@@ -23,7 +33,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- vuejsのメイン -->
     <script src="./js/vue.js"></script>
-    <!-- コンポーネント化したいのはこちらに -->
+    <!-- Vueのコンポーネント化したいのはこちらに -->
     <script src="./js/components/sample-component.js"></script>
   </head>
   <body>
@@ -52,9 +62,7 @@
             crossorigin="anonymous"
           />
 
-          <!-- Templates -->
-
-          <!-- Avatar -->
+          <!-- アバター -->
           <template id="avatar-template">
             <a-entity class="avatar">
               <a-sphere
@@ -92,22 +100,53 @@
               </a-entity>
             </a-entity>
           </template>
-
-          <!-- /Templates -->
+          <img id="footsteps" src="./assets/img/footsteps.png" />
+          <img id="black" src="./assets/img/black.png" />
         </a-assets>
 
-        <a-entity
-          id="player"
-          networked="template:#avatar-template;attachTemplateToLocal:false;"
-          camera
-          position="0 1.6 0"
-          spawn-in-circle="radius:3"
-          wasd-controls
-          look-controls
+        <!-- 赤ボックス | クリックするとテレポートされる -->
+        <a-box
+          color="#AA0000"
+          position="-3 0.5 4"
+          class="clickable"
+          blink-teleportation="pos: -2 1.6 4"
         >
-          <a-sphere class="head" visible="false" random-color></a-sphere>
-        </a-entity>
+        </a-box>
 
+        <!-- 緑ボックス | クリックしてテレポート | クリックされたあと、消えるよ -->
+        <a-box
+          color="#00AA00"
+          position="3 0.5 4"
+          class="clickable"
+          blink-teleportation="pos: 2 1.6 4; hide: true"
+        >
+        </a-box>
+
+        <!-- 黄色ボックス -->
+        <a-box color="#FFAA00" position="-3 0.5 -4"> </a-box>
+        <!-- クリックしてテレポート | クリックされたあと、消えるよ -->
+        <a-image
+          src="#footsteps"
+          position="-3 2.5 -4"
+          look-at="#player"
+          class="clickable"
+          blink-teleportation="pos: -2 1.6 -4; hide: true"
+        >
+        </a-image>
+
+        <!-- 青ボックス -->
+        <a-box color="#0077FF" position="3 0.5 -4"> </a-box>
+        <!-- クリックしてテレポート -->
+        <a-image
+          src="#footsteps"
+          position="3 2.5 -4"
+          look-at="#player"
+          class="clickable"
+          blink-teleportation="pos: 2 1.6 -4"
+        >
+        </a-image>
+
+        <!-- 床 -->
         <a-entity
           position="0 0 0"
           geometry="primitive: plane; width: 10000; height: 10000;"
@@ -115,6 +154,7 @@
           material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"
         ></a-entity>
 
+        <!-- 何らかの視覚効果のようだ -->
         <a-entity
           light="color: #ccccff; intensity: 1; type: ambient;"
           visible=""
@@ -124,10 +164,12 @@
           position="5 5 5"
         ></a-entity>
 
+        <!-- 空なのだ -->
         <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+        <!-- 粒子効果なのだ -->
         <a-entity id="particles" particle-system="preset: snow"></a-entity>
 
-        <!-- 画像表示サンプル -->
+        <!-- API通信の結果を反映した画像表示サンプル -->
         <a-image
           v-for="(exhibit, i) in exhibits"
           :key="`exhibit-thumbnail-${exhibit.id}`"
@@ -136,11 +178,25 @@
           :position="`0 1 ${exhibit.id}`"
         >
         </a-image>
+
+        <!-- カメラ（なんか、a-sceneの最後の方に置いた方がいいらしい） -->
+        <a-camera
+          id="player"
+          position="0 1.6 0"
+          networked="template:#avatar-template;attachTemplateToLocal:false;"
+          spawn-in-circle="radius:3"
+          wasd-controls
+          look-controls
+        >
+          <!-- SELECTIVE INTERSECTIONS -->
+          <a-cursor raycaster="objects: .clickable"></a-cursor>
+          <a-sphere class="head" visible="false" random-color></a-sphere>
+        </a-camera>
       </a-scene>
     </div>
 
     <script>
-      // On mobile remove elements that are resource heavy
+      // eslint-disable-next-line no-undef
       var isMobile = AFRAME.utils.device.isMobile();
 
       if (isMobile) {
@@ -150,7 +206,7 @@
     </script>
 
     <script>
-      // Define custom schema for syncing avatar color, set by random-color
+      // eslint-disable-next-line no-undef
       NAF.schemas.add({
         template: '#avatar-template',
         components: [
@@ -164,7 +220,7 @@
         ],
       });
 
-      // Called by Networked-Aframe when connected to server
+      // eslint-disable-next-line no-unused-vars
       function onConnect() {
         console.log('onConnect', new Date());
       }
