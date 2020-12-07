@@ -9,9 +9,9 @@
       color="#27303d"
     >
       <v-list>
-      <v-list-item>
-        <v-img :src="require('@/assets/logo_main.png')" />
-      </v-list-item>
+        <v-list-item>
+          <v-img :src="require('@/assets/logo_main.png')" />
+        </v-list-item>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -30,7 +30,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    
+
     <v-main>
       <v-container>
         <nuxt />
