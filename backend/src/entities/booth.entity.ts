@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExhibitEntity } from './exhibit.entity';
+import { BoothSerializer } from './serializer/booth.serializer';
 
 @Entity({
   name: 'booths',
@@ -50,4 +51,16 @@ export class BoothEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): BoothSerializer => {
+    const boothSerializer = new BoothSerializer();
+    boothSerializer.id = this.id;
+    boothSerializer.positionNumber = this.positionNumber;
+    boothSerializer.exhibitId = this.exhibitId;
+    if (this.exhibit) {
+      boothSerializer.exhibit = this.exhibit.transformToSerializer();
+    }
+
+    return boothSerializer;
+  };
 }
