@@ -1,64 +1,58 @@
 <template>
-  <!-- <v-parallax
-    id="parallax-full-height"
-    height="100%"
-    :src="require('@/assets/signin_background.png')"
-  > -->
-    <v-container>
-      <v-img :src="require('@/assets/logo_main.png')" />
-      <v-row>
-        <v-col class="mx-auto" cols="7">
-          <div id="form-wrapper">
-            <div id="title-wrapper" class="py-5">SIGN IN</div>
-            <v-row align="center" justify="center" class="row-wrap" no-gutters>
-              <v-col cols="8" class="top" align="center">
-                <v-form
-                  ref="form"
-                  v-model="valid"
-                  class="py-10"
-                  @submit.prevent="onSubmit"
+  <v-container>
+    <v-img :src="require('@/assets/logo_main.png')" />
+    <v-row>
+      <v-col class="mx-auto" cols="7">
+        <div id="form-wrapper">
+          <div id="title-wrapper" class="py-5">SIGN IN</div>
+          <v-row align="center" justify="center" class="row-wrap" no-gutters>
+            <v-col cols="8" class="top" align="center">
+              <v-form
+                ref="form"
+                v-model="valid"
+                class="py-10"
+                @submit.prevent="onSubmit"
+              >
+                <v-text-field
+                  v-model="form.username"
+                  :rules="rules.username"
+                  background-color="rgba(255, 255, 255, 0.16)"
+                  dark
+                  prepend-inner-icon="mdi-account"
+                  label="user name"
+                  outlined
+                  required
+                ></v-text-field>
+                <v-text-field
+                  v-model="form.password"
+                  :rules="rules.password"
+                  background-color="rgba(255, 255, 255, 0.16)"
+                  dark
+                  prepend-inner-icon="mdi-lock"
+                  label="password"
+                  :type="showPasswordIcon ? 'text' : 'password'"
+                  outlined
+                  required
+                  :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="showPasswordIcon = !showPasswordIcon"
+                ></v-text-field>
+                <v-btn
+                  id="signin-button"
+                  type="submit"
+                  block
+                  large
+                  dark
+                  color="rgba(255, 255, 255, 0.23)"
+                  :disabled="!valid"
+                  >Log in</v-btn
                 >
-                  <v-text-field
-                    v-model="form.username"
-                    :rules="rules.username"
-                    background-color="rgba(255, 255, 255, 0.16)"
-                    dark
-                    prepend-inner-icon="mdi-account"
-                    label="user name"
-                    outlined
-                    required
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="form.password"
-                    :rules="rules.password"
-                    background-color="rgba(255, 255, 255, 0.16)"
-                    dark
-                    prepend-inner-icon="mdi-lock"
-                    label="password"
-                    :type="showPasswordIcon ? 'text' : 'password'"
-                    outlined
-                    required
-                    :append-icon="showPasswordIcon ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="showPasswordIcon = !showPasswordIcon"
-                  ></v-text-field>
-                  <v-btn
-                    id="signin-button"
-                    type="submit"
-                    block
-                    large
-                    dark
-                    color="rgba(255, 255, 255, 0.23)"
-                    :disabled="!valid"
-                    >Log in</v-btn
-                  >
-                </v-form>
-              </v-col>
-            </v-row>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-parallax>
+              </v-form>
+            </v-col>
+          </v-row>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
