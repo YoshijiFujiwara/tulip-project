@@ -7,7 +7,8 @@
   },
   "plugins": [
     "html",
-    "prettier"
+    "prettier",
+    "ejs"
   ],
   "extends": ["eslint:recommended",  "plugin:prettier/recommended"],
   "rules": {

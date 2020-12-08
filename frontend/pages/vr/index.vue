@@ -4,8 +4,8 @@
     <a-scene renderer="colorManagement: true">
       <!-- Asset Management System -->
       <a-assets timeout="200000">
-        <img id="floor" src="/vr/img/floor.jpg" />
-        <img id="floor-NRM" src="/vr/img/floor.jpg" />
+        <img id="floor" src="/vr/img/grass.jfif" />
+        <img id="floor-NRM" src="/vr/img/grass.jfif" />
         <img id="sky" src="/vr/img/clear-sunny-sky.jpg" />
 
         <!-- 作品のサムネイル一覧の読み込み -->
@@ -49,7 +49,7 @@
 
       <!-- 地面 -->
       <a-plane
-        material="color: #FFFFFF; src: #floor-NRM; repeat: 10 10; normalMap: #floor-NRM; normalTextureRepeat: 10 10"
+        material="color: #FFFFFF; src: #floor; repeat: 100 100; normalMap: #floor; normalTextureRepeat: 100 100"
         rotation="-90 0 0"
         scale="175.32933 230.0084 17.9481"
         geometry=""
