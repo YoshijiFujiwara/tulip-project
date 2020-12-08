@@ -19,12 +19,11 @@ export class BoothRepository extends Repository<BoothEntity> {
   }
 
   async isDuplicatedOtherGroup(
-    { positionNumber }: CreateBoothDto,
-    { id: exhibitId }: ExhibitEntity,
+    positionNumber: CreateBoothDto['positionNumber'],
   ): Promise<boolean> {
-    return !!(await this.findOne({
+    const existedBooth = await this.findOne({
       positionNumber,
-      exhibitId: Not(exhibitId),
-    }));
+    });
+    return !!existedBooth;
   }
 }

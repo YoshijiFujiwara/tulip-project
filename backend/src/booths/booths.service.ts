@@ -24,12 +24,11 @@ export class BoothsService {
       where: { id: exhibitor.groupId },
     });
 
-    if (
-      await this.boothRepository.isDuplicatedOtherGroup(
-        createBoothDto,
-        group.exhibit,
-      )
-    ) {
+    const isDuplicated = await this.boothRepository.isDuplicatedOtherGroup(
+      createBoothDto.positionNumber,
+    );
+
+    if (isDuplicated) {
       throw new ConflictException(
         'このブース番号はすでに登録済みです。他の番号を指定してください。',
       );
