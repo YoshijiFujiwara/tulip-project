@@ -83,7 +83,7 @@ export default class Signin extends Vue {
     }
   }
 
-  async onSubmit() {
+  onSubmit() {
     alert('lognin')
   }
 }
