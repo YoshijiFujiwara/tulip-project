@@ -1,6 +1,6 @@
 {
-  "eslint.workingDirectories": ["backend", "frontend"],
-  // "editor.formatOnSave": true
+  "eslint.workingDirectories": ["backend", "frontend", "vue-vr", "react-vr", "vr"],
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
