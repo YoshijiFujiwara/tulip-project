@@ -145,4 +145,7 @@ export default class MyPage extends Vue {
   background-color: #0f1642;
   color: #389c0a;
 }
+h3 {
+  color: #ffffff;
+}
 </style>

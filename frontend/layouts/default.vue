@@ -4,7 +4,7 @@
       <v-spacer />
       <v-btn @click="logout"> ログアウト(仮) </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main id="main-wrapper">
       <v-container>
         <nuxt />
       </v-container>
@@ -23,3 +23,10 @@ export default class Default extends Vue {
   }
 }
 </script>
+<style lang="scss">
+// 色情報 from https://tulipgumi.slack.com/archives/C01D34DJC5P/p1604650600001100
+// それをrgbaに変換してます
+#main-wrapper {
+  background-color: #2c3350;
+}
+</style>
