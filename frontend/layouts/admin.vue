@@ -25,7 +25,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container>
+      <v-container fluid grid-list-lg light px-6>
         <nuxt />
       </v-container>
     </v-main>
