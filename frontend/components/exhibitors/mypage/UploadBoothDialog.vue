@@ -53,7 +53,7 @@ export default class CreateExhibitDialog extends Vue {
     booth: [(v: string) => !!v || 'ブースは必須です'],
   }
 
-  async onSubmit() {
+  onSubmit() {
     this.isLoading = true
     alert('ブース登録しましたはず')
   }
