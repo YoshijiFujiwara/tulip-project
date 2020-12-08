@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   res.render(__dirname + './../../pages/index.html');
 });
 
-router.get('/honnban/vr', async function (req, res) {
+router.get('/honnban', async function (req, res) {
   // 作品情報一覧
   let exhibits = [];
 
