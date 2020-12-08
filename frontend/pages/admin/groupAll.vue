@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="groups"
     :items-per-page="5"
     class="elevation-1"
   ></v-data-table>
@@ -26,7 +26,7 @@ export default class Signin extends Vue {
         },
         { text: 'Name', value: 'name' },
       ],
-      desserts: [
+      groups: [
         {
           groupid: '1',
           name: '高田　じゅんじ',
