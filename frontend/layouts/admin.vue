@@ -47,7 +47,11 @@ export default {
         },
         {
           icon: 'mdi-contacts',
-          title: '出展者',
+          title: '出展者一覧',
+        },
+        {
+          icon: 'mdi-contacts',
+          title: '出席確認',
         },
         {
           icon: 'mdi-account-supervisor',
