@@ -11,6 +11,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
 import { ExhibitSerializer } from './serializer/exhibit.serializer';
+import { BoothEntity } from './booth.entity';
 
 export enum GENRE {
   GAME = 'game',
@@ -70,6 +71,12 @@ export class ExhibitEntity extends BaseEntity {
   )
   @JoinColumn({ name: 'groupId' })
   group: GroupEntity;
+
+  @OneToOne(
+    () => BoothEntity,
+    booth => booth.exhibit,
+  )
+  booth: BoothEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
