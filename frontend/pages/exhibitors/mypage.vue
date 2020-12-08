@@ -64,7 +64,7 @@
             </v-col>
             <v-col cols="6" class="booth">
               <v-card color="rgb(255, 0, 0, 0)" dark outline tile>
-                <a class="text-h5 text-center" @click="openBoothSettingAlert">
+                <a class="text-h5 text-center" @click="openUploadBoothModal">
                   <div><v-icon dark size="120">mdi-apps</v-icon></div>
                   <div>ブース設定</div>
                 </a>
@@ -90,17 +90,20 @@
     </v-card>
 
     <CreateExhibitDialog v-model="isOpenCreateExhibitDialog" />
+    <UploadBoothDialog v-model="isOpenUploadBoothDialog" />
   </v-row>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
+import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
 
 @Component({
   components: {
     CreateExhibitDialog,
+    UploadBoothDialog,
   },
 })
 export default class MyPage extends Vue {
@@ -109,16 +112,16 @@ export default class MyPage extends Vue {
   // 展示物作成モーダルの開閉
   isOpenCreateExhibitDialog: boolean = false
 
+  isOpenUploadBoothDialog: boolean = false
+
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
     this.isOpenCreateExhibitDialog = true
   }
 
-  openBoothSettingAlert() {
-    // ブース設定用モーダル（仮）
-    alert(
-      'boooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooth'
-    )
+  openUploadBoothModal() {
+    // ブース登録用モーダルを開く
+    this.isOpenUploadBoothDialog = true
   }
 
   connectEntrance() {
