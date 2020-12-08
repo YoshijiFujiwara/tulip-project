@@ -1,13 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-      color="#27303d"
-    >
+    <v-navigation-drawer app color="#27303d">
       <v-list>
         <v-list-item>
           <v-img :src="require('@/assets/logo_main.png')" />
@@ -43,9 +36,6 @@
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
       items: [
         {
           icon: 'mdi-home',
@@ -64,10 +54,6 @@ export default {
           title: '来場者',
         },
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
     }
   },
 }
