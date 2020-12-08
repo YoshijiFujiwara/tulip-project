@@ -57,7 +57,7 @@ export default class CreateExhibitDialog extends Vue {
   onSubmit() {
     this.isLoading = true
 
-    BoothsApi.postBooth({ positionNumber: Number(this.form.booth) })
+    BoothsApi.postBooth(Number(this.form.booth))
       .then(() => {
         this.$toast.success('ブースの登録が完了しました')
       })
