@@ -105,6 +105,9 @@ export class ExhibitEntity extends BaseEntity {
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
     }
+    if (this.booth) {
+      exhibitSerializer.booth = this.booth.transformToSerializer();
+    }
 
     return exhibitSerializer;
   };

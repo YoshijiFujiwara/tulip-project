@@ -1,6 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GENRE } from '../exhibit.entity';
 import { GroupSerializer } from './group.serizlier';
+import { BoothSerializer } from './booth.serializer';
 
 export class ExhibitSerializer {
   @ApiProperty()
@@ -30,4 +31,9 @@ export class ExhibitSerializer {
     type: () => [GroupSerializer],
   })
   group: GroupSerializer;
+
+  @ApiPropertyOptional({
+    type: BoothSerializer,
+  })
+  booth: BoothSerializer;
 }
