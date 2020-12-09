@@ -1,18 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GroupsService } from './groups.service';
+import { GroupRepository } from '../entities/group.repository';
+
+const mockGroupRepository = () => ({
+  getGroups: jest.fn(),
+});
 
 describe('GroupsService', () => {
-  let service: GroupsService;
+  let groupsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GroupsService],
+      providers: [
+        GroupsService,
+        { provide: GroupRepository, useFactory: mockGroupRepository },
+      ],
     }).compile();
 
-    service = module.get<GroupsService>(GroupsService);
+    groupsService = module.get<GroupsService>(GroupsService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(groupsService).toBeDefined();
   });
 });

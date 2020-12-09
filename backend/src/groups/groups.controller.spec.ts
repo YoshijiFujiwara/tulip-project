@@ -1,18 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { GroupsController } from './groups.controller';
+import { GroupsService } from './groups.service';
+import { GroupRepository } from '../entities/group.repository';
 
 describe('GroupsController', () => {
-  let controller: GroupsController;
+  let groupsController: GroupsController;
+  let groupsService: GroupsService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [GroupsController],
-    }).compile();
+    let groupRepository: GroupRepository;
 
-    controller = module.get<GroupsController>(GroupsController);
+    groupsService = new GroupsService(groupRepository);
+    groupsController = new GroupsController(groupsService);
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(groupsController).toBeDefined();
   });
 });
