@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExhibitorsService } from './exhibitors.service';
-import { ExhibitRepsitory } from '../entities/exhibit.repository';
+import { ExhibitorRepository } from '../entities/exhibitor.repository';
 
 const mockExhibitorRepository = () => ({
   createExhibitor: jest.fn(),
@@ -13,7 +13,7 @@ describe('ExhibitorsService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ExhibitorsService,
-        { provide: ExhibitRepsitory, useFactory: mockExhibitorRepository },
+        { provide: ExhibitorRepository, useFactory: mockExhibitorRepository },
       ],
     }).compile();
 
