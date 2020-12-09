@@ -11,6 +11,8 @@ export class ExhibitorsService {
   ) {}
 
   async getExhibitors(): Promise<ExhibitorEntity[]> {
-    return await this.exhibitorRepository.find();
+    return await this.exhibitorRepository.find({
+      relations: ['group', 'group.exhibit'],
+    });
   }
 }
