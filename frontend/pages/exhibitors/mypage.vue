@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <h3>ようこそ、{{ user.studentNumber }}さん</h3>
+      <h3 class="mt-3 mb-3">ようこそ、{{ user.studentNumber }}さん</h3>
     </v-col>
     <v-card color="#0f1642" width="100%">
       <v-row class="pa-10">
