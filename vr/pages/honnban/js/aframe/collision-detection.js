@@ -21,6 +21,7 @@ function movePlayer() {
         var position = camera.getAttribute('position');
         var rotation = camera.getAttribute('rotation');
 
+        // プレイヤーの移動
         position.x += -Math.cos((rotation.y - 90) * Math.PI / 180) * speed;
         position.z += Math.sin((rotation.y - 90) * Math.PI / 180) * speed;
         camera.setAttribute('position', position);
