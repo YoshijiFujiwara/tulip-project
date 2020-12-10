@@ -6,12 +6,13 @@
       v-show="!deleteDialog"
       :headers="headers"
       :items="exhibitors"
+      :items-per-page="5"
       class="elevation-1"
       :search="search"
       rows-per-page-text=""
       :rows-per-page-items="[]"
     >
-      <template>
+      <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2"> mdi-pencil </v-icon>
         <v-icon small> mdi-delete </v-icon>
       </template>
@@ -28,21 +29,16 @@ import ExhibitorApi from '../../plugins/axios/modules/exhibitors'
   layout: 'admin',
 })
 export default class Signin extends Vue {
-  exhibitors: object = {}
-  data() {
-    return {
-      headers: [
-        { text: 'ID', value: 'id' },
-        { text: '展示者名', value: 'name' },
-        { text: '所属グループ名', value: 'group.name' },
-        { text: '操作', value: 'actions', sortable: false },
-      ],
-    }
-  }
+  exhibitors = []
+  headers: [
+    { text: 'ID'; value: 'id' },
+    { text: '展示者名'; value: 'name' },
+    { text: '所属グループ名'; value: 'group.name' },
+    { text: '操作'; value: 'actions'; sortable: false }
+  ]
 
   async created() {
     const response = await ExhibitorApi.getExhibitors()
-    console.log('死ね')
     this.exhibitors = response
   }
 }

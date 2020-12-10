@@ -3,6 +3,6 @@ import { Exhibitor } from '~/types/exhibitor'
 
 export default {
   getExhibitors(): Promise<Exhibitor[]> {
-    return axios.$get(`exhibitor`)
+    return axios.$get(`exhibitors`)
   },
 }
