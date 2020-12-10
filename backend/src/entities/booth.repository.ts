@@ -1,4 +1,4 @@
-import { EntityRepository, Repository, Not } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { BoothEntity } from './booth.entity';
 import { CreateBoothDto } from '../booths/dto/create-booth.dto';
 import { ExhibitEntity } from './exhibit.entity';

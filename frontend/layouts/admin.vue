@@ -26,6 +26,23 @@
 
     <v-main>
       <v-container fluid grid-list-lg light px-6>
+        <v-app-bar flat>
+          <v-col cols="2">
+            <v-toolbar-title>page title</v-toolbar-title>
+          </v-col>
+          <v-divider vertical></v-divider>
+          <v-btn icon>
+            <v-icon>mdi-reload</v-icon>
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-form>
+            <v-text-field
+              label="Search"
+              append-icon="mdi-magnify"
+              class="mt-7"
+            ></v-text-field>
+          </v-form>
+        </v-app-bar>
         <nuxt />
       </v-container>
     </v-main>

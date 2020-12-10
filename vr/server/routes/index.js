@@ -11,14 +11,18 @@ const axiosInstance = axios.create({
 
 var router = require('express').Router();
 
-// index.htmlだけ直接指定
-router.get('/', (req, res) => {
-  // レンダリングを行う
-  // [FYI] https://qiita.com/kamihork/items/1b13d2157979d1837849
-  res.render(__dirname + './../../pages/index.html');
+// ロビー画面
+router.get('/honnban', function (req, res) {
+  res.render(__dirname + './../../pages/honnban/index.ejs');
 });
 
-router.get('/honnban', async function (req, res) {
+// ブース画面(クエリパラメータで、ブースのIDを指定する)
+router.get('/honnban/booths/:boothId', function (req, res) {
+  res.render(__dirname + './../../pages/honnban/booth.ejs');
+});
+
+// サンプル画面
+router.get('/honnban/sample', async function (req, res) {
   // 作品情報一覧
   let exhibits = [];
 
@@ -29,7 +33,7 @@ router.get('/honnban', async function (req, res) {
   const renderData = {
     exhibits,
   };
-  res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
+  res.render(__dirname + './../../pages/honnban/sample.ejs', renderData);
 });
 
 module.exports = router;

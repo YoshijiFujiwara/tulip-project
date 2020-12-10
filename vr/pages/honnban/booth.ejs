@@ -69,20 +69,26 @@
       <a-gltf-model
         id="exit"
         src="#exit"
+        link="href: /honnban"
         scale="0.25 0.25 0.25"
         rotation="0 144.9084748399219 0"
         position="-3.52115 0.37144 5.35451"
       ></a-gltf-model>
-      <!-- カメラ（視点） -->
-      <a-entity
-        camera=""
-        position="0 1.5 0"
-        wasd-controls=""
-        rotation="0 -120 0"
-        look-controls=""
-        aframe-injected=""
-        data-aframe-inspector-original-camera=""
-      ></a-entity>
+      <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
+      <!-- camera -->
+      <a-entity position="0 0 6">
+        <a-entity
+          camera=""
+          position="0.00991 1.6 -5.90104"
+          look-controls="pointerLockEnabled: true"
+          wasd-controls="acceleration: 300"
+          rotation="1.7188733853924711 -0.34377467707849396 0"
+          data-aframe-inspector-original-camera=""
+        >
+          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
+        </a-entity>
+        <a-cursor></a-cursor>
+      </a-entity>
       <!-- 出展者キャラクター -->
       <a-gltf-model
         id="npc1"

@@ -1,0 +1,388 @@
+<!-- Asset Management System -->
+<a-assets timeout="200000">
+  <img id="floor" src="/honnban/assets/img/vr_background.jpg" />
+  <img id="floor-NRM" src="/honnban/assets/img/vr_background.jpg" />
+  <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
+  <img id="thumbnail1" src="/honnban/assets/img/dog.jpg" />
+  <img id="thumbnail2" src="/honnban/assets/img/bloodhound.png" />
+  <img id="thumbnail3" src="/honnban/assets/img/pitagora.png" />
+  <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
+  <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
+  <img id="comming_soon3" src="/honnban/assets/img/comming_soon3.png" />
+  <img id="comming_soon4" src="/honnban/assets/img/comming_soon4.png" />
+  <img id="title1" src="/honnban/assets/img/title1.png" />
+  <img id="title2" src="/honnban/assets/img/title2.png" />
+  <img id="title8" src="/honnban/assets/img/title8.png" />
+  <img id="lv1" src="/honnban/assets/img/lv1.png" />
+  <img id="lv2" src="/honnban/assets/img/lv2.png" />
+  <img id="lv3" src="/honnban/assets/img/lv3.png" />
+  <a-asset-item
+    id="class_room"
+    src="/honnban/assets/model/class_room/scene.gltf"
+  ></a-asset-item>
+  <a-asset-item
+    id="waiting_place"
+    src="/honnban/assets/model/lobby/scene.gltf"
+  ></a-asset-item>
+  <!-- bgm -->
+  <audio id="bgm" src="/honnban/assets/music/apex_OST.mp3"></audio>
+
+  <!-- Avatar -->
+  <a-asset-item
+    id="person"
+    src="/honnban/assets/model/person_small//scene.gltf"
+  ></a-asset-item>
+
+  <a-asset-item
+    id="overview"
+    src="/honnban/assets/model/roll-up_display/scene.gltf"
+  ></a-asset-item>
+  <a-asset-item
+    id="overview2"
+    src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+  ></a-asset-item>
+</a-assets>
+
+<a-assets>
+  <a-asset-item
+    id="overviewpaooooon"
+    src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+  ></a-asset-item>
+</a-assets>
+
+<!-- camera -->
+<a-entity position="0 0 6">
+  <a-entity
+    camera=""
+    position="0.00991 2.16887 -5.90104"
+    look-controls="pointerLockEnabled: true"
+    wasd-controls="acceleration: 300"
+    rotation="1.7188733853924711 -0.34377467707849396 0"
+    data-aframe-inspector-original-camera=""
+  >
+    <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
+  </a-entity>
+  <a-cursor></a-cursor>
+</a-entity>
+<!-- Sky -->
+<a-sky src="#sky"></a-sky>
+
+<!-- lobby_model -->
+<a-gltf-model
+  src="#waiting_place"
+  visible=""
+  scale="0.21742 0.21742 0.21742"
+  rotation=""
+  position="-0.18153 0 -0.80929"
+  sound="src: #bgm; autoplay: true"
+></a-gltf-model>
+
+<!--  ID1  -->
+<a-image
+  id="lv1"
+  src="#lv1"
+  scale="1.19463 0.96799 2.566"
+  position="-1.35939 7.24538 -11.63734"
+  rotation=""
+  material=""
+  geometry=""
+></a-image>
+
+<a-text
+  id="ID01"
+  value="ID01"
+  negate="true"
+  scale="3 3 2"
+  position="-2.53981 6.20987 -11.71318"
+  text="color: #ffffff"
+></a-text>
+
+<a-text
+  id="title1"
+  value="DogTheatre"
+  negate="true"
+  scale="3 3 2"
+  position="-1.09585 6.2062 -11.96297"
+  text="color: #ffffff"
+  rotation="0 -3.8766324418551497 0"
+></a-text>
+
+<!-- thumbnail1 -->
+<a-image
+  id="thumbnail1"
+  src="#thumbnail1"
+  scale="2.65836 2.42992 3.33289"
+  position="-0.12895 2.88171 -11.74348"
+  material=""
+  geometry=""
+  rotation="0 180 0"
+></a-image>
+
+<a-gltf-model
+  id="overview1"
+  src="#overview2"
+  scale="0.70518 2.552 3.336"
+  position="-4.389 0.271 -11.168"
+  rotation="0 -53.051 0"
+  gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+></a-gltf-model>
+
+<!--  ID2  -->
+<a-image
+  id="lv2"
+  src="#lv2"
+  scale="1.19463 0.96799 2.566"
+  position="5.73509 7.2054 -9.80856"
+  material=""
+  geometry=""
+  rotation="0 -46.600949309170375 0"
+></a-image>
+
+<a-text
+  id="ID02"
+  value="ID02"
+  negate="true"
+  scale="3 3 2"
+  position="5.39496 6.23608 -10.62067"
+  rotation="0 -40.62557246375102 0"
+  text="color: #ffffff"
+></a-text>
+
+<a-text
+  id="title2"
+  value="Shibaken2"
+  negate="true"
+  scale="3 3 2"
+  position="7.0386 6.22457 -9.28547"
+  rotation="-4.553295597904652 -47.67123447047475 0.25210142985756223"
+  text="color: #ffffff"
+></a-text>
+
+<!-- thumbnail2 -->
+<a-image
+  id="thumbnail2"
+  src="#thumbnail1"
+  scale="2.20482 2.39508 3.44246"
+  position="7.53164 2.89382 -8.55824"
+  material=""
+  geometry=""
+  rotation="0.23548565379876835 -44.88494071275356 -0.059014652898474795"
+></a-image>
+
+<!-- board2 -->
+<a-gltf-model
+  id="overview2"
+  src="#overview2"
+  scale="0.70518 2.55193 3.34641"
+  position="4.19182 0.24473 -11.37134"
+  rotation="-0.22574537128154434 -111.77146075853075 0.5551961034817677"
+  gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+></a-gltf-model>
+
+<!-- ID3 -->
+<a-image
+  id="thumbnail3"
+  src="#comming_soon1"
+  scale="2.14844 2.38422 2.9693"
+  position="10.74885 2.94272 -0.81654"
+  material=""
+  geometry=""
+  rotation="0.4875870836563306 -91.02351308125336 -0.37070369344964266"
+></a-image>
+
+<a-gltf-model
+  id="overview3"
+  src="#overview2"
+  scale="0.70518 2.55193 3.34641"
+  position="10.51132 0.08592 -5.21337"
+  rotation="-0.22574537128154434 -160.4321933411964 0.5551961034817677"
+  gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+></a-gltf-model>
+
+<!-- ID4 -->
+<a-image
+  id="thumbnail4"
+  src="#comming_soon2"
+  scale="2.23431 2.44308 2.56557"
+  position="7.51628 3.00217 6.88038"
+  material=""
+  geometry=""
+  rotation="1.8947714284976325 -134.12483617776468 0.2469448097013848"
+></a-image>
+<a-gltf-model
+  id="overview4"
+  src="#overview"
+  scale="0.70518 2.55193 5.19335"
+  position="9.96813 0.27205 3.44879"
+  rotation="-0.009740282517223996 -15.118637340117033 0.5987408959117102"
+  gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
+></a-gltf-model>
+
+<!-- ID5 -->
+<a-image
+  id="thumbnail5"
+  src="#comming_soon3"
+  scale="2.13534 2.3982 2.56557"
+  position="-0.20724 3.00078 10.11234"
+  material=""
+  geometry=""
+  rotation="1.1745634800181877 -179.6807104686164 -0.14381240657783664"
+></a-image>
+<a-gltf-model
+  id="overview5"
+  src="#overview"
+  scale="0.70518 2.55193 4.7214"
+  position="3.9197 0.2454 9.52494"
+  rotation="-0.5912924445750095 -53.26616733992724 0.09740282517223994"
+  gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
+></a-gltf-model>
+
+<!-- ID6 -->
+<a-image
+  id="thumbnail6"
+  src="#comming_soon4"
+  scale="2.13534 2.42107 2.56557"
+  position="-7.91489 3.03998 6.92751"
+  material=""
+  geometry=""
+  rotation="1.1745634800181877 134.83644975931716 0.1627200138171538"
+></a-image>
+<a-gltf-model
+  id="overview6"
+  src="#overview"
+  scale="0.70518 2.55193 4.74613"
+  position="-4.63473 0.2873 10.01898"
+  rotation="-0.22574537128154434 -111.77146075853075 0.5551961034817677"
+  gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
+></a-gltf-model>
+
+<!-- ID7 -->
+<a-image
+  id="lv1"
+  src="#lv1"
+  scale="1.19463 0.96799 2.566"
+  position="-11.2028 7.24307 0.41617"
+  rotation="0 89.17973489652238 0"
+  material=""
+  geometry=""
+></a-image>
+
+<a-text
+  id="ID07"
+  value="ID07"
+  negate="true"
+  scale="3 3 2"
+  position="-10.87963 6.23138 1.42946"
+  rotation="0 103.45096765764092 0"
+  text="color: #ffffff"
+></a-text>
+
+<a-text
+  id="title7"
+  value="Pitagora"
+  negate="true"
+  scale="3 3 2"
+  position="-11.10769 6.18194 -0.05812"
+  rotation="1.3945792733484237 88.64917597823123 0.24465297852086154"
+  text="color: #ffffff"
+></a-text>
+<a-image
+  id="thumbnail7"
+  src="#thumbnail3"
+  scale="2.16455 2.40059 2.08721"
+  position="-11.09604 3.08112 -0.80141"
+  material=""
+  geometry=""
+  rotation="2.3846503433344863 90.01797215079877 0.054430990537428205"
+></a-image>
+<a-gltf-model
+  id="overview7"
+  src="#overview2"
+  scale="0.70518 2.55193 3.34641"
+  position="-10.30497 0.34403 3.34358"
+  rotation="-0.18964903018830248 27.64578657285735 -0.5683741327697767"
+  gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+></a-gltf-model>
+
+<!--  ID8  -->
+<a-image
+  id="lv3"
+  src="#lv3"
+  scale="1.19463 0.96799 2.566"
+  position="-9.20779 7.13238 -6.55649"
+  material=""
+  geometry=""
+  rotation="2.9856830704267194 42.20808189390237 -0.24751776749651563"
+></a-image>
+
+<a-gltf-model
+  id="overview8"
+  src="#overview"
+  scale="0.70518 2.552 5.14826"
+  position="-9.7255 0.27156 -4.72335"
+  rotation="-0.05271211715203574 164.1220415418389 -0.039534087864026804"
+  gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
+></a-gltf-model>
+
+<a-text
+  id="ID08"
+  value="ID08"
+  negate="true"
+  scale="3 3 2"
+  position="-9.75109 5.9955 -6.37365"
+  rotation="0 50.789843749371826 0"
+  text="color: #ffffff"
+></a-text>
+
+<a-text
+  id="title8"
+  value="Apex"
+  negate="true"
+  scale="3 3 2"
+  position="-8.56392 5.97415 -7.59759"
+  rotation="1.3945792733484237 43.29269100008501 0.24465297852086154"
+  text="color: #ffffff"
+></a-text>
+
+<!--  thumbnail8 -->
+<a-image
+  id="thumbnail8"
+  src="#thumbnail2"
+  scale="2.22675 2.51884 3.44246"
+  position="-7.83392 2.89535 -8.487"
+  material=""
+  geometry=""
+  rotation="5.350852848726758 45.597127252101174 -0.03265859432245692"
+></a-image>
+
+<!-- Avater -->
+<a-gltf-model
+  id="person"
+  src="#person"
+  scale="0.7 0.8 0.8"
+  position="0 1.14648 -1.5"
+  gltf-model="/honnban/assets/model/person_small//scene.gltf"
+></a-gltf-model>
+
+<a-gltf-model
+  id="person2"
+  src="#person"
+  scale="0.7 0.8 0.8"
+  position="6.96409 0.22744 -7.81779"
+  gltf-model="/honnban/assets/model/person_small//scene.gltf"
+></a-gltf-model>
+<a-gltf-model
+  id="person2"
+  src="#person"
+  scale="0.7 0.8 0.8"
+  position="6.96409 0.22744 -7.81779"
+  roration="-180.000 42.292 -180.000"
+></a-gltf-model>
+
+<a-gltf-model
+  id="person3"
+  src="#person"
+  scale="0.7 0.8 0.8"
+  position="-6.27455 0.22744 -8.54957"
+  gltf-model="/honnban/assets/model/person_small//scene.gltf"
+></a-gltf-model>
