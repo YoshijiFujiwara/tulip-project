@@ -19,25 +19,21 @@ import ExhibitApi from '../../plugins/axios/modules/exhibit'
   layout: 'admin',
 })
 export default class Signin extends Vue {
-  exhibits: object = {}
-  data() {
-    return {
-      headers: [
-        {
-          text: 'id',
-          align: 'start',
-          sortable: false,
-          value: 'groupId',
-        },
-        { text: 'groupID', value: 'groupId' },
-        { text: 'title', value: 'title' },
-        { text: 'genre', value: 'genre' },
-        { text: 'description', value: 'description' },
-        { text: 'presentationImage', value: 'presentationImage' },
-        { text: 'thumbnail', value: 'thumbnail' },
-      ],
-    }
-  }
+  exhibits = []
+  headers = [
+    {
+      text: 'id',
+      align: 'start',
+      sortable: false,
+      value: 'groupId',
+    },
+    { text: 'groupID', value: 'groupId' },
+    { text: 'title', value: 'title' },
+    { text: 'genre', value: 'genre' },
+    { text: 'description', value: 'description' },
+    { text: 'presentationImage', value: 'presentationImage' },
+    { text: 'thumbnail', value: 'thumbnail' },
+  ]
 
   async created() {
     const response = await ExhibitApi.getExhibits()
