@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app color="#2c3350" elevation="0" height="80">
+    <v-app-bar fixed app elevation="0" height="80">
       <v-img
         :src="require('@/assets/logo_main.png')"
         max-height="150"
@@ -9,7 +9,7 @@
       <v-spacer />
       <v-btn @click="logout"> ログアウト(仮) </v-btn>
     </v-app-bar>
-    <v-main class="main-wrapper dark-color">
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
@@ -31,7 +31,4 @@ export default class Default extends Vue {
 <style lang="scss">
 // 色情報 from https://tulipgumi.slack.com/archives/C01D34DJC5P/p1604650600001100
 // それをrgbaに変換してます
-.dark-color {
-  background-color: #2c3350;
-}
 </style>
