@@ -1,14 +1,14 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <h3>ようこそ、{{ user.studentNumber }}さん</h3>
+      <h3 class="mt-3 mb-3">ようこそ、{{ user.studentNumber }}さん</h3>
     </v-col>
-    <v-card color="#0f1642" width="100%">
+    <v-card width="100%">
       <v-row class="pa-10">
         <v-col cols="4">
           <v-row>
             <v-col cols="12">
-              <v-list dark color="#0f1642">
+              <v-list>
                 <v-list-item>
                   <v-list-item-content>
                     <v-list-item-title>出展ステータス</v-list-item-title>
@@ -53,20 +53,20 @@
           </v-row>
           <v-row justify="center">
             <v-col cols="6" class="production">
-              <v-card color="rgb(255, 0, 0, 0)" dark outline tile>
+              <v-card>
                 <a class="text-h5 text-center" @click="openCreateExhibitsModal">
                   <div>
-                    <v-icon dark size="120">mdi-clipboard-text</v-icon>
+                    <v-icon color="grey" size="120">mdi-clipboard-text</v-icon>
                   </div>
-                  <div>作品設定</div>
+                  <div class="link-string">作品設定</div>
                 </a>
               </v-card>
             </v-col>
             <v-col cols="6" class="booth">
-              <v-card color="rgb(255, 0, 0, 0)" dark outline tile>
+              <v-card>
                 <a class="text-h5 text-center" @click="openUploadBoothModal">
-                  <div><v-icon dark size="120">mdi-apps</v-icon></div>
-                  <div>ブース設定</div>
+                  <div><v-icon color="grey" size="120">mdi-apps</v-icon></div>
+                  <div class="link-string">ブース設定</div>
                 </a>
               </v-card>
             </v-col>
@@ -139,10 +139,11 @@ export default class MyPage extends Vue {
   }
 }
 </script>
-
-<style>
-.bg {
-  background-color: #0f1642;
-  color: #389c0a;
+<style lang="scss">
+.link-string {
+  color: #000000;
+}
+a {
+  color: #000000;
 }
 </style>

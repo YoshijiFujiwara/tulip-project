@@ -1,11 +1,5 @@
-import { Response } from 'express';
-import { Controller, Get, HttpStatus, Res, UseGuards } from '@nestjs/common';
-import {
-  ApiBearerAuth,
-  ApiNoContentResponse,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../auth/get-user-decorator';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
