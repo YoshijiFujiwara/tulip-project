@@ -5,6 +5,7 @@ import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { JwtPayload } from './interface/jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { AdministratorRepository } from '../entities/administrator.repository';
+import { SignInAdministratorDto } from './dto/sign-in-administrator.dto';
 
 @Injectable()
 export class AuthService {
@@ -26,6 +27,23 @@ export class AuthService {
 
     const payload: JwtPayload = {
       studentNumber,
+      role: 'student',
+    };
+    const accessToken = await this.jwtService.signAsync(payload);
+    return { accessToken };
+  }
+
+  async singInAdmin(signInAdministratorDto: SignInAdministratorDto) {
+    const name = await this.administratorRepository.validatePassword(
+      signInAdministratorDto,
+    );
+    if (!name) {
+      throw new UnauthorizedException('ユーザー名またはパスワードが違います');
+    }
+
+    const payload: JwtPayload = {
+      name,
+      role: 'admin',
     };
     const accessToken = await this.jwtService.signAsync(payload);
     return { accessToken };
