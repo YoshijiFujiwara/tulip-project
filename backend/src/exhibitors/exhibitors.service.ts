@@ -12,7 +12,7 @@ export class ExhibitorsService {
 
   async getExhibitors(): Promise<ExhibitorEntity[]> {
     return await this.exhibitorRepository.find({
-      relations: ['group', 'group.exhibit'],
+      relations: ['group', 'group.exhibit', 'group.exhibit.booth'],
     });
   }
 }
