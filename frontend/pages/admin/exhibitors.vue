@@ -30,11 +30,12 @@ import ExhibitorApi from '../../plugins/axios/modules/exhibitors'
 })
 export default class Signin extends Vue {
   exhibitors = []
-  headers: [
-    { text: 'ID'; value: 'id' },
-    { text: '展示者名'; value: 'name' },
-    { text: '所属グループ名'; value: 'group.name' },
-    { text: '操作'; value: 'actions'; sortable: false }
+
+  headers = [
+    { text: 'ID', value: 'id' },
+    { text: '展示者名', value: 'name' },
+    { text: '所属グループ名', value: 'group.name' },
+    { text: '操作', value: 'actions', sortable: false },
   ]
 
   async created() {
