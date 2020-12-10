@@ -1,8 +1,28 @@
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import {
+  createParamDecorator,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtPayload } from './interface/jwt-payload.interface';
+import { AdministratorEntity } from '../entities/administrator.entity';
+import { ExhibitorEntity } from '../entities/exhibitor.entity';
 
 export const GetUser = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
+  (
+    role: JwtPayload['role'] = 'student',
+    ctx: ExecutionContext,
+  ): ExhibitorEntity | AdministratorEntity => {
     const request = ctx.switchToHttp().getRequest();
-    return request.user;
+
+    const isStudent =
+      role === 'student' && request.user instanceof ExhibitorEntity;
+    const isAdmin =
+      role === 'admin' && request.user instanceof AdministratorEntity;
+
+    if (isStudent || isAdmin) {
+      return request.user;
+    } else {
+      throw new UnauthorizedException('このAPIを実行する権限がありません。');
+    }
   },
 );
