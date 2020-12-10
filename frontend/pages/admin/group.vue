@@ -14,7 +14,10 @@
         hide-details
       ></v-text-field>
     </v-app-bar>
-    <div class="div-controller">会場にログインしているユーザ</div>
+    <div class="div-controller">
+      <v-icon small left color="green">mdi-circle</v-icon
+      >会場にログインしているユーザ
+    </div>
 
     <v-data-table
       :headers="headers"
@@ -114,6 +117,7 @@ export default class Signin extends Vue {
 .div-controller {
   height: 30px;
   width: 100%;
+  margin: 20px 0 10px 0;
   text-align: right;
   font-family: MeiryoUI;
   font-size: 16px;
