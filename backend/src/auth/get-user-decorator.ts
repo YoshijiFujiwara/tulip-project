@@ -13,17 +13,16 @@ export const GetUser = createParamDecorator(
     ctx: ExecutionContext,
   ): ExhibitorEntity | AdministratorEntity => {
     const request = ctx.switchToHttp().getRequest();
-    const user = ((role, user) => {
-      switch (role) {
-        case 'admin':
-          return user instanceof AdministratorEntity ? user : null;
-        case 'student':
-          return user instanceof ExhibitorEntity ? user : null;
-      }
-    })(role, request.user as ExhibitorEntity | AdministratorEntity);
-    if (!user) {
+
+    const isStudent =
+      role === 'student' && request.user instanceof ExhibitorEntity;
+    const isAdmin =
+      role === 'admin' && request.user instanceof AdministratorEntity;
+
+    if (isStudent || isAdmin) {
+      return request.user;
+    } else {
       throw new UnauthorizedException('このAPIを実行する権限がありません。');
     }
-    return user;
   },
 );
