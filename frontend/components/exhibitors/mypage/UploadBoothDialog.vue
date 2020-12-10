@@ -43,7 +43,7 @@ export default class CreateExhibitDialog extends Vue {
 
   isLoading: boolean = false // ローディング判定
 
-  items = ['1', '2', '3', '4']
+  items = ['1', '2', '3', '4', '5', '6', '7', '8']
   valid = false
 
   form = {
