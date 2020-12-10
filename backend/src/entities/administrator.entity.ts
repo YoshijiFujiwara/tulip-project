@@ -10,7 +10,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
 
 @Entity({
-  name: 'administrator',
+  name: 'administrators',
 })
 export class AdministratorEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
