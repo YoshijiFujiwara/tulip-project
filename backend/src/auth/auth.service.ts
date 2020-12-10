@@ -4,12 +4,15 @@ import { ExhibitorRepository } from '../entities/exhibitor.repository';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { JwtPayload } from './interface/jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
+import { AdministratorRepository } from '../entities/administrator.repository';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(ExhibitorRepository)
     private exhibitorRepository: ExhibitorRepository,
+    @InjectRepository(AdministratorRepository)
+    private administratorRepository: AdministratorRepository,
     private readonly jwtService: JwtService,
   ) {}
 
