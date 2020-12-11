@@ -46,7 +46,7 @@ export class ExhibitorEntity extends BaseEntity {
 
   @Column({ type: 'timestamp' })
   @ApiProperty()
-  lastLoggedinAt!: Date;
+  lastLoggedinAt?: Date;
 
   @CreateDateColumn({
     type: 'timestamp',
