@@ -18,15 +18,17 @@ export class AuthService {
   ) {}
 
   async signIn(signInExhibitorDto: SignInExhibitorDto) {
-    const studentNumber = await this.exhibitorRepository.validatePassword(
+    const ExhibitorEntity = await this.exhibitorRepository.validatePassword(
       signInExhibitorDto,
     );
-    if (!studentNumber) {
+    if (!ExhibitorEntity) {
       throw new UnauthorizedException('学籍番号またはパスワードが違います');
     }
 
+    await this.exhibitorRepository.updateLastLoggedinAt(ExhibitorEntity);
+
     const payload: JwtPayload = {
-      studentNumber,
+      studentNumber: ExhibitorEntity.studentNumber,
       role: 'student',
     };
     const accessToken = await this.jwtService.signAsync(payload);
