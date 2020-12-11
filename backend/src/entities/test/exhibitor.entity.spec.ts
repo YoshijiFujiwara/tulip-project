@@ -37,6 +37,7 @@ describe('ExhibitorEntity', () => {
     exhibitor.groupId = 1;
     exhibitor.group = mockGroup;
     exhibitor.lastLoggedinAt = date;
+    exhibitor.attendedAt = date;
     exhibitor.createdAt = date;
     exhibitor.updatedAt = date;
   });
@@ -49,6 +50,7 @@ describe('ExhibitorEntity', () => {
       expect(result.name).toEqual(exhibitor.name);
       expect(result.groupId).toEqual(exhibitor.groupId);
       expect(result.lastLoggedinAt).toEqual(exhibitor.lastLoggedinAt);
+      expect(result.attendedAt).toEqual(exhibitor.attendedAt);
       expect(result.group).toEqual(mockGroup.transformToSerializer());
       expect(result.group.exhibit).toEqual(mockExhibit.transformToSerializer());
 
