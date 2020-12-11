@@ -21,6 +21,7 @@ import { AccessTokenSerializer } from './serializer/access-token.serializer';
 import { ExhibitorSerializer } from '../entities/serializer/exhibitor.serializer';
 import { GetUser } from './get-user-decorator';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
+import { SignInAdministratorDto } from './dto/sign-in-administrator.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -40,6 +41,14 @@ export class AuthController {
     @Body(ValidationPipe) signInExhibitorDto: SignInExhibitorDto,
   ): Promise<AccessTokenSerializer> {
     return this.authService.signIn(signInExhibitorDto);
+  }
+
+  @Post('/admin/sign_in')
+  @HttpCode(200)
+  async singInAdmin(
+    @Body(ValidationPipe) signInAdministratorDto: SignInAdministratorDto,
+  ): Promise<AccessTokenSerializer> {
+    return await this.authService.singInAdmin(signInAdministratorDto);
   }
 
   @Get('/me')

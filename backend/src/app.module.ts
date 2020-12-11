@@ -8,6 +8,7 @@ import { ProfileModule } from './profile/profile.module';
 import { BoothsModule } from './booths/booths.module';
 import { ExhibitorsModule } from './exhibitors/exhibitors.module';
 import { GroupsModule } from './groups/groups.module';
+import { AdministratorsModule } from './administrators/administrators.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { GroupsModule } from './groups/groups.module';
     BoothsModule,
     ExhibitorsModule,
     GroupsModule,
+    AdministratorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
