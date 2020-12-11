@@ -62,10 +62,6 @@ export default class Groups extends Vue {
   async created() {
     // this.user = await this.$auth.user
     const response = await GroupApi.getGroups()
-    response.forEach((element) => {
-      console.log('response', element.name)
-    })
-    console.log('response', response)
     this.groups = response
   }
 }
