@@ -15,6 +15,9 @@ export class ExhibitorSerializer {
   lastLoggedinAt: Date;
 
   @ApiProperty()
+  attendedAt: Date;
+
+  @ApiProperty()
   groupId: number;
 
   @ApiPropertyOptional({
