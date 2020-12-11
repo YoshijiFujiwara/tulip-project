@@ -48,7 +48,9 @@ export class ExhibitsService {
   }
 
   async getExhibits(): Promise<ExhibitEntity[]> {
-    return await this.exhibitRepsitory.find();
+    return await this.exhibitRepsitory.find({
+      relations: ['booth', 'group'],
+    });
   }
 
   async updateExhibit(
