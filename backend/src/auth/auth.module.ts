@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { ExhibitorRepository } from '../entities/exhibitor.repository';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategy/jwt.strategy';
+import { AdministratorRepository } from '../entities/administrator.repository';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
-    TypeOrmModule.forFeature([ExhibitorRepository]),
+    TypeOrmModule.forFeature([ExhibitorRepository, AdministratorRepository]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
