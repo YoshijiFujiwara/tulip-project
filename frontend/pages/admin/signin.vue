@@ -44,6 +44,7 @@
                   x-large
                   color="rgba(119, 105, 209, 1)"
                   :disabled="!valid"
+                  class="white--text"
                   >管理者ログイン</v-btn
                 >
                 <v-btn
