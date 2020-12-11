@@ -4,6 +4,7 @@ const https = require('https');
 // axiosリクエスト時のSSL周りのエラーを防止
 // [FYI] https://github.com/axios/axios/issues/535
 const axiosInstance = axios.create({
+  baseURL: process.env.API_URL,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
   }),
@@ -12,12 +13,20 @@ const axiosInstance = axios.create({
 var router = require('express').Router();
 
 // ロビー画面
-router.get('/honnban', function (req, res) {
-  res.render(__dirname + './../../pages/honnban/index.ejs');
+router.get('/honnban', async function (req, res) {
+  // 作品情報一覧の取得
+  const result = await axiosInstance.get('exhibits');
+  const exhibits = result.data;
+
+  const renderData = {
+    exhibits,
+  };
+
+  res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
 });
 
-// ブース画面(クエリパラメータで、ブースのIDを指定する)
-router.get('/honnban/booths/:boothId', function (req, res) {
+// ブース画面(クエリパラメータで、作品のIDを指定する)
+router.get('/honnban/booths/:exhibitId', function (req, res) {
   res.render(__dirname + './../../pages/honnban/booth.ejs');
 });
 
@@ -27,7 +36,7 @@ router.get('/honnban/sample', async function (req, res) {
   let exhibits = [];
 
   // 作品情報一覧の取得
-  const result = await axiosInstance.get('https://localhost:3001/api/exhibits');
+  const result = await axiosInstance.get('exhibits');
   exhibits = result.data;
 
   const renderData = {
