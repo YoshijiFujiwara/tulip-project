@@ -15,4 +15,10 @@ export class ExhibitorsService {
       relations: ['group', 'group.exhibit', 'group.exhibit.booth'],
     });
   }
+
+  async attend({ id }: ExhibitorEntity): Promise<ExhibitorEntity> {
+    const exhibitor = await this.exhibitorRepository.findOne({ id });
+    exhibitor.attendedAt = new Date();
+    return await exhibitor.save();
+  }
 }
