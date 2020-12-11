@@ -4,8 +4,55 @@
     <%- include('./ejs-components/header.ejs') %>
   </head>
   <body>
-    <a-scene renderer="colorManagement: true; antialias: true;">
+    <a-scene
+      renderer="colorManagement: true; antialias: true;"
+      networked-scene="
+        room: booth;
+        debug: true;
+        adapter: webrtc;
+        audio: false;
+      "
+    >
       <a-assets timeout="200000">
+        <!-- アバター -->
+        <template id="avatar-template">
+          <a-entity class="avatar">
+            <a-sphere
+              class="head"
+              color="#ffffff"
+              scale="0.45 0.5 0.4"
+            ></a-sphere>
+            <a-entity class="face" position="0 0.05 0">
+              <a-sphere
+                class="eye"
+                color="#efefef"
+                position="0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere
+                  class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+              <a-sphere
+                class="eye"
+                color="#efefef"
+                position="-0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere
+                  class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+            </a-entity>
+          </a-entity>
+        </template>
+
         <!-- 空_ASSET -->
         <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
         <!-- ブース_ASSET -->
@@ -61,7 +108,7 @@
       ></a-gltf-model>
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
       <!-- camera -->
-      <a-entity position="0 0 6">
+      <!-- <a-entity position="0 0 6">
         <a-entity
           camera=""
           position="0.00991 1.6 -5.90104"
@@ -73,7 +120,21 @@
           <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
         </a-entity>
         <a-cursor></a-cursor>
-      </a-entity>
+      </a-entity> -->
+      <!-- カメラ（なんか、a-sceneの最後の方に置いた方がいいらしい） -->
+      <a-camera
+        id="player"
+        position="0 1.6 0"
+        networked="template:#avatar-template;attachTemplateToLocal:false;"
+        spawn-in-circle="radius:3"
+        wasd-controls
+        look-controls
+      >
+        <!-- SELECTIVE INTERSECTIONS -->
+        <a-cursor raycaster="objects: .clickable"></a-cursor>
+        <a-sphere class="head" visible="false" random-color></a-sphere>
+      </a-camera>
+
       <!-- 出展者キャラクター -->
       <a-gltf-model
         id="npc1"
