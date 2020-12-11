@@ -48,6 +48,10 @@ export class ExhibitorEntity extends BaseEntity {
   @ApiProperty()
   lastLoggedinAt?: Date;
 
+  @Column({ type: 'timestamp' })
+  @ApiProperty()
+  attendedAt?: Date;
+
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
@@ -80,6 +84,7 @@ export class ExhibitorEntity extends BaseEntity {
     exhibitorSerializer.studentNumber = this.studentNumber;
     exhibitorSerializer.name = this.name;
     exhibitorSerializer.lastLoggedinAt = this.lastLoggedinAt;
+    exhibitorSerializer.attendedAt = this.attendedAt;
     exhibitorSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitorSerializer.group = this.group.transformToSerializer();

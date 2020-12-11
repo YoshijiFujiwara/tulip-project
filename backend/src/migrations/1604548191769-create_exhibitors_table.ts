@@ -40,6 +40,11 @@ export class createExhibitorsTable1604548191769 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'attendedAt',
+            type: 'timestamp',
+            isNullable: true,
+          },
+          {
             name: 'groupId',
             type: 'integer',
           },
