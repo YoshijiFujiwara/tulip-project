@@ -49,38 +49,37 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        {
-          icon: 'mdi-home',
-          title: 'ダッシュボード',
-          to: './',
-        },
-        {
-          icon: 'mdi-shield-account-variant',
-          title: '管理者',
-          to: './exhibits',
-        },
-        {
-          icon: 'mdi-contacts',
-          title: '出展者一覧',
-          to: './group',
-        },
-        {
-          icon: 'mdi-contacts',
-          title: '出席確認',
-          to: './exhibitors',
-        },
-        {
-          icon: 'mdi-account-supervisor',
-          title: '来場者',
-          to: './',
-        },
-      ],
-    }
-  },
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class Admin extends Vue {
+  items = [
+    {
+      icon: 'mdi-home',
+      title: 'ダッシュボード',
+      to: './',
+    },
+    {
+      icon: 'mdi-shield-account-variant',
+      title: '管理者',
+      to: './exhibits',
+    },
+    {
+      icon: 'mdi-contacts',
+      title: '出展者一覧',
+      to: './group',
+    },
+    {
+      icon: 'mdi-contacts',
+      title: '出席確認',
+      to: './exhibitors',
+    },
+    {
+      icon: 'mdi-account-supervisor',
+      title: '来場者',
+      to: './',
+    },
+  ]
 }
 </script>
