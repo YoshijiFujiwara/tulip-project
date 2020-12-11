@@ -26,6 +26,7 @@
       :search="search"
       class="elevation-1"
     >
+      <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2"> mdi-pencil </v-icon>
         <v-icon small> mdi-delete </v-icon>
