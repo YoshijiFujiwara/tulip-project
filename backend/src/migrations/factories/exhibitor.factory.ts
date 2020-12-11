@@ -15,7 +15,6 @@ define(ExhibitorEntity, (_: typeof Faker, context: Context) => {
   exhibitor.studentNumber = `ohs7${('0000' + id).slice(-4)}`;
   exhibitor.password = 'B19990101';
   exhibitor.name = `${randomJapaneseFullName()}`;
-  exhibitor.lastLoggedinAt = new Date();
   exhibitor.groupId = groupId;
 
   return exhibitor;
