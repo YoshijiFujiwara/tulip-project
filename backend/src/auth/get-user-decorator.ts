@@ -16,16 +16,10 @@ export const GetUser = createParamDecorator(
     const request = ctx.switchToHttp().getRequest();
     const user = request.user;
 
-    let isStudent: boolean;
-    let isAdmin: boolean;
-    roles.forEach(role => {
-      if (!isStudent) {
-        isStudent = role === 'student' && user instanceof ExhibitorEntity;
-      }
-      if (!isAdmin) {
-        isAdmin = role === 'admin' && user instanceof AdministratorEntity;
-      }
-    });
+    const isStudent =
+      roles.includes('student') && user instanceof ExhibitorEntity;
+    const isAdmin =
+      roles.includes('admin') && user instanceof AdministratorEntity;
 
     if (isStudent || isAdmin) {
       return user;
