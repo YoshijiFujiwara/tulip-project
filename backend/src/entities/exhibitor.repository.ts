@@ -8,12 +8,17 @@ export class ExhibitorRepository extends Repository<ExhibitorEntity> {
   async validatePassword({
     studentNumber,
     password,
-  }: SignInExhibitorDto): Promise<string> {
+  }: SignInExhibitorDto): Promise<ExhibitorEntity> {
     const user = await this.findOne({ studentNumber });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      return user.studentNumber;
+      return user;
     }
     return null;
+  }
+
+  async updateLastLoggedinAt({ id }: ExhibitorEntity): Promise<void> {
+    const lastLoggedinAt = new Date();
+    await this.update({ id }, { lastLoggedinAt });
   }
 }

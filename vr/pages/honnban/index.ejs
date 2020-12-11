@@ -1,18 +1,66 @@
+<!-- prettier-ignore -->
+<% 
+  let exhibit = null;
+  let position = null;
+  let boothId = null;
+
+  // 1 ~ 8までの位置情報関連をここで集約的に管理する
+  // 後々、数式でなんとかしたい（ロビーの中心座標から算出出来そうな気もしている）
+  const positions = {
+    "at1": {
+      level: {
+        scale: "1.19463 0.96799 2.566",
+        position: "-1.35939 7.24538 -11.63734",
+        rotation: ""
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "-2.53981 6.20987 -11.71318",
+        rotation: ""
+      },
+      title: {
+        scale: "3 3 2",
+        position: "-1.09585 6.2062 -11.96297",
+        rotation: "0 -3.8766324418551497 0",
+      },
+      thumbnail: {
+        scale: "2.65836 2.42992 3.33289",
+        position: "-0.12895 2.88171 -11.74348",
+        rotation: "0 0 0"
+      }
+    },
+    "at2": {
+      level: {
+        scale: "1.19463 0.96799 2.566",
+        position: "5.73509 7.2054 -9.80856",
+        rotation: "0 -46.600949309170375 0"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "5.39496 6.23608 -10.62067",
+        rotation: "0 -40.62557246375102 0"
+      },
+      title: {
+        scale: "3 3 2",
+        position: "7.0386 6.22457 -9.28547",
+        rotation: "-4.553295597904652 -47.67123447047475 0.25210142985756223",
+      },
+      thumbnail: {
+        scale:    "2.20482 2.39508 3.44246",
+        position: "7.53164 2.89382 -8.55824",
+        rotation: "0.23548565379876835 -44.88494071275356 -0.059014652898474795"
+      }
+    },
+  }
+%>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>lobby</title>
-    <meta name="description" content="Dev Example — Networked-Aframe" />
-
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <!-- ヘッダーのスクリプト群の読み込み -->
+    <%- include('./ejs-components/header.ejs') %>
   </head>
   <body>
-    <a-scene renderer="colorManagement: true">
-      <!-- Asset Management System -->
+    <a-scene renderer="colorManagement: true; antialias: true;">
       <a-assets timeout="200000">
-        <img id="floor" src="/honnban/assets/img/vr_background.jpg" />
-        <img id="floor-NRM" src="/honnban/assets/img/vr_background.jpg" />
-        <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
         <img id="thumbnail1" src="/honnban/assets/img/dog.jpg" />
         <img id="thumbnail2" src="/honnban/assets/img/bloodhound.png" />
         <img id="thumbnail3" src="/honnban/assets/img/pitagora.png" />
@@ -26,21 +74,13 @@
         <img id="lv1" src="/honnban/assets/img/lv1.png" />
         <img id="lv2" src="/honnban/assets/img/lv2.png" />
         <img id="lv3" src="/honnban/assets/img/lv3.png" />
-        <a-asset-item
-          id="class_room"
-          src="/honnban/assets/model/class_room/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="waiting_place"
-          src="/honnban/assets/model/lobby/scene.gltf"
-        ></a-asset-item>
         <!-- bgm -->
         <audio id="bgm" src="/honnban/assets/music/apex_OST.mp3"></audio>
 
         <!-- Avatar -->
         <a-asset-item
           id="person"
-          src="/honnban/assets/model/person_small//scene.gltf"
+          src="/honnban/assets/model/person_small/scene.gltf"
         ></a-asset-item>
 
         <a-asset-item
@@ -49,13 +89,6 @@
         ></a-asset-item>
         <a-asset-item
           id="overview2"
-          src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-        ></a-asset-item>
-      </a-assets>
-
-      <a-assets>
-        <a-asset-item
-          id="overviewpaooooon"
           src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
         ></a-asset-item>
       </a-assets>
@@ -74,122 +107,43 @@
         </a-entity>
         <a-cursor></a-cursor>
       </a-entity>
-      <!-- Sky -->
-      <a-sky src="#sky"></a-sky>
 
-      <!-- lobby_model -->
-      <a-gltf-model
-        src="#waiting_place"
-        visible=""
-        scale="0.21742 0.21742 0.21742"
-        rotation=""
-        position="-0.18153 0 -0.80929"
-        sound="src: #bgm; autoplay: true"
-      ></a-gltf-model>
+      <!-- 空 -->
+      <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
+      <!-- ロビー -->
+      <%- include('./ejs-components/ejs-assets/lobby.asset.ejs') %>
 
-      <!--  ID1  -->
-      <a-image
-        id="lv1"
-        src="#lv1"
-        scale="1.19463 0.96799 2.566"
-        position="-1.35939 7.24538 -11.63734"
-        rotation=""
-        material=""
-        geometry=""
-      ></a-image>
+      <!--  ポジションが１にある作品  -->
+      <!-- prettier-ignore -->
+      <% 
+        exhibit = exhibits.find(e => e.booth.positionNumber === 1);
+        position = positions["at1"];
+        boothId = 1;
+      %>
+      <!-- prettier-ignore -->
+      <%-
+        include('./ejs-components/ejs-assets/exhibit-panel.asset.ejs', {
+          exhibit,
+          position,
+          boothId
+        })
+      %>
 
-      <a-text
-        id="ID01"
-        value="ID01"
-        negate="true"
-        scale="3 3 2"
-        position="-2.53981 6.20987 -11.71318"
-        text="color: #ffffff"
-      ></a-text>
-
-      <a-text
-        id="title1"
-        value="DogTheatre"
-        negate="true"
-        scale="3 3 2"
-        position="-1.09585 6.2062 -11.96297"
-        text="color: #ffffff"
-        rotation="0 -3.8766324418551497 0"
-      ></a-text>
-
-      <!-- thumbnail1 -->
-      <a-image
-        id="thumbnail1"
-        src="#thumbnail1"
-        link="href: /honnban/booths/1"
-        scale="2.65836 2.42992 3.33289"
-        position="-0.12895 2.88171 -11.74348"
-        material=""
-        geometry=""
-        rotation="0 180 0"
-      ></a-image>
-
-      <a-gltf-model
-        id="overview1"
-        src="#overview2"
-        scale="0.70518 2.552 3.336"
-        position="-4.389 0.271 -11.168"
-        rotation="0 -53.051 0"
-        gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-      ></a-gltf-model>
-
-      <!--  ID2  -->
-      <a-image
-        id="lv2"
-        src="#lv2"
-        scale="1.19463 0.96799 2.566"
-        position="5.73509 7.2054 -9.80856"
-        material=""
-        geometry=""
-        rotation="0 -46.600949309170375 0"
-      ></a-image>
-
-      <a-text
-        id="ID02"
-        value="ID02"
-        negate="true"
-        scale="3 3 2"
-        position="5.39496 6.23608 -10.62067"
-        rotation="0 -40.62557246375102 0"
-        text="color: #ffffff"
-      ></a-text>
-
-      <a-text
-        id="title2"
-        value="Shibaken2"
-        negate="true"
-        scale="3 3 2"
-        position="7.0386 6.22457 -9.28547"
-        rotation="-4.553295597904652 -47.67123447047475 0.25210142985756223"
-        text="color: #ffffff"
-      ></a-text>
-
-      <!-- thumbnail2 -->
-      <a-image
-        id="thumbnail2"
-        src="#thumbnail1"
-        link="href: /honnban/booths/2"
-        scale="2.20482 2.39508 3.44246"
-        position="7.53164 2.89382 -8.55824"
-        material=""
-        geometry=""
-        rotation="0.23548565379876835 -44.88494071275356 -0.059014652898474795"
-      ></a-image>
-
-      <!-- board2 -->
-      <a-gltf-model
-        id="overview2"
-        src="#overview2"
-        scale="0.70518 2.55193 3.34641"
-        position="4.19182 0.24473 -11.37134"
-        rotation="-0.22574537128154434 -111.77146075853075 0.5551961034817677"
-        gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-      ></a-gltf-model>
+      <!--  ポジションが2にある作品  -->
+      <!-- prettier-ignore -->
+      <% 
+        exhibit = exhibits.find(e => e.booth.positionNumber === 2);
+        position = positions["at2"];
+        boothId = 2;
+      %>
+      <!-- prettier-ignore -->
+      <%-
+        include('./ejs-components/ejs-assets/exhibit-panel.asset.ejs', {
+          exhibit,
+          position,
+          boothId
+        })
+      %>
 
       <!-- ID3 -->
       <a-image
@@ -197,8 +151,6 @@
         src="#comming_soon1"
         scale="2.14844 2.38422 2.9693"
         position="10.74885 2.94272 -0.81654"
-        material=""
-        geometry=""
         rotation="0.4875870836563306 -91.02351308125336 -0.37070369344964266"
       ></a-image>
 
@@ -401,5 +353,8 @@
         gltf-model="/honnban/assets/model/person_small//scene.gltf"
       ></a-gltf-model>
     </a-scene>
+
+    <!-- フッター部分のscriptあれば読み込み -->
+    <%- include('./ejs-components/footer.ejs') %>
   </body>
 </html>

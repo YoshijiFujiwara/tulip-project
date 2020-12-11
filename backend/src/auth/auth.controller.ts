@@ -18,10 +18,9 @@ import {
 import { AuthService } from './auth.service';
 import { SignInExhibitorDto } from './dto/sign-in-exhibitor.dto';
 import { AccessTokenSerializer } from './serializer/access-token.serializer';
-import { ExhibitorSerializer } from '../entities/serializer/exhibitor.serializer';
 import { GetUser } from './get-user-decorator';
-import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { SignInAdministratorDto } from './dto/sign-in-administrator.dto';
+import { UserSerializerType, UserEntityType } from '../entities/type/user.type';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -56,10 +55,9 @@ export class AuthController {
   @ApiBearerAuth()
   @ApiResponse({
     status: 200,
-    type: ExhibitorSerializer,
-    description: 'ログイン展示者の情報を取得',
+    description: 'ログインユーザー(出展者|管理者)の情報を取得',
   })
-  me(@GetUser() exhibitor: ExhibitorEntity): ExhibitorSerializer {
-    return exhibitor.transformToSerializer();
+  me(@GetUser(['student', 'admin']) user: UserEntityType): UserSerializerType {
+    return user.transformToSerializer();
   }
 }

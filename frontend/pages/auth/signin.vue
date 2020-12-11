@@ -2,7 +2,7 @@
   <v-parallax
     id="parallax-full-height"
     height="100%"
-    :src="require('@/assets/signin_background.png')"
+    :src="require('@/assets/signin_background.jpg')"
   >
     <v-container>
       <v-img :src="require('@/assets/logo_main.png')" />
