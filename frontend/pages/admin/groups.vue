@@ -38,13 +38,14 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import GroupApi from '../../plugins/axios/modules/group'
+import { Group } from '../../types/group'
 
 @Component({
   auth: false,
   layout: 'admin',
 })
 export default class Groups extends Vue {
-  groups: array = []
+  groups: Group[] = []
 
   // groups: Object = {}
   search = ''
@@ -62,8 +63,8 @@ export default class Groups extends Vue {
 
   async created() {
     // this.user = await this.$auth.user
-    const response = await GroupApi.getGroups()
-    this.groups = response
+    const groups = await GroupApi.getGroups()
+    this.groups = groups
   }
 }
 </script>

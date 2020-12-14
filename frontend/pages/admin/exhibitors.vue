@@ -40,13 +40,14 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import ExhibitorApi from '../../plugins/axios/modules/exhibitors'
+import { Exhibitor } from '../../types/exhibitor'
 
 @Component({
   auth: false,
   layout: 'admin',
 })
 export default class Signin extends Vue {
-  exhibitors = []
+  exhibitors: Exhibitor[] = []
 
   headers = [
     { text: 'ID', value: 'id' },
@@ -57,8 +58,8 @@ export default class Signin extends Vue {
   ]
 
   async created() {
-    const response = await ExhibitorApi.getExhibitors()
-    this.exhibitors = response
+    const exhibitors = await ExhibitorApi.getExhibitors()
+    this.exhibitors = exhibitors
   }
 }
 </script>
