@@ -7,11 +7,13 @@ import {
   CreateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
 import { ExhibitSerializer } from './serializer/exhibit.serializer';
 import { BoothEntity } from './booth.entity';
+import { PresentationImageEntity } from './presentationImage.entity';
 
 export enum GENRE {
   GAME = 'game',
@@ -55,12 +57,6 @@ export class ExhibitEntity extends BaseEntity {
   })
   genre!: GENRE;
 
-  @Column({
-    type: 'text',
-  })
-  @ApiProperty()
-  presentationImage!: string;
-
   @Column()
   @ApiProperty()
   groupId!: number;
@@ -77,6 +73,12 @@ export class ExhibitEntity extends BaseEntity {
     booth => booth.exhibit,
   )
   booth: BoothEntity;
+
+  @OneToMany(
+    () => PresentationImageEntity,
+    presentationImage => presentationImage.exhibit,
+  )
+  presentationImages: PresentationImageEntity[];
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -100,7 +102,7 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.description = this.description;
     exhibitSerializer.thumbnail = this.thumbnail;
     exhibitSerializer.genre = this.genre;
-    exhibitSerializer.presentationImage = this.presentationImage;
+    // exhibitSerializer.presentationImage = this.presentationImage;
     exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();

@@ -5,13 +5,12 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class createExhibitsTable1604641249423 implements MigrationInterface {
-  name = 'createExhibitsTable1604641249423';
-
+export class createPresentationImagesTable1607932515127
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'exhibits',
+        name: 'presentation_images',
         columns: [
           {
             name: 'id',
@@ -21,25 +20,11 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'title',
-            type: 'varchar',
-            length: '50',
-          },
-          {
-            name: 'description',
+            name: 'url',
             type: 'text',
           },
           {
-            name: 'thumbnail',
-            type: 'text',
-          },
-          {
-            name: 'genre',
-            type: 'varchar',
-            length: '10',
-          },
-          {
-            name: 'groupId',
+            name: 'exhibitId',
             type: 'integer',
           },
           {
@@ -57,20 +42,21 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
       }),
     );
 
-    const foreignKey = new TableForeignKey({
-      columnNames: ['groupId'],
-      referencedColumnNames: ['id'],
-      referencedTableName: 'groups',
-      onDelete: 'CASCADE',
-    });
-
-    await queryRunner.createForeignKey('exhibits', foreignKey);
+    await queryRunner.createForeignKey(
+      'presentation_images',
+      new TableForeignKey({
+        columnNames: ['exhibitId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'exhibits',
+        onDelete: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(
       new Table({
-        name: 'exhibits',
+        name: 'presentation_images',
       }),
     );
   }
