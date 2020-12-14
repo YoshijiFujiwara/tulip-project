@@ -88,6 +88,29 @@
           :show-size="1000"
           @change="onPresentationImagePicked"
         ></v-file-input>
+        <p>
+          <span class="font-weight-bold">デモ動画<br /></span>
+          デモ動画をアップロードしましょう。
+        </p>
+        <v-card class="ml-8 mx-auto my-4" max-width="480">
+          <video v-if="uploadVideoUrl" controls width="480" height="270">
+            <source :src="uploadVideoUrl" />
+            このブラウザではビデオ表示がサポートされていません
+          </video>
+        </v-card>
+        <v-file-input
+          v-model="input_video"
+          color="deep-purple accent-4"
+          class="pb-5"
+          accept="video/*"
+          :show-size="100"
+          outlined
+          required
+          dense
+          label="デモ動画をアップロード"
+          prepend-icon="mdi-video"
+          @change="onVideoPicked"
+        ></v-file-input>
         <v-btn
           block
           large
@@ -122,6 +145,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
+  uploadVideoUrl: ArrayBuffer | string
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -260,6 +284,22 @@ export default class CreateExhibitDialog extends Vue {
       })
     } else {
       this.uploadPresentationImageUrl = ''
+    }
+  }
+
+  // presentationImageのプレビュー
+  onVideoPicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        this.uploadVideoUrl = fr.result
+      })
+    } else {
+      this.uploadVideoUrl = ''
     }
   }
 
