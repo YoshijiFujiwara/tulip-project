@@ -129,7 +129,11 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-import { uploadImageCloudinary } from '../../../utils/functions'
+import { v2 as cloudinary } from 'cloudinary'
+import {
+  uploadImageCloudinary,
+  uploadMovieCloudinary,
+} from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../../plugins/axios/modules/profile'
 import { Exhibit } from '../../../types/exhibit'
@@ -145,7 +149,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  uploadVideoUrl: ArrayBuffer | string
+  uploadVideoUrl: ArrayBuffer | string | null = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -154,6 +158,7 @@ export default class CreateExhibitDialog extends Vue {
     genre: '',
     thumbnailImage: (null as unknown) as File | null,
     presentationImage: (null as unknown) as File | null,
+    videoUrl: (null as unknown) as File | null,
   }
 
   rules = {
@@ -194,6 +199,7 @@ export default class CreateExhibitDialog extends Vue {
       // api側には、cloudinaryから返却されたimageのurlを渡す形となる
       let thumbnailImageUrl: string | null = null
       let presentationImageUrl: string | null = null
+      let videoUrl: string | null = null
 
       if (this.form.thumbnailImage) {
         thumbnailImageUrl = await uploadImageCloudinary(
@@ -207,7 +213,18 @@ export default class CreateExhibitDialog extends Vue {
           this.form.presentationImage
         )
       }
-
+      if (this.form.videoUrl) {
+        videoUrl = await uploadMovieCloudinary(this.$axios, this.form.videoUrl)
+      }
+      cloudinary.uploader.upload(
+        this.uploadVideoUrl as string,
+        { resource_type: 'video' },
+        function (error, result) {
+          console.log(result, error)
+        }
+      )
+      console.log(videoUrl)
+      console.log(presentationImageUrl)
       ExhibitApi.updateExhibit(this.exhibitId!, {
         ...this.form,
         thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
@@ -231,6 +248,19 @@ export default class CreateExhibitDialog extends Vue {
         this.$axios,
         this.form.presentationImage!
       )
+      const videoUrl = await uploadMovieCloudinary(
+        this.$axios,
+        this.form.videoUrl!
+      )
+      cloudinary.uploader.upload(
+        this.uploadVideoUrl as string,
+        { resource_type: 'video' },
+        function (error, result) {
+          console.log(result, error)
+        }
+      )
+      console.log(videoUrl)
+      console.log(presentationImageUrl)
       ExhibitApi.createExhibit({
         ...this.form,
         thumbnail: thumbnailImageUrl,
