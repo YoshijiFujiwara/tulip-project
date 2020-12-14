@@ -70,7 +70,7 @@ export default class Admin extends Vue {
     },
     {
       icon: 'mdi-contacts',
-      url: '/admin',
+      url: '/admin/',
       title: '出席確認',
     },
     {
@@ -86,7 +86,7 @@ export default class Admin extends Vue {
   ]
 
   mainTitle: String = ''
-  created() {
+  mounted() {
     this.items.forEach((item) => {
       if (item.url === this.$route.path) {
         this.mainTitle = item.title
