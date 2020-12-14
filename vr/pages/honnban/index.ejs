@@ -1,5 +1,5 @@
 <!-- prettier-ignore -->
-<% 
+<%
   let exhibit = null;
   let position = null;
   let boothId = null;
@@ -51,8 +51,139 @@
         rotation: "0.23548565379876835 -44.88494071275356 -0.059014652898474795"
       }
     },
-  }
-%>
+    "at3": {
+      level: {
+        scale: "1.19463 0.96799 2.566",
+        position: "10.81125 7.11403 -2.12075",
+        rotation: "0 -76.85713159664375 0"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "10.69738 6.255 -3.120",
+        rotation: "0 -79.088 0"
+      },
+      title: {
+        scale: "2.23566 3 2",
+        position: "11.0101 6.29455 -1.37882",
+        rotation: "0 -95.21355343704508 0",
+      },
+      thumbnail: {
+        scale:"2.14844 2.38422 2.9693",
+        position: "10.74885 2.94272 -0.81654",
+        rotation: "0.4875870836563306 -91.02351308125336 -0.37070369344964266"
+      }
+    },
+    "at4": {
+      level: {
+        scale: "1.14722 0.96799 1.79325",
+        position: "9.08983 7.22566 5.31743",
+        rotation: "0 -129.85228989947413 0"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "9.355 6.216 4.889",
+        rotation: "00 -127.127 0"
+      },
+      title: {
+        scale: "2.23566 3 2",
+        position: "8.42819 6.2872 6.29803",
+        rotation: "0 -137.90578466783296 0",
+      },
+      thumbnail: {
+        scale:    "2.23431 2.44308 2.56557",
+        position: "7.51628 3.00217 6.88038",
+        rotation: "1.8947714284976325 -134.12483617776468 0.2469448097013848"
+      }
+    },
+    "at5": {
+      level: {
+        scale: "1.19463 0.96799 2.566",
+        position: "1.01038 7.11583 10.29855",
+        rotation: "0 -172.87683665143788 0"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "2.08364 6.1511 10.16317",
+        rotation: "0 -173.32947330959126 0"
+      },
+      title: {
+        scale: "2.02278 3 2",
+        position: "0.47687 6.22673 10.23145",
+        rotation: "0 177.58826860079864 0",
+      },
+      thumbnail: {
+        scale:    "2.13534 2.3982 2.56557",
+        position: "-0.20724 3.00078 10.11234",
+        rotation: "1.1745634800181877 -179.6807104686164 -0.14381240657783664"
+      }
+    },
+    "at6": {
+      level: {
+        scale: "1.11276 0.8599 2.566",
+        position: "-6.30231 7.16658 8.51848",
+        rotation: "-0.008594366926962348 147.181971371001 0.5884276555993554"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "-5.860 6.141 8.918",
+        rotation: "0 142.578 0"
+      },
+      title: {
+        scale: "2.64176 3 2",
+        position: "-7.070 6.210 7.973",
+        rotation: "0.496 141.423 -0.582",
+      },
+      thumbnail: {
+        scale:    "2.13534 2.42107 2.56557",
+        position: "-7.91489 3.03998 6.92751",
+        rotation: "1.1745634800181877 134.83644975931716 0.1627200138171538"
+      }
+    },
+    "at7": {
+      level: {
+        scale: "1.19463 0.96799 2.566",
+        position: "-11.2028 7.24307 0.41617",
+        rotation: "0 89.17973489652238 0"
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "-10.87963 6.23138 1.42946",
+        rotation: "0 103.45096765764092 0"
+      },
+      title: {
+        scale: "3 3 2",
+        position: "-11.318 6.313 -0.058",
+        rotation: "1.395 88.649 0.245",
+      },
+      thumbnail: {
+        scale:    "2.16455 2.40059 2.08721",
+        position: "-11.09604 3.08112 -0.80141",
+        rotation: "2.3846503433344863 90.01797215079877 0.054430990537428205"
+      }
+    },
+    "at8": {
+      level: {
+        scale: "1.195 0.968 2.566",
+        position: "-9.477 7.156 -6.934",
+        rotation: "2.996 47.259 "
+      },
+      idText: {
+        scale: "3 3 2",
+        position: "-9.874 6.086 -6.520",
+        rotation: "0 50.790 0"
+      },
+      title: {
+        scale: "3 3 2",
+        position: "-9.023 6.098 -7.573",
+        rotation: "1.3945792733484237 43.29269100008501 0.24465297852086154",
+      },
+      thumbnail: {
+        scale:    "2.22675 2.51884 3.44246",
+        position: "-7.83392 2.89535 -8.487",
+        rotation: "5.350852848726758 45.597127252101174 -0.03265859432245692"
+      }
+    }
+} %>
 <html>
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
@@ -115,10 +246,12 @@
 
       <!--  ポジションが１にある作品  -->
       <!-- prettier-ignore -->
+      <%# 1~8までループ %>
+      <% for (var i = 1; i < 9; i++) { %>
       <% 
-        exhibit = exhibits.find(e => e.booth.positionNumber === 1);
-        position = positions["at1"];
-        boothId = 1;
+        exhibit = exhibits.find(e => e.booth.positionNumber === i);
+        position = positions["at"+i];
+        boothId = i;
       %>
       <!-- prettier-ignore -->
       <%-
@@ -128,198 +261,7 @@
           boothId
         })
       %>
-
-      <!--  ポジションが2にある作品  -->
-      <!-- prettier-ignore -->
-      <% 
-        exhibit = exhibits.find(e => e.booth.positionNumber === 2);
-        position = positions["at2"];
-        boothId = 2;
-      %>
-      <!-- prettier-ignore -->
-      <%-
-        include('./ejs-components/ejs-assets/exhibit-panel.asset.ejs', {
-          exhibit,
-          position,
-          boothId
-        })
-      %>
-
-      <!-- ID3 -->
-      <a-image
-        id="thumbnail3"
-        src="#comming_soon1"
-        scale="2.14844 2.38422 2.9693"
-        position="10.74885 2.94272 -0.81654"
-        rotation="0.4875870836563306 -91.02351308125336 -0.37070369344964266"
-      ></a-image>
-
-      <a-gltf-model
-        id="overview3"
-        src="#overview2"
-        scale="0.70518 2.55193 3.34641"
-        position="10.51132 0.08592 -5.21337"
-        rotation="-0.22574537128154434 -160.4321933411964 0.5551961034817677"
-        gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-      ></a-gltf-model>
-
-      <!-- ID4 -->
-      <a-image
-        id="thumbnail4"
-        src="#comming_soon2"
-        scale="2.23431 2.44308 2.56557"
-        position="7.51628 3.00217 6.88038"
-        material=""
-        geometry=""
-        rotation="1.8947714284976325 -134.12483617776468 0.2469448097013848"
-      ></a-image>
-      <a-gltf-model
-        id="overview4"
-        src="#overview"
-        scale="0.70518 2.55193 5.19335"
-        position="9.96813 0.27205 3.44879"
-        rotation="-0.009740282517223996 -15.118637340117033 0.5987408959117102"
-        gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
-      ></a-gltf-model>
-
-      <!-- ID5 -->
-      <a-image
-        id="thumbnail5"
-        src="#comming_soon3"
-        scale="2.13534 2.3982 2.56557"
-        position="-0.20724 3.00078 10.11234"
-        material=""
-        geometry=""
-        rotation="1.1745634800181877 -179.6807104686164 -0.14381240657783664"
-      ></a-image>
-      <a-gltf-model
-        id="overview5"
-        src="#overview"
-        scale="0.70518 2.55193 4.7214"
-        position="3.9197 0.2454 9.52494"
-        rotation="-0.5912924445750095 -53.26616733992724 0.09740282517223994"
-        gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
-      ></a-gltf-model>
-
-      <!-- ID6 -->
-      <a-image
-        id="thumbnail6"
-        src="#comming_soon4"
-        scale="2.13534 2.42107 2.56557"
-        position="-7.91489 3.03998 6.92751"
-        material=""
-        geometry=""
-        rotation="1.1745634800181877 134.83644975931716 0.1627200138171538"
-      ></a-image>
-      <a-gltf-model
-        id="overview6"
-        src="#overview"
-        scale="0.70518 2.55193 4.74613"
-        position="-4.63473 0.2873 10.01898"
-        rotation="-0.22574537128154434 -111.77146075853075 0.5551961034817677"
-        gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
-      ></a-gltf-model>
-
-      <!-- ID7 -->
-      <a-image
-        id="lv1"
-        src="#lv1"
-        scale="1.19463 0.96799 2.566"
-        position="-11.2028 7.24307 0.41617"
-        rotation="0 89.17973489652238 0"
-        material=""
-        geometry=""
-      ></a-image>
-
-      <a-text
-        id="ID07"
-        value="ID07"
-        negate="true"
-        scale="3 3 2"
-        position="-10.87963 6.23138 1.42946"
-        rotation="0 103.45096765764092 0"
-        text="color: #ffffff"
-      ></a-text>
-
-      <a-text
-        id="title7"
-        value="Pitagora"
-        negate="true"
-        scale="3 3 2"
-        position="-11.10769 6.18194 -0.05812"
-        rotation="1.3945792733484237 88.64917597823123 0.24465297852086154"
-        text="color: #ffffff"
-      ></a-text>
-      <a-image
-        id="thumbnail7"
-        src="#thumbnail3"
-        link="href: /honnban/booths/7"
-        scale="2.16455 2.40059 2.08721"
-        position="-11.09604 3.08112 -0.80141"
-        material=""
-        geometry=""
-        rotation="2.3846503433344863 90.01797215079877 0.054430990537428205"
-      ></a-image>
-      <a-gltf-model
-        id="overview7"
-        src="#overview2"
-        scale="0.70518 2.55193 3.34641"
-        position="-10.30497 0.34403 3.34358"
-        rotation="-0.18964903018830248 27.64578657285735 -0.5683741327697767"
-        gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-      ></a-gltf-model>
-
-      <!--  ID8  -->
-      <a-image
-        id="lv3"
-        src="#lv3"
-        scale="1.19463 0.96799 2.566"
-        position="-9.20779 7.13238 -6.55649"
-        material=""
-        geometry=""
-        rotation="2.9856830704267194 42.20808189390237 -0.24751776749651563"
-      ></a-image>
-
-      <a-gltf-model
-        id="overview8"
-        src="#overview"
-        scale="0.70518 2.552 5.14826"
-        position="-9.7255 0.27156 -4.72335"
-        rotation="-0.05271211715203574 164.1220415418389 -0.039534087864026804"
-        gltf-model="/honnban/assets/model/roll-up_display/scene.gltf"
-      ></a-gltf-model>
-
-      <a-text
-        id="ID08"
-        value="ID08"
-        negate="true"
-        scale="3 3 2"
-        position="-9.75109 5.9955 -6.37365"
-        rotation="0 50.789843749371826 0"
-        text="color: #ffffff"
-      ></a-text>
-
-      <a-text
-        id="title8"
-        value="Apex"
-        negate="true"
-        scale="3 3 2"
-        position="-8.56392 5.97415 -7.59759"
-        rotation="1.3945792733484237 43.29269100008501 0.24465297852086154"
-        text="color: #ffffff"
-      ></a-text>
-
-      <!--  thumbnail8 -->
-      <a-image
-        id="thumbnail8"
-        src="#thumbnail2"
-        link="href: /honnban/booths/8"
-        scale="2.22675 2.51884 3.44246"
-        position="-7.83392 2.89535 -8.487"
-        material=""
-        geometry=""
-        rotation="5.350852848726758 45.597127252101174 -0.03265859432245692"
-      ></a-image>
+      <% } %>
 
       <!-- Avater -->
       <a-gltf-model
