@@ -1,10 +1,16 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Put, UseGuards } from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from '../auth/get-user-decorator';
 import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { ExhibitSerializer } from '../entities/serializer/exhibit.serializer';
 import { ProfileService } from './profile.service';
+import { ExhibitorSerializer } from '../entities/serializer/exhibitor.serializer';
 
 /**
  * 自分の登録してる作品情報やブース情報を扱うcontroller
@@ -30,5 +36,17 @@ export class ProfileController {
     } else {
       return null;
     }
+  }
+
+  @Put('attend')
+  @ApiOkResponse({
+    description: '出席完了',
+    type: ExhibitorSerializer,
+  })
+  async attend(
+    @GetUser() exhibitor: ExhibitorEntity,
+  ): Promise<ExhibitorSerializer> {
+    const updatedExhibitor = await this.profileService.attend(exhibitor);
+    return updatedExhibitor.transformToSerializer();
   }
 }

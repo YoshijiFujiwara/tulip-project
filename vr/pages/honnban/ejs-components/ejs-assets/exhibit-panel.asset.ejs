@@ -1,0 +1,77 @@
+<!-- この番号のブースの作品があった場合 -->
+<% if (exhibit) { %>
+<a-assets timeout="200000">
+  <img
+    id="asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
+    src="<%=exhibit.thumbnail%>"
+    crossorigin="anonymous"
+  />
+  <a-asset-item
+    id="overview"
+    src="<%=exhibit.presentationImage%>"
+  ></a-asset-item>
+  <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
+</a-assets>
+
+<!-- TODO: 混雑度合いによって画像を変更したいが、今は固定-->
+<a-image
+  id="lv1"
+  src="#lv1"
+  scale="<%=position.level.scale%>"
+  position="<%=position.level.position%>"
+  rotation="<%=position.level.rotation%>"
+></a-image>
+
+<a-text
+  id="ID<%=exhibit.booth.positionNumber%>"
+  value="ID<%=exhibit.booth.positionNumber%>"
+  negate="true"
+  scale="<%=position.idText.scale%>"
+  position="<%=position.idText.position%>"
+  rotation="<%=position.idText.rotation%>"
+  text="color: #ffffff"
+></a-text>
+
+<a-text
+  id="exhibit-panel-text-<%=exhibit.booth.positionNumber%>"
+  value="<%=exhibit.title%>"
+  negate="false"
+  scale="<%=position.title.scale%>"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  position="<%=position.title.position%>"
+  rotation="<%=position.title.rotation%>"
+></a-text>
+
+<!-- サムネイル -->
+<a-image
+  id="exhibit-panel-thumbnail-<%=exhibit.id%>"
+  src="#asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
+  link="href: /honnban/booths/<%= exhibit.id %>"
+  scale="<%=position.thumbnail.scale%>"
+  position="<%=position.thumbnail.position%>"
+  rotation="<%=position.thumbnail.rotation%>"
+></a-image>
+
+<!-- オーバービューの部分、表示項目が悩み中なので、コメントアウト中 -->
+<!-- 
+    <a-gltf-model
+      id="overview1"
+      src="#overview2"
+      scale="0.70518 2.552 3.336"
+      position="-4.389 0.271 -11.168"
+      rotation="0 -53.051 0"
+      gltf-model="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+    ></a-gltf-model> -->
+
+<!-- この番号のブースの作品がなかった場合 -->
+<% } else { %>
+<a-image
+  id="exhibit-panel-thumbnail-<%=boothId%>"
+  src="#comming_soon1"
+  scale="<%=position.thumbnail.scale%>"
+  position="<%=position.thumbnail.position%>"
+  rotation="<%=position.thumbnail.rotation%>"
+  rotation="0.4875870836563306 -91.02351308125336 -0.37070369344964266"
+></a-image>
+--> <% } %>

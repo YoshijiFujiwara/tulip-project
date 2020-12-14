@@ -37,7 +37,12 @@ export class createExhibitorsTable1604548191769 implements MigrationInterface {
           {
             name: 'lastLoggedinAt',
             type: 'timestamp',
-            default: 'now()',
+            isNullable: true,
+          },
+          {
+            name: 'attendedAt',
+            type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'groupId',
