@@ -1,4 +1,5 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import cloudinary from 'cloudinary'
 
 export async function uploadImageCloudinary(
   axiosInstance: NuxtAxiosInstance,
@@ -21,7 +22,8 @@ export async function uploadImageCloudinary(
   axiosInstance.setBaseURL(process.env.axiosBaseUrl!)
   return res.url
 }
-export async function uploadMovieCloudinary(
+
+export async function uploadVideoCloudinary(
   axiosInstance: NuxtAxiosInstance,
   video: File
 ): Promise<string> {
@@ -37,6 +39,7 @@ export async function uploadMovieCloudinary(
     `https://api.cloudinary.com/v1_1/${process.env.cloudinaryCloudName!}/`
   )
   const res = await axiosInstance.$post('/video/upload', data)
+
   // baseURLを設定し直す（重要）
   axiosInstance.setBaseURL(process.env.axiosBaseUrl!)
   return res.url

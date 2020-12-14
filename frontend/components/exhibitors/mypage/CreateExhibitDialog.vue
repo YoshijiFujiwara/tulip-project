@@ -99,7 +99,7 @@
           </video>
         </v-card>
         <v-file-input
-          v-model="input_video"
+          v-model="form.demoVideo"
           color="deep-purple accent-4"
           class="pb-5"
           accept="video/*"
@@ -129,10 +129,10 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-import { v2 as cloudinary } from 'cloudinary'
+import cloudinary from 'cloudinary'
 import {
   uploadImageCloudinary,
-  uploadMovieCloudinary,
+  uploadVideoCloudinary,
 } from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../../plugins/axios/modules/profile'
@@ -149,7 +149,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  uploadVideoUrl: ArrayBuffer | string | null = ''
+  uploadVideoUrl = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -158,7 +158,7 @@ export default class CreateExhibitDialog extends Vue {
     genre: '',
     thumbnailImage: (null as unknown) as File | null,
     presentationImage: (null as unknown) as File | null,
-    videoUrl: (null as unknown) as File | null,
+    demoVideo: (null as unknown) as File | null,
   }
 
   rules = {
@@ -183,6 +183,8 @@ export default class CreateExhibitDialog extends Vue {
         this.form.genre = exhibit.genre
         this.uploadThumbnailImageUrl = exhibit.thumbnail
         this.uploadPresentationImageUrl = exhibit.presentationImage
+        // TODO: デモ動画のURLがget出来たら、追加する
+
         this.exhibitId = exhibit.id
       })
       .catch(() => {
@@ -213,18 +215,12 @@ export default class CreateExhibitDialog extends Vue {
           this.form.presentationImage
         )
       }
-      if (this.form.videoUrl) {
-        videoUrl = await uploadMovieCloudinary(this.$axios, this.form.videoUrl)
+      if (this.form.demoVideo) {
+        videoUrl = await uploadVideoCloudinary(this.$axios, this.form.demoVideo)
       }
-      cloudinary.uploader.upload(
-        this.uploadVideoUrl as string,
-        { resource_type: 'video' },
-        function (error, result) {
-          console.log(result, error)
-        }
-      )
-      console.log(videoUrl)
-      console.log(presentationImageUrl)
+      // FIXME: API側で、動画アップロードが出来るようになったら、apiリクエストに含めること
+      console.log('videourl', videoUrl)
+
       ExhibitApi.updateExhibit(this.exhibitId!, {
         ...this.form,
         thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
@@ -238,6 +234,8 @@ export default class CreateExhibitDialog extends Vue {
           this.$toast.error('作品更新の際にエラーが発生しました')
         })
     } else {
+      let videoUrl: string | null = null
+
       // cloudinaryにサムネイルとプレゼン画像のアップロードをする
       // api側には、cloudinaryから返却されたimageのurlを渡す形となる
       const thumbnailImageUrl = await uploadImageCloudinary(
@@ -248,19 +246,14 @@ export default class CreateExhibitDialog extends Vue {
         this.$axios,
         this.form.presentationImage!
       )
-      const videoUrl = await uploadMovieCloudinary(
-        this.$axios,
-        this.form.videoUrl!
-      )
-      cloudinary.uploader.upload(
-        this.uploadVideoUrl as string,
-        { resource_type: 'video' },
-        function (error, result) {
-          console.log(result, error)
-        }
-      )
-      console.log(videoUrl)
-      console.log(presentationImageUrl)
+      // デモ動画に関しては、必須ではないため
+      if (this.form.demoVideo) {
+        videoUrl = await uploadVideoCloudinary(this.$axios, this.form.demoVideo)
+      }
+
+      // FIXME: API側で、動画アップロードが出来るようになったら、apiリクエストに含めること
+      console.log('videourl', videoUrl)
+
       ExhibitApi.createExhibit({
         ...this.form,
         thumbnail: thumbnailImageUrl,
@@ -317,7 +310,7 @@ export default class CreateExhibitDialog extends Vue {
     }
   }
 
-  // presentationImageのプレビュー
+  // デモ動画のプレビュー
   onVideoPicked(file: File) {
     if (file !== undefined && file !== null) {
       if (file.name.lastIndexOf('.') <= 0) {
