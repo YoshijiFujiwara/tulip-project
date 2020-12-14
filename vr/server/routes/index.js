@@ -26,8 +26,18 @@ router.get('/honnban', async function (req, res) {
 });
 
 // ブース画面(クエリパラメータで、作品のIDを指定する)
-router.get('/honnban/booths/:exhibitId', function (req, res) {
-  res.render(__dirname + './../../pages/honnban/booth.ejs');
+router.get('/honnban/booths/:exhibitId', async function (req, res) {
+  // 作品のidのブース情報の取得
+  const exhibitId = req.params.exhibitId;
+  const result = await axiosInstance.get(`exhibits/${exhibitId}`);
+  const exhibit = result.data;
+
+  const renderData = {
+    exhibit,
+  };
+
+  res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);
+
 });
 
 // サンプル画面

@@ -63,12 +63,11 @@
       <!-- camera -->
       <a-entity position="0 0 6">
         <a-entity
-          camera=""
+          camera
           position="0.00991 1.6 -5.90104"
           look-controls="pointerLockEnabled: true"
           wasd-controls="acceleration: 300"
           rotation="1.7188733853924711 -0.34377467707849396 0"
-          data-aframe-inspector-original-camera=""
         >
           <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
         </a-entity>
@@ -134,26 +133,23 @@
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="-0.22305 1.23617 -4.61989"
-        material=""
       ></a-image>
       <a-image
         id="thumbnail"
-        src="#sky"
+        src="<%=exhibit.thumbnail%>"
         scale="0.2 0.25 1"
         position="-0.23734 1.33798 -4.51752"
-        material=""
-        geometry=""
       ></a-image>
       <a-entity
         id="title"
-        text="value: TitleTitle; align: center; color: #153093; lineHeight: 3; letterSpacing: 5; negate: false"
+        text="value: <%=exhibit.title%>; align: center; color: #153093; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
         color="#000000"
         scale="3 3 1"
         position="-0.21761 1.61438 -4.45262"
       ></a-entity>
       <a-entity
         id="description"
-        text="value: Description; align: center; color: #424242; lineHeight: 0.4"
+        text="value: <%=exhibit.description%>; align: center; color: #424242; lineHeight: 0.4; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
         color="#000000"
         scale="2 2 1"
         position="-0.23672 1.09887 -4.45262"
@@ -161,8 +157,7 @@
       <!-- ギャラリー_作品紹介 -->
       <a-image
         id="slide1"
-        src="#slide1"
-        material=""
+        src="<%=exhibit.presentationImage%>"
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="3.08606 1.23617 -3.09248"
@@ -170,8 +165,7 @@
       ></a-image>
       <a-image
         id="slide2"
-        src="#slide2"
-        material=""
+        src="<%=exhibit.presentationImage%>"
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="4.38366 1.23617 0.24475"
@@ -179,17 +173,15 @@
       ></a-image>
       <a-image
         id="slide3"
-        src="#slide3"
-        material=""
+        src="<%=exhibit.presentationImage%>"
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="2.87774 1.24431 3.38673"
         rotation="0 44.73 0"
       ></a-image>
       <a-image
-        id="gallery5"
-        src="#gallery5"
-        material=""
+        id="slide4"
+        src="<%=exhibit.presentationImage%>"
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="-0.34878 1.23617 4.69281"
@@ -197,7 +189,7 @@
       <!-- デモ動画のTOPのタイトル -->
       <a-entity
         id="title"
-        text="value: TitleTitle; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false"
+        text="value:<%=exhibit.title%>; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
         color="#000000"
         scale="10 10 1"
         position="-2.77313 3.50902 0.01258"
@@ -211,7 +203,6 @@
         position="-3.02088 1.81518 0.01"
         width="5"
         height="3"
-        material=""
         scale="1 1 0.3"
         rotation="0 90 0"
       ></a-video>
