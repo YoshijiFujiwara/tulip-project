@@ -8,7 +8,7 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
-          :to="item.to"
+          :to="item.url"
           router
           link
           exact
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class Admin extends Vue {
@@ -60,7 +60,7 @@ export default class Admin extends Vue {
     },
     {
       icon: 'mdi-shield-account-variant',
-      url: '/admin',
+      url: '/admin/exhibits',
       title: '管理者',
     },
     {
@@ -86,7 +86,20 @@ export default class Admin extends Vue {
   ]
 
   mainTitle: String = ''
-  created() {
+
+  // type errorを黙らせるため
+  $route: any
+
+  @Watch('$route')
+  onRouteChanged() {
+    this.items.forEach((item) => {
+      if (item.url === this.$route.path) {
+        this.mainTitle = item.title
+      }
+    })
+  }
+
+  mounted() {
     this.items.forEach((item) => {
       if (item.url === this.$route.path) {
         this.mainTitle = item.title
