@@ -88,7 +88,7 @@ export default class Admin extends Vue {
   mainTitle: String = ''
   created() {
     this.items.forEach((item) => {
-      if (item.url == this.$route.path) {
+      if (item.url === this.$route.path) {
         this.mainTitle = item.title
       }
     })
