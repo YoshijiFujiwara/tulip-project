@@ -68,7 +68,7 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-contacts',
       title: '出展者一覧',
-      to: './group',
+      to: './groups',
     },
     {
       icon: 'mdi-contacts',
