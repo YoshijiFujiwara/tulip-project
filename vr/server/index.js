@@ -4,6 +4,9 @@ const path = require('path');
 const express = require('express'); // web framework external module
 const fs = require('fs');
 
+// 環境変数の読み込み
+require('dotenv').config();
+
 // https化に必要な設定
 const privateKey = fs.readFileSync(__dirname + '/localhost-key.pem', 'utf-8');
 const certificate = fs.readFileSync(__dirname + '/localhost.pem', 'utf-8');

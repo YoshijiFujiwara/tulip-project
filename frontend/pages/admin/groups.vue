@@ -37,77 +37,35 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import GroupApi from '../../plugins/axios/modules/group'
+import { Group } from '../../types/group'
 
 @Component({
   auth: false,
   layout: 'admin',
 })
-export default class Signin extends Vue {
+export default class Groups extends Vue {
+  groups: Group[] = []
+
+  // groups: Object = {}
   search = ''
   headers = [
     {
       text: 'ID',
       align: 'start',
       sortable: true,
-      value: 'groupid',
+      value: 'id',
     },
-    { text: 'グループ名', value: 'groupName', sortable: true },
-    { text: 'リーダー名', value: 'leaderName', sortable: false },
+    { text: 'グループ名', value: 'name', sortable: true },
+    { text: 'リーダー名', value: 'name', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
 
-  groups = [
-    {
-      groupid: '1',
-      leaderName: '高田　じゅんじ',
-      groupName: 'チューリップ組',
-    },
-    {
-      groupid: '1',
-      leaderName: '博多　野塩',
-      groupName: 'チューリップ組',
-    },
-    {
-      groupid: '1',
-      leaderName: '鬼滅　丹次郎',
-      groupName: 'チューリップ組',
-    },
-    {
-      groupid: '2',
-      leaderName: 'ガンダム　ディス',
-      groupName: 'ひまわり組',
-    },
-    {
-      groupid: '2',
-      leaderName: '松本　樹',
-      groupName: 'ひまわり組',
-    },
-    {
-      groupid: '2',
-      leaderName: '東　幸太郎',
-      groupName: 'ひまわり組',
-    },
-    {
-      groupid: '3',
-      leaderName: '竈門　清',
-      groupName: 'hogehoge組',
-    },
-    {
-      groupid: '3',
-      leaderName: '不死川　実美',
-      groupName: 'hogehoge組',
-    },
-    {
-      groupid: '3',
-      leaderName: '不知火　洋子',
-      groupName: 'hogehoge組',
-    },
-    {
-      groupid: '3',
-      leaderName: '煉獄　恭樹郎',
-      groupName: 'hogehoge組',
-    },
-  ]
+  async created() {
+    // this.user = await this.$auth.user
+    const groups = await GroupApi.getGroups()
+    this.groups = groups
+  }
 }
 </script>
 

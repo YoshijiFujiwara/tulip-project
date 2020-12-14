@@ -6,12 +6,28 @@
       v-show="!deleteDialog"
       :headers="headers"
       :items="exhibitors"
-      :items-per-page="5"
       class="elevation-1"
+      sort-by="ID"
       :search="search"
       rows-per-page-text=""
       :rows-per-page-items="[]"
     >
+      <!-- eslint-disable-next-line -->
+      <template v-slot:item.status="{ item }">
+        <v-badge
+          v-if="item.id % 2 == 0"
+          bordered
+          left
+          inline
+          color="green"
+          icon="mdi-check-bold"
+        >
+          出席済み
+        </v-badge>
+        <v-badge v-else bordered left inline color="red" icon="mdi-close-thick">
+          欠席
+        </v-badge>
+      </template>
       <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2"> mdi-pencil </v-icon>
@@ -24,24 +40,26 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import ExhibitorApi from '../../plugins/axios/modules/exhibitors'
+import { Exhibitor } from '../../types/exhibitor'
 
 @Component({
   auth: false,
   layout: 'admin',
 })
 export default class Signin extends Vue {
-  exhibitors = []
+  exhibitors: Exhibitor[] = []
 
   headers = [
     { text: 'ID', value: 'id' },
     { text: '展示者名', value: 'name' },
     { text: '所属グループ名', value: 'group.name' },
+    { text: '出席ステータス', value: 'status', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
 
   async created() {
-    const response = await ExhibitorApi.getExhibitors()
-    this.exhibitors = response
+    const exhibitors = await ExhibitorApi.getExhibitors()
+    this.exhibitors = exhibitors
   }
 }
 </script>

@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import * as bcrypt from 'bcrypt';
+import { AdministratorSerializer } from './serializer/administrator.serializer';
 
 @Entity({
   name: 'administrators',
@@ -47,4 +48,11 @@ export class AdministratorEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): AdministratorSerializer => {
+    const administrator = new AdministratorSerializer();
+    administrator.id = this.id;
+    administrator.name = this.name;
+    return administrator;
+  };
 }
