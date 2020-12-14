@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Watch } from 'nuxt-property-decorator'
 
 @Component
 export default class Admin extends Vue {
@@ -86,6 +86,19 @@ export default class Admin extends Vue {
   ]
 
   mainTitle: String = ''
+
+  // type errorを黙らせるため
+  $route: any
+
+  @Watch('$route')
+  onRouteChanged() {
+    this.items.forEach((item) => {
+      if (item.url === this.$route.path) {
+        this.mainTitle = item.title
+      }
+    })
+  }
+
   mounted() {
     this.items.forEach((item) => {
       if (item.url === this.$route.path) {
