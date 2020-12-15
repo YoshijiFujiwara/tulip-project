@@ -16,6 +16,7 @@ define(ExhibitorEntity, (_: typeof Faker, context: Context) => {
   exhibitor.password = 'B19990101';
   exhibitor.name = `${randomJapaneseFullName()}`;
   exhibitor.groupId = groupId;
+  exhibitor.attendedAt = new Date();
 
   return exhibitor;
 });

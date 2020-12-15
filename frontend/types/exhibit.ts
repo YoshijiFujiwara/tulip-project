@@ -20,6 +20,8 @@ export type Exhibit = {
 
   presentationImage: string
 
+  demo?: string
+
   groupId: number
 
   group: Group
