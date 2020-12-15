@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GENRE } from '../../entities/exhibit.entity';
 import {
   IsString,
@@ -6,6 +6,7 @@ import {
   IsNotEmpty,
   IsUrl,
   IsEnum,
+  IsOptional,
 } from 'class-validator';
 export class CreateExhibitDto {
   @ApiProperty({
@@ -54,4 +55,13 @@ export class CreateExhibitDto {
   @IsNotEmpty({ message: 'プレゼン用画像の登録は必須です。' })
   @IsUrl()
   presentationImage!: string;
+
+  @ApiPropertyOptional({
+    example:
+      'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+    type: 'string',
+  })
+  @IsOptional()
+  @IsUrl()
+  demo?: string;
 }

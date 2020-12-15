@@ -108,6 +108,9 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.thumbnail = this.thumbnail;
     exhibitSerializer.genre = this.genre;
     exhibitSerializer.presentationImage = this.presentationImage;
+    if (this.demo) {
+      exhibitSerializer.demo = this.demo;
+    }
     exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
