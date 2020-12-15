@@ -182,6 +182,7 @@ export default class CreateExhibitDialog extends Vue {
         this.form.genre = exhibit.genre
         this.uploadThumbnailImageUrl = exhibit.thumbnail
         this.uploadPresentationImageUrl = exhibit.presentationImage
+        this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
         // TODO: デモ動画のURLがget出来たら、追加する
 
         this.exhibitId = exhibit.id
@@ -196,84 +197,94 @@ export default class CreateExhibitDialog extends Vue {
     this.isLoading = true
 
     if (this.isUpdateMode) {
-      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-      let thumbnailImageUrl: string | null = null
-      let presentationImageUrl: string | null = null
-      let demoVideoUrl: string | null = null
-
-      if (this.form.thumbnailImage) {
-        thumbnailImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.thumbnailImage
-        )
-      }
-      if (this.form.presentationImage) {
-        presentationImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.presentationImage
-        )
-      }
-      if (this.form.demoVideo) {
-        demoVideoUrl = await uploadVideoCloudinary(
-          this.$axios,
-          this.form.demoVideo
-        )
-      }
-
-      ExhibitApi.updateExhibit(this.exhibitId!, {
-        ...this.form,
-        thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
-        presentationImage:
-          presentationImageUrl || this.uploadPresentationImageUrl,
-        demo: demoVideoUrl || this.uploadDemoVideoUrl,
-      })
-        .then(() => {
-          this.$toast.success('作品を更新しました')
-        })
-        .catch(() => {
-          this.$toast.error('作品更新の際にエラーが発生しました')
-        })
+      await this.updateExhibit()
     } else {
-      let demoVideoUrl: string | null = null
-
-      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-      const thumbnailImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.thumbnailImage!
-      )
-      const presentationImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.presentationImage!
-      )
-      // デモ動画に関しては、必須ではないため
-      if (this.form.demoVideo) {
-        demoVideoUrl = await uploadVideoCloudinary(
-          this.$axios,
-          this.form.demoVideo
-        )
-      }
-
-      ExhibitApi.createExhibit({
-        ...this.form,
-        thumbnail: thumbnailImageUrl,
-        presentationImage: presentationImageUrl,
-        demo: demoVideoUrl || undefined,
-      })
-        .then((res) => {
-          this.exhibitId = res.id
-          this.form.thumbnailImage = null
-          this.form.presentationImage = null
-          this.$toast.success('作品を登録しました')
-        })
-        .catch(() => {
-          this.$toast.error('作品登録の際にエラーが発生しました')
-        })
+      await this.createExhibit()
     }
 
     this.dialog = false
     this.isLoading = false
+  }
+
+  // 作品の登録リクエスト
+  async createExhibit() {
+    let demoVideoUrl: string | null = null
+
+    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    const thumbnailImageUrl = await uploadImageCloudinary(
+      this.$axios,
+      this.form.thumbnailImage!
+    )
+    const presentationImageUrl = await uploadImageCloudinary(
+      this.$axios,
+      this.form.presentationImage!
+    )
+    // デモ動画に関しては、必須ではないため
+    if (this.form.demoVideo) {
+      demoVideoUrl = await uploadVideoCloudinary(
+        this.$axios,
+        this.form.demoVideo
+      )
+    }
+
+    ExhibitApi.createExhibit({
+      ...this.form,
+      thumbnail: thumbnailImageUrl,
+      presentationImage: presentationImageUrl,
+      demo: demoVideoUrl || undefined,
+    })
+      .then((res) => {
+        this.exhibitId = res.id
+        this.form.thumbnailImage = null
+        this.form.presentationImage = null
+        this.$toast.success('作品を登録しました')
+      })
+      .catch(() => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+      })
+  }
+
+  // 作品の更新リクエスト
+  async updateExhibit() {
+    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    let thumbnailImageUrl: string | null = null
+    let presentationImageUrl: string | null = null
+    let demoVideoUrl: string | null = null
+
+    if (this.form.thumbnailImage) {
+      thumbnailImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.thumbnailImage
+      )
+    }
+    if (this.form.presentationImage) {
+      presentationImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.presentationImage
+      )
+    }
+    if (this.form.demoVideo) {
+      demoVideoUrl = await uploadVideoCloudinary(
+        this.$axios,
+        this.form.demoVideo
+      )
+    }
+
+    ExhibitApi.updateExhibit(this.exhibitId!, {
+      ...this.form,
+      thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
+      presentationImage:
+        presentationImageUrl || this.uploadPresentationImageUrl,
+      demo: demoVideoUrl || this.uploadDemoVideoUrl,
+    })
+      .then(() => {
+        this.$toast.success('作品を更新しました')
+      })
+      .catch(() => {
+        this.$toast.error('作品更新の際にエラーが発生しました')
+      })
   }
 
   // thumbnailImageのプレビュー
