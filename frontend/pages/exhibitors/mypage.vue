@@ -74,68 +74,235 @@
         </v-col>
         <v-col cols="8">
           <div class="vr-booth">
-            <a-scene embedded class="vr-scene">
-              <!-- Asset Management System -->
-              <a-assets>
-                <img id="metal-NRM" src="/vr/img/metal.jpg" />
-                <img id="brick" src="/vr/img/brick.jpg" />
-                <img id="brick-NRM" src="/vr/img/brick.jpg" />
+            <a-scene
+              embedded
+              class="vr-scene"
+              inspector=""
+              keyboard-shortcuts=""
+              screenshot=""
+              vr-mode-ui=""
+              device-orientation-permission-ui=""
+              renderer="colorManagement: true"
+              visible=""
+              ><a-assets timeout="200000">
+                <!-- 空_ASSET -->
+                <img id="sky" src="/vr/img/vr_background.jpg" />
+                <!-- ブース_ASSET -->
+                <a-asset-item
+                  id="booth"
+                  src="/vr/model/booth/scene.gltf"
+                ></a-asset-item>
+                <!-- 出口_ASSET -->
+                <a-asset-item
+                  id="exit"
+                  src="/vr/model/exit_door/scene.gltf"
+                ></a-asset-item>
+                <!-- 出展者 -->
+                <a-asset-item
+                  id="npc1"
+                  src="/vr/model/npc1/scene.gltf"
+                ></a-asset-item>
+                <!-- 来場者 -->
+                <a-asset-item
+                  id="person"
+                  src="/vr/model/person_small/scene.gltf"
+                ></a-asset-item>
+                <!-- ギャラリー_ASSET -->
+                <img id="white" src="/vr/img/white.jfif" />
+                <img id="slide1" src="/vr/img/slide1.jpg" />
+                <img id="slide2" src="/vr/img/slide2.jpg" />
+                <img id="slide3" src="/vr/img/slide3.jpg" />
+                <img id="gallery2" src="/vr/img/dog.jpg" />
+                <img id="gallery3" src="/vr/img/dog2.jpg" />
+                <img id="gallery4" src="/vr/img/bloodhound.png" />
+                <img id="gallery5" src="/vr/img/aa.jpg" />
+                <!-- デモ動画_ASSET -->
+                <img id="play" src="/vr/img/play.png" />
+                <video
+                  id="demo"
+                  src="vr/movie/demo1.mp4"
+                  autoplay
+                  loop="true"
+                  webkit-playsinline
+                  playsinline
+                ></video>
+                <!-- 作品サンプル -->
+                <a-asset-item
+                  id="sakuhin"
+                  src="/vr/model/sakuhin_example/scene.gltf"
+                ></a-asset-item>
               </a-assets>
 
-              <!-- Light-Blue Box > Metal Room -->
-              <!-- To achieve reflection, with v1.0.4 you need to use side="back" (line 34 and 46) -->
-              <a-box
-                color="#FFFFFF"
-                src="/vr/img/metal.jpg"
-                repeat="1 1"
-                normal-map="#metal-NRM"
-                normal-texture-repeat="1 1"
-                normal-scale="1 -1"
-                roughness="0.5"
-                width="4"
-                height="4"
-                depth="4"
-                position="-2 1.5 -9"
-                side="back"
-              >
-              </a-box>
-              <!-- Brown Box > Brick Room -->
-              <a-box
-                material="color: #FFFFFF;
-                  src: #brick;
-                  repeat: 2 2;
-                  normal-map: #brick-NRM;
-                  normal-texture-repeat: 2 2;
-                  normal-scale: 1 -1;
-                  roughness: 0.9"
-                width="4"
-                height="4"
-                depth="4"
-                position="2 1.5 -9"
-                side="back"
-              >
-              </a-box>
-
-              <!-- Blue Sphere | Standard Material -->
-              <a-sphere
-                material="color: #0000AA;
-                  roughness: 0.2
-                  shader: standard"
-                radius="0.5"
-                position="-2 1.5 -8"
-              >
-              </a-sphere>
-              <!-- Red Sphere | Flat Material -->
-              <a-sphere
-                material="color: #AA0000;
-                  roughness: 0.2;
-                  shader: flat;
-                  opacity: 0.5"
-                radius="0.5"
-                position="2 1.5 -8"
-              >
-              </a-sphere>
+              <!-- 空 -->
+              <a-sky src="#sky"></a-sky>
+              <!-- ロビー -->
+              <a-gltf-model src="#booth"></a-gltf-model>
+              <!-- 出口 -->
+              <a-gltf-model
+                id="exit"
+                src="#exit"
+                scale="0.25 0.25 0.25"
+                rotation="0 144.9084748399219 0"
+                position="-3.52115 0.37144 5.35451"
+              ></a-gltf-model>
+              <!-- カメラ（視点） -->
+              <a-entity
+                camera=""
+                position="0 1.5 0"
+                wasd-controls=""
+                rotation="0 -120 0"
+                look-controls=""
+                aframe-injected=""
+                data-aframe-inspector-original-camera=""
+              ></a-entity>
+              <!-- 出展者キャラクター -->
+              <a-gltf-model
+                id="npc1"
+                src="#npc1"
+                scale="0.004 0.004 0.004"
+                position="-3 0.25 -4.1"
+                rotation="0 50 0"
+              ></a-gltf-model>
+              <!-- 来場者character -->
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="180 90 180"
+                position="0 0 -1.3"
+              ></a-gltf-model>
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="180 90 180"
+                position="0 0 1.3"
+              ></a-gltf-model>
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="180 90 180"
+                position="0 0 1.7"
+              ></a-gltf-model>
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="0 -3.075637444262259 0"
+                position="-0.39308 0.35 3.58408"
+                gltf-model="/vr/model/person_small/scene.gltf"
+              ></a-gltf-model>
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="180 90 180"
+                position="2.5 0.3 1.7"
+              ></a-gltf-model>
+              <a-gltf-model
+                id="person"
+                src="#person"
+                scale="0.2 0.2 0.2"
+                rotation="180 90 180"
+                position="2.5 0.3 1.3"
+                gltf-model="/vr/model/person_small/scene.gltf"
+              ></a-gltf-model>
+              <!-- ギャラリー_作品概要 -->
+              <a-image
+                id="white"
+                src="#white"
+                geometry="primitive: box"
+                scale="0.8 1 0.2"
+                position="-0.22305 1.23617 -4.61989"
+                material=""
+              ></a-image>
+              <a-image
+                id="thumbnail"
+                src="#sky"
+                scale="0.2 0.25 1"
+                position="-0.23734 1.33798 -4.51752"
+                material=""
+                geometry=""
+              ></a-image>
+              <a-entity
+                id="title"
+                text="value: TitleTitle; align: center; color: #153093; lineHeight: 3; letterSpacing: 5; negate: false"
+                color="#000000"
+                scale="3 3 1"
+                position="-0.21761 1.61438 -4.45262"
+              ></a-entity>
+              <a-entity
+                id="description"
+                text="value: Description; align: center; color: #424242; lineHeight: 0.4"
+                color="#000000"
+                scale="2 2 1"
+                position="-0.23672 1.09887 -4.45262"
+              ></a-entity>
+              <!-- ギャラリー_作品紹介 -->
+              <a-image
+                id="slide1"
+                src="#slide1"
+                material=""
+                geometry="primitive: box"
+                scale="0.8 1 0.2"
+                position="3.08606 1.23617 -3.09248"
+                rotation="0 -47.63 0"
+              ></a-image>
+              <a-image
+                id="slide2"
+                src="#slide2"
+                material=""
+                geometry="primitive: box"
+                scale="0.8 1 0.2"
+                position="4.38366 1.23617 0.24475"
+                rotation="0 88.45 0"
+              ></a-image>
+              <a-image
+                id="slide3"
+                src="#slide3"
+                material=""
+                geometry="primitive: box"
+                scale="0.8 1 0.2"
+                position="2.87774 1.24431 3.38673"
+                rotation="0 44.73 0"
+              ></a-image>
+              <a-image
+                id="gallery5"
+                src="#gallery5"
+                material=""
+                geometry="primitive: box"
+                scale="0.8 1 0.2"
+                position="-0.34878 1.23617 4.69281"
+              ></a-image>
+              <!-- デモ動画のTOPのタイトル -->
+              <a-entity
+                id="title"
+                text="value: TitleTitle; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false"
+                color="#000000"
+                scale="10 10 1"
+                position="-3.59467 3.50902 0.01258"
+                rotation="0 90 0"
+              ></a-entity>
+              <!-- デモ動画 -->
+              <a-curvedimage
+                id="demo"
+                src="#demo"
+                material="height: 258"
+                geometry="thetaLength: 88; thetaStart: 1"
+                scale="2.15 2.84331 2.15"
+                position="0.37378 1.72916 0.08129"
+                rotation="0 -135.63056926336847 0"
+              ></a-curvedimage>
+              <!-- 作品 -->
+              <a-gltf-model
+                id="sakuhin"
+                src="#sakuhin"
+                scale="0.3 0.3 0.3"
+                position="-0.283 0.63654 0"
+              ></a-gltf-model>
             </a-scene>
+
             <v-card class="ma-auto card-area" outlined>
               <v-card-title class="justify-center">
                 <v-icon>mdi-information-outline</v-icon>
