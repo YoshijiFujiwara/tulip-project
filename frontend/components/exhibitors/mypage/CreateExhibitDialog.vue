@@ -129,7 +129,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-import cloudinary from 'cloudinary'
 import {
   uploadImageCloudinary,
   uploadVideoCloudinary,
