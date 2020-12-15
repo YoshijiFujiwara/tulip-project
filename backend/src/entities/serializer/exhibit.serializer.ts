@@ -16,6 +16,9 @@ export class ExhibitSerializer {
   @ApiProperty()
   thumbnail: string;
 
+  @ApiPropertyOptional()
+  demo: string;
+
   @ApiProperty({
     enum: GENRE,
   })

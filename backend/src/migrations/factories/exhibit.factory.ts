@@ -19,6 +19,8 @@ define(ExhibitEntity, (_: typeof Faker, context: Context) => {
     'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
   exhibit.presentationImage =
     'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
+  exhibit.demo =
+    'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4';
   exhibit.genre = genre;
   exhibit.groupId = groupId;
 

@@ -18,7 +18,9 @@ export class ExhibitorRepository extends Repository<ExhibitorEntity> {
   }
 
   async updateLastLoggedinAt({ id }: ExhibitorEntity): Promise<void> {
-    const lastLoggedinAt = new Date();
-    await this.update({ id }, { lastLoggedinAt });
+    const now = new Date();
+    const lastLoggedinAt = now;
+    const attendedAt = now;
+    await this.update({ id }, { lastLoggedinAt, attendedAt });
   }
 }
