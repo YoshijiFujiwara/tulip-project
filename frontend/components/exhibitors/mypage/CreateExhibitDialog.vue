@@ -61,7 +61,7 @@
           prepend-icon="mdi-camera"
           outlined
           required
-          :show-size="1000"
+          show-size
           dense
           @change="onThumbnailImagePicked"
         ></v-file-input>
@@ -85,7 +85,7 @@
           outlined
           required
           dense
-          :show-size="1000"
+          show-size
           @change="onPresentationImagePicked"
         ></v-file-input>
         <p>
@@ -103,7 +103,7 @@
           color="deep-purple accent-4"
           class="pb-5"
           accept="video/*"
-          :show-size="100"
+          show-size
           outlined
           required
           dense
