@@ -93,8 +93,8 @@
           デモ動画をアップロードしましょう。
         </p>
         <v-card class="ml-8 mx-auto my-4" max-width="480">
-          <video v-if="uploadVideoUrl" controls width="480" height="270">
-            <source :src="uploadVideoUrl" />
+          <video v-if="uploadDemoVideoUrl" controls width="480" height="270">
+            <source :src="uploadDemoVideoUrl" />
             このブラウザではビデオ表示がサポートされていません
           </video>
         </v-card>
@@ -148,7 +148,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  uploadVideoUrl = ''
+  uploadDemoVideoUrl = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -200,7 +200,7 @@ export default class CreateExhibitDialog extends Vue {
       // api側には、cloudinaryから返却されたimageのurlを渡す形となる
       let thumbnailImageUrl: string | null = null
       let presentationImageUrl: string | null = null
-      let videoUrl: string | null = null
+      let demoVideoUrl: string | null = null
 
       if (this.form.thumbnailImage) {
         thumbnailImageUrl = await uploadImageCloudinary(
@@ -215,16 +215,18 @@ export default class CreateExhibitDialog extends Vue {
         )
       }
       if (this.form.demoVideo) {
-        videoUrl = await uploadVideoCloudinary(this.$axios, this.form.demoVideo)
+        demoVideoUrl = await uploadVideoCloudinary(
+          this.$axios,
+          this.form.demoVideo
+        )
       }
-      // FIXME: API側で、動画アップロードが出来るようになったら、apiリクエストに含めること
-      console.log('videourl', videoUrl)
 
       ExhibitApi.updateExhibit(this.exhibitId!, {
         ...this.form,
         thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
         presentationImage:
           presentationImageUrl || this.uploadPresentationImageUrl,
+        demo: demoVideoUrl || this.uploadDemoVideoUrl,
       })
         .then(() => {
           this.$toast.success('作品を更新しました')
@@ -233,7 +235,7 @@ export default class CreateExhibitDialog extends Vue {
           this.$toast.error('作品更新の際にエラーが発生しました')
         })
     } else {
-      let videoUrl: string | null = null
+      let demoVideoUrl: string | null = null
 
       // cloudinaryにサムネイルとプレゼン画像のアップロードをする
       // api側には、cloudinaryから返却されたimageのurlを渡す形となる
@@ -247,16 +249,17 @@ export default class CreateExhibitDialog extends Vue {
       )
       // デモ動画に関しては、必須ではないため
       if (this.form.demoVideo) {
-        videoUrl = await uploadVideoCloudinary(this.$axios, this.form.demoVideo)
+        demoVideoUrl = await uploadVideoCloudinary(
+          this.$axios,
+          this.form.demoVideo
+        )
       }
-
-      // FIXME: API側で、動画アップロードが出来るようになったら、apiリクエストに含めること
-      console.log('videourl', videoUrl)
 
       ExhibitApi.createExhibit({
         ...this.form,
         thumbnail: thumbnailImageUrl,
         presentationImage: presentationImageUrl,
+        demo: demoVideoUrl || undefined,
       })
         .then((res) => {
           this.exhibitId = res.id
@@ -318,10 +321,12 @@ export default class CreateExhibitDialog extends Vue {
       const fr = new FileReader()
       fr.readAsDataURL(file)
       fr.addEventListener('load', () => {
-        this.uploadVideoUrl = fr.result
+        if (typeof fr.result === 'string') {
+          this.uploadDemoVideoUrl = fr.result
+        }
       })
     } else {
-      this.uploadVideoUrl = ''
+      this.uploadDemoVideoUrl = ''
     }
   }
 
