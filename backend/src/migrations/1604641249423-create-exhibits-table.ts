@@ -34,6 +34,11 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             type: 'text',
           },
           {
+            name: 'demo',
+            type: 'text',
+            isNullable: true,
+          },
+          {
             name: 'genre',
             type: 'varchar',
             length: '10',

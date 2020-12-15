@@ -10,10 +10,6 @@ export default {
     return axios.$post('exhibits', body)
   },
 
-  getMyExhibit(): Promise<Exhibit> {
-    return axios.$get('exhibits/1')
-  },
-
   updateExhibit(id: number, body: any): Promise<Exhibit> {
     return axios.$put('exhibits/' + id, body)
   },
