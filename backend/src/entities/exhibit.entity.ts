@@ -47,6 +47,13 @@ export class ExhibitEntity extends BaseEntity {
   thumbnail!: string;
 
   @Column({
+    type: 'text',
+    nullable: true,
+  })
+  @ApiProperty()
+  demo?: string;
+
+  @Column({
     type: 'enum',
     enum: GENRE,
   })
