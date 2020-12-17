@@ -27,7 +27,7 @@ export default class Signin extends Vue {
       text: 'id',
       align: 'start',
       sortable: false,
-      value: 'groupId',
+      value: 'id',
     },
     { text: 'groupID', value: 'groupId' },
     { text: 'title', value: 'title' },
@@ -43,7 +43,7 @@ export default class Signin extends Vue {
   }
 
   clickRow(row) {
-    this.$router.push({ path: '/admin/exhibits/' + row.groupId })
+    this.$router.push({ path: '/admin/exhibits/' + row.id })
   }
 }
 </script>
