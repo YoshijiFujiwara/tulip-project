@@ -1,11 +1,11 @@
 <template>
-  <div style="background-color: #f9f9f9; height: 100vh">
+  <div style="background-color: #f9f9f9; height: 100vh" class="mainText--text">
     <v-row>
       <v-col cols="7">
         <v-row>
-          <v-col class="text-h3 font-weight-bold ml-12">{{
-            exhibit.title
-          }}</v-col>
+          <v-col class="text-h3 font-weight-bold ml-12">
+            {{ exhibit.title }}
+          </v-col>
         </v-row>
         <v-row>
           <v-col class="pa-12">
@@ -36,15 +36,15 @@
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> 作成グループ </v-col>
-          <v-col>{{ groupName }}</v-col>
+          <v-col class="text-h6">{{ groupName }}</v-col>
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> グループリーダー </v-col>
-          <v-col>リーダー名が入る</v-col>
+          <v-col class="text-h6">リーダー名が入る</v-col>
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> ジャンル </v-col>
-          <v-col>{{ exhibit.genre }}</v-col>
+          <v-col class="text-h6">{{ exhibit.genre }}</v-col>
         </v-row>
       </v-col>
     </v-row>
