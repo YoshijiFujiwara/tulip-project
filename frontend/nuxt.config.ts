@@ -19,6 +19,11 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true,
+  },
+
   // 環境変数
   env: {
     cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,

@@ -10,7 +10,6 @@
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
     <script src="/js/spawn-in-circle.component.js"></script>
-    <script src="./js/aframe/get-format-date.js"></script>
   </head>
   <body>
     <a-scene
@@ -68,6 +67,18 @@
           id="sakuhin"
           src="/honnban/assets/model/sakuhin_example/scene.gltf"
         ></a-asset-item>
+
+        <!-- いいね -->
+        <a-asset-item
+          id="nice1"
+          src="/honnban/assets/model/like_button/scene.gltf"
+        >
+        </a-asset-item>
+        <a-asset-item
+          id="nice2"
+          src="/honnban/assets/model/beating_heart/scene.gltf"
+        >
+        </a-asset-item>
       </a-assets>
 
       <!-- 空 -->
@@ -239,16 +250,24 @@
         position="-0.283 0.63654 0"
       ></a-gltf-model>
 
-      <!-- 現在日時を表示 -->
-      <a-text
-        id="now-time"
-        value="aaaa"
-        negate="false"
+      <!-- いいねモデル -->
+      <a-gltf-model
+        id="nice1"
+        src="#nice2"
+        scale="0.2375 0.2375 0.2375"
+        rotation="0 57.74612434005515 0"
+        position="-2.96956 0.51674 -2.46795"
+        gltf-model="/honnban/assets/model/beating_heart/scene.gltf"
+      ></a-gltf-model>
+
+      <!-- いいね数 -->
+      <a-entity
+        id="how-nice-num"
+        text="value: 1; align: center; color: #424242; lineHeight: 0.4"
         color="#000000"
-        scale="2.97348 2.93727 15"
-        position="-0.25845 3.402 4.047"
-        rotation="0 158.21 0"
-      ></a-text>
+        scale="5 5 5"
+        position="-2.58571 0.57632 -2.46795"
+      ></a-entity>
     </a-scene>
   </body>
 </html>
