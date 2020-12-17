@@ -337,11 +337,9 @@ export default class CreateExhibitDialog extends Vue {
       const fr = new FileReader()
       fr.readAsDataURL(file)
       fr.addEventListener('load', () => {
-        console.log(this.uploadDemoVideoUrl)
         if (typeof fr.result === 'string') {
           this.uploadDemoVideoUrl = fr.result
         }
-        console.log(this.uploadDemoVideoUrl)
       })
     } else {
       this.uploadDemoVideoUrl = ''
