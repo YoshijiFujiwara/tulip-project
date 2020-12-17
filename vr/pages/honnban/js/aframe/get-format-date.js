@@ -13,7 +13,7 @@ function getDate() {
   var minute = time.getMinutes();
   var second = time.getSeconds();
   var week_ja = new Array("日","月","火","水","木","金","土");
-  var time = "";
+  var now = "";
 
   // 表示時刻のフォーマット
   if (hour < 10) hour = '0' + hour;
@@ -22,7 +22,18 @@ function getDate() {
 
   // time = year + "年" + month + "月" + day + "日" + week_ja[week] + "曜日" + hour + "時" + minute + "分" + second + "秒";
   // time = hour + "時" + minute + "分";
-  time = hour + ":" + minute;
-  return time;
+  now = hour + ":" + minute + ":"+second;
+
+
+  var timeEl = document.querySelector('#now-time');
+    timeEl.value = now;
+    console.log(now);
+    timeEl.setAttribute('text', {
+      value: now,
+      nagate: 'false',
+      color: '#ffffff',
+  });
+
+  return timeEl;
 }
 setInterval('getDate()',1000);
