@@ -8,8 +8,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ExhibitEntity } from './exhibit.entity';
+import { PresentationImageSerializer } from './serializer/presentationImage.serializer';
 
 @Entity({
   name: 'presentation_images',
@@ -34,7 +35,10 @@ export class PresentationImageEntity extends BaseEntity {
     exhibit => exhibit.presentationImages,
   )
   @JoinColumn({ name: 'exhibitId' })
-  exhibit: ExhibitEntity;
+  @ApiPropertyOptional({
+    type: () => ExhibitEntity,
+  })
+  exhibit?: ExhibitEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -50,4 +54,15 @@ export class PresentationImageEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = () => {
+    const presentationImage = new PresentationImageSerializer();
+    presentationImage.id = this.id;
+    presentationImage.url = this.url;
+    presentationImage.exhibitId = this.exhibitId;
+    if (this.exhibit) {
+      presentationImage.exhibit = this.exhibit.transformToSerializer();
+    }
+    return presentationImage;
+  };
 }

@@ -12,7 +12,7 @@ export class PresentationImageSerializer {
   exhibitId: number;
 
   @ApiPropertyOptional({
-    type: ExhibitSerializer,
+    type: () => ExhibitSerializer,
   })
   exhibit?: ExhibitSerializer;
 }

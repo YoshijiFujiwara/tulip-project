@@ -9,7 +9,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
 import { ExhibitSerializer } from './serializer/exhibit.serializer';
 import { BoothEntity } from './booth.entity';
@@ -85,6 +85,9 @@ export class ExhibitEntity extends BaseEntity {
     () => PresentationImageEntity,
     presentationImage => presentationImage.exhibit,
   )
+  @ApiPropertyOptional({
+    type: () => [PresentationImageEntity],
+  })
   presentationImages: PresentationImageEntity[];
 
   @CreateDateColumn({
@@ -118,6 +121,11 @@ export class ExhibitEntity extends BaseEntity {
     }
     if (this.booth) {
       exhibitSerializer.booth = this.booth.transformToSerializer();
+    }
+    if (this.presentationImages) {
+      exhibitSerializer.presentationImages = this.presentationImages.map(
+        image => image.transformToSerializer(),
+      );
     }
 
     return exhibitSerializer;
