@@ -172,6 +172,8 @@ export default {
           error: '#F2135D',
           success: colors.green.accent3,
 
+          mainText: '#6f6f6f', // メインテキストカラー
+
           // ログインページ関連
           color_signinFormHeader: 'rgba(255, 255, 255, 0.18)',
         },
