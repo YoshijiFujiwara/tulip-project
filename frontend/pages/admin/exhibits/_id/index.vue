@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #f9f9f9; height: 100vh" class="mainText--text">
-    <v-row>
+    <v-row v-if="exhibit">
       <v-col cols="7">
         <v-row>
           <v-col class="text-h3 font-weight-bold ml-12">
@@ -36,7 +36,7 @@
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> 作成グループ </v-col>
-          <v-col class="text-h6">{{ groupName }}</v-col>
+          <v-col class="text-h6">{{ exhibit.group.name }}</v-col>
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> グループリーダー </v-col>
@@ -61,16 +61,15 @@ import { Exhibit } from '../../../../types/exhibit'
   layout: 'admin',
 })
 export default class Signin extends Vue {
-  exhibit: Exhibit[] = []
-  groupName: String = ''
+  exhibit: Exhibit | null = null
+  groupName: string = ''
 
   model = 0
   colors = ['primary', 'secondary', 'yellow darken-2', 'red', 'orange']
 
   async created() {
-    const exhibit = await ExhibitApi.getExhibit(this.$route.params.id)
+    const exhibit = await ExhibitApi.getExhibit(Number(this.$route.params.id))
     this.exhibit = exhibit
-    this.groupName = exhibit.group.name
   }
 }
 </script>

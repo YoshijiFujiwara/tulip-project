@@ -6,7 +6,7 @@ export default {
     return axios.$get(`exhibits`)
   },
 
-  getExhibit(id: number): Promise<Exhibit[]> {
+  getExhibit(id: number): Promise<Exhibit> {
     return axios.$get(`exhibits/` + id)
   },
 
