@@ -92,12 +92,16 @@
           <span class="font-weight-bold">デモ動画<br /></span>
           デモ動画をアップロードしましょう。
         </p>
-        <v-card class="ml-8 mx-auto my-4" max-width="480">
-          <video v-if="uploadDemoVideoUrl" controls width="480" height="270">
-            <source :src="uploadDemoVideoUrl" />
-            このブラウザではビデオ表示がサポートされていません
-          </video>
-        </v-card>
+        <video
+          v-if="uploadDemoVideoUrl"
+          controls
+          width="480"
+          class="ml-8 mx-auto my-4"
+          height="270"
+        >
+          <source :src="uploadDemoVideoUrl" />
+          このブラウザではビデオ表示がサポートされていません
+        </video>
         <v-file-input
           v-model="form.demoVideo"
           color="deep-purple accent-4"
@@ -148,7 +152,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  uploadDemoVideoUrl = ''
+  uploadDemoVideoUrl: string | null = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -329,6 +333,7 @@ export default class CreateExhibitDialog extends Vue {
       if (file.name.lastIndexOf('.') <= 0) {
         return
       }
+      this.uploadDemoVideoUrl = ''
       const fr = new FileReader()
       fr.readAsDataURL(file)
       fr.addEventListener('load', () => {

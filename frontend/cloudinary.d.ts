@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 import { Transform } from 'stream'
 
 declare module 'cloudinary' {
@@ -1579,6 +1582,7 @@ declare module 'cloudinary' {
         callback?: ResponseCallback
       ): Promise<any>
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       function text(
         text: string,
         options?: TextStyleOptions | { public_id?: string },
