@@ -17,22 +17,30 @@
         <!-- avatar -->
         <template id="avatar-template">
           <a-entity class="avatar">
+            <a-entity
+              class="head"
+              id="name"
+              text="value: penguin; align: center;"
+              position="0 -0.2 0"
+              scale="2 2 2"
+              look-at="#player"
+            ></a-entity>
             <!-- 🐧 -->
-            <a-gltf-model
+            <!-- <a-gltf-model
               class="head"
               src="/honnban/assets/model/cute_penguin/scene.gltf"
               scale="0.003 0.003 0.003"
-              rotation="0 180 0"
-              position="0 -1.702 0.05791"
-            ></a-gltf-model>
-            <!-- 🥕 -->
-            <!-- <a-gltf-model
-              class="head"
-              src="/honnban/assets/model/karrot/scene.gltf"
-              scale="0.003 0.003 0.003"
               rotation="-10 180 0"
-              position="0 -1.2 0"
+              position="0 -1.4 0.05791"
             ></a-gltf-model> -->
+            <!-- 🥕 -->
+            <a-gltf-model
+              class="head"
+              src="/honnban/assets/model/super_carrot/scene.gltf"
+              scale="0.007 0.007 0.007"
+              rotation="-10 180 -15"
+              position="0 -1 0"
+            ></a-gltf-model>
           </a-entity>
         </template>
         <!-- 空_ASSET -->
@@ -100,7 +108,7 @@
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor raycaster="objects: .clickable"></a-cursor>
-        <a-sphere class="head" visible="false" random-color></a-sphere>
+        <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
       <!-- <a-entity position="0 0 6">
         <a-entity
@@ -175,15 +183,12 @@
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="-0.22305 1.23617 -4.61989"
-        material=""
       ></a-image>
       <a-image
         id="thumbnail"
         src="#sky"
         scale="0.2 0.25 1"
         position="-0.23734 1.33798 -4.51752"
-        material=""
-        geometry=""
       ></a-image>
       <a-entity
         id="title"
@@ -203,7 +208,6 @@
       <a-image
         id="slide1"
         src="#slide1"
-        material=""
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="3.08606 1.23617 -3.09248"
@@ -212,7 +216,6 @@
       <a-image
         id="slide2"
         src="#slide2"
-        material=""
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="4.38366 1.23617 0.24475"
@@ -221,7 +224,6 @@
       <a-image
         id="slide3"
         src="#slide3"
-        material=""
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="2.87774 1.24431 3.38673"
@@ -230,7 +232,6 @@
       <a-image
         id="gallery5"
         src="#gallery5"
-        material=""
         geometry="primitive: box"
         scale="0.8 1 0.2"
         position="-0.34878 1.23617 4.69281"
