@@ -43,7 +43,7 @@ export default class Signin extends Vue {
   }
 
   clickRow(row: any) {
-    this.$router.push({ path: '/admin/exhibits/' + row.id })
+    this.$router.push({ path: `/admin/exhibits/${row.id}` })
   }
 }
 </script>

@@ -7,7 +7,7 @@ export default {
   },
 
   getExhibit(id: number): Promise<Exhibit> {
-    return axios.$get(`exhibits/` + id)
+    return axios.$get(`exhibits/${id}`)
   },
 
   createExhibit(body: any): Promise<Exhibit> {
@@ -15,6 +15,6 @@ export default {
   },
 
   updateExhibit(id: number, body: any): Promise<Exhibit> {
-    return axios.$put('exhibits/' + id, body)
+    return axios.$put(`exhibits/${id}`, body)
   },
 }
