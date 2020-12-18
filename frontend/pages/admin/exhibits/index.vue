@@ -6,14 +6,15 @@
       :items="exhibits"
       :items-per-page="5"
       class="elevation-1"
+      @click:row="clickRow"
     ></v-data-table>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import ExhibitApi from '../../plugins/axios/modules/exhibit'
-import { Exhibit } from '../../types/exhibit'
+import ExhibitApi from '../../../plugins/axios/modules/exhibit'
+import { Exhibit } from '../../../types/exhibit'
 
 @Component({
   auth: false,
@@ -26,7 +27,7 @@ export default class Signin extends Vue {
       text: 'id',
       align: 'start',
       sortable: false,
-      value: 'groupId',
+      value: 'id',
     },
     { text: 'groupID', value: 'groupId' },
     { text: 'title', value: 'title' },
@@ -39,6 +40,10 @@ export default class Signin extends Vue {
   async created() {
     const exhibits = await ExhibitApi.getExhibits()
     this.exhibits = exhibits
+  }
+
+  clickRow(row: any) {
+    this.$router.push({ path: `/admin/exhibits/${row.id}` })
   }
 }
 </script>
