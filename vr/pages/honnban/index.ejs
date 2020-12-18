@@ -244,7 +244,6 @@
       <!-- ロビー -->
       <%- include('./ejs-components/ejs-assets/lobby.asset.ejs') %>
 
-      <!--  ポジションが１にある作品  -->
       <!-- prettier-ignore -->
       <%# 1~8までループ %>
       <% for (var i = 1; i < 9; i++) { %>
@@ -294,6 +293,16 @@
         position="-6.27455 0.22744 -8.54957"
         gltf-model="/honnban/assets/model/person_small//scene.gltf"
       ></a-gltf-model>
+
+      <!-- 現在時間を表示 -->
+      <a-text
+        id="now-time"
+        value="aaaa"
+        negate="false"
+        color="#000000"
+        scale="4.7652 4.48239 15"
+        position="-2.33916 9.35988 -11.02357"
+      ></a-text>
     </a-scene>
 
     <!-- フッター部分のscriptあれば読み込み -->
