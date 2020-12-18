@@ -28,9 +28,9 @@
     >
       <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
-        <btn icon color="primary">
-          <v-icon small class="mr-2"> mdi-pencil </v-icon>
-        </btn>
+        <v-btn icon :to="'./' + item.id">
+          <v-icon small> mdi-pencil </v-icon>
+        </v-btn>
         <v-icon small> mdi-delete </v-icon>
       </template>
     </v-data-table>
