@@ -16,6 +16,7 @@
       class="elevation-1"
     >
       <!-- eslint-disable-next-line -->
+      <!-- TODO:IDで出席判定してるので出席情報が出来次第修正 -->
       <template v-slot:item.status="{ item }">
         <v-badge
           v-if="item.id % 2 == 0"
@@ -55,7 +56,6 @@ export default class Groups extends Vue {
   groupName = ''
   routeId = 0
 
-  // groups: Object = {}
   search = ''
   headers = [
     {
