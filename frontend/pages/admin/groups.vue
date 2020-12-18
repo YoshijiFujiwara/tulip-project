@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar fixed app elevation="0">
+    <!-- <v-app-bar fixed app elevation="0">
       <div class="ml-1">グループ一覧 │</div>
       <v-btn icon>
         <v-icon>mdi-refresh</v-icon>
@@ -13,7 +13,7 @@
         single-line
         hide-details
       ></v-text-field>
-    </v-app-bar>
+    </v-app-bar> -->
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
       >会場にログインしているユーザ

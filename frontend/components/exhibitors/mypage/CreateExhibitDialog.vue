@@ -61,7 +61,7 @@
           prepend-icon="mdi-camera"
           outlined
           required
-          :show-size="1000"
+          show-size
           dense
           @change="onThumbnailImagePicked"
         ></v-file-input>
@@ -85,8 +85,51 @@
           outlined
           required
           dense
-          :show-size="1000"
+          show-size
           @change="onPresentationImagePicked"
+        ></v-file-input>
+        <p>
+          <span class="font-weight-bold">デモ動画<br /></span>
+          デモ動画をアップロードしましょう。
+        </p>
+        <video
+          v-if="uploadDemoVideoUrl"
+          controls
+          width="480"
+          class="ml-8 mx-auto my-4"
+          height="270"
+        >
+          <source :src="uploadDemoVideoUrl" />
+          このブラウザではビデオ表示がサポートされていません
+        </video>
+        <v-file-input
+          v-model="form.demoVideo"
+          color="deep-purple accent-4"
+          class="pb-5"
+          accept="video/*"
+          show-size
+          outlined
+          required
+          dense
+          label="デモ動画をアップロード"
+          prepend-icon="mdi-video"
+          @change="onVideoPicked"
+        ></v-file-input>
+        <p>
+          <span class="font-weight-bold">3Dモデル<br /></span>
+          表示する3Dモデルがある場合はアップロードしましょう。
+        </p>
+        <v-file-input
+          v-model="form.modelData"
+          class="pb-3"
+          color="deep-purple accent-4"
+          accept=".obj, .gltf, .glb"
+          label="3Dモデルをアップロード"
+          prepend-icon="mdi-video-3d"
+          outlined
+          required
+          show-size
+          dense
         ></v-file-input>
         <v-btn
           block
@@ -106,7 +149,10 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 // cloudinaryに画像をアップロードする関数は、このファイル限定で使用するとは限らないため、別の場所に切り出した
-import { uploadImageCloudinary } from '../../../utils/functions'
+import {
+  uploadImageCloudinary,
+  uploadVideoCloudinary,
+} from '../../../utils/functions'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../../plugins/axios/modules/profile'
 import { Exhibit } from '../../../types/exhibit'
@@ -122,6 +168,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
+  uploadDemoVideoUrl: string | null = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -130,6 +177,8 @@ export default class CreateExhibitDialog extends Vue {
     genre: '',
     thumbnailImage: (null as unknown) as File | null,
     presentationImage: (null as unknown) as File | null,
+    demoVideo: (null as unknown) as File | null,
+    modelData: (null as unknown) as File | null,
   }
 
   rules = {
@@ -154,6 +203,9 @@ export default class CreateExhibitDialog extends Vue {
         this.form.genre = exhibit.genre
         this.uploadThumbnailImageUrl = exhibit.thumbnail
         this.uploadPresentationImageUrl = exhibit.presentationImage
+        this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
+        // TODO: デモ動画のURLがget出来たら、追加する
+
         this.exhibitId = exhibit.id
       })
       .catch(() => {
@@ -166,65 +218,94 @@ export default class CreateExhibitDialog extends Vue {
     this.isLoading = true
 
     if (this.isUpdateMode) {
-      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-      let thumbnailImageUrl: string | null = null
-      let presentationImageUrl: string | null = null
-
-      if (this.form.thumbnailImage) {
-        thumbnailImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.thumbnailImage
-        )
-      }
-      if (this.form.presentationImage) {
-        presentationImageUrl = await uploadImageCloudinary(
-          this.$axios,
-          this.form.presentationImage
-        )
-      }
-
-      ExhibitApi.updateExhibit(this.exhibitId!, {
-        ...this.form,
-        thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
-        presentationImage:
-          presentationImageUrl || this.uploadPresentationImageUrl,
-      })
-        .then(() => {
-          this.$toast.success('作品を更新しました')
-        })
-        .catch(() => {
-          this.$toast.error('作品更新の際にエラーが発生しました')
-        })
+      await this.updateExhibit()
     } else {
-      // cloudinaryにサムネイルとプレゼン画像のアップロードをする
-      // api側には、cloudinaryから返却されたimageのurlを渡す形となる
-      const thumbnailImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.thumbnailImage!
-      )
-      const presentationImageUrl = await uploadImageCloudinary(
-        this.$axios,
-        this.form.presentationImage!
-      )
-      ExhibitApi.createExhibit({
-        ...this.form,
-        thumbnail: thumbnailImageUrl,
-        presentationImage: presentationImageUrl,
-      })
-        .then((res) => {
-          this.exhibitId = res.id
-          this.form.thumbnailImage = null
-          this.form.presentationImage = null
-          this.$toast.success('作品を登録しました')
-        })
-        .catch(() => {
-          this.$toast.error('作品登録の際にエラーが発生しました')
-        })
+      await this.createExhibit()
     }
 
     this.dialog = false
     this.isLoading = false
+  }
+
+  // 作品の登録リクエスト
+  async createExhibit() {
+    let demoVideoUrl: string | null = null
+
+    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    const thumbnailImageUrl = await uploadImageCloudinary(
+      this.$axios,
+      this.form.thumbnailImage!
+    )
+    const presentationImageUrl = await uploadImageCloudinary(
+      this.$axios,
+      this.form.presentationImage!
+    )
+    // デモ動画に関しては、必須ではないため
+    if (this.form.demoVideo) {
+      demoVideoUrl = await uploadVideoCloudinary(
+        this.$axios,
+        this.form.demoVideo
+      )
+    }
+
+    ExhibitApi.createExhibit({
+      ...this.form,
+      thumbnail: thumbnailImageUrl,
+      presentationImage: presentationImageUrl,
+      demo: demoVideoUrl || undefined,
+    })
+      .then((res) => {
+        this.exhibitId = res.id
+        this.form.thumbnailImage = null
+        this.form.presentationImage = null
+        this.$toast.success('作品を登録しました')
+      })
+      .catch(() => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+      })
+  }
+
+  // 作品の更新リクエスト
+  async updateExhibit() {
+    // cloudinaryにサムネイルとプレゼン画像のアップロードをする
+    // api側には、cloudinaryから返却されたimageのurlを渡す形となる
+    let thumbnailImageUrl: string | null = null
+    let presentationImageUrl: string | null = null
+    let demoVideoUrl: string | null = null
+
+    if (this.form.thumbnailImage) {
+      thumbnailImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.thumbnailImage
+      )
+    }
+    if (this.form.presentationImage) {
+      presentationImageUrl = await uploadImageCloudinary(
+        this.$axios,
+        this.form.presentationImage
+      )
+    }
+    if (this.form.demoVideo) {
+      demoVideoUrl = await uploadVideoCloudinary(
+        this.$axios,
+        this.form.demoVideo
+      )
+    }
+
+    ExhibitApi.updateExhibit(this.exhibitId!, {
+      ...this.form,
+      thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
+      presentationImage:
+        presentationImageUrl || this.uploadPresentationImageUrl,
+      demo: demoVideoUrl || this.uploadDemoVideoUrl,
+    })
+      .then(() => {
+        this.$toast.success('作品を更新しました')
+      })
+      .catch(() => {
+        this.$toast.error('作品更新の際にエラーが発生しました')
+      })
   }
 
   // thumbnailImageのプレビュー
@@ -260,6 +341,25 @@ export default class CreateExhibitDialog extends Vue {
       })
     } else {
       this.uploadPresentationImageUrl = ''
+    }
+  }
+
+  // デモ動画のプレビュー
+  onVideoPicked(file: File) {
+    if (file !== undefined && file !== null) {
+      if (file.name.lastIndexOf('.') <= 0) {
+        return
+      }
+      this.uploadDemoVideoUrl = ''
+      const fr = new FileReader()
+      fr.readAsDataURL(file)
+      fr.addEventListener('load', () => {
+        if (typeof fr.result === 'string') {
+          this.uploadDemoVideoUrl = fr.result
+        }
+      })
+    } else {
+      this.uploadDemoVideoUrl = ''
     }
   }
 

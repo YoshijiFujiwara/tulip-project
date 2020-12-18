@@ -47,6 +47,13 @@ export class ExhibitEntity extends BaseEntity {
   thumbnail!: string;
 
   @Column({
+    type: 'text',
+    nullable: true,
+  })
+  @ApiProperty()
+  demo?: string;
+
+  @Column({
     type: 'enum',
     enum: GENRE,
   })
@@ -101,6 +108,9 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.thumbnail = this.thumbnail;
     exhibitSerializer.genre = this.genre;
     exhibitSerializer.presentationImage = this.presentationImage;
+    if (this.demo) {
+      exhibitSerializer.demo = this.demo;
+    }
     exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
