@@ -14,6 +14,7 @@
         hide-details
       ></v-text-field>
     </v-app-bar> -->
+    <breadcrums :itemss=breadcrum />
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
       >会場にログインしているユーザ
@@ -39,6 +40,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import GroupApi from '../../plugins/axios/modules/group'
 import { Group } from '../../types/group'
+import breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
   auth: false,
@@ -60,7 +62,18 @@ export default class Groups extends Vue {
     { text: 'リーダー名', value: 'name', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
-
+  breadcrum = [
+    {
+      text: 'ダッシュボード',
+      disabled: false,
+      href: '/admin',
+    },
+    {
+      text: 'グループ一覧',
+      disabled: true,
+      href: '/admin/exhibitors',
+    },
+  ]
   async created() {
     // this.user = await this.$auth.user
     const groups = await GroupApi.getGroups()
