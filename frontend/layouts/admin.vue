@@ -80,7 +80,7 @@ export default class Admin extends Vue {
     },
     {
       icon: 'mdi-home',
-      url: '/admin/groups',
+      url: '/admin/groups/',
       title: '出展者グループ一覧',
     },
   ]

@@ -1,19 +1,8 @@
 <template>
   <v-app>
-    <!-- <v-app-bar fixed app elevation="0">
-      <div class="ml-1">グループ一覧 │</div>
-      <v-btn icon>
-        <v-icon>mdi-refresh</v-icon>
-      </v-btn>
-      <v-spacer />
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-app-bar> -->
+    <div class="text-h3 mt-5 ml-4">
+      {{ groupName }}
+    </div>
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
       >会場にログインしているユーザ
@@ -21,11 +10,27 @@
 
     <v-data-table
       :headers="headers"
-      :items="groups"
+      :items="groupDetails"
       :items-per-page="5"
       :search="search"
       class="elevation-1"
     >
+      <!-- eslint-disable-next-line -->
+      <template v-slot:item.status="{ item }">
+        <v-badge
+          v-if="item.id % 2 == 0"
+          bordered
+          left
+          inline
+          color="green"
+          icon="mdi-check-bold"
+        >
+          出席済み
+        </v-badge>
+        <v-badge v-else bordered left inline color="red" icon="mdi-close-thick">
+          欠席
+        </v-badge>
+      </template>
       <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2"> mdi-pencil </v-icon>
@@ -37,8 +42,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import GroupApi from '../../plugins/axios/modules/group'
-import { Group } from '../../types/group'
+import GroupApi from '../../../plugins/axios/modules/group'
+import { Group } from '../../../types/group'
 
 @Component({
   auth: false,
@@ -46,6 +51,9 @@ import { Group } from '../../types/group'
 })
 export default class Groups extends Vue {
   groups: Group[] = []
+  groupDetails = []
+  groupName = ''
+  routeId = 0
 
   // groups: Object = {}
   search = ''
@@ -56,8 +64,9 @@ export default class Groups extends Vue {
       sortable: true,
       value: 'id',
     },
-    { text: 'グループ名', value: 'name', sortable: true },
-    { text: 'リーダー名', value: 'name', sortable: false },
+    { text: '学籍番号', value: 'studentNumber', sortable: true },
+    { text: '名前', value: 'name', sortable: false },
+    { text: '出席ステータス', value: 'status', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
 
@@ -65,6 +74,14 @@ export default class Groups extends Vue {
     // this.user = await this.$auth.user
     const groups = await GroupApi.getGroups()
     this.groups = groups
+    this.routeId = Number(this.$route.params.id)
+
+    this.groups.forEach((item) => {
+      if (Number(item.id) === this.routeId) {
+        this.groupName = item.name
+        this.groupDetails = item.exhibitors
+      }
+    })
   }
 }
 </script>
