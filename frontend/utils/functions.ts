@@ -1,5 +1,4 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
-import cloudinary from 'cloudinary'
 
 export async function uploadImageCloudinary(
   axiosInstance: NuxtAxiosInstance,

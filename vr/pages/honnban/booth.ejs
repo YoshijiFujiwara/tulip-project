@@ -8,7 +8,7 @@
     <a-scene
       renderer="colorManagement: true; antialias: true;"
       networked-scene="
-    room: booth;
+    room: exhibit-<%=exhibit.id%>;
     debug: true;
     adapter: webrtc;
   "
@@ -73,6 +73,11 @@
           id="sakuhin"
           src="/honnban/assets/model/sakuhin_example/scene.gltf"
         ></a-asset-item>
+        <!-- いいね_ASSET -->
+        <a-asset-item
+          id="nice1"
+          src="/honnban/assets/model/beating_heart/scene.gltf"
+        >
       </a-assets>
 
       <!-- 空 -->
@@ -263,6 +268,33 @@
         scale="0.3 0.3 0.3"
         position="-0.283 0.63654 0"
       ></a-gltf-model>
+
+      <!-- 現在時間を表示 -->
+      <a-text
+        id="now-time"
+        value="aaaa"
+        negate="false"
+        color="#000000"
+        scale="2.97348 2.93727 15"
+        position="-0.25845 3.402 4.047"
+        rotation="0 158.21 0"
+      ></a-text>
+      <!-- いいねモデル -->
+      <a-gltf-model
+        id="nice1"
+        src="#nice1"
+        scale="0.17932 0.20506 0.2375"
+        rotation="0 57.74612434005515 0"
+        position="-2.90927 0.41615 -2.68227"
+      ></a-gltf-model>
+      <!-- いいね数 -->
+      <a-entity
+        id="how-nice-num"
+        text="value: 1; align: center; color: #424242; lineHeight: 0.4"
+        color="#000000"
+        scale="5 5 5"
+        position="-2.87863 0.40471 -2.92019"
+      ></a-entity>
     </a-scene>
   </body>
 </html>
