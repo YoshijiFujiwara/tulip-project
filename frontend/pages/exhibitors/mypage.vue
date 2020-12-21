@@ -14,14 +14,7 @@
       >
         出席する
       </v-btn>
-      <v-btn
-        v-if="isPresenceBtn"
-        disabled
-        depressed
-        x-large
-        color="white"
-        @click="onPresence"
-      >
+      <v-btn v-if="isPresenceBtn" depressed x-large color="white">
         <v-icon color="#389c0a">mdi-check-circle</v-icon>
         出席済み
       </v-btn>
