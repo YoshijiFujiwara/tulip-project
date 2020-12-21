@@ -132,6 +132,8 @@ export default class MyPage extends Vue {
 
   // 出席ボタン
   isPresenceBtn: boolean = false
+  isPresenceLoading: boolean = false
+  isAttend: String | null
 
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
@@ -148,11 +150,17 @@ export default class MyPage extends Vue {
   }
 
   onPresence() {
+    this.isPresenceLoading = true
     this.isPresenceBtn = !this.isPresenceBtn
   }
 
   async created() {
     this.user = await this.$auth.user
+    this.isAttend = this.user.attendedAt
+
+    if (this.isAttend) {
+      this.isPresenceBtn = true
+    }
 
     const response = await ExhibitApi.getExhibits()
     console.log('response', response)
