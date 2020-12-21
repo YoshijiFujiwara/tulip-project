@@ -84,6 +84,7 @@
           label="プレゼン資料をアップロード"
           outlined
           multiple
+          small-chips
           required
           dense
           show-size
