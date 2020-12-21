@@ -50,6 +50,14 @@ export class ExhibitEntity extends BaseEntity {
     type: 'text',
     nullable: true,
   })
+
+  @ApiProperty()
+  viewsCount!: number;
+
+  @Column({
+    length:10
+  })
+
   @ApiProperty()
   demo?: string;
 
@@ -106,6 +114,7 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.title = this.title;
     exhibitSerializer.description = this.description;
     exhibitSerializer.thumbnail = this.thumbnail;
+    exhibitSerializer.viewsCount = this.viewsCount;
     exhibitSerializer.genre = this.genre;
     exhibitSerializer.presentationImage = this.presentationImage;
     if (this.demo) {
