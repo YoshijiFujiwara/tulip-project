@@ -16,6 +16,9 @@ export class ExhibitSerializer {
   @ApiProperty()
   thumbnail: string;
 
+  @ApiProperty()
+  viewsCount: number;
+
   @ApiPropertyOptional()
   demo: string;
 

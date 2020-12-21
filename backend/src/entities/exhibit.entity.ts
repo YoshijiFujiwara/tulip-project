@@ -50,6 +50,14 @@ export class ExhibitEntity extends BaseEntity {
     type: 'text',
     nullable: true,
   })
+
+  @ApiProperty()
+  viewsCount!: number;
+
+  @Column({
+    length:10
+  })
+
   @ApiProperty()
   demo?: string;
 
