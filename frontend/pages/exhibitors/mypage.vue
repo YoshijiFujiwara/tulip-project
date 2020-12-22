@@ -159,7 +159,7 @@ export default class MyPage extends Vue {
         this.$toast.error('出席エラー')
       })
 
-    this.isPresenceBtn = !this.isPresenceBtn
+    this.isPresenceBtn = true
   }
 
   async created() {
