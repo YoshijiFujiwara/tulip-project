@@ -15,11 +15,21 @@
         <!-- 来場者character -->
         <template id="avatar-template">
           <a-entity class="avatar">
+            <!-- リアクション_ASSET -->
+            <a-image
+              id="reaction"
+              src="/honnban/assets/img/emo_cry.svg"
+              position="-0.04 0.05 0.32"
+              rotation="0 0 0"
+              scale="0.4 0.4 0.4"
+              look-at="#player"
+            ></a-image>
+            <!-- ユーザー名_ASSET -->
             <a-entity
               class="head"
               id="name"
               text="value: ペンギン; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-              position="0 -0.2 0"
+              position="-0.05 -0.2 0.25"
               scale="2 2 2"
               look-at="#player"
             ></a-entity>
@@ -41,28 +51,6 @@
             ></a-gltf-model>
           </a-entity>
         </template>
-        <!-- 空_ASSET -->
-        <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
-        <!-- ブース_ASSET -->
-        <a-asset-item
-          id="booth"
-          src="/honnban/assets/model/booth/scene.gltf"
-        ></a-asset-item>
-        <!-- 出口_ASSET -->
-        <a-asset-item
-          id="exit"
-          src="/honnban/assets/model/exit_door/scene.gltf"
-        ></a-asset-item>
-        <!-- 出展者 -->
-        <a-asset-item
-          id="npc1"
-          src="/honnban/assets/model/npc1/scene.gltf"
-        ></a-asset-item>
-        <!-- 来場者 -->
-        <a-asset-item
-          id="person"
-          src="/honnban/assets/model/person_small/scene.gltf"
-        ></a-asset-item>
         <!-- ギャラリー_ASSET -->
         <img id="white" src="/honnban/assets/img/white.jfif" />
         <img id="slide1" src="/honnban/assets/img/slide1.jpg" />
@@ -92,18 +80,13 @@
       </a-assets>
 
       <!-- 空 -->
-      <a-sky src="#sky"></a-sky>
+      <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
       <!-- ロビー -->
-      <a-gltf-model src="#booth"></a-gltf-model>
+      <%- include('./ejs-components/ejs-assets/booth.asset.ejs') %>
+      <!-- プレゼンター -->
+      <%- include('./ejs-components/ejs-assets/presenter.asset.ejs') %>
       <!-- 出口 -->
-      <a-gltf-model
-        id="exit"
-        src="#exit"
-        link="href: /honnban"
-        scale="0.25 0.25 0.25"
-        rotation="0 144.9084748399219 0"
-        position="-3.52115 0.37144 5.35451"
-      ></a-gltf-model>
+      <%- include('./ejs-components/ejs-assets/exit.asset.ejs') %>
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
       <!-- camera -->
       <a-camera
@@ -119,20 +102,6 @@
         <a-cursor raycaster="objects: .clickable"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-      <!-- <a-entity position="0 0 6">
-        <a-entity
-          camera=""
-          position="0.00991 1.6 -5.90104"
-          look-controls="pointerLockEnabled: true"
-          wasd-controls="acceleration: 300"
-          rotation="1.7188733853924711 -0.34377467707849396 0"
-          data-aframe-inspector-original-camera=""
-        >
-          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
-        </a-entity>
-        <a-cursor></a-cursor>
-      </a-entity> -->
-
       <!-- クリックイベント -->
       <a-entity
         position="0 1.6 0"
@@ -151,15 +120,6 @@
           position="0 0 -0.75"
         ></a-entity>
       </a-entity>
-
-      <!-- 出展者キャラクター -->
-      <a-gltf-model
-        id="npc1"
-        src="#npc1"
-        scale="0.004 0.004 0.004"
-        position="-3 0.25 -4.1"
-        rotation="0 50 0"
-      ></a-gltf-model>
       <!-- ギャラリー_作品概要 -->
       <a-image
         id="white"
@@ -230,16 +190,15 @@
         rotation="0 90 0"
       ></a-entity>
       <!-- デモ動画 -->
-      <a-video
+      <a-curvedimage
         id="demo"
         src="#demo"
-        geometry="primitive: box"
-        position="-3.02088 1.81518 0.01"
-        width="5"
-        height="3"
-        scale="1 1 0.3"
-        rotation="0 90 0"
-      ></a-video>
+        material="height: 258"
+        geometry="thetaLength: 88; thetaStart: 1"
+        scale="2.15 2.84331 2.15"
+        position="0.37378 1.72916 0.08129"
+        rotation="0 -135.63056926336847 0"
+      ></a-curvedimage>
       <!-- 作品 -->
       <a-gltf-model
         id="sakuhin"
@@ -247,7 +206,6 @@
         scale="0.3 0.3 0.3"
         position="-0.283 0.63654 0"
       ></a-gltf-model>
-
       <!-- 現在時間を表示 -->
       <a-text
         id="now-time"
