@@ -11,6 +11,7 @@ import { ExhibitorEntity } from '../entities/exhibitor.entity';
 import { GroupRepository } from '../entities/group.repository';
 import { ExhibitEntity } from '../entities/exhibit.entity';
 import { UpdateExhibitDto } from './dto/update-exhibit.dto';
+import { GetExhibitsDto, ExhibitsOrderby } from './dto/get-exhibits.dto';
 
 @Injectable()
 export class ExhibitsService {
@@ -47,9 +48,15 @@ export class ExhibitsService {
     return exhibit;
   }
 
-  async getExhibits(): Promise<ExhibitEntity[]> {
+  async getExhibits({ orderBy }: GetExhibitsDto): Promise<ExhibitEntity[]> {
     return await this.exhibitRepsitory.find({
       relations: ['booth', 'group'],
+      order:
+        orderBy === ExhibitsOrderby.GOOD
+          ? { goodCount: 'DESC' }
+          : orderBy === ExhibitsOrderby.VIEW
+          ? { viewsCount: 'DESC' }
+          : { id: 'ASC' },
     });
   }
 
@@ -88,14 +95,14 @@ export class ExhibitsService {
     return await exhibit.save();
   }
 
-  async incrementViewsCount(exhibitId: number,): Promise<ExhibitEntity>{
+  async incrementViewsCount(exhibitId: number): Promise<ExhibitEntity> {
     const exhibitItem = await this.exhibitRepsitory.findOne({
-      where: { id: exhibitId}
-    })
+      where: { id: exhibitId },
+    });
     exhibitItem.viewsCount = exhibitItem.viewsCount + 1;
     return await exhibitItem.save();
   }
-  
+
   async deleteExhibit(
     exhibitId: number,
     exhibitor: ExhibitorEntity,
