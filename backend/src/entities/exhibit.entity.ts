@@ -46,9 +46,11 @@ export class ExhibitEntity extends BaseEntity {
   @ApiProperty()
   thumbnail!: string;
 
+  @Column()
   @ApiProperty()
   viewsCount!: number;
 
+  @Column()
   @ApiProperty()
   goodCount!: number;
 

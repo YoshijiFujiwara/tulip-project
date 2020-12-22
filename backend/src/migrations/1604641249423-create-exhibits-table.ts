@@ -36,10 +36,12 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
           {
             name: 'viewsCount',
             type: 'integer',
+            default: 0,
           },
           {
             name: 'goodCount',
             type: 'integer',
+            default: 0,
           },
           {
             name: 'demo',
