@@ -148,7 +148,7 @@ export default class MyPage extends Vue {
   }
 
   onPresence() {
-    this.isPresenceBtn = !this.isPresenceBtn
+    this.isPresenceBtn = true
   }
 
   async created() {
