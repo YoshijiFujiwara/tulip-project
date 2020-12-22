@@ -18,6 +18,7 @@ define(ExhibitEntity, (_: typeof Faker, context: Context) => {
   exhibit.thumbnail =
     'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
   exhibit.viewsCount = 10;
+  exhibit.goodCount = 10;
   exhibit.presentationImage =
     'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
   exhibit.demo =
