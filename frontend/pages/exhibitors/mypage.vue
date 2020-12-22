@@ -1,7 +1,23 @@
 <template>
   <v-row>
-    <v-col cols="12">
+    <v-col cols="10">
       <h3 class="mt-3 mb-3">ようこそ、{{ user.studentNumber }}さん</h3>
+    </v-col>
+    <v-col cols="1" class="ml-6">
+      <v-btn
+        v-if="!isPresenceBtn"
+        depressed
+        x-large
+        color="success"
+        dark
+        @click="onPresence"
+      >
+        出席する
+      </v-btn>
+      <v-btn v-if="isPresenceBtn" depressed x-large color="white">
+        <v-icon color="#389c0a">mdi-check-circle</v-icon>
+        出席済み
+      </v-btn>
     </v-col>
     <v-card width="100%">
       <v-row class="pa-10">
@@ -114,6 +130,9 @@ export default class MyPage extends Vue {
 
   isOpenUploadBoothDialog: boolean = false
 
+  // 出席ボタン
+  isPresenceBtn: boolean = false
+
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
     this.isOpenCreateExhibitDialog = true
@@ -126,6 +145,10 @@ export default class MyPage extends Vue {
 
   connectEntrance() {
     alert('入場')
+  }
+
+  onPresence() {
+    this.isPresenceBtn = true
   }
 
   async created() {
