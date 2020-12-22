@@ -88,6 +88,14 @@ export class ExhibitsService {
     return await exhibit.save();
   }
 
+  async incrementViewsCount(exhibitId: number,): Promise<ExhibitEntity>{
+    const exhibitItem = await this.exhibitRepsitory.findOne({
+      where: { id: exhibitId}
+    })
+    exhibitItem.viewsCount = exhibitItem.viewsCount + 1;
+    return await exhibitItem.save();
+  }
+  
   async deleteExhibit(
     exhibitId: number,
     exhibitor: ExhibitorEntity,
