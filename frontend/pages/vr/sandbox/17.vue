@@ -29,6 +29,7 @@
   </a-scene>
 </template>
 
+//
 <script>
 export default {
   layout: 'aframe_sandbox',

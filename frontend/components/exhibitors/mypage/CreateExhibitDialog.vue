@@ -83,6 +83,8 @@
           accept="image/png, image/jpeg, image/bmp"
           label="プレゼン資料をアップロード"
           outlined
+          multiple
+          small-chips
           required
           dense
           show-size
@@ -92,12 +94,16 @@
           <span class="font-weight-bold">デモ動画<br /></span>
           デモ動画をアップロードしましょう。
         </p>
-        <v-card class="ml-8 mx-auto my-4" max-width="480">
-          <video v-if="uploadDemoVideoUrl" controls width="480" height="270">
-            <source :src="uploadDemoVideoUrl" />
-            このブラウザではビデオ表示がサポートされていません
-          </video>
-        </v-card>
+        <video
+          v-if="uploadDemoVideoUrl"
+          controls
+          width="480"
+          class="ml-8 mx-auto my-4"
+          height="270"
+        >
+          <source :src="uploadDemoVideoUrl" />
+          このブラウザではビデオ表示がサポートされていません
+        </video>
         <v-file-input
           v-model="form.demoVideo"
           color="deep-purple accent-4"
@@ -110,6 +116,22 @@
           label="デモ動画をアップロード"
           prepend-icon="mdi-video"
           @change="onVideoPicked"
+        ></v-file-input>
+        <p>
+          <span class="font-weight-bold">3Dモデル<br /></span>
+          表示する3Dモデルがある場合はアップロードしましょう。
+        </p>
+        <v-file-input
+          v-model="form.modelData"
+          class="pb-3"
+          color="deep-purple accent-4"
+          accept=".obj, .gltf, .glb"
+          label="3Dモデルをアップロード"
+          prepend-icon="mdi-video-3d"
+          outlined
+          required
+          show-size
+          dense
         ></v-file-input>
         <v-btn
           block
@@ -148,7 +170,7 @@ export default class CreateExhibitDialog extends Vue {
   valid = false
   uploadThumbnailImageUrl = ''
   uploadPresentationImageUrl = ''
-  uploadDemoVideoUrl = ''
+  uploadDemoVideoUrl: string | null = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
 
   form = {
@@ -158,6 +180,7 @@ export default class CreateExhibitDialog extends Vue {
     thumbnailImage: (null as unknown) as File | null,
     presentationImage: (null as unknown) as File | null,
     demoVideo: (null as unknown) as File | null,
+    modelData: (null as unknown) as File | null,
   }
 
   rules = {
@@ -307,12 +330,12 @@ export default class CreateExhibitDialog extends Vue {
 
   // presentationImageのプレビュー
   onPresentationImagePicked(file: File) {
-    if (file !== undefined && file !== null) {
-      if (file.name.lastIndexOf('.') <= 0) {
+    if (file[0] !== undefined && file[0] !== null) {
+      if (file[0].name.lastIndexOf('.') <= 0) {
         return
       }
       const fr = new FileReader()
-      fr.readAsDataURL(file)
+      fr.readAsDataURL(file[0])
       fr.addEventListener('load', () => {
         if (typeof fr.result === 'string') {
           this.uploadPresentationImageUrl = fr.result
@@ -329,6 +352,7 @@ export default class CreateExhibitDialog extends Vue {
       if (file.name.lastIndexOf('.') <= 0) {
         return
       }
+      this.uploadDemoVideoUrl = ''
       const fr = new FileReader()
       fr.readAsDataURL(file)
       fr.addEventListener('load', () => {

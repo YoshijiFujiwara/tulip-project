@@ -79,6 +79,18 @@ export class ExhibitsController {
     return exhibit.transformToSerializer();
   }
 
+  @Put(':id/incrementViewsCount')
+  @ApiOkResponse({
+    type: ExhibitSerializer,
+    description: '閲覧人数更新成功',
+  })
+  async incrementViewsCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+    const exhibit = await this.exhibitsService.incrementViewsCount(id);
+    return exhibit.transformToSerializer();
+  }
+
+
+
   @Delete(':id')
   @HttpCode(204)
   @ApiNoContentResponse({
