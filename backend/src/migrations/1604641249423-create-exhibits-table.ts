@@ -38,6 +38,10 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             type: 'integer',
           },
           {
+            name: 'goodCount',
+            type: 'integer',
+          },
+          {
             name: 'demo',
             type: 'text',
             isNullable: true,
