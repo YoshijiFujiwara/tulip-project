@@ -115,6 +115,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import Profile from '../../plugins/axios/modules/profile'
 
 @Component({
   components: {
@@ -132,7 +133,6 @@ export default class MyPage extends Vue {
 
   // 出席ボタン
   isPresenceBtn: boolean = false
-  isPresenceLoading: boolean = false
   isAttend: String | null
 
   openCreateExhibitsModal() {
@@ -150,7 +150,15 @@ export default class MyPage extends Vue {
   }
 
   onPresence() {
-    this.isPresenceLoading = true
+    // 出席処理
+    Profile.updateProfileAttend()
+      .then(() => {
+        this.$toast.success('出席しました')
+      })
+      .catch(() => {
+        this.$toast.error('出席エラー')
+      })
+
     this.isPresenceBtn = !this.isPresenceBtn
   }
 
