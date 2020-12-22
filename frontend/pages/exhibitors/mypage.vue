@@ -115,6 +115,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import Profile from '../../plugins/axios/modules/profile'
 
 @Component({
   components: {
@@ -132,6 +133,7 @@ export default class MyPage extends Vue {
 
   // 出席ボタン
   isPresenceBtn: boolean = false
+  isAttend: String | null
 
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
@@ -148,11 +150,25 @@ export default class MyPage extends Vue {
   }
 
   onPresence() {
+    // 出席処理
+    Profile.updateProfileAttend()
+      .then(() => {
+        this.$toast.success('出席しました')
+      })
+      .catch(() => {
+        this.$toast.error('出席エラー')
+      })
+
     this.isPresenceBtn = true
   }
 
   async created() {
     this.user = await this.$auth.user
+    this.isAttend = this.user.attendedAt
+
+    if (this.isAttend) {
+      this.isPresenceBtn = true
+    }
 
     const response = await ExhibitApi.getExhibits()
     console.log('response', response)
