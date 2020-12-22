@@ -84,12 +84,12 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: '閲覧人数更新成功',
   })
-  async incrementViewsCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+  async incrementViewsCount(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
     const exhibit = await this.exhibitsService.incrementViewsCount(id);
     return exhibit.transformToSerializer();
   }
-
-
 
   @Delete(':id')
   @HttpCode(204)
