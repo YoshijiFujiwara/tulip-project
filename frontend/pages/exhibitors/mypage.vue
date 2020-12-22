@@ -1,7 +1,23 @@
 <template>
   <v-row>
-    <v-col cols="12">
+    <v-col cols="10">
       <h3 class="mt-3 mb-3">ようこそ、{{ user.studentNumber }}さん</h3>
+    </v-col>
+    <v-col cols="1" class="ml-6">
+      <v-btn
+        v-if="!isPresenceBtn"
+        depressed
+        x-large
+        color="success"
+        dark
+        @click="onPresence"
+      >
+        出席する
+      </v-btn>
+      <v-btn v-if="isPresenceBtn" depressed x-large color="white">
+        <v-icon color="#389c0a">mdi-check-circle</v-icon>
+        出席済み
+      </v-btn>
     </v-col>
     <v-card width="100%">
       <v-row class="pa-10">
@@ -99,6 +115,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import Profile from '../../plugins/axios/modules/profile'
 
 @Component({
   components: {
@@ -114,6 +131,10 @@ export default class MyPage extends Vue {
 
   isOpenUploadBoothDialog: boolean = false
 
+  // 出席ボタン
+  isPresenceBtn: boolean = false
+  isAttend: String | null
+
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
     this.isOpenCreateExhibitDialog = true
@@ -128,8 +149,26 @@ export default class MyPage extends Vue {
     alert('入場')
   }
 
+  onPresence() {
+    // 出席処理
+    Profile.updateProfileAttend()
+      .then(() => {
+        this.$toast.success('出席しました')
+      })
+      .catch(() => {
+        this.$toast.error('出席エラー')
+      })
+
+    this.isPresenceBtn = true
+  }
+
   async created() {
     this.user = await this.$auth.user
+    this.isAttend = this.user.attendedAt
+
+    if (this.isAttend) {
+      this.isPresenceBtn = true
+    }
 
     const response = await ExhibitApi.getExhibits()
     console.log('response', response)

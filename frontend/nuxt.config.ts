@@ -19,6 +19,11 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true,
+  },
+
   // 環境変数
   env: {
     cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
@@ -171,6 +176,8 @@ export default {
           warning: colors.amber.base,
           error: '#F2135D',
           success: colors.green.accent3,
+
+          mainText: '#6f6f6f', // メインテキストカラー
 
           // ログインページ関連
           color_signinFormHeader: 'rgba(255, 255, 255, 0.18)',
