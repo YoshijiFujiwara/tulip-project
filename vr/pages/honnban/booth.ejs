@@ -15,11 +15,21 @@
         <!-- 来場者character -->
         <template id="avatar-template">
           <a-entity class="avatar">
+            <!-- リアクション_ASSET -->
+            <a-image
+              id="reaction"
+              src="/honnban/assets/img/emo_cry.svg"
+              position="-0.04 0.05 0.32"
+              rotation="0 0 0"
+              scale="0.4 0.4 0.4"
+              look-at="#player"
+            ></a-image>
+            <!-- ユーザー名_ASSET -->
             <a-entity
               class="head"
               id="name"
               text="value: ペンギン; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-              position="0 -0.2 0"
+              position="-0.05 -0.2 0.25"
               scale="2 2 2"
               look-at="#player"
             ></a-entity>
@@ -41,39 +51,6 @@
             ></a-gltf-model>
           </a-entity>
         </template>
-        <!-- 空_ASSET -->
-        <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
-        <!-- ブース_ASSET -->
-        <a-asset-item
-          id="booth"
-          src="/honnban/assets/model/booth/scene.gltf"
-        ></a-asset-item>
-        <!-- 出口_ASSET -->
-        <a-asset-item
-          id="exit"
-          src="/honnban/assets/model/exit_door/scene.gltf"
-        ></a-asset-item>
-        <!-- 出展者 -->
-        <a-asset-item
-          id="npc1"
-          src="/honnban/assets/model/npc1/scene.gltf"
-        ></a-asset-item>
-        <!-- 来場者 -->
-        <a-asset-item
-          id="person"
-          src="/honnban/assets/model/person_small/scene.gltf"
-        ></a-asset-item>
-        <!-- ギャラリー_ASSET -->
-        <img id="white" src="/honnban/assets/img/white.jfif" />
-        <img id="slide1" src="/honnban/assets/img/slide1.jpg" />
-        <img id="slide2" src="/honnban/assets/img/slide2.jpg" />
-        <img id="slide3" src="/honnban/assets/img/slide3.jpg" />
-        <img id="gallery2" src="/honnban/assets/img/dog.jpg" />
-        <img id="gallery3" src="/honnban/assets/img/dog2.jpg" />
-        <img id="gallery4" src="/honnban/assets/img/bloodhound.png" />
-        <img id="gallery5" src="/honnban/assets/img/aa.jpg" />
-        <!-- デモ動画_ASSET -->
-        <video id="demo" src="/honnban/assets/movie/demo1.mp4"></video>
         <!-- 作品サンプル -->
         <a-asset-item
           id="sakuhin"
@@ -89,21 +66,26 @@
           id="white-likes"
           src="/honnban/assets/model/white_heart_model/scene.gltf"
         ></a-asset-item>
+
+        <!-- リアクション_ICONS -->
+        <%- include('./ejs-components/ejs-assets/reaction-panel.asset.ejs') %>
       </a-assets>
 
       <!-- 空 -->
-      <a-sky src="#sky"></a-sky>
+      <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
       <!-- ロビー -->
-      <a-gltf-model src="#booth"></a-gltf-model>
+      <%- include('./ejs-components/ejs-assets/booth.asset.ejs') %>
+      <!-- プレゼンター -->
+      <%- include('./ejs-components/ejs-assets/presenter.asset.ejs') %>
+      <!-- 作品概要 -->
+      <%- include('./ejs-components/ejs-assets/exhibit_overview.asset.ejs') %>
+      <!-- 作品紹介 -->
+      <%- include('./ejs-components/ejs-assets/presentation_image.asset.ejs') %>
+      <!-- デモ動画、上のタイトル -->
+      <%- include('./ejs-components/ejs-assets/demo_video.asset.ejs') %>
       <!-- 出口 -->
-      <a-gltf-model
-        id="exit"
-        src="#exit"
-        link="href: /honnban"
-        scale="0.25 0.25 0.25"
-        rotation="0 144.9084748399219 0"
-        position="-3.52115 0.37144 5.35451"
-      ></a-gltf-model>
+      <%- include('./ejs-components/ejs-assets/exit.asset.ejs') %>
+
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
       <!-- camera -->
       <a-camera
@@ -119,20 +101,6 @@
         <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-      <!-- <a-entity position="0 0 6">
-        <a-entity
-          camera=""
-          position="0.00991 1.6 -5.90104"
-          look-controls="pointerLockEnabled: true"
-          wasd-controls="acceleration: 300"
-          rotation="1.7188733853924711 -0.34377467707849396 0"
-          data-aframe-inspector-original-camera=""
-        >
-          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
-        </a-entity>
-        <a-cursor></a-cursor>
-      </a-entity> -->
-
       <!-- クリックイベント -->
       <a-entity
         position="0 1.6 0"
@@ -151,101 +119,12 @@
           position="0 0 -0.75"
         ></a-entity>
       </a-entity>
-
-      <!-- 出展者キャラクター -->
-      <a-gltf-model
-        id="npc1"
-        src="#npc1"
-        scale="0.004 0.004 0.004"
-        position="-3 0.25 -4.1"
-        rotation="0 50 0"
-      ></a-gltf-model>
-      <!-- ギャラリー_作品概要 -->
-      <a-image
-        id="white"
-        src="#white"
-        geometry="primitive: box"
-        scale="0.8 1 0.2"
-        position="-0.22305 1.23617 -4.61989"
-      ></a-image>
-      <a-image
-        id="thumbnail"
-        src="<%=exhibit.thumbnail%>"
-        scale="0.2 0.25 1"
-        position="-0.23734 1.33798 -4.51752"
-      ></a-image>
-      <a-entity
-        id="title"
-        text="value: <%=exhibit.title%>; align: center; color: #153093; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-        color="#000000"
-        scale="3 3 1"
-        position="-0.21761 1.61438 -4.45262"
-      ></a-entity>
-      <a-entity
-        id="description"
-        text="value: <%=exhibit.description%>; align: center; color: #424242; lineHeight: 0.4; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-        color="#000000"
-        scale="2 2 1"
-        position="-0.23672 1.09887 -4.45262"
-      ></a-entity>
-      <!-- ギャラリー_作品紹介 -->
-      <a-image
-        id="slide1"
-        src="<%=exhibit.presentationImage%>"
-        geometry="primitive: box"
-        scale="0.8 1 0.2"
-        position="3.08606 1.23617 -3.09248"
-        rotation="0 -47.63 0"
-      ></a-image>
-      <a-image
-        id="slide2"
-        src="<%=exhibit.presentationImage%>"
-        geometry="primitive: box"
-        scale="0.8 1 0.2"
-        position="4.38366 1.23617 0.24475"
-        rotation="0 88.45 0"
-      ></a-image>
-      <a-image
-        id="slide3"
-        src="<%=exhibit.presentationImage%>"
-        geometry="primitive: box"
-        scale="0.8 1 0.2"
-        position="2.87774 1.24431 3.38673"
-        rotation="0 44.73 0"
-      ></a-image>
-      <a-image
-        id="slide4"
-        src="<%=exhibit.presentationImage%>"
-        geometry="primitive: box"
-        scale="0.8 1 0.2"
-        position="-0.34878 1.23617 4.69281"
-      ></a-image>
-      <!-- デモ動画のTOPのタイトル -->
-      <a-entity
-        id="title"
-        text="value:<%=exhibit.title%>; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-        color="#000000"
-        scale="10 10 1"
-        position="-2.77313 3.50902 0.01258"
-        rotation="0 90 0"
-      ></a-entity>
-      <!-- デモ動画 -->
-      <a-video
-        id="demo"
-        src="#demo"
-        geometry="primitive: box"
-        position="-3.02088 1.81518 0.01"
-        width="5"
-        height="3"
-        scale="1 1 0.3"
-        rotation="0 90 0"
-      ></a-video>
       <!-- 作品 -->
-      <a-entity 
+      <a-entity
         id="fox"
         scale="0.3 0.3 0.3"
         position="-0.383 0.63654 0.4"
-      ></a-entity>  
+      ></a-entity>
       <!-- 現在時間を表示 -->
       <a-text
         id="now-time"
@@ -257,12 +136,12 @@
       ></a-text>
       <!-- 白いいねモデル -->
       <a-gltf-model
-        on-click=""
-        id="white-like" 
-        src="#white-likes" 
-        scale="0.015 0.015 0.015" 
+        on-click
+        id="white-like"
+        src="#white-likes"
+        scale="0.015 0.015 0.015"
         rotation="0 57.756 0"
-        position="-2.952 0.436 -2.682" 
+        position="-2.952 0.436 -2.682"
       ></a-gltf-model>
       <!-- いいねモデル -->
       <a-entity
@@ -281,9 +160,85 @@
         scale="2.79 2.81 3.334"
         position="-2.944 0.479 -2.829"
         rotation="0 65.289 0"
-        text="width: 3; negate: false"
+        text="width: 3;"
       ></a-text>
-      
+
+      <!-- パネル -->
+      <a-entity
+        id="menu"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="color: #000000; opacity: 0.7"
+        radius="200"
+        theta-length="110"
+        position="-0.70126 1.06574 -1.18901"
+        rotation="0 89.834 0"
+        scale="0.515 0.4621 1"
+        visible="false"
+      ></a-entity>
+      <a-entity
+        id="menuBackground"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
+        color="#000000"
+        opacity="0.1"
+        render-order="menu"
+        radius="200"
+        theta-length="110"
+        position="-0.70304 1.06159 -1.195"
+        rotation="0 89.834 0"
+        scale="0.53472 0.496 1.5"
+        visible="false"
+      ></a-entity>
+
+      <!-- リアクション_ASSSET -->
+      <a-image
+        id="i-love"
+        src="#love"
+        scale="0.27661 0.29119 0.5"
+        position="-0.64357 1.27987 -0.61076"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-twincle"
+        src="#twincle"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.2786 -1.19534"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-smile"
+        src="#smile"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.27838 -1.78385"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-think"
+        src="#think"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.87007 -0.61403"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-cry"
+        src="#cry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.86913 -1.20737"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-angry"
+        src="#angry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.8679 -1.78503"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
     </a-scene>
   </body>
 </html>
