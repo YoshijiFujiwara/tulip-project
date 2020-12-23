@@ -89,7 +89,15 @@ export class ExhibitsController {
     return exhibit.transformToSerializer();
   }
 
-
+  @Put(':id/incrementGoodCount')
+  @ApiOkResponse({
+    type: ExhibitSerializer,
+    description: 'いいね数更新成功',
+  })
+  async incrementGoodCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+    const exhibit = await this.exhibitsService.incrementGoodCount(id);
+    return exhibit.transformToSerializer();
+  }
 
   @Delete(':id')
   @HttpCode(204)
