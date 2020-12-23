@@ -19,6 +19,9 @@ export class ExhibitSerializer {
   @ApiProperty()
   viewsCount: number;
 
+  @ApiProperty()
+  goodCount: number;
+
   @ApiPropertyOptional()
   demo: string;
 
