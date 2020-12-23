@@ -81,6 +81,9 @@
           id="white-likes"
           src="/honnban/assets/model/white_heart_model/scene.gltf"
         ></a-asset-item>
+
+        <!-- リアクション_ICONS -->
+        <%- include('./ejs-components/ejs-assets/reaction-panel.asset.ejs') %>
       </a-assets>
 
       <!-- 空 -->
@@ -154,7 +157,7 @@
       ></a-gltf-model>
       <!-- 来場者character -->
       <a-gltf-model
-        id="person"
+        id="person1"
         src="#person"
         scale="0.2 0.2 0.2"
         rotation="180 90 180"
@@ -291,13 +294,13 @@
         src="#sakuhin"
         scale="0.3 0.3 0.3"
         position="-0.283 0.63654 0"
+        sakuhin-on-click=""
       ></a-gltf-model>
 
       <!-- 現在時間を表示 -->
       <a-text
         id="now-time"
         value="aaaa"
-        negate="false"
         color="#000000"
         scale="2.97348 2.93727 15"
         position="-0.25845 3.402 4.047"
@@ -320,7 +323,7 @@
         scale="2.79 2.81 3.334"
         position="-2.944 0.479 -2.829"
         rotation="0 65.289 0"
-        text="width: 3; negate: false"
+        text="width: 3;"
       ></a-text>
       <!-- 白いいねモデル -->
       <a-entity
@@ -331,6 +334,83 @@
         position="-2.952 0.436 -2.682"
         visible="false"
       ></a-entity>
+
+      <!-- パネル -->
+      <a-entity
+        id="menu"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="color: #000000; opacity: 0.7"
+        radius="200"
+        theta-length="110"
+        position="-0.70126 1.06574 -1.18901"
+        rotation="0 89.834 0"
+        scale="0.515 0.4621 1"
+        visible="false"
+      ></a-entity>
+      <a-entity
+        id="menuBackground"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
+        color="#000000"
+        opacity="0.1"
+        render-order="menu"
+        radius="200"
+        theta-length="110"
+        position="-0.70304 1.06159 -1.195"
+        rotation="0 89.834 0"
+        scale="0.53472 0.496 1.5"
+        visible="false"
+      ></a-entity>
+
+      <!-- リアクション_ASSSET -->
+      <a-image
+        id="i-love"
+        src="#love"
+        scale="0.27661 0.29119 0.5"
+        position="-0.64357 1.27987 -0.61076"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-twincle"
+        src="#twincle"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.2786 -1.19534"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-smile"
+        src="#smile"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.27838 -1.78385"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-think"
+        src="#think"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.87007 -0.61403"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-cry"
+        src="#cry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.86913 -1.20737"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-angry"
+        src="#angry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.8679 -1.78503"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
     </a-scene>
   </body>
 </html>
