@@ -11,7 +11,8 @@ const axiosInstance = axios.create({
 });
 
 var router = require('express').Router();
-
+//入室したかどうかのフラグ
+var enterFlag = 0;
 // ロビー画面
 router.get('/honnban', async function (req, res) {
   // 作品情報一覧の取得
@@ -21,7 +22,7 @@ router.get('/honnban', async function (req, res) {
   const renderData = {
     exhibits,
   };
-
+  enterFlag = 0;
   res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
 });
 
@@ -30,7 +31,14 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   // 作品のidのブース情報の取得
   const exhibitId = req.params.exhibitId;
   const result = await axiosInstance.get(`exhibits/${exhibitId}`);
+  
+  //じゃないと12回実行される。原因分からない
+  if(enterFlag === 0){
+    await axiosInstance.put(`exhibits/${exhibitId}/incrementViewsCount`)
+    enterFlag = exhibitId;
+  }
   const exhibit = result.data;
+  
 
   const renderData = {
     exhibit,
