@@ -106,8 +106,7 @@ export class ExhibitsService {
     if (!exhibitItem) {
       throw new NotFoundException('該当する作品が存在しません。');
     }
-    exhibitItem.goodCount = exhibitItem.goodCount + 1
-    ;
+    exhibitItem.goodCount = exhibitItem.goodCount + 1;
     return await exhibitItem.save();
   }
   
