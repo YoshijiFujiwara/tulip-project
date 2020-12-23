@@ -116,7 +116,7 @@
         cursor
       >
         <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects: .clickable"></a-cursor>
+        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
       <!-- <a-entity position="0 0 6">
@@ -255,15 +255,24 @@
         position="-0.25845 3.402 4.047"
         rotation="0 158.21 0"
       ></a-text>
-      <!-- いいねモデル -->
+      <!-- 白いいねモデル -->
       <a-gltf-model
         on-click=""
+        id="white-like" 
+        src="#white-likes" 
+        scale="0.015 0.015 0.015" 
+        rotation="0 57.756 0"
+        position="-2.952 0.436 -2.682" 
+      ></a-gltf-model>
+      <!-- いいねモデル -->
+      <a-entity
         id="like"
-        src="#likes"
+        gltf-model="#likes"
         scale="0.17932 0.20506 0.2375"
         rotation="0 57.74612434005515 0"
         position="-2.90927 0.41615 -2.68227"
-      ></a-gltf-model>
+        visible="false"
+      ></a-entity>
       <!-- いいね数 -->
       <a-text
         id="number-of-like"
@@ -274,15 +283,7 @@
         rotation="0 65.289 0"
         text="width: 3; negate: false"
       ></a-text>
-      <!-- 白いいねモデル -->
-      <a-entity
-        id="white-like"
-        gltf-model="#white-likes"
-        scale="0.015 0.015 0.015"
-        rotation="0 57.756 0"
-        position="-2.952 0.436 -2.682"
-        visible="false"
-      ></a-entity>
+      
     </a-scene>
   </body>
 </html>
