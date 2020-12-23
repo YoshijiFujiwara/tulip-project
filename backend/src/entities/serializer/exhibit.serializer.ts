@@ -22,6 +22,9 @@ export class ExhibitSerializer {
   @ApiPropertyOptional()
   demo: string;
 
+  @ApiPropertyOptional()
+  modelUrl: string;
+
   @ApiProperty({
     enum: GENRE,
   })
