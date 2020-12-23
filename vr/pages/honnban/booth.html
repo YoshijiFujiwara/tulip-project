@@ -4,7 +4,7 @@
     <meta name="description" content="Dev Example — Networked-Aframe" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta charset="UTF-8" />
-    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     <script src="/build.js"></script>
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
@@ -57,11 +57,12 @@
         <img id="play" src="/honnban/assets/img/play.png" />
         <video
           id="demo"
-          src="assets/movie/demo1.mp4"
+          src="/honnban/assets/movie/demo1.mp4"
           autoplay
           loop="true"
-          webkit-playsinline
-          playsinline
+          playsinline=""
+          webkit-playsinline=""
+          crossorigin="anonymous"
         ></video>
         <!-- 作品サンプル -->
         <a-asset-item
@@ -222,7 +223,7 @@
         rotation="0 90 0"
       ></a-entity>
       <!-- デモ動画 -->
-      <a-curvedimage
+      <!-- <a-curvedimage
         id="demo"
         src="#demo"
         material="height: 258"
@@ -230,7 +231,25 @@
         scale="2.15 2.84331 2.15"
         position="0.37378 1.72916 0.08129"
         rotation="0 -135.63056926336847 0"
-      ></a-curvedimage>
+      ></a-curvedimage> -->
+      <!-- <a-video
+        id="demo"
+        src="#demo"
+        geometry="primitive: box"
+        position="-3.02088 1.81518 0.01"
+        width="5"
+        height="3"
+        scale="1 1 0.3"
+        rotation="0 90 0"
+      ></a-video> -->
+      <a-entity
+        id="demo"
+        material="shader: flat; side: double; src: #demo"
+        geometry="primitive: cylinder; radius: 5; height: 3.682; openEnded: true; thetaStart: 142.5; thetaLength: 75"
+        position="1.36603 1.5 0.12454"
+        rotation="0 90 0"
+        scale="-1 1 1"
+      ></a-entity>
       <!-- 作品 -->
       <a-gltf-model
         id="sakuhin"

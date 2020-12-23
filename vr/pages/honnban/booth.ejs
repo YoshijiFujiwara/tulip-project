@@ -10,6 +10,13 @@
       networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
       raycaster="objects: a-gltf-model"
+      inspector=""
+      keyboard-shortcuts=""
+      screenshot=""
+      vr-mode-ui=""
+      device-orientation-permission-ui=""
+      renderer="colorManagement: true"
+      visible=""
     >
       <a-assets timeout="200000">
         <!-- 来場者character -->
@@ -128,7 +135,7 @@
         value="aaaa"
         color="#000000"
         scale="2.97348 2.93727 15"
-        position="-0.25845 3.402 4.047"
+        position="-0.05 3.605 4.337"
         rotation="0 158.21 0"
       ></a-text>
       <!-- いいねモデル -->
@@ -137,8 +144,8 @@
         id="like"
         src="#likes"
         scale="0.17932 0.20506 0.2375"
-        rotation="0 57.74612434005515 0"
-        position="-2.90927 0.41615 -2.68227"
+        rotation="0.5 57.74612434005515 0"
+        position="-2.488 0.406 -2.666"
       ></a-gltf-model>
       <!-- いいね数 -->
       <a-text
@@ -146,8 +153,8 @@
         value="0"
         color="#000000"
         scale="2.79 2.81 3.334"
-        position="-2.944 0.479 -2.829"
-        rotation="0 65.289 0"
+        position="-2.205 0.479 -2.666"
+        rotation="0 34.648 0"
         text="width: 3; negate: false"
       ></a-text>
       <!-- 白いいねモデル -->
@@ -155,8 +162,8 @@
         id="white-like"
         gltf-model="#white-likes"
         scale="0.015 0.015 0.015"
-        rotation="0 57.756 0"
-        position="-2.952 0.436 -2.682"
+        rotation="0.5 57.74612434005515 0"
+        position="-2.488 0.406 -2.666"
         visible="false"
       ></a-entity>
     </a-scene>
