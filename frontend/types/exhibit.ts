@@ -22,6 +22,8 @@ export type Exhibit = {
 
   demo?: string
 
+  modelUrl?: string
+
   groupId: number
 
   group: Group

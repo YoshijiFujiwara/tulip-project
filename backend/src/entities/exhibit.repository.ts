@@ -13,6 +13,7 @@ export class ExhibitRepsitory extends Repository<ExhibitEntity> {
       genre,
       presentationImage,
       demo,
+      modelUrl,
     }: CreateExhibitDto,
     group: GroupEntity,
   ): Promise<ExhibitEntity> {
@@ -25,6 +26,9 @@ export class ExhibitRepsitory extends Repository<ExhibitEntity> {
     exhibit.group = group;
     if (demo) {
       exhibit.demo = demo;
+    }
+    if (modelUrl) {
+      exhibit.modelUrl = modelUrl;
     }
     await exhibit.save();
 

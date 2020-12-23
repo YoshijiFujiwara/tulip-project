@@ -64,4 +64,13 @@ export class UpdateExhibitDto {
   @IsOptional()
   @IsUrl()
   demo?: string;
+
+  @ApiPropertyOptional({
+    example:
+      'https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf',
+    type: 'string',
+  })
+  @IsOptional()
+  @IsUrl()
+  modelUrl?: string;
 }

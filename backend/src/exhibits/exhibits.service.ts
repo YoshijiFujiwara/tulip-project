@@ -62,6 +62,7 @@ export class ExhibitsService {
       genre,
       presentationImage,
       demo,
+      modelUrl,
     }: UpdateExhibitDto,
     exhibitor: ExhibitorEntity,
   ): Promise<ExhibitEntity> {
@@ -85,6 +86,7 @@ export class ExhibitsService {
     exhibit.genre = genre;
     exhibit.presentationImage = presentationImage;
     exhibit.demo = demo ?? null;
+    exhibit.modelUrl = modelUrl ?? null;
     return await exhibit.save();
   }
 
