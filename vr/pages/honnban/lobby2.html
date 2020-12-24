@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>lobby</title>
+    <meta name="description" content="Dev Example — Networked-Aframe" />
+
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene renderer="colorManagement: true">
+      <!-- Asset Management System -->
+      <a-assets timeout="200000">
+        <img id="floor" src="/honnban/assets/img/vr_background.jpg" />
+        <img id="floor-NRM" src="/honnban/assets/img/vr_background.jpg" />
+        <img id="sky" src="/honnban/assets/img/vr_background.jpg" />
+        <img id="thumbnail1" src="/honnban/assets/img/dog.jpg" />
+        <img id="thumbnail2" src="/honnban/assets/img/bloodhound.png" />
+        <img id="thumbnail3" src="/honnban/assets/img/pitagora.png" />
+        <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
+        <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
+        <img id="comming_soon3" src="/honnban/assets/img/comming_soon3.png" />
+        <img id="comming_soon4" src="/honnban/assets/img/comming_soon4.png" />
+        <img id="title1" src="/honnban/assets/img/title1.png" />
+        <img id="title2" src="/honnban/assets/img/title2.png" />
+        <img id="title8" src="/honnban/assets/img/title8.png" />
+        <img id="lv1" src="/honnban/assets/img/lv1.png" />
+        <img id="lv2" src="/honnban/assets/img/lv2.png" />
+        <img id="lv3" src="/honnban/assets/img/lv3.png" />
+        <a-asset-item
+          id="class_room"
+          src="/honnban/assets/model/class_room/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="waiting_place"
+          src="/honnban/assets/model/lobby/scene.gltf"
+        ></a-asset-item>
+        <!-- bgm -->
+        <audio id="bgm" src="/honnban/assets/music/apex_OST.mp3"></audio>
+
+        <!-- Avatar -->
+        <a-asset-item
+          id="person"
+          src="/honnban/assets/model/person_small//scene.gltf"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="overview"
+          src="/honnban/assets/model/roll-up_display/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="overview2"
+          src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+        <a-asset-item
+          id="overviewpaooooon"
+          src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
+        ></a-asset-item>
+      </a-assets>
+
+      <!-- camera -->
+      <a-entity position="0 0 6">
+        <a-entity
+          camera=""
+          position="0.00991 2.16887 -5.90104"
+          look-controls="pointerLockEnabled: true"
+          wasd-controls="acceleration: 300"
+          rotation="1.7188733853924711 -0.34377467707849396 0"
+          data-aframe-inspector-original-camera=""
+        >
+          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
+        </a-entity>
+        <a-cursor></a-cursor>
+      </a-entity>
+      <!-- Sky -->
+      <a-sky src="#sky"></a-sky>
+
+      <!-- lobby_model -->
+      <a-gltf-model
+        src="#waiting_place"
+        visible=""
+        scale="0.21742 0.21742 0.21742"
+        rotation=""
+        position="-0.18153 0 -0.80929"
+        sound="src: #bgm; autoplay: true"
+      ></a-gltf-model>
+      <!-- panel -->
+      <a-entity
+        id="visitorBackground"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="shader: gradientshader; topColor: #1aa7c7; bottomColor: #B721FF"
+        opacity="0.1"
+        radius="200"
+        theta-length="110"
+        position="-0.20205 7.14736 -11.45081"
+        rotation="0 3.485302267780798 0"
+        scale="1.69673 1.60296 1.5"
+      ></a-entity>
+      <a-entity
+        id="visitorBackground2"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="color: #000000; opacity: 0.7"
+        radius="200"
+        theta-length="110"
+        position="-0.2023 7.16801 -11.36376"
+        rotation="0 1.7360621192463943 0"
+        scale="1.66171 1.50465 1.4"
+      ></a-entity>
+
+      <!-- visitors -->
+      <a-image
+        id="i-footprint"
+        src="#footprint"
+        position="-2.55302 6.21032 -11.09156"
+        roration=""
+        scale="0.69369 0.81053 1"
+        material=""
+        geometry=""
+      ></a-image>
+      <a-text
+        id="title"
+        value="来場者累計"
+        width="10"
+        position="-2.17805 6.4741 -11.17829"
+        rotation="0 3.727 0"
+        font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+        font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+        text="negate: false"
+      ></a-text>
+      <a-text
+        id="number-of-visitors"
+        value="1.000人"
+        width="10"
+        position="-2.19994 6.12076 -11.27006"
+        rotation="0 2.2368272321907336 0"
+        font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+        font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+        text="negate: false"
+      ></a-text>
+    </a-scene>
+  </body>
+</html>
