@@ -73,6 +73,9 @@
           id="white-likes"
           src="/honnban/assets/model/white_heart_model/scene.gltf"
         ></a-asset-item>
+
+        <!-- リアクション_ICONS -->
+        <%- include('./ejs-components/ejs-assets/reaction-panel.asset.ejs') %>
       </a-assets>
 
       <!-- 空 -->
@@ -102,7 +105,7 @@
         cursor
       >
         <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects: .clickable"></a-cursor>
+        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
       <!-- クリックイベント -->
@@ -138,34 +141,112 @@
         position="-0.05 3.605 4.337"
         rotation="0 158.21 0"
       ></a-text>
-      <!-- いいねモデル -->
+      <!-- 白いいねモデル -->
       <a-gltf-model
-        on-click=""
-        id="like"
-        src="#likes"
-        scale="0.17932 0.20506 0.2375"
-        rotation="0.5 57.74612434005515 0"
-        position="-2.488 0.406 -2.666"
+        on-click
+        id="white-like"
+        src="#white-likes"
+        scale="0.015 0.015 0.015"
+        rotation="0 57.756 0"
+        position="-2.952 0.436 -2.682"
       ></a-gltf-model>
+      <!-- いいねモデル -->
+      <a-entity
+        id="like"
+        gltf-model="#likes"
+        scale="0.17932 0.20506 0.2375"
+        rotation="0 57.74612434005515 0"
+        position="-2.90927 0.41615 -2.68227"
+        visible="false"
+      ></a-entity>
       <!-- いいね数 -->
       <a-text
         id="number-of-like"
-        value="0"
+        value="<%=exhibit.goodCount%>"
+        data-exhibit-id="<%=exhibit.id%>"
         color="#000000"
         scale="2.79 2.81 3.334"
         position="-2.205 0.479 -2.666"
         rotation="0 34.648 0"
         text="width: 3; negate: false"
       ></a-text>
-      <!-- 白いいねモデル -->
+
+      <!-- パネル -->
       <a-entity
-        id="white-like"
-        gltf-model="#white-likes"
-        scale="0.015 0.015 0.015"
-        rotation="0.5 57.74612434005515 0"
-        position="-2.488 0.406 -2.666"
+        id="menu"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="color: #000000; opacity: 0.7"
+        radius="200"
+        theta-length="110"
+        position="-0.70126 1.06574 -1.18901"
+        rotation="0 89.834 0"
+        scale="0.515 0.4621 1"
         visible="false"
       ></a-entity>
+      <a-entity
+        id="menuBackground"
+        geometry="primitive: plane; width: 3.4; height: 1.82"
+        material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
+        color="#000000"
+        opacity="0.1"
+        render-order="menu"
+        radius="200"
+        theta-length="110"
+        position="-0.70304 1.06159 -1.195"
+        rotation="0 89.834 0"
+        scale="0.53472 0.496 1.5"
+        visible="false"
+      ></a-entity>
+
+      <!-- リアクション_ASSSET -->
+      <a-image
+        id="i-love"
+        src="#love"
+        scale="0.27661 0.29119 0.5"
+        position="-0.64357 1.27987 -0.61076"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-twincle"
+        src="#twincle"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.2786 -1.19534"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-smile"
+        src="#smile"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 1.27838 -1.78385"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-think"
+        src="#think"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.87007 -0.61403"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-cry"
+        src="#cry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.86913 -1.20737"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
+      <a-image
+        id="i-angry"
+        src="#angry"
+        scale="0.27661 0.29119 0.5"
+        position="-0.655 0.8679 -1.78503"
+        rotation="0 90.61556713112022 0"
+        visible="false"
+      ></a-image>
     </a-scene>
   </body>
 </html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2455" height="2455" viewBox="0 0 2455 2455">
+  <g id="グループ_47" data-name="グループ 47" transform="translate(11288 -8017)">
+    <rect id="長方形_2" data-name="長方形 2" width="2455" height="2455" transform="translate(-11288 8017)" fill="#42c7b1"/>
+    <g id="グループ_41" data-name="グループ 41" transform="translate(-10165 7929)">
+      <g id="simple_standing" transform="translate(-294 289)">
+        <path id="パス_3" data-name="パス 3" d="M384.752,343.031a171.516,171.516,0,1,0-171.53-171.5A171.514,171.514,0,0,0,384.752,343.031Z" transform="translate(14.1)" fill="#fff"/>
+        <path id="パス_4" data-name="パス 4" d="M780.714,97.623H330.049c-83.1,0-173.519,90.416-173.519,173.551V847.65a75.249,75.249,0,1,0,150.5,0V373.675h34.688V1660.329a98.849,98.849,0,0,0,197.7,0V913.67h31.934v746.662a98.847,98.847,0,0,0,197.693,0V373.679H803.8V847.654a75.217,75.217,0,1,0,150.434,0V271.174C954.233,188.039,863.821,97.623,780.714,97.623Z" transform="translate(-156.53 293.822)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
