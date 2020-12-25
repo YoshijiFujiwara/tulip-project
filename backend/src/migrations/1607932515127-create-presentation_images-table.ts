@@ -28,6 +28,10 @@ export class createPresentationImagesTable1607932515127
             type: 'integer',
           },
           {
+            name: 'page',
+            type: 'integer',
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',

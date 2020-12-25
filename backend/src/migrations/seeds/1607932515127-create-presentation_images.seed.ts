@@ -13,9 +13,18 @@ export default class CreatePresentationImages implements Seeder {
     await Promise.all(
       counts.map(async exhibitId => {
         return [
-          await factroy(PresentationImageEntity)({ exhibitId }).create(),
-          await factroy(PresentationImageEntity)({ exhibitId }).create(),
-          await factroy(PresentationImageEntity)({ exhibitId }).create(),
+          await factroy(PresentationImageEntity)({
+            page: 1,
+            exhibitId,
+          }).create(),
+          await factroy(PresentationImageEntity)({
+            page: 2,
+            exhibitId,
+          }).create(),
+          await factroy(PresentationImageEntity)({
+            page: 3,
+            exhibitId,
+          }).create(),
         ];
       }),
     );

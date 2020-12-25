@@ -28,6 +28,10 @@ export class PresentationImageEntity extends BaseEntity {
 
   @Column()
   @ApiProperty()
+  page!: number;
+
+  @Column()
+  @ApiProperty()
   exhibitId!: number;
 
   @ManyToOne(

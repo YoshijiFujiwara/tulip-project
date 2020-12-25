@@ -9,6 +9,9 @@ export class PresentationImageSerializer {
   url: string;
 
   @ApiProperty()
+  page: number;
+
+  @ApiProperty()
   exhibitId: number;
 
   @ApiPropertyOptional({
