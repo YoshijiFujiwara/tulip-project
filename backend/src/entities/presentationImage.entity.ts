@@ -63,6 +63,7 @@ export class PresentationImageEntity extends BaseEntity {
     const presentationImage = new PresentationImageSerializer();
     presentationImage.id = this.id;
     presentationImage.url = this.url;
+    presentationImage.page = this.page;
     presentationImage.exhibitId = this.exhibitId;
     if (this.exhibit) {
       presentationImage.exhibit = this.exhibit.transformToSerializer();
