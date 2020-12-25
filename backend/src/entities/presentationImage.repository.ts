@@ -10,11 +10,12 @@ export class PresentationImageRepository extends Repository<
   async createPresentationImages(
     { presentationImages }: CreateExhibitDto | UpdateExhibitDto,
     exhibitId: number,
-  ) {
+  ): Promise<PresentationImageEntity[]> {
     return await Promise.all(
-      presentationImages.map(async url => {
+      presentationImages.map(async (url, page) => {
         const presentationImage = new PresentationImageEntity();
         presentationImage.exhibitId = exhibitId;
+        presentationImage.page = page + 1;
         presentationImage.url = url;
         return await presentationImage.save();
       }),
