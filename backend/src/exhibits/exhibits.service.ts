@@ -104,7 +104,21 @@ export class ExhibitsService {
     const exhibitItem = await this.exhibitRepsitory.findOne({
       where: { id: exhibitId}
     })
+    if (!exhibitItem) {
+      throw new NotFoundException('該当する作品が存在しません。');
+    }
     exhibitItem.viewsCount = exhibitItem.viewsCount + 1;
+    return await exhibitItem.save();
+  }
+
+  async incrementGoodCount(exhibitId: number,): Promise<ExhibitEntity>{
+    const exhibitItem = await this.exhibitRepsitory.findOne({
+      where: { id: exhibitId}
+    })
+    if (!exhibitItem) {
+      throw new NotFoundException('該当する作品が存在しません。');
+    }
+    exhibitItem.goodCount = exhibitItem.goodCount + 1;
     return await exhibitItem.save();
   }
   

@@ -64,6 +64,12 @@ export class ExhibitEntity extends BaseEntity {
   demo?: string;
 
   @Column({
+    length:10
+  })
+  @ApiProperty()
+  modelUrl?: string;
+
+  @Column({
     type: 'enum',
     enum: GENRE,
   })

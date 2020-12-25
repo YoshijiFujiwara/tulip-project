@@ -21,6 +21,7 @@ define(ExhibitEntity, (_: typeof Faker, context: Context) => {
   exhibit.goodCount = 10;
   exhibit.demo =
     'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4';
+  exhibit.modelUrl = 'https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf';
   exhibit.genre = genre;
   exhibit.groupId = groupId;
 

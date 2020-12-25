@@ -49,6 +49,11 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'modelUrl',
+            type: 'text',
+            isNullable: true,
+          },
+          {
             name: 'genre',
             type: 'varchar',
             length: '10',
