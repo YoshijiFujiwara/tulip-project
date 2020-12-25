@@ -8,10 +8,11 @@ describe('ExhibitEntity', () => {
   let exhibit: ExhibitEntity;
   let mockExhibitors: ExhibitorEntity[];
   let mockGroup: GroupEntity;
-  let mockPresentationImage: PresentationImageEntity;
+  let mockPresentationImages: PresentationImageEntity[];
 
   beforeEach(() => {
     mockExhibitors = [];
+    mockPresentationImages = [];
 
     mockGroup = new GroupEntity();
     mockGroup.id = 1;
@@ -48,13 +49,19 @@ describe('ExhibitEntity', () => {
     exhibit.createdAt = date;
     exhibit.updatedAt = date;
 
-    mockPresentationImage = new PresentationImageEntity();
-    mockPresentationImage.id = 1;
-    mockPresentationImage.url = 'https://hogehoge.com';
-    mockPresentationImage.exhibitId = exhibit.id;
-    mockPresentationImage.createdAt = date;
-    mockPresentationImage.updatedAt = date;
-    exhibit.presentationImages = [mockPresentationImage];
+    ['https://hogehoge.com'].map((url, id) => {
+      const mockPresentationImage = new PresentationImageEntity();
+      mockPresentationImage.id = id;
+      mockPresentationImage.url = url;
+      mockPresentationImage.exhibitId = exhibit.id;
+      mockPresentationImage.createdAt = date;
+      mockPresentationImage.updatedAt = date;
+      mockPresentationImages = [
+        ...mockPresentationImages,
+        mockPresentationImage,
+      ];
+    });
+    exhibit.presentationImages = mockPresentationImages;
   });
 
   describe('transformToSerializer', () => {
@@ -65,7 +72,9 @@ describe('ExhibitEntity', () => {
       expect(result.description).toEqual(exhibit.description);
       expect(result.thumbnail).toEqual(exhibit.thumbnail);
       expect(result.genre).toEqual(exhibit.genre);
-      expect(result.presentationImages).toEqual(exhibit.presentationImages);
+      expect(result.presentationImages).toEqual(
+        mockPresentationImages.map(p => p.transformToSerializer()),
+      );
       expect(result.groupId).toEqual(exhibit.groupId);
       expect(result.group).toEqual(mockGroup.transformToSerializer());
       expect(result.group.exhibitors).toEqual(
