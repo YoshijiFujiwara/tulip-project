@@ -2,11 +2,13 @@ import { ExhibitEntity, GENRE } from '../exhibit.entity';
 import { ExhibitorEntity } from '../exhibitor.entity';
 import { GroupEntity } from '../group.entity';
 import { hasProperty } from '../../func/test.func';
+import { PresentationImageEntity } from '../presentationImage.entity';
 
 describe('ExhibitEntity', () => {
   let exhibit: ExhibitEntity;
   let mockExhibitors: ExhibitorEntity[];
   let mockGroup: GroupEntity;
+  let mockPresentationImage: PresentationImageEntity;
 
   beforeEach(() => {
     mockExhibitors = [];
@@ -39,13 +41,20 @@ describe('ExhibitEntity', () => {
     exhibit.description = 'hogehoge';
     exhibit.thumbnail = 'hogehoge';
     exhibit.genre = GENRE.IT;
-    exhibit.presentationImage = 'hogehoge';
     exhibit.group = mockGroup;
     exhibit.groupId = mockGroup.id;
 
     const date = new Date();
     exhibit.createdAt = date;
     exhibit.updatedAt = date;
+
+    mockPresentationImage = new PresentationImageEntity();
+    mockPresentationImage.id = 1;
+    mockPresentationImage.url = 'https://hogehoge.com';
+    mockPresentationImage.exhibitId = exhibit.id;
+    mockPresentationImage.createdAt = date;
+    mockPresentationImage.updatedAt = date;
+    exhibit.presentationImages = [mockPresentationImage];
   });
 
   describe('transformToSerializer', () => {
@@ -56,7 +65,7 @@ describe('ExhibitEntity', () => {
       expect(result.description).toEqual(exhibit.description);
       expect(result.thumbnail).toEqual(exhibit.thumbnail);
       expect(result.genre).toEqual(exhibit.genre);
-      expect(result.presentationImage).toEqual(exhibit.presentationImage);
+      expect(result.presentationImages).toEqual(exhibit.presentationImages);
       expect(result.groupId).toEqual(exhibit.groupId);
       expect(result.group).toEqual(mockGroup.transformToSerializer());
       expect(result.group.exhibitors).toEqual(

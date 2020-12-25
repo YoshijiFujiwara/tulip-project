@@ -84,7 +84,9 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: '閲覧人数更新成功',
   })
-  async incrementViewsCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+  async incrementViewsCount(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
     const exhibit = await this.exhibitsService.incrementViewsCount(id);
     return exhibit.transformToSerializer();
   }
@@ -94,7 +96,9 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: 'いいね数更新成功',
   })
-  async incrementGoodCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+  async incrementGoodCount(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
     const exhibit = await this.exhibitsService.incrementGoodCount(id);
     return exhibit.transformToSerializer();
   }
