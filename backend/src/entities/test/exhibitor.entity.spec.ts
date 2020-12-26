@@ -2,11 +2,13 @@ import { ExhibitorEntity } from '../exhibitor.entity';
 import { hasProperty } from '../../func/test.func';
 import { GroupEntity } from '../group.entity';
 import { ExhibitEntity, GENRE } from '../exhibit.entity';
+import { PresentationImageEntity } from '../presentationImage.entity';
 
 describe('ExhibitorEntity', () => {
   let exhibitor: ExhibitorEntity;
   let mockGroup: GroupEntity;
   let mockExhibit: ExhibitEntity;
+  let mockPresentationImage: PresentationImageEntity;
 
   beforeEach(() => {
     const date = new Date();
@@ -17,10 +19,18 @@ describe('ExhibitorEntity', () => {
     mockExhibit.description = 'hogehoge';
     mockExhibit.thumbnail = 'hogehoge';
     mockExhibit.genre = GENRE.IT;
-    mockExhibit.presentationImage = 'hogehoge';
     mockExhibit.groupId = 1;
     mockExhibit.createdAt = date;
     mockExhibit.updatedAt = date;
+
+    mockPresentationImage = new PresentationImageEntity();
+    mockPresentationImage.id = 1;
+    mockPresentationImage.exhibitId = mockExhibit.id;
+    mockPresentationImage.url = 'https://hogehoge.com';
+    mockPresentationImage.createdAt = date;
+    mockPresentationImage.updatedAt = date;
+
+    mockExhibit.presentationImages = [mockPresentationImage];
 
     mockGroup = new GroupEntity();
     mockGroup.id = mockExhibit.groupId;

@@ -12,6 +12,7 @@ import { GroupRepository } from '../entities/group.repository';
 import { ExhibitEntity } from '../entities/exhibit.entity';
 import { UpdateExhibitDto } from './dto/update-exhibit.dto';
 import { GetExhibitsDto, ExhibitsOrderby } from './dto/get-exhibits.dto';
+import { PresentationImageRepository } from '../entities/presentationImage.repository';
 
 @Injectable()
 export class ExhibitsService {
@@ -20,6 +21,8 @@ export class ExhibitsService {
     private exhibitRepsitory: ExhibitRepsitory,
     @InjectRepository(GroupRepository)
     private groupRepository: GroupRepository,
+    @InjectRepository(PresentationImageRepository)
+    private presentationImageRepository: PresentationImageRepository,
   ) {}
 
   async createExhibit(
@@ -34,7 +37,15 @@ export class ExhibitsService {
       throw new ConflictException('作品は登録済みです');
     }
 
-    return await this.exhibitRepsitory.createExhibit(createExhibitDto, group);
+    const exhibit = await this.exhibitRepsitory.createExhibit(
+      createExhibitDto,
+      group,
+    );
+    exhibit.presentationImages = await this.presentationImageRepository.createPresentationImages(
+      createExhibitDto,
+      exhibit.id,
+    );
+    return exhibit;
   }
 
   async getExhibit(exhibitId: number): Promise<ExhibitEntity> {
@@ -62,16 +73,11 @@ export class ExhibitsService {
 
   async updateExhibit(
     exhibitId: number,
-    {
-      title,
-      description,
-      thumbnail,
-      genre,
-      presentationImage,
-      demo,
-    }: UpdateExhibitDto,
+    updateExhibitDto: UpdateExhibitDto,
     exhibitor: ExhibitorEntity,
   ): Promise<ExhibitEntity> {
+    const { title, description, thumbnail, genre, demo } = updateExhibitDto;
+
     const group = await this.groupRepository.findOne({
       relations: ['exhibit'],
       where: { id: exhibitor.groupId },
@@ -90,9 +96,15 @@ export class ExhibitsService {
     exhibit.description = description;
     exhibit.thumbnail = thumbnail;
     exhibit.genre = genre;
-    exhibit.presentationImage = presentationImage;
     exhibit.demo = demo ?? null;
-    return await exhibit.save();
+    const updatedExhibit = await exhibit.save();
+
+    await this.presentationImageRepository.delete({ exhibitId: exhibit.id });
+    updatedExhibit.presentationImages = await this.presentationImageRepository.createPresentationImages(
+      updateExhibitDto,
+      exhibit.id,
+    );
+    return updatedExhibit;
   }
 
   async incrementViewsCount(exhibitId: number): Promise<ExhibitEntity> {
