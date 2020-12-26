@@ -7,11 +7,17 @@ AFRAME.registerComponent('on-click', {
       var likeNumEl = document.querySelector('#number-of-like');
       var likesEl = document.querySelector('#like');
       var whiteLikesEl = document.querySelector('#white-like');
-      if(likesEl.getAttribute('visible') === true) {
+      const id = likeNumEl.dataset.exhibitId;
+      if (whiteLikesEl.getAttribute('visible') === true) {
+        fetch(`https://localhost:3001/api/exhibits/${id}/incrementGoodCount`, {
+          method: 'PUT',
+        })
+          .then((res) => res.json())
+          .then((res) => console.log(res));
         num = parseInt(likeNumEl.getAttribute('value'));
         sum = num + 1;
-        likesEl.setAttribute('visible', false);
-        whiteLikesEl.setAttribute('visible', true);
+        whiteLikesEl.setAttribute('visible', false);
+        likesEl.setAttribute('visible', true);
         likeNumEl.setAttribute('value', sum);
       }
     });
