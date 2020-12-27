@@ -66,7 +66,11 @@
           id="white-likes"
           src="/honnban/assets/model/white_heart_model/scene.gltf"
         ></a-asset-item>
-
+        <!-- fox -->
+        <a-asset-item
+          id="fox"
+          src="https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf"
+        ></a-asset-item>
         <!-- リアクション_ICONS -->
         <%- include('./ejs-components/ejs-assets/reaction-panel.asset.ejs') %>
       </a-assets>
@@ -120,11 +124,12 @@
         ></a-entity>
       </a-entity>
       <!-- 作品 -->
-      <a-entity
+      <a-gltf-model
         id="fox"
+        src="#fox"
         scale="0.3 0.3 0.3"
         position="-0.383 0.63654 0.4"
-      ></a-entity>
+      ></a-gltf-model>
       <!-- 現在時間を表示 -->
       <a-text
         id="now-time"
