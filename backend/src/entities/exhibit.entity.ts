@@ -7,13 +7,11 @@ import {
   CreateDateColumn,
   OneToOne,
   JoinColumn,
-  OneToMany,
 } from 'typeorm';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
 import { ExhibitSerializer } from './serializer/exhibit.serializer';
 import { BoothEntity } from './booth.entity';
-import { PresentationImageEntity } from './presentationImage.entity';
 
 export enum GENRE {
   GAME = 'game',
@@ -64,7 +62,7 @@ export class ExhibitEntity extends BaseEntity {
   demo?: string;
 
   @Column({
-    length: 10,
+    length:10
   })
   @ApiProperty()
   modelUrl?: string;
@@ -77,6 +75,12 @@ export class ExhibitEntity extends BaseEntity {
     enum: GENRE,
   })
   genre!: GENRE;
+
+  @Column({
+    type: 'text',
+  })
+  @ApiProperty()
+  presentationImage!: string;
 
   @Column()
   @ApiProperty()
@@ -94,15 +98,6 @@ export class ExhibitEntity extends BaseEntity {
     booth => booth.exhibit,
   )
   booth: BoothEntity;
-
-  @OneToMany(
-    () => PresentationImageEntity,
-    presentationImage => presentationImage.exhibit,
-  )
-  @ApiPropertyOptional({
-    type: () => [PresentationImageEntity],
-  })
-  presentationImages: PresentationImageEntity[];
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -128,6 +123,7 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.viewsCount = this.viewsCount;
     exhibitSerializer.goodCount = this.goodCount;
     exhibitSerializer.genre = this.genre;
+    exhibitSerializer.presentationImage = this.presentationImage;
     if (this.demo) {
       exhibitSerializer.demo = this.demo;
     }
@@ -137,11 +133,6 @@ export class ExhibitEntity extends BaseEntity {
     }
     if (this.booth) {
       exhibitSerializer.booth = this.booth.transformToSerializer();
-    }
-    if (this.presentationImages) {
-      exhibitSerializer.presentationImages = this.presentationImages.map(
-        image => image.transformToSerializer(),
-      );
     }
 
     return exhibitSerializer;

@@ -4,16 +4,9 @@ import { ExhibitsService } from './exhibits.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExhibitRepsitory } from '../entities/exhibit.repository';
 import { GroupRepository } from '../entities/group.repository';
-import { PresentationImageRepository } from '../entities/presentationImage.repository';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      ExhibitRepsitory,
-      GroupRepository,
-      PresentationImageRepository,
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature([ExhibitRepsitory, GroupRepository])],
   controllers: [ExhibitsController],
   providers: [ExhibitsService],
 })

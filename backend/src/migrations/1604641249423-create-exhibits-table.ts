@@ -59,6 +59,10 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             length: '10',
           },
           {
+            name: 'presentationImage',
+            type: 'text',
+          },
+          {
             name: 'groupId',
             type: 'integer',
           },
