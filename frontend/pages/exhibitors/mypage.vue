@@ -116,7 +116,7 @@ import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDia
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import Profile from '../../plugins/axios/modules/profile'
-import {User} from '../../types/auth'
+import { User } from '../../types/auth'
 
 @Component({
   components: {
@@ -163,8 +163,8 @@ export default class MyPage extends Vue {
   }
 
   async created() {
-    this.user = await this.$auth.user as User
-      this.isAttend = !!this.user && !!this.user.attendedAt
+    this.user = (await this.$auth.user) as User
+    this.isAttend = !!this.user && !!this.user.attendedAt
 
     if (this.isAttend) {
       this.isPresenceBtn = true
