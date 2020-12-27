@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-breadcrumbs :items="itemss">
+    <v-breadcrumbs :items="items">
       <template v-slot:item="{ item }">
         <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
           {{ item.text }}
@@ -16,9 +16,6 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component
 export default class Sampleyade extends Vue {
   // props群
-  @Prop({ required: true }) readonly itemss!: any
-
-  // dataに当たるもの
-  //ultimateMessage: string = '俺最強'
+  @Prop({ required: true }) readonly items!: any
 }
 </script>
