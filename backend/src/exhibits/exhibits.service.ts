@@ -38,18 +38,23 @@ export class ExhibitsService {
 
   async getExhibit(exhibitId: number): Promise<ExhibitEntity> {
     const exhibit = await this.exhibitRepsitory.findOne({
-      relations: ['group'],
+      relations: ['booth', 'group'],
       where: { id: exhibitId },
     });
     if (!exhibit) {
       throw new NotFoundException('該当する作品が存在しません。');
     }
+
+    exhibit.presentationImages = await this.presentationImageRepository.find({
+      where: { exhibitId: exhibit.id },
+      order: { page: 'ASC' },
+    });
     return exhibit;
   }
 
   async getExhibits(): Promise<ExhibitEntity[]> {
     return await this.exhibitRepsitory.find({
-      relations: ['booth', 'group'],
+      relations: ['booth', 'group', 'presentationImages'],
     });
   }
 
