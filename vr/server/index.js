@@ -24,6 +24,16 @@ const port = process.env.PORT || 8080;
 // Setup and configure Express http server.
 const app = express();
 
+// フォームのPOST用
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(
+  bodyParser.urlencoded({
+    // to support URL-encoded bodies
+    extended: true,
+  }),
+);
+
 // staticメソッドを利用し、指定ディレクトリ以下の静的ファイルを読み込む
 // app.use(express.static(path.resolve(__dirname, '..', 'pages')));
 app.use(express.static(path.resolve(__dirname, '..', 'pages')));
