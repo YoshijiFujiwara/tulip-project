@@ -1,5 +1,6 @@
 <template>
   <div>
+    <breadcrums :items="breadcrum" />
     <h1>作品一覧ページです</h1>
     <v-data-table
       :headers="headers"
@@ -15,10 +16,12 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import { Exhibit } from '../../../types/exhibit'
+import Breadcrumbs from '../../../components/breadcrums.vue'
 
 @Component({
   auth: false,
   layout: 'admin',
+  components: { Breadcrumbs },
 })
 export default class Signin extends Vue {
   exhibits: Exhibit[] = []
@@ -35,6 +38,19 @@ export default class Signin extends Vue {
     { text: 'description', value: 'description' },
     { text: 'presentationImage', value: 'presentationImage' },
     { text: 'thumbnail', value: 'thumbnail' },
+  ]
+
+  breadcrum = [
+    {
+      text: 'ダッシュボード',
+      disabled: false,
+      href: '/admin',
+    },
+    {
+      text: '作品一覧',
+      disabled: true,
+      href: '/admin/exhibitors',
+    },
   ]
 
   async created() {

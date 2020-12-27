@@ -1,5 +1,6 @@
 <template>
   <div>
+    <breadcrums :items="breadcrum" />
     <h3>99人中9人が会場にログインしています</h3>
     <h3>出席中｜未出席</h3>
     <v-data-table
@@ -41,10 +42,12 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import ExhibitorApi from '../../plugins/axios/modules/exhibitors'
 import { Exhibitor } from '../../types/exhibitor'
+import Breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
   auth: false,
   layout: 'admin',
+  components: { Breadcrumbs },
 })
 export default class Signin extends Vue {
   exhibitors: Exhibitor[] = []
@@ -55,6 +58,19 @@ export default class Signin extends Vue {
     { text: '所属グループ名', value: 'group.name' },
     { text: '出席ステータス', value: 'status', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
+  ]
+
+  breadcrum = [
+    {
+      text: 'ダッシュボード',
+      disabled: false,
+      href: '/admin',
+    },
+    {
+      text: '来場者一覧',
+      disabled: true,
+      href: '/admin/exhibitors',
+    },
   ]
 
   async created() {
