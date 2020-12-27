@@ -329,13 +329,13 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   // presentationImageのプレビュー
-  onPresentationImagePicked(file: File) {
-    if (file[0] !== undefined && file[0] !== null) {
-      if (file[0].name.lastIndexOf('.') <= 0) {
+  onPresentationImagePicked(files: File[]) {
+    if (files[0] !== undefined && files[0] !== null) {
+      if (files[0].name.lastIndexOf('.') <= 0) {
         return
       }
       const fr = new FileReader()
-      fr.readAsDataURL(file[0])
+      fr.readAsDataURL(files[0])
       fr.addEventListener('load', () => {
         if (typeof fr.result === 'string') {
           this.uploadPresentationImageUrl = fr.result
