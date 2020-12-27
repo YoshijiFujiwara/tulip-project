@@ -34,7 +34,22 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
             type: 'text',
           },
           {
+            name: 'viewsCount',
+            type: 'integer',
+            default: 0,
+          },
+          {
+            name: 'goodCount',
+            type: 'integer',
+            default: 0,
+          },
+          {
             name: 'demo',
+            type: 'text',
+            isNullable: true,
+          },
+          {
+            name: 'modelUrl',
             type: 'text',
             isNullable: true,
           },

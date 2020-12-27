@@ -46,12 +46,26 @@ export class ExhibitEntity extends BaseEntity {
   @ApiProperty()
   thumbnail!: string;
 
+  @Column()
+  @ApiProperty()
+  viewsCount!: number;
+
+  @Column()
+  @ApiProperty()
+  goodCount!: number;
+
   @Column({
     type: 'text',
     nullable: true,
   })
   @ApiProperty()
   demo?: string;
+
+  @Column({
+    length:10
+  })
+  @ApiProperty()
+  modelUrl?: string;
 
   @Column({
     type: 'enum',
@@ -106,6 +120,8 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.title = this.title;
     exhibitSerializer.description = this.description;
     exhibitSerializer.thumbnail = this.thumbnail;
+    exhibitSerializer.viewsCount = this.viewsCount;
+    exhibitSerializer.goodCount = this.goodCount;
     exhibitSerializer.genre = this.genre;
     exhibitSerializer.presentationImage = this.presentationImage;
     if (this.demo) {

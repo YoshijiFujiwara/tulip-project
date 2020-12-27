@@ -16,8 +16,17 @@ export class ExhibitSerializer {
   @ApiProperty()
   thumbnail: string;
 
+  @ApiProperty()
+  viewsCount: number;
+
+  @ApiProperty()
+  goodCount: number;
+
   @ApiPropertyOptional()
   demo: string;
+
+  @ApiPropertyOptional()
+  modelUrl: string;
 
   @ApiProperty({
     enum: GENRE,

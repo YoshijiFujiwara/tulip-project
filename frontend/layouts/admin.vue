@@ -63,17 +63,12 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-shield-account-variant',
       url: '/admin/exhibits',
-      title: '管理者',
+      title: '作品一覧',
     },
     {
       icon: 'mdi-contacts',
       url: '/admin/exhibitors',
       title: '出展者一覧',
-    },
-    {
-      icon: 'mdi-contacts',
-      url: '/admin/',
-      title: '出席確認',
     },
     {
       icon: 'mdi-account-supervisor',
@@ -82,7 +77,7 @@ export default class Admin extends Vue {
     },
     {
       icon: 'mdi-home',
-      url: '/admin/groups',
+      url: '/admin/groups/',
       title: '出展者グループ一覧',
     },
   ]

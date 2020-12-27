@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>VR入場フォーム</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Economica:700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Import the component -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+    ></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="vr_login">
+        <h1>
+          Welcome to the world of
+          <p><img class="logo" src="/honnban/assets/img/Logo_main.png" /></p>
+        </h1>
+        <form id="vr_form" method="post" action="/honnban/select_avatar">
+          <label>
+            <input
+              type="text"
+              name="username"
+              title="ユーザー名"
+              placeholder="ユーザー名"
+              required
+            />
+          </label>
+          <fieldset>
+            <input
+              id="item-1"
+              class="radio-inline__input"
+              type="radio"
+              name="avatar"
+              value="super_carrot"
+              checked="checked"
+            />
+            <label class="radio-inline__label" for="item-1">
+              <model-viewer
+                src="/honnban/assets/model/super_carrot/scene.gltf"
+                auto-rotate
+                camera-controls
+              ></model-viewer>
+            </label>
+            <input
+              id="item-2"
+              class="radio-inline__input"
+              type="radio"
+              name="avatar"
+              value="cute_penguin"
+            />
+            <label class="radio-inline__label" for="item-2">
+              <model-viewer
+                src="/honnban/assets/model/cute_penguin/scene.gltf"
+                auto-rotate
+                camera-controls
+              ></model-viewer>
+            </label>
+            <input
+              id="item-3"
+              class="radio-inline__input"
+              type="radio"
+              name="avatar"
+              value="baby_carrot"
+            />
+            <label class="radio-inline__label" for="item-3">
+              <model-viewer
+                src="/honnban/assets/model/baby_carrot/scene.gltf"
+                auto-rotate
+                camera-controls
+              ></model-viewer
+            ></label>
+            <input
+              id="item-4"
+              class="radio-inline__input"
+              type="radio"
+              name="avatar"
+              value="unkown"
+            />
+            <label class="radio-inline__label" for="item-4">
+              <model-viewer
+                src="/honnban/assets/model/person_small/scene.gltf"
+                auto-rotate
+                camera-controls
+              ></model-viewer
+            ></label>
+          </fieldset>
+          <div class="btn-wrap--perspective">
+            <button
+              id="button"
+              type="submit"
+              class="btn btn-3d btn-3db btn-primary btn-block btn-large"
+            >
+              VR空間に入場する
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

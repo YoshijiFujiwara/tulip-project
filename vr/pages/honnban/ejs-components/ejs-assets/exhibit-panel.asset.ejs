@@ -47,10 +47,11 @@
 <a-image
   id="exhibit-panel-thumbnail-<%=exhibit.id%>"
   src="#asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
-  link="href: /honnban/booths/<%= exhibit.id %>"
+  link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>"
   scale="<%=position.thumbnail.scale%>"
   position="<%=position.thumbnail.position%>"
   rotation="<%=position.thumbnail.rotation%>"
+  material="color:  #5c5c5c;"
 ></a-image>
 
 <!-- オーバービューの部分、表示項目が悩み中なので、コメントアウト中 -->
