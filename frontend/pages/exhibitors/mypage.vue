@@ -88,10 +88,15 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="8" class="">
-          <v-img max-width="1086px" max-height="608px"
-            >画像ダミー
-            <v-card class="ma-auto" outlined>
+        <v-col cols="8">
+          <div class="vr-booth">
+            <iframe
+              id="iframe-details"
+              src="https://localhost:8081/honnban/booths/1"
+              frameborder="0"
+            ></iframe>
+
+            <v-card class="ma-auto card-area ml-5 mr-5" outlined>
               <v-card-title class="justify-center">
                 <v-icon>mdi-information-outline</v-icon>
                 ただいまテストサーバで公開中です。
@@ -100,7 +105,7 @@
                 <v-btn large class="px-15" @click="connectEntrance">入場</v-btn>
               </v-card-actions>
             </v-card>
-          </v-img>
+          </div>
         </v-col>
       </v-row>
     </v-card>
@@ -184,5 +189,27 @@ export default class MyPage extends Vue {
 }
 a {
   color: #000000;
+}
+.vr-booth {
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+  display: block;
+}
+.vr-scene {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.card-area {
+  z-index: 9999;
+  position: relative;
+  top: -200px;
+  opacity: 0.6;
+}
+#iframe-details {
+  width: 100%;
+  height: 100%;
 }
 </style>
