@@ -19,9 +19,13 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
+  // [FYI] https://typescript.nuxtjs.org/guide/lint/#runtime-lint
   typescript: {
-    typeCheck: true,
-    ignoreNotFoundWarnings: true,
+    typeCheck: {
+      eslint: {
+        files: './**/*.{ts,js,vue}',
+      },
+    },
   },
 
   // 環境変数
