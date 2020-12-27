@@ -1,21 +1,39 @@
 <!-- デモ動画_ASSET -->
-<video id="demo" src="/honnban/assets/movie/demo1.mp4"></video>
+<!-- <video
+id="demo"
+src="/honnban/assets/movie/demo1.mp4"
+autoplay
+loop="true"
+webkit-playsinline
+playsinline
+></video> -->
+<video
+  id="demo"
+  preload="auto"
+  src="/honnban/assets/movie/demo1.mp4"
+  width="1280"
+  height="720"
+  autoplay
+  loop="true"
+  crossorigin="anonymous"
+  playsinline=""
+  webkit-playsinline=""
+></video>
 <!-- デモ動画のTOPのタイトル -->
 <a-entity
   id="title"
   text="value:<%=exhibit.title%>; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
   color="#000000"
   scale="10 10 1"
-  position="-3.833 3.542 0.013"
+  position="-3.59467 4.3 0.01258"
   rotation="0 90 0"
 ></a-entity>
 <!-- デモ動画 -->
-<a-curvedimage
+<a-entity
   id="demo"
-  src="#demo"
-  material="height: 258"
-  geometry="thetaLength: 88; thetaStart: 1"
-  scale="2.15 2.84331 2.15"
-  position="0.37378 1.72916 0.08129"
-  rotation="0 -135.63056926336847 0"
-></a-curvedimage>
+  material="shader: flat; side: double; src: #demo"
+  geometry="primitive: cylinder; radius: 5; height: 3.682; openEnded: true; thetaStart: 142.5; thetaLength: 75"
+  position="1.18018 2.15886 0.07935"
+  rotation="0 90 0"
+  scale="-1 1 1"
+></a-entity>

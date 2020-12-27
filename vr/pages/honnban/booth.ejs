@@ -10,6 +10,13 @@
       networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
       raycaster="objects: a-gltf-model"
+      inspector=""
+      keyboard-shortcuts=""
+      screenshot=""
+      vr-mode-ui=""
+      device-orientation-permission-ui=""
+      renderer="colorManagement: true"
+      visible=""
     >
       <a-assets timeout="200000">
         <!-- 来場者character -->
@@ -136,7 +143,7 @@
         value="aaaa"
         color="#000000"
         scale="2.97348 2.93727 15"
-        position="-0.25845 3.402 4.047"
+        position="-0.05 3.605 4.337"
         rotation="0 158.21 0"
       ></a-text>
       <!-- 白いいねモデル -->
@@ -164,9 +171,9 @@
         data-exhibit-id="<%=exhibit.id%>"
         color="#000000"
         scale="2.79 2.81 3.334"
-        position="-2.944 0.479 -2.829"
-        rotation="0 65.289 0"
-        text="width: 3;"
+        position="-2.205 0.479 -2.666"
+        rotation="0 34.648 0"
+        text="width: 3; negate: false"
       ></a-text>
 
       <!-- パネル -->
