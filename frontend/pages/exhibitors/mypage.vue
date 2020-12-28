@@ -1,7 +1,9 @@
 <template>
   <v-row>
     <v-col cols="10">
-      <h3 class="mt-3 mb-3">ようこそ、{{ user.studentNumber }}さん</h3>
+      <h3 class="mt-3 mb-3">
+        ようこそ、{{ user ? user.studentNumber : '' }}さん
+      </h3>
     </v-col>
     <v-col cols="1" class="ml-6">
       <v-btn
@@ -166,8 +168,8 @@ export default class MyPage extends Vue {
   }
 
   async created() {
-    this.user = await this.$auth.user
-    this.isAttend = !!this.user.attendedAt
+    this.user = (await this.$auth.user) as User
+    this.isAttend = !!this.user && !!this.user.attendedAt
   }
 }
 </script>

@@ -72,6 +72,8 @@ export default class Groups extends Vue {
   ]
 
   async created() {
+    // TODO: グループを一件取得するAPIを使って書き直す
+
     // this.user = await this.$auth.user
     const groups = await GroupApi.getGroups()
     this.groups = groups
@@ -80,7 +82,8 @@ export default class Groups extends Vue {
     this.groups.forEach((item) => {
       if (Number(item.id) === this.routeId) {
         this.groupName = item.name
-        this.groupDetails = item.exhibitors
+        // FIXME: 型のエラーが出るのでコメントアウト
+        // this.groupDetails = item.exhibitors
       }
     })
   }
