@@ -2,6 +2,15 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
+    <script>
+      window.onload = (event) => {
+        fetch(`https://192.168.99.100:3001/api/exhibits/<%=exhibit.id%>/incrementViewsCount`, {
+          method: 'PUT',
+        })
+          .then((res) => res.json())
+          .then((res) => console.log(res));
+      };
+    </script>
   </head>
   <body>
     <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
