@@ -93,11 +93,12 @@
         <v-col cols="8">
           <div class="vr-booth">
             <iframe
+              v-if="exhibit"
               id="iframe-details"
-              src="https://localhost:8081/honnban/booths/1"
+              :src="`${vrUrl}honnban/booths/${exhibit.id}?username=ssss&avatar=cute_penguin`"
               frameborder="0"
             ></iframe>
-
+            
             <v-card class="ma-auto card-area ml-5 mr-5" outlined>
               <v-card-title class="justify-center">
                 <v-icon>mdi-information-outline</v-icon>
@@ -121,9 +122,10 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
-import Profile from '../../plugins/axios/modules/profile'
 import { User } from '../../types/auth'
-
+import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import ProfileApi from '../../plugins/axios/modules/profile'
+import { Exhibit } from '../../types/exhibit'
 @Component({
   components: {
     CreateExhibitDialog,
@@ -131,7 +133,11 @@ import { User } from '../../types/auth'
   },
 })
 export default class MyPage extends Vue {
+  vrUrl: string = ""
+
   user: User | null = null
+  // 自分が登録した作品情報
+  exhibit: Exhibit | null = null
   // 展示物作成モーダルの開閉
   isOpenCreateExhibitDialog: boolean = false
 
@@ -156,7 +162,7 @@ export default class MyPage extends Vue {
 
   onPresence() {
     // 出席処理
-    Profile.updateProfileAttend()
+    ProfileApi.updateProfileAttend()
       .then(() => {
         this.$toast.success('出席しました')
       })
@@ -170,6 +176,12 @@ export default class MyPage extends Vue {
   async created() {
     this.user = (await this.$auth.user) as User
     this.isAttend = !!this.user && !!this.user.attendedAt
+
+    // 自分が登録している作品情報をとる
+    const exhibit = await ProfileApi.getProfileExhibits()
+    this.exhibit = exhibit
+
+    this.vrUrl = process.env.vrBaseUrl!
   }
 }
 </script>
