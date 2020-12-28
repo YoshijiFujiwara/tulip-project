@@ -120,6 +120,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import Profile from '../../plugins/axios/modules/profile'
+import { User } from '../../types/auth'
 
 @Component({
   components: {
@@ -128,8 +129,7 @@ import Profile from '../../plugins/axios/modules/profile'
   },
 })
 export default class MyPage extends Vue {
-  user: any | null = null
-
+  user: User | null = null
   // 展示物作成モーダルの開閉
   isOpenCreateExhibitDialog: boolean = false
 

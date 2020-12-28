@@ -6,15 +6,7 @@ import { GroupEntity } from './group.entity';
 @EntityRepository(ExhibitEntity)
 export class ExhibitRepsitory extends Repository<ExhibitEntity> {
   async createExhibit(
-    {
-      title,
-      description,
-      thumbnail,
-      genre,
-      presentationImage,
-      demo,
-      modelUrl,
-    }: CreateExhibitDto,
+    { title, description, thumbnail, genre, demo, modelUrl }: CreateExhibitDto,
     group: GroupEntity,
   ): Promise<ExhibitEntity> {
     const exhibit = new ExhibitEntity();
@@ -22,7 +14,6 @@ export class ExhibitRepsitory extends Repository<ExhibitEntity> {
     exhibit.description = description;
     exhibit.thumbnail = thumbnail;
     exhibit.genre = genre;
-    exhibit.presentationImage = presentationImage;
     exhibit.group = group;
     if (demo) {
       exhibit.demo = demo;

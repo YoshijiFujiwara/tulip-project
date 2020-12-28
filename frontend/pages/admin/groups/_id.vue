@@ -45,6 +45,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import GroupApi from '../../../plugins/axios/modules/group'
 import { Group } from '../../../types/group'
+import { Exhibitor } from '../../../types/exhibitor'
 
 @Component({
   auth: false,
@@ -52,7 +53,7 @@ import { Group } from '../../../types/group'
 })
 export default class Groups extends Vue {
   groups: Group[] = []
-  groupDetails = []
+  groupDetails: Exhibitor[] = []
   groupName = ''
   routeId = 0
 
