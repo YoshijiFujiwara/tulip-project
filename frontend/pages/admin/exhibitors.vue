@@ -4,14 +4,10 @@
     <h3>99人中9人が会場にログインしています</h3>
     <h3>出席中｜未出席</h3>
     <v-data-table
-      v-show="!deleteDialog"
       :headers="headers"
       :items="exhibitors"
       class="elevation-1"
       sort-by="ID"
-      :search="search"
-      rows-per-page-text=""
-      :rows-per-page-items="[]"
     >
       <!-- eslint-disable-next-line -->
       <template v-slot:item.status="{ item }">
