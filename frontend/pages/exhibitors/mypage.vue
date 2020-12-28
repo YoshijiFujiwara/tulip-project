@@ -166,8 +166,8 @@ export default class MyPage extends Vue {
   }
 
   async created() {
-    this.user = await this.$auth.user
-    this.isAttend = !!this.user.attendedAt
+    this.user = (await this.$auth.user) as User
+    this.isAttend = !!this.user && !!this.user.attendedAt
   }
 }
 </script>
