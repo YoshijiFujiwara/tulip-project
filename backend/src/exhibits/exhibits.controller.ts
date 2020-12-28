@@ -8,6 +8,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
   UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
@@ -28,6 +29,7 @@ import { GetUser } from '../auth/get-user-decorator';
 import { CreateExhibitDto } from './dto/create-exhibit.dto';
 import { ExhibitSerializer } from '../entities/serializer/exhibit.serializer';
 import { UpdateExhibitDto } from './dto/update-exhibit.dto';
+import { GetExhibitsDto } from './dto/get-exhibits.dto';
 
 @ApiTags('exhibits')
 @Controller('exhibits')
@@ -84,7 +86,9 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: '閲覧人数更新成功',
   })
-  async incrementViewsCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+  async incrementViewsCount(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
     const exhibit = await this.exhibitsService.incrementViewsCount(id);
     return exhibit.transformToSerializer();
   }
@@ -94,7 +98,9 @@ export class ExhibitsController {
     type: ExhibitSerializer,
     description: 'いいね数更新成功',
   })
-  async incrementGoodCount(@Param('id', ParseIntPipe) id: number,): Promise<ExhibitSerializer>{
+  async incrementGoodCount(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<ExhibitSerializer> {
     const exhibit = await this.exhibitsService.incrementGoodCount(id);
     return exhibit.transformToSerializer();
   }
@@ -123,8 +129,10 @@ export class ExhibitsController {
     type: [ExhibitSerializer],
     description: '作品情報一覧を配列で取得',
   })
-  async getExhibits(): Promise<ExhibitSerializer[]> {
-    const exhibits = await this.exhibitsService.getExhibits();
+  async getExhibits(
+    @Query(ValidationPipe) getExhibitsDto: GetExhibitsDto,
+  ): Promise<ExhibitSerializer[]> {
+    const exhibits = await this.exhibitsService.getExhibits(getExhibitsDto);
     return exhibits.map(e => e.transformToSerializer());
   }
 

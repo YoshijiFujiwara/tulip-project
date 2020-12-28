@@ -7,6 +7,7 @@ import {
   IsUrl,
   IsEnum,
   IsOptional,
+  IsArray,
 } from 'class-validator';
 export class UpdateExhibitDto {
   @ApiProperty({
@@ -48,13 +49,23 @@ export class UpdateExhibitDto {
   genre!: GENRE;
 
   @ApiProperty({
-    example:
+    example: [
       'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD',
-    type: 'string',
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD',
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwired.jp%2F2018%2F01%2F18%2Fgorillas-and-google-photos%2F&psig=AOvVaw0q-C6ITVrxJwXa3kbTHooK&ust=1605000065833000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDd6aiR9ewCFQAAAAAdAAAAABAD',
+    ],
+    type: [String],
   })
   @IsNotEmpty({ message: 'プレゼン用画像の登録は必須です。' })
-  @IsUrl()
-  presentationImage!: string;
+  @IsArray({ message: 'プレゼン用画像のデータは配列でなければいけません。' })
+  @IsUrl(
+    {},
+    {
+      message: 'プレゼン用画像のデータはURLを含む配列でなければいけません。',
+      each: true,
+    },
+  )
+  presentationImages!: string[];
 
   @ApiPropertyOptional({
     example:
