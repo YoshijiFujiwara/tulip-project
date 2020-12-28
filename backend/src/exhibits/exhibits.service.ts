@@ -66,17 +66,13 @@ export class ExhibitsService {
 
   async getExhibits({ orderBy }: GetExhibitsDto): Promise<ExhibitEntity[]> {
     return await this.exhibitRepsitory.find({
-<<<<<<< HEAD
       relations: ['booth', 'group', 'presentationImages'],
-=======
-      relations: ['booth', 'group'],
       order:
         orderBy === ExhibitsOrderby.GOOD
           ? { goodCount: 'DESC' }
           : orderBy === ExhibitsOrderby.VIEW
           ? { viewsCount: 'DESC' }
           : { id: 'ASC' },
->>>>>>> parent of 0f3edc4... Revert "Adding get exhibits desc good"
     });
   }
 
@@ -85,7 +81,14 @@ export class ExhibitsService {
     updateExhibitDto: UpdateExhibitDto,
     exhibitor: ExhibitorEntity,
   ): Promise<ExhibitEntity> {
-    const { title, description, thumbnail, genre, demo, modelUrl } = updateExhibitDto;
+    const {
+      title,
+      description,
+      thumbnail,
+      genre,
+      demo,
+      modelUrl,
+    } = updateExhibitDto;
 
     const group = await this.groupRepository.findOne({
       relations: ['exhibit'],
