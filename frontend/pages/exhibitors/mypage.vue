@@ -157,7 +157,7 @@ export default class MyPage extends Vue {
   }
 
   connectEntrance() {
-    const url = `https://localhost:8081/honnban/booths/${this.user.groupId}?username=presenter&avatar=cute_penguin&isExhibitor=true`
+    const url = `${this.vrUrl}honnban/booths/${this.user.groupId}?username=presenter&avatar=cute_penguin&isExhibitor=true`
     window.location.href = url
   }
 
