@@ -18,7 +18,7 @@ export type Exhibit = {
 
   genre: GENRE
 
-  presentationImage: string
+  presentationImages: string[]
 
   demo?: string
 
