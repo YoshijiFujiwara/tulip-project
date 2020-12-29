@@ -1,0 +1,41 @@
+<!-- デモ動画_ASSET -->
+<!-- <video
+id="demo"
+src="/honnban/assets/movie/demo1.mp4"
+autoplay
+loop="true"
+webkit-playsinline
+playsinline
+></video> -->
+<a-assets timeout="200000">
+  <video
+    id="asset-demo"
+    preload="auto"
+    src="/honnban/assets/movie/demo1.mp4"
+    width="1280"
+    height="720"
+    autoplay
+    loop="true"
+    crossorigin="anonymous"
+    playsinline=""
+    webkit-playsinline=""
+  ></video>
+</a-assets>
+<!-- デモ動画のTOPのタイトル -->
+<a-entity
+  id="main-title"
+  text="value:<%=exhibit.title%>; align: center; color: #ffffff; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  color="#000000"
+  scale="10 10 1"
+  position="-3.59467 4.3 0.01258"
+  rotation="0 90 0"
+></a-entity>
+<!-- デモ動画 -->
+<a-entity
+  id="demo"
+  material="shader: flat; side: double; src: #asset-demo"
+  geometry="primitive: cylinder; radius: 5; height: 3.682; openEnded: true; thetaStart: 142.5; thetaLength: 75"
+  position="1.18018 2.15886 0.07935"
+  rotation="0 90 0"
+  scale="-1 1 1"
+></a-entity>
