@@ -98,7 +98,7 @@
               :src="`${vrUrl}honnban/booths/${exhibit.id}?username=ssss&avatar=cute_penguin`"
               frameborder="0"
             ></iframe>
-            
+
             <v-card class="ma-auto card-area ml-5 mr-5" outlined>
               <v-card-title class="justify-center">
                 <v-icon>mdi-information-outline</v-icon>
@@ -133,7 +133,7 @@ import { Exhibit } from '../../types/exhibit'
   },
 })
 export default class MyPage extends Vue {
-  vrUrl: string = ""
+  vrUrl: string = ''
 
   user: User | null = null
   // 自分が登録した作品情報
