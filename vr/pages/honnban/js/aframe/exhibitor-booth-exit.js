@@ -44,13 +44,3 @@ AFRAME.registerComponent('vertification-no-on-click', {
     });
   },
 });
-
-// クリックイベントがキャッチできるか確認する用（必要なくなれば消す）
-AFRAME.registerComponent('o-click', {
-  init: function () {
-    var self = this;
-    this.el.addEventListener('click', function (evt) {
-     console.log('クリックされた');
-    });
-  },
-});

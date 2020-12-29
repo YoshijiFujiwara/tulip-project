@@ -1,28 +1,31 @@
-<img id="i-ok" src="/honnban/assets/img/ok.svg" />
-<img id="i-no" src="/honnban/assets/img/no.svg" />
-
+<!-- dialog_ASSET -->
+<a-assets>
+  <img id="asset-ok" src="/honnban/assets/img/ok.svg" />
+  <img id="asset-no" src="/honnban/assets/img/no.svg" />
+</a-assets>
 <!-- 展示者側のExit_ASSET -->
 <a-asset-item
-  id="lectern-asset"
+  id="asset-lectern"
   src="/honnban/assets/model/lectern/scene.gltf"
 ></a-asset-item>
+<!-- 展示者側のExit_ASSET -->
+<a-asset-item
+  id="asset-exhibitor-exit"
+  src="/honnban/assets/model/exit_sign/scene.gltf"
+></a-asset-item>
+
 <!-- exit -->
 <a-gltf-model
   id="lectern"
-  src="#lectern-asset"
+  src="#asset-lectern"
   scale="0.015 0.015 0.015"
   rotation="0 34.431 0"
   position="-2.433 0.101 -3.449"
 ></a-gltf-model>
-<!-- 展示者側のExit_ASSET -->
-<a-asset-item
-  id="exhibitor-exit-asset"
-  src="/honnban/assets/model/exit_sign/scene.gltf"
-></a-asset-item>
 <!-- exit -->
 <a-gltf-model
   id="exhibitor-exit"
-  src="#exhibitor-exit-asset"
+  src="#asset-exhibitor-exit"
   scale="0.001 0.001 0.002"
   rotation="-30.5 -145.696 -0.33"
   position="-2.46835 1.66027 -3.26665"
@@ -53,7 +56,7 @@
 ></a-text>
 <a-image
   id="ok"
-  src="#i-ok"
+  src="#asset-ok"
   scale="0.11543 0.13832 3.334"
   position="-2.43418 1.527 -3.42203"
   rotation="-27.155334700225367 -144.8998804729949 0.008021409131831525"
@@ -62,7 +65,7 @@
 ></a-image>
 <a-image
   id="no"
-  src="#i-no"
+  src="#asset-no"
   scale="0.11543 0.13832 3.334"
   position="-2.642 1.527 -3.281"
   rotation="-27.165 -144.900 0.008"
