@@ -254,7 +254,7 @@ export default class CreateExhibitDialog extends Vue {
       this.form.thumbnailImage!
     )
     let presentationImageUrls: string[] = []
-    Promise.all(
+    await Promise.all(
       this.form.presentationImages.map(async (img) => {
         return await uploadImageCloudinary(this.$axios, img)
       })
@@ -303,7 +303,7 @@ export default class CreateExhibitDialog extends Vue {
       )
     }
     if (this.form.presentationImages.length) {
-      Promise.all(
+      await Promise.all(
         this.form.presentationImages.map(async (img) => {
           return await uploadImageCloudinary(this.$axios, img)
         })
