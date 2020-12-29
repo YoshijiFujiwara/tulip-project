@@ -306,7 +306,7 @@ export default class CreateExhibitDialog extends Vue {
       ...this.form,
       thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
       presentationImages:
-        PresentationImageUrls || this.uploadPresentationImageUrls,
+        PresentationImageUrls.length ? PresentationImageUrls : this.uploadPresentationImageUrls,
       demo: demoVideoUrl || this.uploadDemoVideoUrl,
     })
       .then(() => {
