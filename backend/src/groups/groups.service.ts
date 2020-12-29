@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GroupRepository } from '../entities/group.repository';
 import { GroupEntity } from '../entities/group.entity';
@@ -14,5 +14,22 @@ export class GroupsService {
     return await this.groupRepository.find({
       relations: ['exhibitors', 'exhibit', 'exhibit.booth'],
     });
+  }
+
+  async getGroup(groupId: number): Promise<GroupEntity> {
+    const group = await this.groupRepository.findOne({
+      relations: [
+        'exhibit',
+        'exhibit.booth',
+        'exhibit.presentationImages',
+        'exhibitors',
+      ],
+      where: { id: groupId },
+    });
+    if (!group) {
+      throw new NotFoundException('該当するグループが存在しません。');
+    }
+
+    return group;
   }
 }
