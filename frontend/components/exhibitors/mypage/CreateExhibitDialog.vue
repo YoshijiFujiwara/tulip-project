@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="dialog" max-width="700px">
     <v-card>
-      <v-card-title class="display-1 font-weight-bold pt-8">{{ isUpdateMode ? '作品情報を更新' : '作品登録' }}</v-card-title>
+      <v-card-title class="display-1 font-weight-bold pt-8">{{
+        isUpdateMode ? '作品情報を更新' : '作品登録'
+      }}</v-card-title>
       <v-form ref="form" v-model="valid" class="ml-8 mr-8 pb-9">
         <v-textarea
           v-model="form.title"
@@ -47,7 +49,10 @@
           作品の内容がわかる画像をアップロードします。来場者の目を引くサムネイルにしましょう。
         </p>
         <v-card class="ml-8 mx-auto my-4" max-width="300">
-          <v-img v-if="uploadThumbnailImageUrl" :src="uploadThumbnailImageUrl"></v-img>
+          <v-img
+            v-if="uploadThumbnailImageUrl"
+            :src="uploadThumbnailImageUrl"
+          ></v-img>
         </v-card>
         <v-file-input
           v-model="form.thumbnailImage"
@@ -70,9 +75,13 @@
           </span>
           作品のプレゼン資料をアップロードしましょう。
         </p>
-        <v-card class="ml-8 mx-auto my-4" max-width="300">
-          <v-img v-if="uploadPresentationImageUrls" :src="uploadPresentationImageUrls"></v-img>
-        </v-card>
+        <!-- TODO: プレビューいったんコメントアウト -->
+        <!-- <v-card class="ml-8 mx-auto my-4" max-width="300">
+          <v-img
+            v-if="uploadPresentationImageUrls"
+            :src="uploadPresentationImageUrls"
+          ></v-img>
+        </v-card> -->
         <v-file-input
           v-model="form.presentationImages"
           class="pb-5"
@@ -102,7 +111,8 @@
           class="ml-8 mx-auto my-4"
           height="270"
         >
-          <source :src="uploadDemoVideoUrl" />このブラウザではビデオ表示がサポートされていません
+          <source :src="uploadDemoVideoUrl" />
+          このブラウザではビデオ表示がサポートされていません
         </video>
         <v-file-input
           v-model="form.demoVideo"
@@ -143,7 +153,8 @@
           color="deep-purple darken-4"
           :disabled="!valid || isLoading"
           @click="onSubmit"
-        >{{ isUpdateMode ? '作品情報を更新する' : '作品を登録する' }}</v-btn>
+          >{{ isUpdateMode ? '作品情報を更新する' : '作品を登録する' }}</v-btn
+        >
       </v-form>
     </v-card>
   </v-dialog>
@@ -170,9 +181,11 @@ export default class CreateExhibitDialog extends Vue {
   items = ['game', 'music', 'movie', 'it']
   valid = false
   uploadThumbnailImageUrl = ''
-  uploadPresentationImageUrls:string[] = []
+  uploadPresentationImageUrls: string[] = []
   uploadDemoVideoUrl: string | null = ''
   exhibitId: number | null = null // 作品の更新時に用いるID
+
+  present: string = ''
 
   form = {
     title: '',
@@ -240,12 +253,14 @@ export default class CreateExhibitDialog extends Vue {
       this.$axios,
       this.form.thumbnailImage!
     )
-    const PresentationImageUrls = ['']
-    this.form.presentationImages.forEach(async (presenImg, index) => {
-      PresentationImageUrls[index] = await uploadImageCloudinary(
-        this.$axios,
-        presenImg
-      )
+    let presentationImageUrls: string[] = []
+    Promise.all(
+      this.form.presentationImages.map(async (img) => {
+        return await uploadImageCloudinary(this.$axios, img)
+      })
+    ).then((values) => {
+      // valuesにはアップロードされたURLの配列が入る
+      presentationImageUrls = values
     })
 
     // デモ動画に関しては、必須ではないため
@@ -259,7 +274,7 @@ export default class CreateExhibitDialog extends Vue {
     ExhibitApi.createExhibit({
       ...this.form,
       thumbnail: thumbnailImageUrl,
-      presentationImages: PresentationImageUrls,
+      presentationImages: presentationImageUrls,
       demo: demoVideoUrl || undefined,
     })
       .then((res) => {
@@ -278,7 +293,7 @@ export default class CreateExhibitDialog extends Vue {
     // cloudinaryにサムネイルとプレゼン画像のアップロードをする
     // api側には、cloudinaryから返却されたimageのurlを渡す形となる
     let thumbnailImageUrl: string | null = null
-    let PresentationImageUrls:string[]=[]
+    let presentationImageUrls: string[] = []
     let demoVideoUrl: string | null = null
 
     if (this.form.thumbnailImage) {
@@ -287,13 +302,15 @@ export default class CreateExhibitDialog extends Vue {
         this.form.thumbnailImage
       )
     }
-    if (this.form.presentationImages) {
-      this.form.presentationImages.forEach(async (presenImg, index) => {
-      PresentationImageUrls[index] = await uploadImageCloudinary(
-        this.$axios,
-        presenImg
-      )
-    })
+    if (this.form.presentationImages.length) {
+      Promise.all(
+        this.form.presentationImages.map(async (img) => {
+          return await uploadImageCloudinary(this.$axios, img)
+        })
+      ).then((values) => {
+        // valuesにはアップロードされたURLの配列が入る
+        presentationImageUrls = values
+      })
     }
     if (this.form.demoVideo) {
       demoVideoUrl = await uploadVideoCloudinary(
@@ -305,8 +322,9 @@ export default class CreateExhibitDialog extends Vue {
     ExhibitApi.updateExhibit(this.exhibitId!, {
       ...this.form,
       thumbnail: thumbnailImageUrl || this.uploadThumbnailImageUrl,
-      presentationImages:
-        PresentationImageUrls || this.uploadPresentationImageUrls,
+      presentationImages: presentationImageUrls.length
+        ? presentationImageUrls
+        : this.uploadPresentationImageUrls,
       demo: demoVideoUrl || this.uploadDemoVideoUrl,
     })
       .then(() => {
@@ -345,11 +363,11 @@ export default class CreateExhibitDialog extends Vue {
       fr.readAsDataURL(files[0])
       fr.addEventListener('load', () => {
         if (typeof fr.result === 'string') {
-          // this.uploadPresentationImageUrl = fr.result
+          // this.present = fr.result
         }
       })
     } else {
-      // this.uploadPresentationImageUrl = ''
+      // this.present = ''
     }
   }
 
