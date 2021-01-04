@@ -3,12 +3,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { ExhibitEntity } from './exhibit.entity';
 import { EventSerializer } from './serializer/event.serializer';
 
 @Entity({
@@ -21,16 +19,11 @@ export class EventEntity extends BaseEntity {
 
   @Column({ type: 'timestamp' })
   @ApiProperty()
-  limitAt?: Date;
+  startAt?: Date;
 
-  @OneToMany(
-    () => ExhibitEntity,
-    exhibit => exhibit.event,
-  )
-  @ApiProperty({
-    type: () => [ExhibitEntity],
-  })
-  exhibits?: ExhibitEntity[];
+  @Column({ type: 'timestamp' })
+  @ApiProperty()
+  endAt?: Date;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -50,12 +43,8 @@ export class EventEntity extends BaseEntity {
   transformToSerializer = (): EventSerializer => {
     const eventSerializer = new EventSerializer();
     eventSerializer.id = this.id;
-    eventSerializer.limitAt = this.limitAt;
-    if (this.exhibits) {
-      eventSerializer.exhibits = this.exhibits.map(e =>
-        e.transformToSerializer(),
-      );
-    }
+    eventSerializer.startAt = this.startAt;
+    eventSerializer.endAt = this.endAt;
 
     return eventSerializer;
   };

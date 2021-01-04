@@ -16,7 +16,12 @@ export class CreateEventsTable1603312465867 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'limitAt',
+            name: 'startAt',
+            type: 'timestamp',
+            isNullable: true,
+          },
+          {
+            name: 'endAt',
             type: 'timestamp',
             isNullable: true,
           },

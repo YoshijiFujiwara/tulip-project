@@ -25,7 +25,6 @@ define(ExhibitEntity, (_: typeof Faker, context: Context) => {
     'https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf';
   exhibit.genre = genre;
   exhibit.groupId = groupId;
-  exhibit.eventId = 1;
 
   return exhibit;
 });
