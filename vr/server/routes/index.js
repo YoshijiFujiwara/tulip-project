@@ -41,7 +41,6 @@ router.get('/honnban', async function (req, res) {
   // 作品情報一覧の取得
   const result = await axiosInstance.get('exhibits');
   const exhibits = result.data;
-
   const renderData = {
     exhibits,
     username,
@@ -62,11 +61,13 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   const exhibitId = req.params.exhibitId;
   const result = await axiosInstance.get(`exhibits/${exhibitId}`);
   const exhibit = result.data;
+  const apiUrl = process.env.API_URL;
 
   const renderData = {
     exhibit,
     username,
     avatar,
+    apiUrl
   };
 
   res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);

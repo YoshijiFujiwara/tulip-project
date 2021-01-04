@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="text-h3 mt-5 ml-4">
-      {{ groupName }}
+      {{ group.name }}
     </div>
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
@@ -10,7 +10,7 @@
 
     <v-data-table
       :headers="headers"
-      :items="groupDetails"
+      :items="group.exhibitors"
       :items-per-page="5"
       :search="search"
       class="elevation-1"
@@ -45,17 +45,13 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import GroupApi from '../../../plugins/axios/modules/group'
 import { Group } from '../../../types/group'
-import { Exhibitor } from '../../../types/exhibitor'
 
 @Component({
   auth: false,
   layout: 'admin',
 })
 export default class Groups extends Vue {
-  groups: Group[] = []
-  groupDetails: Exhibitor[] = []
-  groupName = ''
-  routeId = 0
+  group: Group[] = []
 
   search = ''
   headers = [
@@ -72,20 +68,8 @@ export default class Groups extends Vue {
   ]
 
   async created() {
-    // TODO: グループを一件取得するAPIを使って書き直す
-
     // this.user = await this.$auth.user
-    const groups = await GroupApi.getGroups()
-    this.groups = groups
-    this.routeId = Number(this.$route.params.id)
-
-    this.groups.forEach((item) => {
-      if (Number(item.id) === this.routeId) {
-        this.groupName = item.name
-        // FIXME: 型のエラーが出るのでコメントアウト
-        // this.groupDetails = item.exhibitors
-      }
-    })
+    this.group = await GroupApi.getGroup(Number(this.$route.params.id))
   }
 }
 </script>
