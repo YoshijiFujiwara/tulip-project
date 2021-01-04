@@ -123,7 +123,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import { User } from '../../types/auth'
-import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
 @Component({
