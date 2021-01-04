@@ -7,6 +7,16 @@ const fs = require('fs');
 // 環境変数の読み込み
 require('dotenv').config();
 
+// urlから指定のgetパラメータを取得する関数
+const getParameterByName = (name, url) => {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+};
+
 // https化に必要な設定
 const privateKey = fs.readFileSync(__dirname + '/localhost-key.pem', 'utf-8');
 const certificate = fs.readFileSync(__dirname + '/localhost.pem', 'utf-8');
@@ -61,12 +71,24 @@ const io = require('socket.io')(webServer);
 const rooms = {};
 
 io.on('connection', (socket) => {
-  console.log('user connected', socket.id);
+  // socketioのheadersの中から、username, avatarを文字列分割で取り出す
+  console.log('socket', socket.handshake.headers.referer);
+  const url = socket.handshake.headers.referer;
+  const username = getParameterByName('username', url);
+  const avatar = getParameterByName('avatar', url);
+  // console.log('username', username);
+  // console.log('avatar', avatar);
+  // console.log('user connected', socket.id);
+
+  // socket.id = `${socket.id}-${username}-${avatar}`;
 
   let curRoom = null;
 
   socket.on('joinRoom', (data) => {
-    const { room } = data;
+    console.log('joinRoom data', data);
+    const { room, username, avatar } = data;
+    console.log('joinRoom username', username);
+    console.log('joinRoom avatar', avatar);
 
     if (!rooms[room]) {
       rooms[room] = {

@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 
 var router = require('express').Router();
 
-// 
+//
 router.get('/honnban/select_avatar', function (req, res) {
   res.render(__dirname + './../../pages/honnban/select_avatar.ejs');
 });
@@ -23,9 +23,9 @@ router.post('/honnban/select_avatar', function (req, res) {
   const username = req.body.username;
   const avatar = req.body.avatar;
 
-  if(username || avatar){
+  if (username || avatar) {
     res.redirect(`/honnban?username=${username}&avatar=${avatar}`);
-  }else{
+  } else {
     res.redirect('/honnban/select_avatar');
   }
 });
@@ -34,7 +34,7 @@ router.post('/honnban/select_avatar', function (req, res) {
 router.get('/honnban', async function (req, res) {
   const username = req.query.username;
   const avatar = req.query.avatar;
-  if(!username || !avatar){
+  if (!username || !avatar) {
     res.redirect('/honnban/select_avatar');
   }
 
@@ -54,7 +54,7 @@ router.get('/honnban', async function (req, res) {
 router.get('/honnban/booths/:exhibitId', async function (req, res) {
   const username = req.query.username;
   const avatar = req.query.avatar;
-  if(!username || !avatar){
+  if (!username || !avatar) {
     res.redirect('/honnban/select_avatar');
   }
   // 作品のidのブース情報の取得
@@ -67,11 +67,10 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
     exhibit,
     username,
     avatar,
-    apiUrl
+    apiUrl,
   };
 
   res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);
-
 });
 
 // サンプル画面
