@@ -16,6 +16,7 @@ export class ProfileService {
 
   async getExhibit(groupId: number): Promise<ExhibitEntity> {
     return await this.exhibitRepository.findOne({
+      relations: ['event'],
       where: { groupId },
     });
   }
