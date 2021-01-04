@@ -7,6 +7,8 @@ import {
 
 export class CreatePresentationImagesTable1607932515127
   implements MigrationInterface {
+  name = 'CreatePresentationImagesTable1607932515127';
+
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
