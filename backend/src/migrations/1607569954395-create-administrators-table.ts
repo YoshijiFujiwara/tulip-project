@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class createAdministratorsTable1607569954395
+export class CreateAdministratorsTable1607569954395
   implements MigrationInterface {
   name = 'CreateAdministratorsTable1607569954395';
 
