@@ -205,7 +205,7 @@ a {
   width: 100%;
 }
 .card-area {
-  z-index: 9999;
+  z-index: 1;
   position: relative;
   top: -200px;
   opacity: 0.6;
