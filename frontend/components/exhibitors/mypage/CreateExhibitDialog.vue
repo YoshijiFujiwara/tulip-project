@@ -232,7 +232,6 @@ export default class CreateExhibitDialog extends Vue {
 
   async onSubmit() {
     this.isLoading = true
-    console.log(this.form.presentationImages)
     if (this.isUpdateMode) {
       await this.updateExhibit()
     } else {
