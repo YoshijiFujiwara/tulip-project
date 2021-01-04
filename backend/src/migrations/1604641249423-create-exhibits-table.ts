@@ -63,10 +63,6 @@ export class CreateExhibitsTable1604641249423 implements MigrationInterface {
             type: 'integer',
           },
           {
-            name: 'eventId',
-            type: 'integer',
-          },
-          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',
@@ -88,14 +84,6 @@ export class CreateExhibitsTable1604641249423 implements MigrationInterface {
       onDelete: 'CASCADE',
     });
     await queryRunner.createForeignKey('exhibits', exhibitsForeignKey);
-
-    const eventsForeignKey = new TableForeignKey({
-      columnNames: ['eventId'],
-      referencedColumnNames: ['id'],
-      referencedTableName: 'events',
-      onDelete: 'CASCADE',
-    });
-    await queryRunner.createForeignKey('exhibits', eventsForeignKey);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

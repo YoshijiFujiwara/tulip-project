@@ -3,7 +3,6 @@ import { GENRE } from '../exhibit.entity';
 import { GroupSerializer } from './group.serizlier';
 import { BoothSerializer } from './booth.serializer';
 import { PresentationImageSerializer } from './presentationImage.serializer';
-import { EventSerializer } from './event.serializer';
 
 export class ExhibitSerializer {
   @ApiProperty()
@@ -52,12 +51,4 @@ export class ExhibitSerializer {
     type: () => [PresentationImageSerializer],
   })
   presentationImages?: PresentationImageSerializer[];
-
-  @ApiProperty()
-  eventId: number;
-
-  @ApiPropertyOptional({
-    type: EventSerializer,
-  })
-  event: EventSerializer;
 }

@@ -1,5 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { ExhibitSerializer } from './exhibit.serializer';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class EventSerializer {
   @ApiProperty()
@@ -7,9 +6,4 @@ export class EventSerializer {
 
   @ApiProperty()
   limitAt: Date;
-
-  @ApiPropertyOptional({
-    type: () => [ExhibitSerializer],
-  })
-  exhibits: ExhibitSerializer[];
 }
