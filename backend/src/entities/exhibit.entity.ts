@@ -8,12 +8,14 @@ import {
   OneToOne,
   JoinColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { GroupEntity } from './group.entity';
 import { ExhibitSerializer } from './serializer/exhibit.serializer';
 import { BoothEntity } from './booth.entity';
 import { PresentationImageEntity } from './presentationImage.entity';
+import { EventEntity } from './event.entity';
 
 export enum GENRE {
   GAME = 'game',
@@ -88,6 +90,17 @@ export class ExhibitEntity extends BaseEntity {
   )
   @JoinColumn({ name: 'groupId' })
   group: GroupEntity;
+
+  @Column()
+  @ApiProperty()
+  eventId!: number;
+
+  @ManyToOne(
+    () => EventEntity,
+    event => event.exhibits,
+  )
+  @JoinColumn({ name: 'eventId' })
+  event: EventEntity;
 
   @OneToOne(
     () => BoothEntity,
