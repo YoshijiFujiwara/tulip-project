@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExhibitEntity } from './exhibit.entity';
+import { EventSerializer } from './serializer/event.serializer';
 
 @Entity({
   name: 'events',
@@ -45,4 +46,17 @@ export class EventEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): EventSerializer => {
+    const eventSerializer = new EventSerializer();
+    eventSerializer.id = this.id;
+    eventSerializer.limitAt = this.limitAt;
+    if (this.exhibits) {
+      eventSerializer.exhibits = this.exhibits.map(e =>
+        e.transformToSerializer(),
+      );
+    }
+
+    return eventSerializer;
+  };
 }

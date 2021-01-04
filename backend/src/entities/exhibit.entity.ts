@@ -141,13 +141,15 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.viewsCount = this.viewsCount;
     exhibitSerializer.goodCount = this.goodCount;
     exhibitSerializer.genre = this.genre;
+    exhibitSerializer.groupId = this.groupId;
+    exhibitSerializer.eventId = this.eventId;
+
     if (this.demo) {
       exhibitSerializer.demo = this.demo;
     }
     if (this.modelUrl) {
       exhibitSerializer.modelUrl = this.modelUrl;
     }
-    exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
     }
@@ -158,6 +160,9 @@ export class ExhibitEntity extends BaseEntity {
       exhibitSerializer.presentationImages = this.presentationImages.map(
         image => image.transformToSerializer(),
       );
+    }
+    if (this.event) {
+      exhibitSerializer.event = this.event.transformToSerializer();
     }
 
     return exhibitSerializer;
