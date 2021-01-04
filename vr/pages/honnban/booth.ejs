@@ -9,51 +9,10 @@
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
-      device-orientation-permission-ui=""
       renderer="colorManagement: true"
     >
-      <a-assets timeout="200000">
-        <!-- 来場者character -->
-        <template id="avatar-template">
-          <a-entity class="avatar">
-            <!-- リアクション_ASSET -->
-            <a-image
-              id="reaction"
-              src="/honnban/assets/img/emo_cry.svg"
-              position="-0.04 0.05 0.32"
-              rotation="0 0 0"
-              scale="0.4 0.4 0.4"
-              look-at="#player"
-            ></a-image>
-            <!-- ユーザー名_ASSET -->
-            <a-entity
-              class="head"
-              id="name"
-              text="value: ペンギン; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-              position="-0.05 -0.2 0.25"
-              scale="2 2 2"
-              look-at="#player"
-            ></a-entity>
-            <!-- 🐧 -->
-            <!-- <a-gltf-model
-              class="head"
-              src="/honnban/assets/model/cute_penguin/scene.gltf"
-              scale="0.003 0.003 0.003"
-              rotation="-10 180 0"
-              position="0 -1.4 0.05791"
-            ></a-gltf-model> -->
-            <!-- 🥕 -->
-            <a-gltf-model
-              class="head"
-              src="/honnban/assets/model/super_carrot/scene.gltf"
-              scale="0.007 0.007 0.007"
-              rotation="-10 180 -15"
-              position="0 -1 0"
-            ></a-gltf-model>
-          </a-entity>
-        </template>
-      </a-assets>
-
+      <!-- アバター -->
+      <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
       <!-- 空 -->
       <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
       <!-- ロビー -->
@@ -72,8 +31,8 @@
       <!-- 真ん中の作品 -->
       <%- include('./ejs-components/ejs-assets/booth-exhibit.asset.ejs') %>
       <!-- リアクションパネル -->
-      <%- include('./ejs-components/ejs-assets/booth-reaction-panel.asset.ejs')
-      %>
+      <%-
+      include('./ejs-components/ejs-assets/booth-reaction-panel.asset.ejs')%>
       <!-- いいね -->
       <%- include('./ejs-components/ejs-assets/booth-like.asset.ejs') %>
       <!-- 現在時間を表示 -->
@@ -96,6 +55,7 @@
         <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
+
       <!-- クリックイベント -->
       <a-entity
         position="0 1.6 0"
