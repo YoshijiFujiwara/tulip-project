@@ -76,12 +76,12 @@
           作品のプレゼン資料をアップロードしましょう。
         </p>
         <!-- TODO: プレビューいったんコメントアウト -->
-        <!-- <v-card class="ml-8 mx-auto my-4" max-width="300">
+        <v-card class="ml-8 mx-auto my-4" max-width="300">
           <v-img
-            v-if="uploadPresentationImageUrls"
-            :src="uploadPresentationImageUrls"
+            v-if="uploadPresentationImageUrls && uploadPresentationImageUrls.length"
+            :src="uploadPresentationImageUrls && uploadPresentationImageUrls.length ? uploadPresentationImageUrls[0] : ''"
           ></v-img>
-        </v-card> -->
+        </v-card>
         <v-file-input
           v-model="form.presentationImages"
           class="pb-5"
@@ -218,14 +218,14 @@ export default class CreateExhibitDialog extends Vue {
         this.form.description = exhibit.description
         this.form.genre = exhibit.genre
         this.uploadThumbnailImageUrl = exhibit.thumbnail
-        this.uploadPresentationImageUrls = exhibit.presentationImages
+        this.uploadPresentationImageUrls = exhibit.presentationImages.map(img => img.url)
         this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
         // TODO: デモ動画のURLがget出来たら、追加する
 
         this.exhibitId = exhibit.id
       })
       .catch(() => {
-        this.$toast.error('作品登録の際にエラーが発生しました')
+        this.$toast.error('作品取得の際にエラーが発生しました')
         this.dialog = false
       })
   }
@@ -355,7 +355,7 @@ export default class CreateExhibitDialog extends Vue {
 
   // presentationImageのプレビュー
   onPresentationImagePicked(files: File[]) {
-    if (files[0] !== undefined && files[0] !== null) {
+    if (files && files[0] !== undefined && files[0] !== null) {
       if (files[0].name.lastIndexOf('.') <= 0) {
         return
       }
@@ -363,11 +363,13 @@ export default class CreateExhibitDialog extends Vue {
       fr.readAsDataURL(files[0])
       fr.addEventListener('load', () => {
         if (typeof fr.result === 'string') {
-          // this.present = fr.result
+          this.uploadPresentationImageUrls[0] = fr.result
+
+          
         }
       })
     } else {
-      // this.present = ''
+      this.uploadPresentationImageUrls[0] = ''
     }
   }
 

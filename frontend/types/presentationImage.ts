@@ -1,4 +1,4 @@
-export type Pimg = {
+export type PresentationImage = {
     id: number
 
     url: string
