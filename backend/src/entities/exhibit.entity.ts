@@ -131,7 +131,7 @@ export class ExhibitEntity extends BaseEntity {
     if (this.demo) {
       exhibitSerializer.demo = this.demo;
     }
-    if (this.modelUrl){
+    if (this.modelUrl) {
       exhibitSerializer.modelUrl = this.modelUrl;
     }
     exhibitSerializer.groupId = this.groupId;
