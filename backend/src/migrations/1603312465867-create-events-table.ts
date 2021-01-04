@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateEventsTable1609726605545 implements MigrationInterface {
-  name = 'CreateEventsTable1609726605545';
+export class CreateEventsTable1603312465867 implements MigrationInterface {
+  name = 'CreateEventsTable1603312465867';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
