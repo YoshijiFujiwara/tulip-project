@@ -1,26 +1,45 @@
-import { getRepository } from 'typeorm';
 import { Factory, Seeder } from 'typeorm-seeding';
 import { ExhibitorEntity } from '../../entities/exhibitor.entity';
-import { GroupEntity } from '../../entities/group.entity';
 
 export default class CreateExhibitors implements Seeder {
   public async run(factory: Factory) {
-    const exhibitorRepository = getRepository(ExhibitorEntity);
-    const exhibitorMaxCnt = (await exhibitorRepository.count()) + 1;
-
-    const groupRepsository = getRepository(GroupEntity);
-    const groupMaxCnt = await groupRepsository.count();
-
-    await Promise.all(
-      [...Array(9)].map(async (_: any, id: number) => {
-        const insertId = id + exhibitorMaxCnt;
-        const groupId = Math.floor(Math.random() * groupMaxCnt) + 1;
-
-        return await factory(ExhibitorEntity)({
-          id: insertId,
-          groupId,
-        }).create();
-      }),
-    );
+    await Promise.all([
+      await factory(ExhibitorEntity)({
+        id: 1,
+        groupId: 1,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 2,
+        groupId: 1,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 3,
+        groupId: 1,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 4,
+        groupId: 2,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 5,
+        groupId: 2,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 6,
+        groupId: 2,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 7,
+        groupId: 3,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 8,
+        groupId: 3,
+      }).create(),
+      await factory(ExhibitorEntity)({
+        id: 9,
+        groupId: 3,
+      }).create(),
+    ]);
   }
 }
