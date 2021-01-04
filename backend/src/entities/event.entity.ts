@@ -19,7 +19,11 @@ export class EventEntity extends BaseEntity {
 
   @Column({ type: 'timestamp' })
   @ApiProperty()
-  limitAt?: Date;
+  startAt?: Date;
+
+  @Column({ type: 'timestamp' })
+  @ApiProperty()
+  endAt?: Date;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -39,7 +43,8 @@ export class EventEntity extends BaseEntity {
   transformToSerializer = (): EventSerializer => {
     const eventSerializer = new EventSerializer();
     eventSerializer.id = this.id;
-    eventSerializer.limitAt = this.limitAt;
+    eventSerializer.startAt = this.startAt;
+    eventSerializer.endAt = this.endAt;
 
     return eventSerializer;
   };

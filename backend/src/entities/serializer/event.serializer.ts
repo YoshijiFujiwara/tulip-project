@@ -5,5 +5,8 @@ export class EventSerializer {
   id: number;
 
   @ApiProperty()
-  limitAt: Date;
+  startAt: Date;
+
+  @ApiProperty()
+  endAt: Date;
 }
