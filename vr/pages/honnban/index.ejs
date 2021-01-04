@@ -455,11 +455,20 @@
   </head>
   <body>
     <a-scene
+      physics
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: lobby;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
       renderer="colorManagement: true"
     >
+      <a-plane
+        position="-0.18153 1 -0.80929"
+        rotation="-90 0 0"
+        width="4"
+        height="4"
+        color="#7BC8A4"
+        static-body
+      ></a-plane>
       <a-assets timeout="200000">
         <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
         <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
@@ -477,12 +486,12 @@
       </a-assets>
 
       <!-- アバター -->
-      <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/lobby-avatar.asset.ejs') %>
 
       <!-- camera -->
       <a-camera
         id="player"
-        position="0 1.6 0"
+        position="0 2.5 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
         wasd-controls
