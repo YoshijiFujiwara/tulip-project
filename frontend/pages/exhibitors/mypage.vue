@@ -123,7 +123,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CreateExhibitDialog from '@/components/exhibitors/mypage/CreateExhibitDialog.vue'
 import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.vue'
 import { User } from '../../types/auth'
-import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
 @Component({
@@ -157,7 +156,8 @@ export default class MyPage extends Vue {
   }
 
   connectEntrance() {
-    alert('入場')
+    const url = `${this.vrUrl}honnban/booths/${this.user.groupId}?username=presenter&avatar=cute_penguin&isExhibitor=true`
+    window.location.href = url
   }
 
   onPresence() {
@@ -205,7 +205,7 @@ a {
   width: 100%;
 }
 .card-area {
-  z-index: 9999;
+  z-index: 1;
   position: relative;
   top: -200px;
   opacity: 0.6;

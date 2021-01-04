@@ -4,7 +4,7 @@ import { ExhibitEntity } from '../../entities/exhibit.entity';
 import { PresentationImageEntity } from '../../entities/presentationImage.entity';
 
 export default class CreatePresentationImages implements Seeder {
-  public async run(factroy: Factory) {
+  public async run(factory: Factory) {
     const exhibitRepository = getRepository(ExhibitEntity);
     const maxExhibitCnt = await exhibitRepository.count();
 
@@ -13,15 +13,15 @@ export default class CreatePresentationImages implements Seeder {
     await Promise.all(
       counts.map(async exhibitId => {
         return [
-          await factroy(PresentationImageEntity)({
+          await factory(PresentationImageEntity)({
             page: 1,
             exhibitId,
           }).create(),
-          await factroy(PresentationImageEntity)({
+          await factory(PresentationImageEntity)({
             page: 2,
             exhibitId,
           }).create(),
-          await factroy(PresentationImageEntity)({
+          await factory(PresentationImageEntity)({
             page: 3,
             exhibitId,
           }).create(),

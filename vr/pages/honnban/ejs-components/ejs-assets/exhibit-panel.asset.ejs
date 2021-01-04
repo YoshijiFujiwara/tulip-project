@@ -21,7 +21,6 @@
   position="<%=position.level.position%>"
   rotation="<%=position.level.rotation%>"
 ></a-image>
-
 <a-text
   id="ID<%=exhibit.booth.positionNumber%>"
   value="ID<%=exhibit.booth.positionNumber%>"
@@ -54,6 +53,72 @@
   material="color:  #5c5c5c;"
 ></a-image>
 
+<!-- panel -->
+<a-entity
+  id="exhibit-panel-visitor-background-gradient<%=exhibit.id%>"
+  geometry="primitive: plane; width: 3.4; height: 1.82"
+  material="shader: gradientshader; topColor: #1aa7c7; bottomColor: #B721FF"
+  opacity="0.1"
+  radius="200"
+  theta-length="110"
+  scale="<%=position.visitorBackgroundGradient.scale%>"
+  position="<%=position.visitorBackgroundGradient.position%>"
+  rotation="<%=position.visitorBackgroundGradient.rotation%>"
+></a-entity>
+<a-entity
+  id="exhibit-panel-visitor-background-<%=exhibit.id%>"
+  geometry="primitive: plane; width: 3.4; height: 1.82"
+  material="color: #000000; opacity: 0.7"
+  radius="200"
+  theta-length="110"
+  scale="<%=position.visitorBackground.scale%>"
+  position="<%=position.visitorBackground.position%>"
+  rotation="<%=position.visitorBackground.rotation%>"
+></a-entity>
+<a-gltf-model
+  id="exhibit-panel-like-<%=exhibit.id%>"
+  src="#likes"
+  scale="<%=position.iLike.scale%>"
+  position="<%=position.iLike.position%>"
+  rotation="<%=position.iLike.rotation%>"
+></a-gltf-model>
+<a-text
+  id="exhibit-panel-title-<%=exhibit.id%>"
+  value="来場者累計"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  text="negate: false"
+  scale="<%=position.panelTitle.scale%>"
+  position="<%=position.panelTitle.position%>"
+  rotation="<%=position.panelTitle.rotation%>"
+></a-text>
+<a-text
+  id="exhibit-panel-number-of-visitors-<%=exhibit.id%>"
+  value="<%=exhibit.viewsCount%>"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  text="negate: false"
+  width="10"
+  scale="<%=position.numberOfVisitors.scale%>"
+  position="<%=position.numberOfVisitors.position%>"
+  rotation="<%=position.numberOfVisitors.rotation%>"
+></a-text>
+<a-gltf-model
+  id="exhibit-panel-like-<%=exhibit.id%>"
+  src="#nice1"
+  scale="<%=position.like.scale%>"
+  position="<%=position.like.position%>"
+  rotation="<%=position.like.rotation%>"
+></a-gltf-model>
+<a-text
+  id="exhibit-panel-like-num-<%=exhibit.id%>"
+  value="<%=exhibit.goodCount%>"
+  width="10"
+  text=""
+  scale="<%=position.likeNum.scale%>"
+  position="<%=position.likeNum.position%>"
+  rotation="<%=position.likeNum.rotation%>"
+></a-text>
 <!-- オーバービューの部分、表示項目が悩み中なので、コメントアウト中 -->
 <!-- 
     <a-gltf-model
