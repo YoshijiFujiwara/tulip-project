@@ -364,8 +364,6 @@ export default class CreateExhibitDialog extends Vue {
       fr.addEventListener('load', () => {
         if (typeof fr.result === 'string') {
           this.uploadPresentationImageUrls[0] = fr.result
-
-          
         }
       })
     } else {
