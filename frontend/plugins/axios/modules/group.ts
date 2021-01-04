@@ -5,4 +5,7 @@ export default {
   getGroups(): Promise<Group[]> {
     return axios.$get(`groups`)
   },
+  getGroup(id: number): Promise<Group[]> {
+    return axios.$get(`groups/${id}`)
+  },
 }
