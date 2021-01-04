@@ -455,6 +455,7 @@
   </head>
   <body>
     <a-scene
+      physics="debug : true;"
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: lobby;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
@@ -485,8 +486,8 @@
         position="0 1.6 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
-        wasd-controls
-        look-controls
+        universal-controls
+        kinematic-body
         cursor
       >
         <!-- SELECTIVE INTERSECTIONS -->
