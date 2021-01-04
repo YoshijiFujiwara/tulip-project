@@ -26,6 +26,7 @@
       device-orientation-permission-ui=""
       renderer="colorManagement: true"
       visible=""
+      mouse-cursor
     >
       <a-assets timeout="200000">
         <!-- 来場者character -->
@@ -105,6 +106,8 @@
       <%- include('./ejs-components/ejs-assets/demo_video.asset.ejs') %>
       <!-- 出口 -->
       <%- include('./ejs-components/ejs-assets/exit.asset.ejs') %>
+      <!-- 展示側Exit -->
+      <%#- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
 
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
       <!-- camera -->
@@ -113,32 +116,14 @@
         position="0 1.6 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
-        wasd-controls
+        wasd-controls="acceleration: 200"
         look-controls
-        cursor
+        cursor="rayOrigin: mouse"
       >
         <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
+        <a-cursor raycaster="objects:  a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-      <!-- クリックイベント -->
-      <a-entity
-        position="0 1.6 0"
-        look-controls
-        wasd-controls
-        camera
-        cursor
-        raycaster="objects: a-gltf-model"
-      >
-        <a-entity
-          raycaster="far: 30; objects: a-gltf-model"
-          cursor=""
-          geometry="primitive: ring; radiusOuter: 0.015;
-          radiusInner: 0.01; segmentsTheta: 32"
-          material="color: #283644; shader: flat"
-          position="0 0 -0.75"
-        ></a-entity>
-      </a-entity>
       <!-- 作品 -->
       <a-gltf-model
         id="fox"
@@ -261,6 +246,9 @@
         rotation="0 90.61556713112022 0"
         visible="false"
       ></a-image>
+
+      <!-- 展示側Exit -->
+      <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
     </a-scene>
   </body>
 </html>
