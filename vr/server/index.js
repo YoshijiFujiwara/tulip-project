@@ -72,10 +72,10 @@ const rooms = {};
 
 io.on('connection', (socket) => {
   // socketioのheadersの中から、username, avatarを文字列分割で取り出す
-  console.log('socket', socket.handshake.headers.referer);
-  const url = socket.handshake.headers.referer;
-  const username = getParameterByName('username', url);
-  const avatar = getParameterByName('avatar', url);
+  // console.log('socket', socket.handshake.headers.referer);
+  // const url = socket.handshake.headers.referer;
+  // const username = getParameterByName('username', url);
+  // const avatar = getParameterByName('avatar', url);
   // console.log('username', username);
   // console.log('avatar', avatar);
   // console.log('user connected', socket.id);
