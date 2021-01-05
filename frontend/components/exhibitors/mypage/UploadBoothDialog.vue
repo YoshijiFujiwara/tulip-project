@@ -35,6 +35,9 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import BoothsApi from '../../../plugins/axios/modules/booth'
+import exhibit from '../../../plugins/axios/modules/exhibit'
+import ExhibitApi from '../../../plugins/axios/modules/exhibit'
+import { Exhibit } from '../../../types/exhibit'
 
 @Component
 export default class CreateExhibitDialog extends Vue {
@@ -54,6 +57,38 @@ export default class CreateExhibitDialog extends Vue {
     booth: [(v: string) => !!v || 'ブースは必須です'],
   }
 
+  created() {
+    // // 自分が登録している作品情報を取得する
+    // ProfileApi.getProfileExhibits()
+    //   .then((exhibit: Exhibit) => {
+    //     this.form.title = exhibit.title
+    //     this.form.description = exhibit.description
+    //     this.form.genre = exhibit.genre
+    //     this.uploadThumbnailImageUrl = exhibit.thumbnail
+    //     this.uploadPresentationImageUrl = exhibit.presentationImage
+    //     this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
+    //     // TODO: デモ動画のURLがget出来たら、追加する
+
+    //     this.exhibitId = exhibit.id
+    //   })
+    //   .catch(() => {
+    //     this.$toast.error('作品登録の際にエラーが発生しました')
+    //     this.dialog = false
+    //   })
+    ExhibitApi.getExhibits()
+      .then((exhibits: Exhibit[]) => {
+        exhibits.forEach((element) => {
+          this.items.splice(
+            this.items.indexOf(element.booth.positionNumber.toString()),
+            1
+          )
+        })
+      })
+      .catch(() => {
+        this.$toast.error('作品登録の際にエラーが発生しました')
+        this.dialog = false
+      })
+  }
   onSubmit() {
     this.isLoading = true
 
