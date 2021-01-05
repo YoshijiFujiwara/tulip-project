@@ -3,7 +3,6 @@ AFRAME.registerComponent('love-effect', {
     var self = this;
     this.el.addEventListener('click', function (evt) {
       var loveEl = document.querySelector('#i-love');
-      console.log(loveEl);
       loveEl.setAttribute('sound', 'src: #assets-applause-effect; volume:2');
       loveEl.components.sound.playSound();
     });
