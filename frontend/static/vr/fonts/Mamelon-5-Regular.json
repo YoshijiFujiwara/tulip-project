@@ -1,0 +1,132 @@
+[{
+  "image": {
+    "name": "/home/imagqljr/public_html/imageconvert.org/public/uploads/Mamelon-5-Hi-Regular1607169635.json",
+    "baseName": "Mamelon-5-Hi-Regular.otf",
+    "format": "json",
+    "formatDescription": "json",
+    "mimeType": "application/json",
+    "class": "DirectClass",
+    "geometry": {
+      "width": 800,
+      "height": 480,
+      "x": 0,
+      "y": 0
+    },
+    "units": "Undefined",
+    "type": "GrayscaleAlpha",
+    "baseType": "Undefined",
+    "endianness": "Undefined",
+    "colorspace": "sRGB",
+    "depth": 16,
+    "baseDepth": 16,
+    "channelDepth": {
+      "alpha": 1,
+      "red": 16,
+      "green": 16,
+      "blue": 1
+    },
+    "pixels": 1536000,
+    "imageStatistics": {
+      "Overall": {
+        "min": 0,
+        "max": 65535,
+        "mean": 59901.3,
+        "standardDeviation": 14781.4,
+        "kurtosis": 6.92134,
+        "skewness": -2.9411,
+        "entropy": 0.1318
+      }
+    },
+    "channelStatistics": {
+      "Alpha": {
+        "min": 65535,
+        "max": 65535,
+        "mean": 65535,
+        "standardDeviation": 0,
+        "kurtosis": 1.6384e+52,
+        "skewness": 9.375e+35,
+        "entropy": 0
+      },
+      "Red": {
+        "min": 0,
+        "max": 65535,
+        "mean": 58023.4,
+        "standardDeviation": 19708.6,
+        "kurtosis": 4.01664,
+        "skewness": -2.40813,
+        "entropy": 0.175733
+      },
+      "Green": {
+        "min": 0,
+        "max": 65535,
+        "mean": 58023.4,
+        "standardDeviation": 19708.6,
+        "kurtosis": 4.01664,
+        "skewness": -2.40813,
+        "entropy": 0.175733
+      },
+      "Blue": {
+        "min": 0,
+        "max": 65535,
+        "mean": 58023.4,
+        "standardDeviation": 19708.6,
+        "kurtosis": 4.01664,
+        "skewness": -2.40813,
+        "entropy": 0.175733
+      }
+    },
+    "renderingIntent": "Perceptual",
+    "gamma": 0.454545,
+    "chromaticity": {
+      "redPrimary": {
+        "x": 0.64,
+        "y": 0.33
+      },
+      "greenPrimary": {
+        "x": 0.3,
+        "y": 0.6
+      },
+      "bluePrimary": {
+        "x": 0.15,
+        "y": 0.06
+      },
+      "whitePrimary": {
+        "x": 0.3127,
+        "y": 0.329
+      }
+    },
+    "matteColor": "#BDBDBD",
+    "backgroundColor": "#FFFFFF",
+    "borderColor": "#DFDFDF",
+    "transparentColor": "#00000000",
+    "interlace": "None",
+    "intensity": "Undefined",
+    "compose": "Over",
+    "pageGeometry": {
+      "width": 800,
+      "height": 480,
+      "x": 0,
+      "y": 0
+    },
+    "dispose": "Undefined",
+    "iterations": 0,
+    "compression": "Undefined",
+    "orientation": "Undefined",
+    "properties": {
+      "date:create": "2020-12-05T12:00:29+00:00",
+      "date:modify": "2020-12-05T12:00:29+00:00",
+      "signature": "bdb8c11964a68b3aca69d8f1d360b707c59f5d0b162e041e807dc28b0fa42a93"
+    },
+    "artifacts": {
+      "mvg:vector-graphics": "push graphic-context\n viewbox 0 0 800 480\n font-size 18\n text 10,20 'abcdefghijklmnopqrstuvwxyz\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n0123456789.:,;(*!?}^)#${%^&-+@\n'\n font-size 18\n text 10,144 '12'\n font-size 12\n text 50,144 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,174 '18'\n font-size 18\n text 50,174 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,210 '24'\n font-size 24\n text 50,210 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,258 '36'\n font-size 36\n text 50,258 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,318 '48'\n font-size 48\n text 50,318 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,390 '60'\n font-size 60\n text 50,390 'That which does not destroy me, only makes me stronger.'\n font-size 18\n text 10,474 '72'\n font-size 72\n text 50,474 'That which does not destroy me, only makes me stronger.'\npop graphic-context"
+    },
+    "tainted": false,
+    "filesize": "0B",
+    "numberPixels": "384000",
+    "pixelsPerSecond": "3.59436MB",
+    "userTime": "0.110u",
+    "elapsedTime": "0:01.106",
+    "version": "file:///opt/alt/alt-ImageMagick/usr/share/doc/ImageMagick-7/index.html"
+  }
+}
+]

@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "html",
+    "prettier",
+    "ejs"
+  ],
+  "extends": ["eslint:recommended",  "plugin:prettier/recommended"],
+  "rules": {
+    "no-unused-vars": ["error", { "args": "none" }],
+    "prettier/prettier": "error"
+  },
+  "settings": {
+    "html/html-extensions": [".html"],
+    "html/indent": "+2"  // indentation is the <script> indentation plus two spaces.
+  }
+}
