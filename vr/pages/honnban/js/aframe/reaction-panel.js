@@ -2,6 +2,9 @@ AFRAME.registerComponent('sakuhin-on-click', {
   init: function () {
     var self = this;
     this.el.addEventListener('click', function (evt) {
+      var sakuhinEl = document.querySelector('#foxs');
+      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:2');
+      sakuhinEl.components.sound.playSound();
       var menuEl = document.querySelector('#menu');
       var menuBackgroundEl = document.querySelector('#menuBackground');
       var loveEl = document.querySelector('#i-love');
@@ -10,7 +13,6 @@ AFRAME.registerComponent('sakuhin-on-click', {
       var thinkEl = document.querySelector('#i-think');
       var cryEl = document.querySelector('#i-cry');
       var angryEl = document.querySelector('#i-angry');
-
       if(menuEl.getAttribute('visible') === false) {
         menuEl.setAttribute('visible', true);
         menuBackgroundEl.setAttribute('visible', true);

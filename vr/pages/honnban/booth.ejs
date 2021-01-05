@@ -18,7 +18,6 @@
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
-      raycaster="objects: a-gltf-model"
       inspector=""
       keyboard-shortcuts=""
       screenshot=""
@@ -113,38 +112,24 @@
         position="0 1.6 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
-        wasd-controls
+        wasd-controls="acceleration: 300"
         look-controls
         cursor
       >
         <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
+        <a-cursor
+          raycaster="objects: a-gltf-model; objects: a-image"
+        ></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-      <!-- クリックイベント -->
-      <a-entity
-        position="0 1.6 0"
-        look-controls
-        wasd-controls
-        camera
-        cursor
-        raycaster="objects: a-gltf-model"
-      >
-        <a-entity
-          raycaster="far: 30; objects: a-gltf-model"
-          cursor=""
-          geometry="primitive: ring; radiusOuter: 0.015;
-          radiusInner: 0.01; segmentsTheta: 32"
-          material="color: #283644; shader: flat"
-          position="0 0 -0.75"
-        ></a-entity>
-      </a-entity>
       <!-- 作品 -->
       <a-gltf-model
-        id="fox"
+        id="foxs"
         src="#fox"
         scale="0.3 0.3 0.3"
         position="-0.383 0.63654 0.4"
+        sakuhin-on-click
+        sakuhin-hover
       ></a-gltf-model>
       <!-- 現在時間を表示 -->
       <a-text
@@ -215,51 +200,69 @@
       <!-- リアクション_ASSSET -->
       <a-image
         id="i-love"
+        class="reaction-panel"
         src="#love"
         scale="0.27661 0.29119 0.5"
         position="-0.64357 1.27987 -0.61076"
         rotation="0 90.61556713112022 0"
         visible="false"
+        love-effect
+        reaction-panel-hover
       ></a-image>
       <a-image
         id="i-twincle"
+        class="reaction-panel"
         src="#twincle"
         scale="0.27661 0.29119 0.5"
         position="-0.655 1.2786 -1.19534"
         rotation="0 90.61556713112022 0"
         visible="false"
+        twincle-effect
+        reaction-panel-hover
       ></a-image>
       <a-image
         id="i-smile"
+        class="reaction-panel"
         src="#smile"
         scale="0.27661 0.29119 0.5"
         position="-0.655 1.27838 -1.78385"
         rotation="0 90.61556713112022 0"
         visible="false"
+        smile-effect
+        reaction-panel-hover
       ></a-image>
       <a-image
         id="i-think"
+        class="reaction-panel"
         src="#think"
         scale="0.27661 0.29119 0.5"
         position="-0.655 0.87007 -0.61403"
         rotation="0 90.61556713112022 0"
         visible="false"
+        think-effect
+        reaction-panel-hover
       ></a-image>
       <a-image
         id="i-cry"
+        class="reaction-panel"
         src="#cry"
         scale="0.27661 0.29119 0.5"
         position="-0.655 0.86913 -1.20737"
         rotation="0 90.61556713112022 0"
         visible="false"
+        cry-effect
+        reaction-panel-hover
       ></a-image>
       <a-image
         id="i-angry"
+        class="reaction-panel"
         src="#angry"
         scale="0.27661 0.29119 0.5"
         position="-0.655 0.8679 -1.78503"
         rotation="0 90.61556713112022 0"
         visible="false"
+        angry-effect
+        reaction-panel-hover
       ></a-image>
     </a-scene>
   </body>
