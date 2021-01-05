@@ -16,98 +16,38 @@
     <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
     <a-scene
       renderer="colorManagement: true; antialias: true;"
-      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
+      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc; username: <%=username%>;avatar: <%=avatar%>;"
       cursor="rayOrigin: mouse"
-      raycaster="objects: a-gltf-model"
-      inspector=""
-      keyboard-shortcuts=""
-      screenshot=""
-      vr-mode-ui=""
-      device-orientation-permission-ui=""
       renderer="colorManagement: true"
-      visible=""
-      mouse-cursor
     >
-      <a-assets timeout="200000">
-        <!-- 来場者character -->
-        <template id="avatar-template">
-          <a-entity class="avatar">
-            <!-- リアクション_ASSET -->
-            <a-image
-              id="reaction"
-              src="/honnban/assets/img/emo_cry.svg"
-              position="-0.04 0.05 0.32"
-              rotation="0 0 0"
-              scale="0.4 0.4 0.4"
-              look-at="#player"
-            ></a-image>
-            <!-- ユーザー名_ASSET -->
-            <a-entity
-              class="head"
-              id="name"
-              text="value: ペンギン; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
-              position="-0.05 -0.2 0.25"
-              scale="2 2 2"
-              look-at="#player"
-            ></a-entity>
-            <!-- 🐧 -->
-            <!-- <a-gltf-model
-              class="head"
-              src="/honnban/assets/model/cute_penguin/scene.gltf"
-              scale="0.003 0.003 0.003"
-              rotation="-10 180 0"
-              position="0 -1.4 0.05791"
-            ></a-gltf-model> -->
-            <!-- 🥕 -->
-            <a-gltf-model
-              class="head"
-              src="/honnban/assets/model/super_carrot/scene.gltf"
-              scale="0.007 0.007 0.007"
-              rotation="-10 180 -15"
-              position="0 -1 0"
-            ></a-gltf-model>
-          </a-entity>
-        </template>
-        <!-- 作品サンプル -->
-        <a-asset-item
-          id="sakuhin"
-          src="/honnban/assets/model/sakuhin_example/scene.gltf"
-        ></a-asset-item>
-        <!-- いいね_ASSET -->
-        <a-asset-item
-          id="likes"
-          src="/honnban/assets/model/beating_heart/scene.gltf"
-        ></a-asset-item>
-        <!-- 白いいね_ASSET -->
-        <a-asset-item
-          id="white-likes"
-          src="/honnban/assets/model/white_heart_model/scene.gltf"
-        ></a-asset-item>
-        <!-- fox -->
-        <a-asset-item
-          id="fox"
-          src="https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf"
-        ></a-asset-item>
-        <!-- リアクション_ICONS -->
-        <%- include('./ejs-components/ejs-assets/reaction-panel.asset.ejs') %>
-      </a-assets>
-
+      <!-- アバター -->
+      <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
       <!-- 空 -->
       <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
       <!-- ロビー -->
       <%- include('./ejs-components/ejs-assets/booth.asset.ejs') %>
       <!-- プレゼンター -->
-      <%- include('./ejs-components/ejs-assets/presenter.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/booth-presenter.asset.ejs') %>
       <!-- 作品概要 -->
-      <%- include('./ejs-components/ejs-assets/exhibit_overview.asset.ejs') %>
+      <%-
+      include('./ejs-components/ejs-assets/booth-exhibit-overview.asset.ejs') %>
       <!-- 作品紹介 -->
-      <%- include('./ejs-components/ejs-assets/presentation_image.asset.ejs') %>
+      <%-
+      include('./ejs-components/ejs-assets/booth-presentation-image.asset.ejs')
+      %>
       <!-- デモ動画、上のタイトル -->
-      <%- include('./ejs-components/ejs-assets/demo_video.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/booth-demo-video.asset.ejs') %>
+      <!-- 真ん中の作品 -->
+      <%- include('./ejs-components/ejs-assets/booth-exhibit.asset.ejs') %>
+      <!-- リアクションパネル -->
+      <%-
+      include('./ejs-components/ejs-assets/booth-reaction-panel.asset.ejs')%>
+      <!-- いいね -->
+      <%- include('./ejs-components/ejs-assets/booth-like.asset.ejs') %>
+      <!-- 現在時間を表示 -->
+      <%- include('./ejs-components/ejs-assets/booth-current-time.asset.ejs') %>
       <!-- 出口 -->
-      <%- include('./ejs-components/ejs-assets/exit.asset.ejs') %>
-      <!-- 展示側Exit -->
-      <%#- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
 
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
       <!-- camera -->
@@ -124,129 +64,25 @@
         <a-cursor raycaster="objects:  a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-      <!-- 作品 -->
-      <a-gltf-model
-        id="fox"
-        src="#fox"
-        scale="0.3 0.3 0.3"
-        position="-0.383 0.63654 0.4"
-      ></a-gltf-model>
-      <!-- 現在時間を表示 -->
-      <a-text
-        id="now-time"
-        value="aaaa"
-        color="#000000"
-        scale="2.97348 2.93727 15"
-        position="-0.05 3.605 4.337"
-        rotation="0 158.21 0"
-      ></a-text>
-      <!-- 白いいねモデル -->
-      <a-gltf-model
-        on-click
-        id="white-like"
-        src="#white-likes"
-        scale="0.015 0.015 0.015"
-        rotation="0 57.756 0"
-        position="-2.952 0.436 -2.682"
-      ></a-gltf-model>
-      <!-- いいねモデル -->
-      <a-entity
-        id="like"
-        gltf-model="#likes"
-        scale="0.17932 0.20506 0.2375"
-        rotation="0 57.74612434005515 0"
-        position="-2.90927 0.41615 -2.68227"
-        visible="false"
-      ></a-entity>
-      <!-- いいね数 -->
-      <a-text
-        id="number-of-like"
-        value="<%=exhibit.goodCount%>"
-        data-exhibit-id="<%=exhibit.id%>"
-        color="#000000"
-        scale="2.79 2.81 3.334"
-        position="-2.205 0.479 -2.666"
-        rotation="0 34.648 0"
-        text="width: 3; negate: false"
-      ></a-text>
 
-      <!-- パネル -->
+      <!-- クリックイベント -->
       <a-entity
-        id="menu"
-        geometry="primitive: plane; width: 3.4; height: 1.82"
-        material="color: #000000; opacity: 0.7"
-        radius="200"
-        theta-length="110"
-        position="-0.70126 1.06574 -1.18901"
-        rotation="0 89.834 0"
-        scale="0.515 0.4621 1"
-        visible="false"
-      ></a-entity>
-      <a-entity
-        id="menuBackground"
-        geometry="primitive: plane; width: 3.4; height: 1.82"
-        material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
-        color="#000000"
-        opacity="0.1"
-        render-order="menu"
-        radius="200"
-        theta-length="110"
-        position="-0.70304 1.06159 -1.195"
-        rotation="0 89.834 0"
-        scale="0.53472 0.496 1.5"
-        visible="false"
-      ></a-entity>
-
-      <!-- リアクション_ASSSET -->
-      <a-image
-        id="i-love"
-        src="#love"
-        scale="0.27661 0.29119 0.5"
-        position="-0.64357 1.27987 -0.61076"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-      <a-image
-        id="i-twincle"
-        src="#twincle"
-        scale="0.27661 0.29119 0.5"
-        position="-0.655 1.2786 -1.19534"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-      <a-image
-        id="i-smile"
-        src="#smile"
-        scale="0.27661 0.29119 0.5"
-        position="-0.655 1.27838 -1.78385"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-      <a-image
-        id="i-think"
-        src="#think"
-        scale="0.27661 0.29119 0.5"
-        position="-0.655 0.87007 -0.61403"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-      <a-image
-        id="i-cry"
-        src="#cry"
-        scale="0.27661 0.29119 0.5"
-        position="-0.655 0.86913 -1.20737"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-      <a-image
-        id="i-angry"
-        src="#angry"
-        scale="0.27661 0.29119 0.5"
-        position="-0.655 0.8679 -1.78503"
-        rotation="0 90.61556713112022 0"
-        visible="false"
-      ></a-image>
-
+        position="0 1.6 0"
+        look-controls
+        wasd-controls
+        camera
+        cursor
+        raycaster="objects: a-gltf-model"
+      >
+        <a-entity
+          raycaster="far: 30; objects: a-gltf-model"
+          cursor=""
+          geometry="primitive: ring; radiusOuter: 0.015;
+          radiusInner: 0.01; segmentsTheta: 32"
+          material="color: #283644; shader: flat"
+          position="0 0 -0.75"
+        ></a-entity>
+      </a-entity>
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
     </a-scene>

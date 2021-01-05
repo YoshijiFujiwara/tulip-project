@@ -454,11 +454,22 @@
     <%- include('./ejs-components/header.ejs') %>
   </head>
   <body>
-    <a-scene renderer="colorManagement: true; antialias: true;">
+    <a-scene
+      physics
+      renderer="colorManagement: true; antialias: true;"
+      networked-scene="room: lobby;debug: true;adapter: webrtc;username: <%=username%>; avatar: <%=avatar%>;"
+      cursor="rayOrigin: mouse"
+      renderer="colorManagement: true"
+    >
+      <a-plane
+        position="-0.18153 1 -0.80929"
+        rotation="-90 0 0"
+        width="4"
+        height="4"
+        color="#7BC8A4"
+        static-body
+      ></a-plane>
       <a-assets timeout="200000">
-        <img id="thumbnail1" src="/honnban/assets/img/dog.jpg" />
-        <img id="thumbnail2" src="/honnban/assets/img/bloodhound.png" />
-        <img id="thumbnail3" src="/honnban/assets/img/pitagora.png" />
         <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
         <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
         <img id="comming_soon3" src="/honnban/assets/img/comming_soon3.png" />
@@ -470,50 +481,27 @@
         <img id="lv2" src="/honnban/assets/img/lv2.svg" />
         <img id="lv3" src="/honnban/assets/img/lv3.svg" />
 
-        <!-- like -->
-        <a-asset-item
-          id="likes"
-          src="/honnban/assets/model/little_chick/scene.gltf"
-        ></a-asset-item>
-
         <!-- bgm -->
         <audio id="bgm" src="/honnban/assets/music/theme14.mp3"></audio>
-
-        <!-- Avatar -->
-        <a-asset-item
-          id="person"
-          src="/honnban/assets/model/person_small/scene.gltf"
-        ></a-asset-item>
-
-        <a-asset-item
-          id="overview"
-          src="/honnban/assets/model/roll-up_display/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item
-          id="overview2"
-          src="/honnban/assets/model/roll-up_demophorius/scene.gltf"
-        ></a-asset-item>
-        <!-- いいね_ASSET -->
-        <a-asset-item
-          id="nice1"
-          src="/honnban/assets/model/beating_heart/scene.gltf"
-        ></a-asset-item>
       </a-assets>
 
+      <!-- アバター -->
+      <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
+
       <!-- camera -->
-      <a-entity position="0 1.33508 6">
-        <a-entity
-          camera=""
-          position="0.5621667832552238 1.6 -3.3517248203504244"
-          look-controls="pointerLockEnabled: true"
-          wasd-controls="acceleration: 300"
-          rotation="-4.010704565915765 4.583662361046577 0"
-          data-aframe-inspector-original-camera=""
-        >
-          <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
-        </a-entity>
-        <a-cursor material="" raycaster="" cursor="" geometry=""></a-cursor>
-      </a-entity>
+      <a-camera
+        id="player"
+        position="0 2.5 0"
+        networked="template:#avatar-template;attachTemplateToLocal:false;"
+        spawn-in-circle="radius:3"
+        wasd-controls
+        look-controls
+        cursor
+      >
+        <!-- SELECTIVE INTERSECTIONS -->
+        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
+        <a-sphere class="head" visible="false"></a-sphere>
+      </a-camera>
 
       <!-- 空 -->
       <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
@@ -530,25 +518,17 @@
       %>
       <!-- prettier-ignore -->
       <%-
-        include('./ejs-components/ejs-assets/exhibit-panel.asset.ejs', {
+        include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
           exhibit,
           position,
           boothId
         })
       %>
       <% } %>
-
-      <!-- Avater -->
-      <%- include('./ejs-components/ejs-assets/lobby-avater.asset.ejs') %>
-
       <!-- 現在時間を表示 -->
-      <a-text
-        id="now-time"
-        value="aaaa"
-        color="#000000"
-        scale="4.7652 4.48239 15"
-        position="-2.33916 9.61894 -11.02357"
-      ></a-text>
+      include('./ejs-components/ejs-assets/lobby-current-time.asset.ejs') %>
+      <!-- パネル -->
+      <%-include('./ejs-components/ejs-assets/lobby-panel.asset.ejs') %>
     </a-scene>
 
     <!-- フッター部分のscriptあれば読み込み -->

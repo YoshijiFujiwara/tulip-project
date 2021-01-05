@@ -4,7 +4,7 @@ var helpers = require('./helpers');
 var naf = require('../../src/NafIndex');
 var NetworkEntities = require('../../src/NetworkEntities');
 
-suite('NetworkEntities', function() {
+suite('NetworkEntities', function () {
   var scene;
   var entities;
   var entityData;
@@ -16,42 +16,30 @@ suite('NetworkEntities', function() {
         '<template id="template1"><a-entity></a-entity></template>',
         '<template id="template2"><a-box></a-box></template>',
         '<template id="template3"><a-sphere></a-sphere></template>',
-        '<template id="template4"><a-sphere><a-entity class="test-child"></a-entity></a-sphere></template>'
-      ]
+        '<template id="template4"><a-sphere><a-entity class="test-child"></a-entity></a-sphere></template>',
+      ],
     };
     scene = helpers.sceneFactory(opts);
     NAF.schemas.add({
       template: '#template1',
-      components: [
-        'position',
-        'rotation'
-      ]
+      components: ['position', 'rotation'],
     });
     NAF.schemas.add({
       template: '#template2',
-      components: [
-        'position',
-        'rotation'
-      ]
+      components: ['position', 'rotation'],
     });
     NAF.schemas.add({
       template: '#template3',
-      components: [
-        'position',
-        'rotation'
-      ]
+      components: ['position', 'rotation'],
     });
     NAF.schemas.add({
       template: '#template4',
-      components: [
-        'position',
-        'rotation'
-      ]
+      components: ['position', 'rotation'],
     });
     naf.utils.whenEntityLoaded(scene, done);
   }
 
-  setup(function(done) {
+  setup(function (done) {
     naf.options.useLerp = false;
     naf.schemas.clear();
     entities = new NetworkEntities();
@@ -62,9 +50,9 @@ suite('NetworkEntities', function() {
       template: '#template1',
       components: {
         0: '1 2 3',
-        1: '4 3.5 2'
+        1: '4 3.5 2',
       },
-      isFirstSync: true
+      isFirstSync: true,
     };
     entityData = {
       networkId: 'test1',
@@ -73,21 +61,20 @@ suite('NetworkEntities', function() {
       template: '#template1',
       components: {
         0: '1 2 3',
-        1: '4 3.5 2'
+        1: '4 3.5 2',
       },
-      isFirstSync: false
+      isFirstSync: false,
     };
     initScene(done);
     naf.connection.isMineAndConnected = sinon.stub();
   });
 
-  teardown(function() {
+  teardown(function () {
     scene.parentElement.removeChild(scene);
   });
 
-  suite('registerEntity', function() {
-
-    test('adds entity to list', function() {
+  suite('registerEntity', function () {
+    test('adds entity to list', function () {
       var entity = 'i-am-entity';
       var networkId = 'nid1';
 
@@ -98,46 +85,43 @@ suite('NetworkEntities', function() {
     });
   });
 
-  suite('createRemoteEntity', function() {
-
-    test('returns entity', function() {
+  suite('createRemoteEntity', function () {
+    test('returns entity', function () {
       var entity = entities.createRemoteEntity(entityData);
       assert.isOk(entity);
     });
-
   });
 
-  suite('setInitialComponents', function() {
-
-    test('entity components set immediately', function(done) {
+  suite('setInitialComponents', function () {
+    test('entity components set immediately', function (done) {
       var entity = entities.createRemoteEntity(entityData);
       scene.appendChild(entity);
 
-      naf.utils.whenEntityLoaded(entity, function() {
+      naf.utils.whenEntityLoaded(entity, function () {
         var position = entity.getAttribute('position');
         var rotation = entity.getAttribute('rotation');
 
-        assert.deepEqual(position, new THREE.Vector3(1,2,3));
-        assert.deepEqual(rotation, {x: 4, y: 3.5, z: 2});
+        assert.deepEqual(position, new THREE.Vector3(1, 2, 3));
+        assert.deepEqual(rotation, { x: 4, y: 3.5, z: 2 });
         done();
       });
     });
 
-    test('entity sets correct first update data', function(done) {
+    test('entity sets correct first update data', function (done) {
       var entity = entities.createRemoteEntity(entityData);
       scene.appendChild(entity);
 
-      naf.utils.whenEntityLoaded(entity, function() {
+      naf.utils.whenEntityLoaded(entity, function () {
         assert.equal(entity.firstUpdateData, entityData);
         done();
       });
     });
 
-    test('entity sets correct networked component', function(done) {
+    test('entity sets correct networked component', function (done) {
       var entity = entities.createRemoteEntity(entityData);
       scene.appendChild(entity);
 
-      naf.utils.whenEntityLoaded(entity, function() {
+      naf.utils.whenEntityLoaded(entity, function () {
         var componentData = entity.components.networked.data;
 
         assert.equal(componentData.template, '#template1', 'template');
@@ -146,107 +130,139 @@ suite('NetworkEntities', function() {
         done();
       });
     });
-  })
+  });
 
-  suite('updateEntity', function() {
-    teardown(function() {
+  suite('updateEntity', function () {
+    teardown(function () {
       NAF.options.firstSyncSource = null;
     });
 
-    test('first update creates new entity', sinon.test(function() {
-      var mockEl = document.createElement('a-entity');
-      this.stub(entities, 'createRemoteEntity').returns(mockEl);
+    test(
+      'first update creates new entity',
+      sinon.test(function () {
+        var mockEl = document.createElement('a-entity');
+        this.stub(entities, 'createRemoteEntity').returns(mockEl);
 
-      entities.updateEntity('client', 'u', firstUpdateData);
+        entities.updateEntity('client', 'u', firstUpdateData);
 
-      assert.isTrue(entities.createRemoteEntity.calledWith(firstUpdateData));
-    }));
+        assert.isTrue(entities.createRemoteEntity.calledWith(firstUpdateData));
+      }),
+    );
 
-    test('second update updates entity', sinon.test(function() {
-      var entity = entities.createRemoteEntity(entityData);
-      var networkUpdate = this.stub(entity.components.networked, "networkUpdate");
+    test(
+      'second update updates entity',
+      sinon.test(function () {
+        var entity = entities.createRemoteEntity(entityData);
+        var networkUpdate = this.stub(
+          entity.components.networked,
+          'networkUpdate',
+        );
 
-      entities.registerEntity(entityData.networkId, entity);
-      entities.updateEntity('client', 'u', entityData); // updates entity
+        entities.registerEntity(entityData.networkId, entity);
+        entities.updateEntity('client', 'u', entityData); // updates entity
 
-      assert(networkUpdate.calledWith(entityData));
-    }));
+        assert(networkUpdate.calledWith(entityData));
+      }),
+    );
 
-    test('entity with parent that has not been created is not created yet', sinon.test(function() {
-      var mockEl = document.createElement('a-entity');
-      this.stub(entities, 'createRemoteEntity').returns(mockEl);
+    test(
+      'entity with parent that has not been created is not created yet',
+      sinon.test(function () {
+        var mockEl = document.createElement('a-entity');
+        this.stub(entities, 'createRemoteEntity').returns(mockEl);
 
-      entityData.parent = 'non-existent-parent';
+        entityData.parent = 'non-existent-parent';
 
-      entities.updateEntity('client', 'u', entityData);
+        entities.updateEntity('client', 'u', entityData);
 
-      assert.isFalse(entities.createRemoteEntity.calledWith(entityData));
-    }));
+        assert.isFalse(entities.createRemoteEntity.calledWith(entityData));
+      }),
+    );
 
-    test('first update ignored from disallowed source', sinon.test(function() {
-      var mockEl = document.createElement('a-entity');
-      this.stub(entities, 'createRemoteEntity').returns(mockEl);
+    test(
+      'first update ignored from disallowed source',
+      sinon.test(function () {
+        var mockEl = document.createElement('a-entity');
+        this.stub(entities, 'createRemoteEntity').returns(mockEl);
 
-      NAF.options.firstSyncSource = 'allowed-source';
+        NAF.options.firstSyncSource = 'allowed-source';
 
-      entities.updateEntity('client', 'u', entityData, 'disallowed-source');
+        entities.updateEntity('client', 'u', entityData, 'disallowed-source');
 
-      assert.isFalse(entities.createRemoteEntity.calledWith(entityData));
-    }));
+        assert.isFalse(entities.createRemoteEntity.calledWith(entityData));
+      }),
+    );
 
-    test('child entities created after parent', sinon.test(function() {
-      var entityDataParent = firstUpdateData;
-      var entityDataChild1 = {
-        networkId: 'test-child-1',
-        owner: 'abcdefg',
-        parent: 'test1',
-        template: '#template1',
-        components: {
-          0: '1 2 3',
-          1: '4 3.5 2'
-        },
-        isFirstSync: true
-      };
-      var entityDataChild2 = {
-        networkId: 'test-child-2',
-        owner: 'abcdefg',
-        parent: 'test1',
-        template: '#template1',
-        components: {
-          0: '1 2 3',
-          1: '4 3.5 2'
-        },
-        isFirstSync: true
-      };
+    test(
+      'child entities created after parent',
+      sinon.test(function () {
+        var entityDataParent = firstUpdateData;
+        var entityDataChild1 = {
+          networkId: 'test-child-1',
+          owner: 'abcdefg',
+          parent: 'test1',
+          template: '#template1',
+          components: {
+            0: '1 2 3',
+            1: '4 3.5 2',
+          },
+          isFirstSync: true,
+        };
+        var entityDataChild2 = {
+          networkId: 'test-child-2',
+          owner: 'abcdefg',
+          parent: 'test1',
+          template: '#template1',
+          components: {
+            0: '1 2 3',
+            1: '4 3.5 2',
+          },
+          isFirstSync: true,
+        };
 
-      var child1 = document.createElement('a-entity');
-      var child2 = document.createElement('a-entity');
-      var parent = document.createElement('a-entity');
+        var child1 = document.createElement('a-entity');
+        var child2 = document.createElement('a-entity');
+        var parent = document.createElement('a-entity');
 
-      var stub = this.stub(entities, 'createRemoteEntity');
-      stub.onCall(0).returns(parent);
-      stub.onCall(1).returns(child1);
-      stub.onCall(2).returns(child2);
+        var stub = this.stub(entities, 'createRemoteEntity');
+        stub.onCall(0).returns(parent);
+        stub.onCall(1).returns(child1);
+        stub.onCall(2).returns(child2);
 
-      entities.updateEntity('client', 'u', entityDataChild1);
-      entities.updateEntity('client', 'u', entityDataChild2);
+        entities.updateEntity('client', 'u', entityDataChild1);
+        entities.updateEntity('client', 'u', entityDataChild2);
 
-      assert.isFalse(entities.createRemoteEntity.calledWith(entityDataChild1), 'does not create child 1');
-      assert.isFalse(entities.createRemoteEntity.calledWith(entityDataChild2), 'does not create child 2');
+        assert.isFalse(
+          entities.createRemoteEntity.calledWith(entityDataChild1),
+          'does not create child 1',
+        );
+        assert.isFalse(
+          entities.createRemoteEntity.calledWith(entityDataChild2),
+          'does not create child 2',
+        );
 
-      entities.updateEntity('client', 'u', entityDataParent);
-      entities.registerEntity('test1', parent);
+        entities.updateEntity('client', 'u', entityDataParent);
+        entities.registerEntity('test1', parent);
 
-      assert.equal(entities.createRemoteEntity.callCount, 3);
-      assert.isTrue(entities.createRemoteEntity.calledWith(entityDataParent), 'creates parent');
-      assert.isTrue(entities.createRemoteEntity.calledWith(entityDataChild1), 'creates child 1 after parent');
-      assert.isTrue(entities.createRemoteEntity.calledWith(entityDataChild2), 'creates child 2 after parent');
-    }));
+        assert.equal(entities.createRemoteEntity.callCount, 3);
+        assert.isTrue(
+          entities.createRemoteEntity.calledWith(entityDataParent),
+          'creates parent',
+        );
+        assert.isTrue(
+          entities.createRemoteEntity.calledWith(entityDataChild1),
+          'creates child 1 after parent',
+        );
+        assert.isTrue(
+          entities.createRemoteEntity.calledWith(entityDataChild2),
+          'creates child 2 after parent',
+        );
+      }),
+    );
   });
 
-  suite('completeSync', function() {
-
-    test('no network entities', function() {
+  suite('completeSync', function () {
+    test('no network entities', function () {
       entities.completeSync();
     });
 
@@ -287,7 +303,7 @@ suite('NetworkEntities', function() {
     //   }
     // });
 
-    test('does not emit sync on removed entity', function() {
+    test('does not emit sync on removed entity', function () {
       var entity = document.createElement('a-entity');
       entities.registerEntity(entityData.networkId, entity);
       scene.appendChild(entity);
@@ -301,9 +317,8 @@ suite('NetworkEntities', function() {
     });
   });
 
-  suite('removeEntity', function() {
-
-    test('correct id', function() {
+  suite('removeEntity', function () {
+    test('correct id', function () {
       var entity = document.createElement('a-entity');
       entities.registerEntity(entityData.networkId, entity);
       scene.appendChild(entity);
@@ -313,7 +328,7 @@ suite('NetworkEntities', function() {
       assert.equal(removedEntity, entity);
     });
 
-    test('wrong id', function() {
+    test('wrong id', function () {
       var entity = document.createElement('a-entity');
       entities.registerEntity(entityData.networkId, entity);
       scene.appendChild(entity);
@@ -323,15 +338,14 @@ suite('NetworkEntities', function() {
       assert.isNull(result);
     });
 
-    test('no entities', function() {
+    test('no entities', function () {
       var result = entities.removeEntity('wrong');
       assert.isNull(result);
     });
   });
 
-  suite('removeRemoteEntity', function() {
-
-    test('calls removeEntity with id', function() {
+  suite('removeRemoteEntity', function () {
+    test('calls removeEntity with id', function () {
       var data = { networkId: 'testId' };
       entities.removeEntity = sinon.stub();
 
@@ -341,43 +355,47 @@ suite('NetworkEntities', function() {
     });
   });
 
-  suite('removeEntitiesOfClient', function() {
+  suite('removeEntitiesOfClient', function () {
+    test(
+      'removing many entities',
+      sinon.test(function () {
+        var entityList = [];
+        for (var i = 0; i < 3; i++) {
+          var el = document.createElement('a-entity');
+          entities.registerEntity(i, el);
+          scene.appendChild(el);
+          entityList.push(el);
+        }
+        this.stub(naf.utils, 'getCreator').returns(entityData.owner);
 
-    test('removing many entities', sinon.test(function() {
-      var entityList = [];
-      for (var i = 0; i < 3; i++) {
+        var removedEntities = entities.removeEntitiesOfClient(entityData.owner);
+
+        assert.equal(removedEntities.length, 3);
+      }),
+    );
+
+    test(
+      'other entities',
+      sinon.test(function () {
         var el = document.createElement('a-entity');
-        entities.registerEntity(i, el);
-        scene.appendChild(el);
-        entityList.push(el);
-      }
-      this.stub(naf.utils, 'getCreator').returns(entityData.owner);
+        entities.registerEntity(entityData.networkId, el);
+        this.stub(naf.utils, 'getNetworkOwner').returns('a');
 
-      var removedEntities = entities.removeEntitiesOfClient(entityData.owner);
+        var removedEntities = entities.removeEntitiesOfClient('b');
 
-      assert.equal(removedEntities.length, 3);
-    }));
+        assert.equal(removedEntities.length, 0);
+      }),
+    );
 
-    test('other entities', sinon.test(function() {
-      var el = document.createElement('a-entity');
-      entities.registerEntity(entityData.networkId, el);
-      this.stub(naf.utils, 'getNetworkOwner').returns('a');
-
-      var removedEntities = entities.removeEntitiesOfClient('b');
-
-      assert.equal(removedEntities.length, 0);
-    }));
-
-    test('no entities', function() {
+    test('no entities', function () {
       var removedEntities = entities.removeEntitiesOfClient(entityData.owner);
 
       assert.equal(removedEntities.length, 0);
     });
   });
 
-  suite('getEntity', function() {
-
-    test('normal', function() {
+  suite('getEntity', function () {
+    test('normal', function () {
       var testEntity = { test: true };
       entities.entities[entityData.networkId] = testEntity;
 
@@ -386,7 +404,7 @@ suite('NetworkEntities', function() {
       assert.equal(result, testEntity);
     });
 
-    test('incorrect id', function() {
+    test('incorrect id', function () {
       var testEntity = { test: true };
       entities.entities[entityData.networkId] = testEntity;
 
@@ -396,9 +414,8 @@ suite('NetworkEntities', function() {
     });
   });
 
-  suite('hasEntity', function() {
-
-    test('normal', function() {
+  suite('hasEntity', function () {
+    test('normal', function () {
       var testEntity = { test: true };
       entities.entities[entityData.networkId] = testEntity;
 
@@ -407,7 +424,7 @@ suite('NetworkEntities', function() {
       assert.isTrue(result);
     });
 
-    test('incorrect id', function() {
+    test('incorrect id', function () {
       var testEntity = { test: true };
       entities.entities[entityData.networkId] = testEntity;
 
