@@ -457,7 +457,7 @@
     <a-scene
       physics
       renderer="colorManagement: true; antialias: true;"
-      networked-scene="room: lobby;debug: true;adapter: webrtc;"
+      networked-scene="room: lobby;debug: true;adapter: webrtc;username: <%=username%>; avatar: <%=avatar%>;"
       cursor="rayOrigin: mouse"
       renderer="colorManagement: true"
     >
@@ -486,7 +486,7 @@
       </a-assets>
 
       <!-- アバター -->
-      <%- include('./ejs-components/ejs-assets/lobby-avatar.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
 
       <!-- camera -->
       <a-camera

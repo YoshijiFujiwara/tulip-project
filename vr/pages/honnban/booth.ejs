@@ -16,7 +16,7 @@
     <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
     <a-scene
       renderer="colorManagement: true; antialias: true;"
-      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc;"
+      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc; username: <%=username%>;avatar: <%=avatar%>;"
       cursor="rayOrigin: mouse"
       renderer="colorManagement: true"
     >
