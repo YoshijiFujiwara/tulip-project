@@ -1,9 +1,9 @@
 export type PresentationImage = {
-    id: number
+  id: number
 
-    url: string
+  url: string
 
-    page: number
+  page: number
 
-    exhibitId: number
+  exhibitId: number
 }
