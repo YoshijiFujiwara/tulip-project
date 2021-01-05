@@ -5,7 +5,7 @@
   </head>
   <body>
     <a-scene
-      physics
+      physics="debug : false;"
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: lobby;debug: true;adapter: webrtc;username: <%=username%>; avatar: <%=avatar%>;"
       cursor="rayOrigin: mouse"
@@ -44,9 +44,9 @@
         position="0 2.5 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
-        wasd-controls
-        look-controls
-        cursor
+        universal-controls
+        kinematic-body
+        cursor="rayOrigin: mouse"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
