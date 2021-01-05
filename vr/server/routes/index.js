@@ -5,7 +5,7 @@ const https = require('https');
 // axiosリクエスト時のSSL周りのエラーを防止
 // [FYI] https://github.com/axios/axios/issues/535
 const axiosInstance = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env.VR_API_URL,
   httpsAgent: new https.Agent({
     rejectUnauthorized: false,
   }),
@@ -61,7 +61,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   const exhibitId = req.params.exhibitId;
   const result = await axiosInstance.get(`exhibits/${exhibitId}`);
   const exhibit = result.data;
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.VR_API_URL;
 
   const renderData = {
     exhibit,
