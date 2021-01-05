@@ -455,7 +455,7 @@
   </head>
   <body>
     <a-scene
-      physics="debug : true;"
+      physics="debug : false;"
       renderer="colorManagement: true; antialias: true;"
       networked-scene="room: lobby;debug: true;adapter: webrtc;"
       cursor="rayOrigin: mouse"
@@ -488,7 +488,7 @@
         spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
-        cursor
+        cursor="rayOrigin: mouse"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
