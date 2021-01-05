@@ -1,0 +1,126 @@
+<!-- リアクション_ASSSET -->
+<a-assets>
+  <img id="asset-angry" src="/honnban/assets/img/emo_angry.svg" />
+  <img id="asset-cry" src="/honnban/assets/img/emo_cry.svg" />
+  <img id="asset-love" src="/honnban/assets/img/emo_love.svg" />
+  <img id="asset-smile" src="/honnban/assets/img/emo_smile.svg" />
+  <img id="asset-think" src="/honnban/assets/img/emo_think.svg" />
+  <img id="asset-twincle" src="/honnban/assets/img/emo_twincle.svg" />
+
+  <%# sounds %>
+  <audio
+    id="assets-click-effect"
+    src="/honnban/assets/music/clickEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-applause-effect"
+    src="/honnban/assets/music/applauseEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-wow-effect"
+    src="/honnban/assets/music/wowEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-laugh-effect"
+    src="/honnban/assets/music/laughEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-hum-effect"
+    src="/honnban/assets/music/humEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-subtle-effect"
+    src="/honnban/assets/music/subtleEffect.mp3"
+  ></audio>
+  <audio
+    id="assets-angry-effect"
+    src="/honnban/assets/music/angryEffect.mp3"
+  ></audio>
+</a-assets>
+<a-image
+  id="i-love"
+  src="#asset-love"
+  scale="0.27661 0.29119 0.5"
+  position="-0.64357 1.27987 -0.61076"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  love-effect
+  reaction-panel-hover
+></a-image>
+<a-image
+  id="i-twincle"
+  src="#asset-twincle"
+  scale="0.27661 0.29119 0.5"
+  position="-0.655 1.2786 -1.19534"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  twincle-effect
+  reaction-panel-hover
+></a-image>
+<a-image
+  id="i-smile"
+  src="#asset-smile"
+  scale="0.27661 0.29119 0.5"
+  position="-0.655 1.27838 -1.78385"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  smile-effect
+  reaction-panel-hover
+></a-image>
+<a-image
+  id="i-think"
+  src="#asset-think"
+  scale="0.27661 0.29119 0.5"
+  position="-0.655 0.87007 -0.61403"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  think-effect
+  reaction-panel-hover
+></a-image>
+<a-image
+  id="i-cry"
+  src="#asset-cry"
+  scale="0.27661 0.29119 0.5"
+  position="-0.655 0.86913 -1.20737"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  cry-effect
+  reaction-panel-hover
+></a-image>
+<a-image
+  id="i-angry"
+  src="#asset-angry"
+  scale="0.27661 0.29119 0.5"
+  position="-0.655 0.8679 -1.78503"
+  rotation="0 90.61556713112022 0"
+  visible="false"
+  angry-effect
+  reaction-panel-hover
+></a-image>
+
+<!-- パネル -->
+<a-entity
+  id="menu"
+  geometry="primitive: plane; width: 3.4; height: 1.82"
+  material="color: #000000; opacity: 0.7"
+  radius="200"
+  theta-length="110"
+  position="-0.70126 1.06574 -1.18901"
+  rotation="0 89.834 0"
+  scale="0.515 0.4621 1"
+  visible="false"
+></a-entity>
+<a-entity
+  id="menuBackground"
+  geometry="primitive: plane; width: 3.4; height: 1.82"
+  material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
+  color="#000000"
+  opacity="0.1"
+  render-order="menu"
+  radius="200"
+  theta-length="110"
+  position="-0.70304 1.06159 -1.195"
+  rotation="0 89.834 0"
+  scale="0.53472 0.496 1.5"
+  visible="false"
+></a-entity>

@@ -1,4 +1,4 @@
-  AFRAME.registerComponent('hover', {
+  AFRAME.registerComponent('heart-hover', {
     init: function () {
       var whiteheartEl = document.querySelector('#white-like');
       whiteheartEl.addEventListener('mouseenter', function () {
