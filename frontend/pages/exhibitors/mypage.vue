@@ -95,7 +95,9 @@
             <iframe
               v-if="exhibit"
               id="iframe-details"
-              :src="`${vrUrl}honnban/booths/${exhibit.id}?username=ssss&avatar=cute_penguin`"
+              :src="`${vrUrl}honnban/booths/${
+                exhibit.id
+              }?username=${user.name.trim()}&avatar=presenter`"
               frameborder="0"
             ></iframe>
 
@@ -156,7 +158,9 @@ export default class MyPage extends Vue {
   }
 
   connectEntrance() {
-    const url = `${this.vrUrl}honnban/booths/${this.user.groupId}?username=presenter&avatar=cute_penguin&isExhibitor=true`
+    const url = `${this.vrUrl}honnban/booths/${
+      this.exhibit.id
+    }?username=${this.user.name.trim()}&avatar=presenter`
     window.location.href = url
   }
 

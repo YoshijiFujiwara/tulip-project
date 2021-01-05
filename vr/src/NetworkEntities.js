@@ -45,6 +45,9 @@ class NetworkEntities {
       case 'dragon':
         avatarModel.setAttribute('scale', '0.018 0.018 0.018');
         break;
+      case 'presenter':
+        avatarModel.setAttribute('scale', '0.003 0.003 0.003');
+        break;
       default:
     }
     // console.log('name', name);
