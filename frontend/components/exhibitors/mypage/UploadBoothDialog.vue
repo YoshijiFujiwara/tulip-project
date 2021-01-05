@@ -35,7 +35,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import BoothsApi from '../../../plugins/axios/modules/booth'
-import exhibit from '../../../plugins/axios/modules/exhibit'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import { Exhibit } from '../../../types/exhibit'
 
@@ -74,7 +73,6 @@ export default class CreateExhibitDialog extends Vue {
   }
   onSubmit() {
     this.isLoading = true
-
     BoothsApi.postBooth(Number(this.form.booth))
       .then(() => {
         this.$toast.success('ブースの登録が完了しました')
