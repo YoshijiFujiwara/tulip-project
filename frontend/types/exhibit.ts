@@ -1,3 +1,4 @@
+import { Booth } from './booth'
 import { Group } from './group'
 import { PresentationImage } from './presentationImage'
 export enum GENRE {
@@ -27,4 +28,6 @@ export type Exhibit = {
   groupId: number
 
   group: Group
+
+  booth?: Booth
 }
