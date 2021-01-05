@@ -1,0 +1,33 @@
+<!-- ギャラリー概要_ASSET -->
+<a-assets>
+  <img id="asset-background-white" src="/honnban/assets/img/white.jfif" />
+  <img id="asset-thumbnail" src="<%=exhibit.thumbnail%>" />
+</a-assets>
+<!-- ギャラリー_作品概要 -->
+<a-image
+  id="background-white"
+  src="#asset-background-white"
+  geometry="primitive: box"
+  scale="0.8 1 0.2"
+  position="-0.22305 1.23617 -4.61989"
+></a-image>
+<a-image
+  id="thumbnail"
+  src="#asset-thumbnail"
+  scale="0.2 0.25 1"
+  position="-0.23734 1.33798 -4.51752"
+></a-image>
+<a-entity
+  id="gallery-title"
+  text="value: <%=exhibit.title%>; align: center; color: #153093; lineHeight: 3; letterSpacing: 5; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  color="#000000"
+  scale="3 3 1"
+  position="-0.21761 1.61438 -4.45262"
+></a-entity>
+<a-entity
+  id="gallery-description"
+  text="value: <%=exhibit.description%>; align: center; color: #424242; lineHeight: 0.4; negate: false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  color="#000000"
+  scale="2 2 1"
+  position="-0.23672 1.09887 -4.45262"
+></a-entity>

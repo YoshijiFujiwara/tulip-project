@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app light>
-      <v-navigation-drawer app color="#27303d">
+      <v-navigation-drawer app color="#27303d" absolute permanent>
         <v-list>
           <v-list-item>
             <v-img :src="require('@/assets/logo_main.png')" />
