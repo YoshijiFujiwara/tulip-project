@@ -8,9 +8,9 @@
       <v-form ref="form" v-model="valid" class="ml-8 mr-8 pb-9">
         <v-img :src="require('@/assets/stage.png')"></v-img>
         <v-select
-          v-model="form.booth"
+          v-model="form.positionNumber"
           class="pb-3"
-          :rules="rules.booth"
+          :rules="rules.positionNumber"
           :items="items"
           label="ブース番号"
           placeholder="選択"
@@ -35,6 +35,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import BoothsApi from '../../../plugins/axios/modules/booth'
+import exhibit from '../../../plugins/axios/modules/exhibit'
 import ExhibitApi from '../../../plugins/axios/modules/exhibit'
 import { Exhibit } from '../../../types/exhibit'
 
@@ -45,26 +46,29 @@ export default class CreateExhibitDialog extends Vue {
 
   isLoading: boolean = false // ローディング判定
 
-  items = ['1', '2', '3', '4', '5', '6', '7', '8']
+  items: number[] = [1, 2, 3, 4, 5, 6, 7, 8]
   valid = false
 
   form = {
-    booth: '',
+    positionNumber: null,
   }
 
   rules = {
-    booth: [(v: string) => !!v || 'ブースは必須です'],
+    positionNumber: [(v: string) => !!v || 'ブースは必須です'],
   }
 
   created() {
     ExhibitApi.getExhibits()
       .then((exhibits: Exhibit[]) => {
-        exhibits.forEach((element) => {
-          this.items.splice(
-            this.items.indexOf(element.booth.positionNumber.toString()),
-            1
-          )
-        })
+        // すでに登録されているpositionNumberの配列
+        const registeredPositionNumbers: number[] = exhibits.map(
+          (exhibit: Exhibit) => {
+            return exhibit.booth ? exhibit.booth.positionNumber : 0
+          }
+        )
+        this.items = this.items.filter(
+          (item: number) => !registeredPositionNumbers.includes(item)
+        )
       })
       .catch(() => {
         this.$toast.error('作品登録の際にエラーが発生しました')
@@ -74,7 +78,7 @@ export default class CreateExhibitDialog extends Vue {
 
   onSubmit() {
     this.isLoading = true
-    BoothsApi.postBooth(Number(this.form.booth))
+    BoothsApi.postBooth(this.form.positionNumber!)
       .then(() => {
         this.$toast.success('ブースの登録が完了しました')
       })
