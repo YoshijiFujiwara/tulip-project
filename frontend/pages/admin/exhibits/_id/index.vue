@@ -11,9 +11,9 @@
           <v-col class="pa-12">
             <v-carousel v-model="model">
               <v-carousel-item
-                v-for="i of 4"
+                v-for="i of exhibit.presentationImages"
                 :key="i"
-                :src="exhibit.presentationImage"
+                :src="i.url"
               >
               </v-carousel-item>
             </v-carousel>

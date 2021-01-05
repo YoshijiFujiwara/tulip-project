@@ -128,13 +128,14 @@ export class ExhibitEntity extends BaseEntity {
     exhibitSerializer.viewsCount = this.viewsCount;
     exhibitSerializer.goodCount = this.goodCount;
     exhibitSerializer.genre = this.genre;
+    exhibitSerializer.groupId = this.groupId;
+
     if (this.demo) {
       exhibitSerializer.demo = this.demo;
     }
-    if (this.modelUrl){
+    if (this.modelUrl) {
       exhibitSerializer.modelUrl = this.modelUrl;
     }
-    exhibitSerializer.groupId = this.groupId;
     if (this.group) {
       exhibitSerializer.group = this.group.transformToSerializer();
     }

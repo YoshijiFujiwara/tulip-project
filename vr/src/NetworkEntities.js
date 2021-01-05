@@ -2,7 +2,6 @@
 var ChildEntityCache = require('./ChildEntityCache');
 
 class NetworkEntities {
-
   constructor() {
     this.entities = {};
     this.childCache = new ChildEntityCache();
@@ -19,6 +18,40 @@ class NetworkEntities {
 
     var networkId = entityData.networkId;
     var el = NAF.schemas.getCachedTemplate(entityData.template);
+    // console.log('create remote entityData', entityData);
+    // console.log('create remote el', el);
+    // console.log('create remote el child nodes', el.childNodes);
+    var name = el.querySelector('#name');
+    name.setAttribute(
+      'text',
+      `value: ${entityData.username}; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png`,
+    );
+    var avatarModel = el.querySelector('#avatar_model');
+    avatarModel.setAttribute(
+      'src',
+      `/honnban/assets/model/${entityData.avatar}/scene.gltf`,
+    );
+    switch (entityData.avatar) {
+      case 'super_carrot':
+        avatarModel.setAttribute('scale', '0.007 0.007 0.007');
+        break;
+      case 'cute_penguin':
+        avatarModel.setAttribute('scale', '0.003 0.003 0.003');
+        avatarModel.setAttribute('position', '0 -1.4 0.05791');
+        break;
+      case 'baby_carrot':
+        avatarModel.setAttribute('scale', '0.3 0.3 0.3');
+        break;
+      case 'dragon':
+        avatarModel.setAttribute('scale', '0.018 0.018 0.018');
+        break;
+      case 'presenter':
+        avatarModel.setAttribute('scale', '0.003 0.003 0.003');
+        break;
+      default:
+    }
+    // console.log('name', name);
+    // console.log('avatarModel', avatarModel);
 
     el.setAttribute('id', 'naf-' + networkId);
 
@@ -48,12 +81,13 @@ class NetworkEntities {
   }
 
   addNetworkComponent(entity, entityData) {
+    console.log('addNetworkComponent entityData', entityData);
     var networkData = {
       template: entityData.template,
       creator: entityData.creator,
       owner: entityData.owner,
       networkId: entityData.networkId,
-      persistent: entityData.persistent
+      persistent: entityData.persistent,
     };
 
     entity.setAttribute('networked', networkData);
@@ -74,7 +108,10 @@ class NetworkEntities {
     if (this.hasEntity(networkId)) {
       this.entities[networkId].components.networked.networkUpdate(entityData);
     } else if (entityData.isFirstSync) {
-      if (NAF.options.firstSyncSource && source !== NAF.options.firstSyncSource) {
+      if (
+        NAF.options.firstSyncSource &&
+        source !== NAF.options.firstSyncSource
+      ) {
         NAF.log.write('Ignoring first sync from disallowed source', source);
       } else {
         if (entityData.persistent) {
@@ -89,6 +126,8 @@ class NetworkEntities {
   }
 
   receiveFirstUpdateFromEntity(entityData) {
+    console.log('receiveFirstUpdateFromEntity entityData', entityData);
+
     var parent = entityData.parent;
     var networkId = entityData.networkId;
 
@@ -113,7 +152,7 @@ class NetworkEntities {
           childId,
           childEntityData,
           'Existing entity:',
-          this.getEntity(childId)
+          this.getEntity(childId),
         );
         continue;
       }
@@ -144,7 +183,10 @@ class NetworkEntities {
   completeSync(targetClientId, isFirstSync) {
     for (var id in this.entities) {
       if (this.entities[id]) {
-        this.entities[id].components.networked.syncAll(targetClientId, isFirstSync);
+        this.entities[id].components.networked.syncAll(
+          targetClientId,
+          isFirstSync,
+        );
       }
     }
   }
@@ -188,16 +230,16 @@ class NetworkEntities {
     }
   }
 
-  forgetEntity(id){
+  forgetEntity(id) {
     delete this.entities[id];
     this.forgetPersistentFirstSync(id);
   }
 
-  getPersistentFirstSync(id){
+  getPersistentFirstSync(id) {
     return this._persistentFirstSyncs[id];
   }
 
-  forgetPersistentFirstSync(id){
+  forgetPersistentFirstSync(id) {
     delete this._persistentFirstSyncs[id];
   }
 

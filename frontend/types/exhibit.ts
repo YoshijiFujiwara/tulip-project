@@ -1,5 +1,5 @@
 import { Group } from './group'
-
+import { PresentationImage } from './presentationImage'
 export enum GENRE {
   GAME = 'game',
   MUSIC = 'music',
@@ -18,7 +18,7 @@ export type Exhibit = {
 
   genre: GENRE
 
-  presentationImage: string
+  presentationImages: PresentationImage[]
 
   demo?: string
 

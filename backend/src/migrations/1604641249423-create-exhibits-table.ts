@@ -5,8 +5,8 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class createExhibitsTable1604641249423 implements MigrationInterface {
-  name = 'createExhibitsTable1604641249423';
+export class CreateExhibitsTable1604641249423 implements MigrationInterface {
+  name = 'CreateExhibitsTable1604641249423';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -77,14 +77,13 @@ export class createExhibitsTable1604641249423 implements MigrationInterface {
       }),
     );
 
-    const foreignKey = new TableForeignKey({
+    const exhibitsForeignKey = new TableForeignKey({
       columnNames: ['groupId'],
       referencedColumnNames: ['id'],
       referencedTableName: 'groups',
       onDelete: 'CASCADE',
     });
-
-    await queryRunner.createForeignKey('exhibits', foreignKey);
+    await queryRunner.createForeignKey('exhibits', exhibitsForeignKey);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

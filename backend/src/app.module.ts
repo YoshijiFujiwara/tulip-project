@@ -9,6 +9,7 @@ import { BoothsModule } from './booths/booths.module';
 import { ExhibitorsModule } from './exhibitors/exhibitors.module';
 import { GroupsModule } from './groups/groups.module';
 import { AdministratorsModule } from './administrators/administrators.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AdministratorsModule } from './administrators/administrators.module';
     ExhibitorsModule,
     GroupsModule,
     AdministratorsModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

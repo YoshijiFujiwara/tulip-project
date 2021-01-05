@@ -17,7 +17,7 @@ function defaultRequiresUpdate() {
   };
 }
 
-AFRAME.registerSystem("networked", {
+AFRAME.registerSystem('networked', {
   init() {
     this.components = [];
     this.nextSyncTime = 0;
@@ -35,9 +35,8 @@ AFRAME.registerSystem("networked", {
     }
   },
 
-  tick: (function() {
-
-    return function() {
+  tick: (function () {
+    return function () {
       if (!NAF.connection.adapter) return;
       if (this.el.clock.elapsedTime < this.nextSyncTime) return;
 
@@ -47,7 +46,7 @@ AFRAME.registerSystem("networked", {
         const c = this.components[i];
         if (!c.isMine()) continue;
         if (!c.el.parentElement) {
-          NAF.log.error("entity registered with system despite being removed");
+          NAF.log.error('entity registered with system despite being removed');
           //TODO: Find out why tick is still being called
           return;
         }
@@ -68,37 +67,40 @@ AFRAME.registerSystem("networked", {
 
   updateNextSyncTime() {
     this.nextSyncTime = this.el.clock.elapsedTime + 1 / NAF.options.updateRate;
-  }
+  },
 });
 
 AFRAME.registerComponent('networked', {
   schema: {
-    template: {default: ''},
+    template: { default: '' },
     attachTemplateToLocal: { default: true },
     persistent: { default: false },
 
-    networkId: {default: ''},
-    owner: {default: ''},
-    creator: {default: ''}
+    networkId: { default: '' },
+    owner: { default: '' },
+    creator: { default: '' },
+
+    username: { default: '' },
+    avatar: { default: '' },
   },
 
-  init: function() {
+  init: function () {
     this.OWNERSHIP_GAINED = 'ownership-gained';
     this.OWNERSHIP_CHANGED = 'ownership-changed';
     this.OWNERSHIP_LOST = 'ownership-lost';
 
     this.onOwnershipGainedEvent = {
-      el: this.el
+      el: this.el,
     };
     this.onOwnershipChangedEvent = {
-      el: this.el
+      el: this.el,
     };
     this.onOwnershipLostEvent = {
-      el: this.el
+      el: this.el,
     };
 
     this.conversionEuler = new THREE.Euler();
-    this.conversionEuler.order = "YXZ";
+    this.conversionEuler.order = 'YXZ';
     this.bufferInfos = [];
     this.bufferPosition = new THREE.Vector3();
     this.bufferQuaternion = new THREE.Quaternion();
@@ -109,9 +111,13 @@ AFRAME.registerComponent('networked', {
     this.onConnected = this.onConnected.bind(this);
 
     this.syncData = {};
-    this.componentSchemas =  NAF.schemas.getComponents(this.data.template);
+    this.componentSchemas = NAF.schemas.getComponents(this.data.template);
     this.cachedElements = new Array(this.componentSchemas.length);
-    this.networkUpdatePredicates = this.componentSchemas.map(x => (x.requiresNetworkUpdate && x.requiresNetworkUpdate()) || defaultRequiresUpdate());
+    this.networkUpdatePredicates = this.componentSchemas.map(
+      (x) =>
+        (x.requiresNetworkUpdate && x.requiresNetworkUpdate()) ||
+        defaultRequiresUpdate(),
+    );
 
     // Fill cachedElements array with null elements
     this.invalidateCachedElements();
@@ -119,7 +125,9 @@ AFRAME.registerComponent('networked', {
     this.initNetworkParent();
 
     if (this.data.networkId === '') {
-      this.el.setAttribute(this.name, {networkId: NAF.utils.createNetworkId()});
+      this.el.setAttribute(this.name, {
+        networkId: NAF.utils.createNetworkId(),
+      });
     }
 
     if (wasCreatedByNetwork) {
@@ -141,11 +149,13 @@ AFRAME.registerComponent('networked', {
     }
 
     document.body.dispatchEvent(this.entityCreatedEvent());
-    this.el.dispatchEvent(new CustomEvent('instantiated', {detail: {el: this.el}}));
+    this.el.dispatchEvent(
+      new CustomEvent('instantiated', { detail: { el: this.el } }),
+    );
     this.el.sceneEl.systems.networked.register(this);
   },
 
-  attachTemplateToLocal: function() {
+  attachTemplateToLocal: function () {
     const template = NAF.schemas.getCachedTemplate(this.data.template);
     const elAttrs = template.attributes;
 
@@ -160,7 +170,7 @@ AFRAME.registerComponent('networked', {
     }
   },
 
-  takeOwnership: function() {
+  takeOwnership: function () {
     const owner = this.data.owner;
     const lastOwnerTime = this.lastOwnerTime;
     const now = NAF.connection.getServerTime();
@@ -182,11 +192,11 @@ AFRAME.registerComponent('networked', {
     return false;
   },
 
-  wasCreatedByNetwork: function() {
+  wasCreatedByNetwork: function () {
     return !!this.el.firstUpdateData;
   },
 
-  initNetworkParent: function() {
+  initNetworkParent: function () {
     var parentEl = this.el.parentElement;
     if (parentEl['components'] && parentEl.components['networked']) {
       this.parent = parentEl;
@@ -195,11 +205,11 @@ AFRAME.registerComponent('networked', {
     }
   },
 
-  registerEntity: function(networkId) {
+  registerEntity: function (networkId) {
     NAF.entities.registerEntity(networkId, this.el);
   },
 
-  applyPersistentFirstSync: function() {
+  applyPersistentFirstSync: function () {
     const { networkId } = this.data;
     const persistentFirstSync = NAF.entities.getPersistentFirstSync(networkId);
     if (persistentFirstSync) {
@@ -208,19 +218,33 @@ AFRAME.registerComponent('networked', {
     }
   },
 
-  firstUpdate: function() {
+  firstUpdate: function () {
     var entityData = this.el.firstUpdateData;
     this.networkUpdate(entityData);
   },
 
-  onConnected: function() {
+  onConnected: function () {
     if (this.data.owner === '') {
       this.lastOwnerTime = NAF.connection.getServerTime();
-      this.el.setAttribute(this.name, { owner: NAF.clientId, creator: NAF.clientId });
+      // console.log('on connected NAF', NAF);
+      // console.log(
+      //   'on connected NAF connection adapter',
+      //   NAF.connection.adapter,
+      // );
+
+      this.el.setAttribute(this.name, {
+        owner: NAF.clientId,
+        creator: NAF.clientId,
+        username: NAF.connection.adapter.username,
+        avatar: NAF.connection.adapter.avatar,
+      });
+
       setTimeout(() => {
         //a-primitives attach their components on the next frame; wait for components to be attached before calling syncAll
-        if (!this.el.parentNode){
-          NAF.log.warn("Networked element was removed before ever getting the chance to syncAll");
+        if (!this.el.parentNode) {
+          NAF.log.warn(
+            'Networked element was removed before ever getting the chance to syncAll',
+          );
           return;
         }
         this.syncAll(undefined, true);
@@ -230,15 +254,15 @@ AFRAME.registerComponent('networked', {
     document.body.removeEventListener('connected', this.onConnected, false);
   },
 
-  isMine: function() {
+  isMine: function () {
     return this.data.owner === NAF.clientId;
   },
 
-  createdByMe: function() {
+  createdByMe: function () {
     return this.data.creator === NAF.clientId;
   },
 
-  tick: function(time, dt) {
+  tick: function (time, dt) {
     if (!this.isMine() && NAF.options.useLerp) {
       for (var i = 0; i < this.bufferInfos.length; i++) {
         var bufferInfo = this.bufferInfos[i];
@@ -261,7 +285,7 @@ AFRAME.registerComponent('networked', {
 
   /* Sending updates */
 
-  syncAll: function(targetClientId, isFirstSync) {
+  syncAll: function (targetClientId, isFirstSync) {
     if (!this.canSync()) {
       return;
     }
@@ -277,7 +301,7 @@ AFRAME.registerComponent('networked', {
     }
   },
 
-  syncDirty: function() {
+  syncDirty: function () {
     if (!this.canSync()) {
       return;
     }
@@ -301,9 +325,11 @@ AFRAME.registerComponent('networked', {
     var componentSchema = this.componentSchemas[componentSchemaIndex];
 
     if (componentSchema.selector) {
-      return this.cachedElements[componentSchemaIndex] = this.el.querySelector(componentSchema.selector);
+      return (this.cachedElements[componentSchemaIndex] = this.el.querySelector(
+        componentSchema.selector,
+      ));
     } else {
-      return this.cachedElements[componentSchemaIndex] = this.el;
+      return (this.cachedElements[componentSchemaIndex] = this.el);
     }
   },
 
@@ -313,7 +339,7 @@ AFRAME.registerComponent('networked', {
     }
   },
 
-  gatherComponentsData: function(fullSync) {
+  gatherComponentsData: function (fullSync) {
     var componentsData = null;
 
     for (var i = 0; i < this.componentSchemas.length; i++) {
@@ -328,7 +354,9 @@ AFRAME.registerComponent('networked', {
         continue;
       }
 
-      var componentName = componentSchema.component ? componentSchema.component : componentSchema;
+      var componentName = componentSchema.component
+        ? componentSchema.component
+        : componentSchema;
       var componentData = componentElement.getAttribute(componentName);
 
       if (componentData === null) {
@@ -339,7 +367,9 @@ AFRAME.registerComponent('networked', {
         continue;
       }
 
-      var syncedComponentData = componentSchema.property ? componentData[componentSchema.property] : componentData;
+      var syncedComponentData = componentSchema.property
+        ? componentData[componentSchema.property]
+        : componentData;
 
       // Use networkUpdatePredicate to check if the component needs to be updated.
       // Call networkUpdatePredicate first so that it can update any cached values in the event of a fullSync.
@@ -352,8 +382,9 @@ AFRAME.registerComponent('networked', {
     return componentsData;
   },
 
-  createSyncData: function(components, isFirstSync) {
+  createSyncData: function (components, isFirstSync) {
     var { syncData, data } = this;
+    // console.log('create sync data ===================', data);
     syncData.networkId = data.networkId;
     syncData.owner = data.owner;
     syncData.creator = data.creator;
@@ -363,10 +394,14 @@ AFRAME.registerComponent('networked', {
     syncData.parent = this.getParentId();
     syncData.components = components;
     syncData.isFirstSync = !!isFirstSync;
+
+    syncData.username = data.username;
+    syncData.avatar = data.avatar;
+
     return syncData;
   },
 
-  canSync: function() {
+  canSync: function () {
     // This client will send a sync if:
     //
     // - The client is the owner
@@ -387,7 +422,7 @@ AFRAME.registerComponent('networked', {
     return true;
   },
 
-  getParentId: function() {
+  getParentId: function () {
     this.initNetworkParent(); // TODO fix calling this each network tick
     if (!this.parent) {
       return null;
@@ -398,10 +433,13 @@ AFRAME.registerComponent('networked', {
 
   /* Receiving updates */
 
-  networkUpdate: function(entityData) {
+  networkUpdate: function (entityData) {
     // Avoid updating components if the entity data received did not come from the current owner.
-    if (entityData.lastOwnerTime < this.lastOwnerTime ||
-          (this.lastOwnerTime === entityData.lastOwnerTime && this.data.owner > entityData.owner)) {
+    if (
+      entityData.lastOwnerTime < this.lastOwnerTime ||
+      (this.lastOwnerTime === entityData.lastOwnerTime &&
+        this.data.owner > entityData.owner)
+    ) {
       return;
     }
 
@@ -433,30 +471,51 @@ AFRAME.registerComponent('networked', {
     this.updateNetworkedComponents(entityData.components);
   },
 
-  updateNetworkedComponents: function(components) {
-    for (var componentIndex = 0, l = this.componentSchemas.length; componentIndex < l; componentIndex++) {
+  updateNetworkedComponents: function (components) {
+    for (
+      var componentIndex = 0, l = this.componentSchemas.length;
+      componentIndex < l;
+      componentIndex++
+    ) {
       var componentData = components[componentIndex];
       var componentSchema = this.componentSchemas[componentIndex];
       var componentElement = this.getCachedElement(componentIndex);
 
-      if (componentElement === null || componentData === null || componentData === undefined ) {
+      if (
+        componentElement === null ||
+        componentData === null ||
+        componentData === undefined
+      ) {
         continue;
       }
 
       if (componentSchema.component) {
         if (componentSchema.property) {
-          this.updateNetworkedComponent(componentElement, componentSchema.component, componentSchema.property, componentData);
+          this.updateNetworkedComponent(
+            componentElement,
+            componentSchema.component,
+            componentSchema.property,
+            componentData,
+          );
         } else {
-          this.updateNetworkedComponent(componentElement, componentSchema.component, componentData);
+          this.updateNetworkedComponent(
+            componentElement,
+            componentSchema.component,
+            componentData,
+          );
         }
       } else {
-        this.updateNetworkedComponent(componentElement, componentSchema, componentData);
+        this.updateNetworkedComponent(
+          componentElement,
+          componentSchema,
+          componentData,
+        );
       }
     }
   },
 
   updateNetworkedComponent: function (el, componentName, data, value) {
-    if(!NAF.options.useLerp || !OBJECT3D_COMPONENTS.includes(componentName)) {
+    if (!NAF.options.useLerp || !OBJECT3D_COMPONENTS.includes(componentName)) {
       if (value === undefined) {
         el.setAttribute(componentName, data);
       } else {
@@ -477,9 +536,11 @@ AFRAME.registerComponent('networked', {
     }
 
     if (!bufferInfo) {
-      bufferInfo = { buffer: new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1),
-                     object3D: el.object3D,
-                     componentNames: [componentName] };
+      bufferInfo = {
+        buffer: new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1),
+        object3D: el.object3D,
+        componentNames: [componentName],
+      };
       this.bufferInfos.push(bufferInfo);
     } else {
       var componentNames = bufferInfo.componentNames;
@@ -489,22 +550,34 @@ AFRAME.registerComponent('networked', {
     }
     var buffer = bufferInfo.buffer;
 
-    switch(componentName) {
+    switch (componentName) {
       case 'position':
         buffer.setPosition(this.bufferPosition.set(data.x, data.y, data.z));
         return;
       case 'rotation':
-        this.conversionEuler.set(DEG2RAD * data.x, DEG2RAD * data.y, DEG2RAD * data.z);
-        buffer.setQuaternion(this.bufferQuaternion.setFromEuler(this.conversionEuler));
+        this.conversionEuler.set(
+          DEG2RAD * data.x,
+          DEG2RAD * data.y,
+          DEG2RAD * data.z,
+        );
+        buffer.setQuaternion(
+          this.bufferQuaternion.setFromEuler(this.conversionEuler),
+        );
         return;
       case 'scale':
         buffer.setScale(this.bufferScale.set(data.x, data.y, data.z));
         return;
     }
-    NAF.log.error('Could not set value in interpolation buffer.', el, componentName, data, bufferInfo);
+    NAF.log.error(
+      'Could not set value in interpolation buffer.',
+      el,
+      componentName,
+      data,
+      bufferInfo,
+    );
   },
 
-  removeLerp: function() {
+  removeLerp: function () {
     this.bufferInfos = [];
   },
 
@@ -514,7 +587,9 @@ AFRAME.registerComponent('networked', {
       if (NAF.entities.hasEntity(this.data.networkId)) {
         NAF.connection.broadcastDataGuaranteed('r', syncData);
       } else {
-        NAF.log.error("Removing networked entity that is not in entities array.");
+        NAF.log.error(
+          'Removing networked entity that is not in entities array.',
+        );
       }
     }
     NAF.entities.forgetEntity(this.data.networkId);
@@ -523,10 +598,12 @@ AFRAME.registerComponent('networked', {
   },
 
   entityCreatedEvent() {
-    return new CustomEvent('entityCreated', {detail: {el: this.el}});
+    return new CustomEvent('entityCreated', { detail: { el: this.el } });
   },
 
   entityRemovedEvent(networkId) {
-    return new CustomEvent('entityRemoved', {detail: {networkId: networkId}});
-  }
+    return new CustomEvent('entityRemoved', {
+      detail: { networkId: networkId },
+    });
+  },
 });
