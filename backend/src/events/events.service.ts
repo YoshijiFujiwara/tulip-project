@@ -22,4 +22,8 @@ export class EventsService {
 
     return await this.eventRepository.updateEvent(updateEventDto);
   }
+
+  async getEvent(): Promise<EventEntity> {
+    return await this.eventRepository.findOne();
+  }
 }

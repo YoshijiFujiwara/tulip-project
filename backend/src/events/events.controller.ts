@@ -16,18 +16,18 @@ import { EventSerializer } from '../entities/serializer/event.serializer';
 import { GetUser } from '../auth/get-user-decorator';
 import { AdministratorEntity } from '../entities/administrator.entity';
 import { UpdateEventDto } from './dto/update-event.dto';
-import { UseGuards } from '@nestjs/common';
+import { UseGuards, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('events')
 @Controller('events')
-@UseGuards(AuthGuard('jwt'))
-@ApiBearerAuth()
 export class EventsController {
   constructor(private eventsService: EventsService) {}
 
   @Put()
   @HttpCode(200)
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @ApiOkResponse({
     type: EventSerializer,
     description: 'イベント更新完了',
@@ -40,6 +40,16 @@ export class EventsController {
     @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
   ): Promise<EventSerializer> {
     const event = await this.eventsService.updateEvent(updateEventDto);
+    return event.transformToSerializer();
+  }
+
+  @Get()
+  @ApiOkResponse({
+    type: EventSerializer,
+    description: 'イベント取得完了',
+  })
+  async getEvent() {
+    const event = await this.eventsService.getEvent();
     return event.transformToSerializer();
   }
 }
