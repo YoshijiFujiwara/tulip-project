@@ -158,9 +158,9 @@ export default class MyPage extends Vue {
   }
 
   connectEntrance() {
-    const url = `${this.vrUrl}honnban/booths/${
-      this.exhibit.id
-    }?username=${this.user.name.trim()}&avatar=presenter`
+    const exhibitId = this.exhibit ? this.exhibit.id : 0
+    const username = this.user ? this.user.name.replace(/\s/g, '') : ''
+    const url = `${this.vrUrl}honnban/booths/${exhibitId}?username=${username}&avatar=presenter`
     window.location.href = url
   }
 
