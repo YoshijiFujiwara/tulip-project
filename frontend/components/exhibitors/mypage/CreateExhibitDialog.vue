@@ -78,8 +78,14 @@
         <!-- TODO: プレビューいったんコメントアウト -->
         <v-card class="ml-8 mx-auto my-4" max-width="300">
           <v-img
-            v-if="uploadPresentationImageUrls && uploadPresentationImageUrls.length"
-            :src="uploadPresentationImageUrls && uploadPresentationImageUrls.length ? uploadPresentationImageUrls[0] : ''"
+            v-if="
+              uploadPresentationImageUrls && uploadPresentationImageUrls.length
+            "
+            :src="
+              uploadPresentationImageUrls && uploadPresentationImageUrls.length
+                ? uploadPresentationImageUrls[0]
+                : ''
+            "
           ></v-img>
         </v-card>
         <v-file-input
@@ -212,19 +218,23 @@ export default class CreateExhibitDialog extends Vue {
 
   created() {
     // 自分が登録している作品情報を取得する
-    ProfileApi.getProfileExhibits()
+    ProfileApi.getProfileExhibit()
       .then((exhibit: Exhibit) => {
+        console.log('exhibit', exhibit)
         this.form.title = exhibit.title
         this.form.description = exhibit.description
         this.form.genre = exhibit.genre
         this.uploadThumbnailImageUrl = exhibit.thumbnail
-        this.uploadPresentationImageUrls = exhibit.presentationImages.map(img => img.url)
+        this.uploadPresentationImageUrls = exhibit.presentationImages.map(
+          (img) => img.url
+        )
         this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
         // TODO: デモ動画のURLがget出来たら、追加する
 
         this.exhibitId = exhibit.id
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err)
         this.$toast.error('作品取得の際にエラーが発生しました')
         this.dialog = false
       })

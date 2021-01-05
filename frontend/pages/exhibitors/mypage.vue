@@ -182,7 +182,7 @@ export default class MyPage extends Vue {
     this.isAttend = !!this.user && !!this.user.attendedAt
 
     // 自分が登録している作品情報をとる
-    const exhibit = await ProfileApi.getProfileExhibits()
+    const exhibit = await ProfileApi.getProfileExhibit()
     this.exhibit = exhibit
 
     this.vrUrl = process.env.vrBaseUrl!
