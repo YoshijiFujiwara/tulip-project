@@ -27,3 +27,10 @@ setup-vr:
 	cd vr && yarn install
 start-vr:
 	cd vr && yarn dev
+# ==================== 本番デプロイ用 =======================
+# 本番環境で使用するシークレットを登録する。本番環境用の設定が出来ていないと、このコマンドは動かない。
+create-prod-secrets:
+	kubectl create secret generic tulip-local-secrets --from-env-file=.env.prod
+
+delete-secrets:
+	kubectl delete secrets tulip-local-secrets
