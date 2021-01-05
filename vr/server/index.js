@@ -29,7 +29,7 @@ const credentials = {
 process.title = 'networked-aframe-server';
 
 // Get port or default to 8080
-const port = process.env.PORT || 8080;
+const port = process.env.VR_PORT || 8080;
 
 // Setup and configure Express http server.
 const app = express();

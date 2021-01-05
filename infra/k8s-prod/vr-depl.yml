@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vr-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vr
+  template:
+    metadata:
+      labels:
+        app: vr
+    spec:
+      containers:
+        - name: vr
+          image: yoshijifujiwara/tulip-vr
+          env:
+            - name: VR_API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: tulip-local-secrets
+                  key: VR_API_URL
+            - name: VR_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: tulip-local-secrets
+                  key: VR_PORT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vr-srv
+spec:
+  selector:
+    app: vr-srv
+  ports:
+    - name: vr
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
