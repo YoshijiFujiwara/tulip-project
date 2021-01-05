@@ -1,18 +1,12 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreatePresentationImagesTable1607932515127
-  implements MigrationInterface {
-  name = 'CreatePresentationImagesTable1607932515127';
+export class CreateEventsTable1603312465867 implements MigrationInterface {
+  name = 'CreateEventsTable1603312465867';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'presentation_images',
+        name: 'events',
         columns: [
           {
             name: 'id',
@@ -22,16 +16,14 @@ export class CreatePresentationImagesTable1607932515127
             generationStrategy: 'increment',
           },
           {
-            name: 'url',
-            type: 'text',
+            name: 'startAt',
+            type: 'timestamp',
+            isNullable: true,
           },
           {
-            name: 'exhibitId',
-            type: 'integer',
-          },
-          {
-            name: 'page',
-            type: 'integer',
+            name: 'endAt',
+            type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'createdAt',
@@ -47,22 +39,12 @@ export class CreatePresentationImagesTable1607932515127
         ],
       }),
     );
-
-    await queryRunner.createForeignKey(
-      'presentation_images',
-      new TableForeignKey({
-        columnNames: ['exhibitId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'exhibits',
-        onDelete: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(
       new Table({
-        name: 'presentation_images',
+        name: 'events',
       }),
     );
   }
