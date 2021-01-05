@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventRepository } from '../entities/event.repository';
 import { EventEntity } from '../entities/event.entity';
+import { UpdateEventDto } from './dto/update-event.dto';
 
 @Injectable()
 export class EventsService {
@@ -10,7 +11,15 @@ export class EventsService {
     private eventRepository: EventRepository,
   ) {}
 
-  async createEvent(): Promise<EventEntity> {
-    return await this.eventRepository.createEvent();
+  async updateEvent(updateEventDto: UpdateEventDto): Promise<EventEntity> {
+    const { startAt, endAt } = updateEventDto;
+
+    if (startAt >= endAt) {
+      throw new BadRequestException(
+        '開始日時に終了日時と同値またはそれより後の値が入力されています。',
+      );
+    }
+
+    return await this.eventRepository.updateEvent(updateEventDto);
   }
 }
