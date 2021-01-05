@@ -58,23 +58,6 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   created() {
-    // // 自分が登録している作品情報を取得する
-    // ProfileApi.getProfileExhibits()
-    //   .then((exhibit: Exhibit) => {
-    //     this.form.title = exhibit.title
-    //     this.form.description = exhibit.description
-    //     this.form.genre = exhibit.genre
-    //     this.uploadThumbnailImageUrl = exhibit.thumbnail
-    //     this.uploadPresentationImageUrl = exhibit.presentationImage
-    //     this.uploadDemoVideoUrl = exhibit.demo || null // デモ動画は登録されないこともある
-    //     // TODO: デモ動画のURLがget出来たら、追加する
-
-    //     this.exhibitId = exhibit.id
-    //   })
-    //   .catch(() => {
-    //     this.$toast.error('作品登録の際にエラーが発生しました')
-    //     this.dialog = false
-    //   })
     ExhibitApi.getExhibits()
       .then((exhibits: Exhibit[]) => {
         exhibits.forEach((element) => {
