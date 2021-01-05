@@ -71,6 +71,7 @@ export default class CreateExhibitDialog extends Vue {
         this.dialog = false
       })
   }
+
   onSubmit() {
     this.isLoading = true
     BoothsApi.postBooth(Number(this.form.booth))
