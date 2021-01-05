@@ -1,18 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EventsService } from './events.service';
+import { EventRepository } from '../entities/event.repository';
+
+const mockEventRepository = () => ({});
 
 describe('EventsService', () => {
-  let service: EventsService;
+  let eventsService: EventsService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [EventsService],
+      providers: [
+        EventsService,
+        { provide: EventRepository, useFactory: mockEventRepository },
+      ],
     }).compile();
 
-    service = module.get<EventsService>(EventsService);
+    eventsService = module.get<EventsService>(EventsService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(eventsService).toBeDefined();
   });
 });
