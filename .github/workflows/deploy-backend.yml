@@ -21,6 +21,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save tulip
-      - run: kubectl delete secrets tulip-local-secrets
-      - run: kubectl create secret generic tulip-local-secrets --from-env-file=.env.prod
       - run: kubectl rollout restart deployment backend-depl
