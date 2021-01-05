@@ -1,35 +1,51 @@
 <!-- ギャラリー_作品紹介 -->
 <a-assets>
-  <img id="asset-slide1" src="<%=exhibit.presentationImage%>" />
+  <!-- prettier-ignore -->
+  <% 
+    const images = exhibit.presentationImages;
+    images.forEach((image, index) => {%>
+  <img id="asset-slide-<%=index%>" src="<%=image.url%>" />
+  <% }) %>
 </a-assets>
+<% if (images.length > 0) {%>
 <a-image
-  id="slide1"
-  src="#asset-slide1"
+  id="slide0"
+  src="#asset-slide-0"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="3.08606 1.23617 -3.09248"
   rotation="0 -47.63 0"
 ></a-image>
+<% } %>
+<!-- prettier-ignore -->
+<% if (images.length > 1) { %>
 <a-image
-  id="slide2"
-  src="#asset-slide1"
+  id="slide1"
+  src="#asset-slide-1"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="4.38366 1.23617 0.24475"
   rotation="0 88.45 0"
 ></a-image>
+<% } %>
+<!-- prettier-ignore -->
+<% if (images.length > 2) { %>
 <a-image
-  id="slide3"
-  src="#asset-slide1"
+  id="slide2"
+  src="#asset-slide-2"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="2.87774 1.24431 3.38673"
   rotation="0 44.73 0"
 ></a-image>
+<% } %>
+<!-- prettier-ignore -->
+<% if (images.length > 3) { %>
 <a-image
-  id="slide4"
-  src="#asset-slide1"
+  id="slide3"
+  src="#asset-slide-3"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="-0.34878 1.23617 4.69281"
 ></a-image>
+<% } %>
