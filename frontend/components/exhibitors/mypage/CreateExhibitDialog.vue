@@ -220,7 +220,6 @@ export default class CreateExhibitDialog extends Vue {
     // 自分が登録している作品情報を取得する
     ProfileApi.getProfileExhibit()
       .then((exhibit: Exhibit) => {
-        console.log('exhibit', exhibit)
         this.form.title = exhibit.title
         this.form.description = exhibit.description
         this.form.genre = exhibit.genre
@@ -233,8 +232,7 @@ export default class CreateExhibitDialog extends Vue {
 
         this.exhibitId = exhibit.id
       })
-      .catch((err) => {
-        console.error(err)
+      .catch(() => {
         this.$toast.error('作品取得の際にエラーが発生しました')
         this.dialog = false
       })
