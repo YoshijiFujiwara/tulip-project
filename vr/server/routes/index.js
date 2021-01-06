@@ -1,14 +1,15 @@
 const axios = require('axios');
-const { log } = require('console');
 const https = require('https');
 
 // axiosリクエスト時のSSL周りのエラーを防止
 // [FYI] https://github.com/axios/axios/issues/535
 const axiosInstance = axios.create({
   baseURL: process.env.VR_API_URL,
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false,
-  }),
+  httpsAgent: process.env.PRODUCTION_MODE
+    ? undefined
+    : new https.Agent({
+        rejectUnauthorized: false,
+      }),
 });
 
 var router = require('express').Router();
