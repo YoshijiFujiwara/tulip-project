@@ -23,6 +23,11 @@ spec:
     - host: www.tulipgumi.xyz
       http:
         paths:
+          # test
+          - path: /?(.*)
+            backend:
+              serviceName: vr-srv
+              servicePort: 8080
           - path: /api/?(.*)
             backend:
               serviceName: backend-srv
