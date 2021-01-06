@@ -12,6 +12,8 @@ const axiosInstance = axios.create({
       }),
 });
 
+const wsServerUrl = process.env.WS_SERVER_URL;
+
 var router = require('express').Router();
 
 //
@@ -54,6 +56,7 @@ router.get('/honnban', async function (req, res) {
     exhibits,
     username,
     avatar,
+    wsServerUrl,
   };
 
   res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
@@ -82,6 +85,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
     username,
     avatar,
     apiUrl,
+    wsServerUrl,
   };
 
   res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);

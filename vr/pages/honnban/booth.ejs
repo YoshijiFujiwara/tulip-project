@@ -17,7 +17,14 @@
     <a-scene
       physics="debug : false;"
       renderer="colorManagement: true; antialias: true;"
-      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc; username: <%=username%>;avatar: <%=avatar%>;"
+      networked-scene="
+        room: exhibit-<%=exhibit.id%>;
+        debug: true;
+        adapter: webrtc;
+        username: <%=username%>;
+        avatar: <%=avatar%>;
+        serverURL: <%=wsServerUrl%>;
+      "
       cursor="rayOrigin: mouse"
       renderer="colorManagement: true"
     >
