@@ -1,4 +1,5 @@
 // Load required modules
+const http = require('http');
 const https = require('https');
 const path = require('path');
 const express = require('express'); // web framework external module
@@ -65,7 +66,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Start Express http server
-const webServer = https.createServer(credentials, app);
+const webServer = process.env.PRODUCTION_MODE ? http.createServer(app) : https.createServer(credentials, app);
 const io = require('socket.io')(webServer);
 
 const rooms = {};
