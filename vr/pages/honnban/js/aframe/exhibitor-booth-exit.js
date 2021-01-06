@@ -24,7 +24,13 @@ AFRAME.registerComponent('vertification-ok-on-click', {
     var self = this;
     this.el.addEventListener('click', function (evt) {
       var okEl = document.querySelector('#ok');
-      okEl.setAttribute(link="href: https://localhost:3000/exhibitors/mypage");
+      const hostname = window.location.hostname;
+      if (hostname === 'localhost' || hostname === '192.168.99.100' || hostname === 'tulip.local') {
+        requestUrl = `https://${hostname}:3000/exhibitors/mypage`;
+      } else {
+        requestUrl = `https://www.tulipgumi.xyz/exhibitors/mypage`
+      }
+      okEl.setAttribute(link=`href: ${requestUrl}`);
     });
   },
 });

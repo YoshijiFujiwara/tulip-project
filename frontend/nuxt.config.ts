@@ -32,7 +32,8 @@ export default {
   env: {
     cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || 'himawari',
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || 'db32y726v',
-    axiosBaseUrl: process.env.AXIOS_BASE_URL || 'https://www.tulipgumi.xyz/api/',
+    axiosBaseUrl:
+      process.env.AXIOS_BASE_URL || 'https://www.tulipgumi.xyz/api/',
     vrBaseUrl: process.env.VR_BASE_URL || 'https://www.tulipgumi.xyz/',
   },
 
