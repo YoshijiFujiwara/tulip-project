@@ -41,6 +41,11 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: MYSQL_PORT
+            - name: MYSQL_DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: tulip-local-secrets
+                  key: MYSQL_DATABASE
 ---
 apiVersion: v1
 kind: Service
