@@ -26,6 +26,8 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: VR_PORT
+            - name: PRODUCTION_MODE
+              value: "true"
 ---
 apiVersion: v1
 kind: Service
