@@ -16,10 +16,10 @@ ENV NODE_ENV development
 # いらないかも
 RUN npm link webpack
 
-# RUN yarn install
-RUN npm install
+RUN yarn install
+# RUN npm install
 
 COPY . .
 
-# CMD ["yarn", "dev"]
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]
+# CMD ["npm", "run", "dev"]
