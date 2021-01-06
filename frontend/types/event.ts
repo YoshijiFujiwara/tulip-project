@@ -3,5 +3,5 @@ export type Event = {
 
   startAt: string
 
-  endAt: string        
+  endAt: string
 }
