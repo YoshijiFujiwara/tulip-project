@@ -13,6 +13,9 @@ COPY webpack.prod.config.js ./
 
 ENV NODE_ENV development
 
+# いらないかも
+RUN npm link webpack
+
 # RUN yarn install
 RUN npm install
 
