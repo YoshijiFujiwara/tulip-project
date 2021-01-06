@@ -2,15 +2,21 @@ FROM node:12.13-alpine
 
 WORKDIR /usr/src/app
 
+RUN apk add --update git 
+
 COPY package.json ./
 COPY yarn.lock ./
 COPY webpack.config.js ./
 COPY webpack.prod.config.js ./
 
-RUN npm install -g yarn
+# RUN npm install -g yarn
 
-RUN yarn install
+ENV NODE_ENV development
+
+# RUN yarn install
+RUN npm install
 
 COPY . .
 
-CMD ["yarn", "dev"]
+# CMD ["yarn", "dev"]
+CMD ["npm", "run", "dev"]
