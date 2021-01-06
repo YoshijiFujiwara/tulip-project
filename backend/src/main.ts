@@ -9,13 +9,16 @@ async function bootstrap() {
   const keyFile = fs.readFileSync(__dirname + '/../localhost-key.pem');
   const certFile = fs.readFileSync(__dirname + '/../localhost.pem');
 
-  const app = await NestFactory.create(AppModule, {
-    // https設定
-    httpsOptions: {
-      key: keyFile,
-      cert: certFile,
-    },
-  });
+  const httpOptions = process.env.PRODUCTION_MODE
+    ? undefined
+    : {
+        // https設定
+        httpsOptions: {
+          key: keyFile,
+          cert: certFile,
+        },
+      };
+  const app = await NestFactory.create(AppModule, httpOptions);
 
   app.setGlobalPrefix('api');
 

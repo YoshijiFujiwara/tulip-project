@@ -38,10 +38,12 @@ export default {
 
   // server proxy setting ()
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-    },
+    https: process.env.PRODUCTION_MODE
+      ? undefined
+      : {
+          key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+          cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+        },
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
