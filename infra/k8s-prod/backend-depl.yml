@@ -56,6 +56,8 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: JWT_SECRET
+            - name: PRODUCTION_MODE
+              value: true
 ---
 apiVersion: v1
 kind: Service

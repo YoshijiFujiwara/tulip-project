@@ -36,6 +36,8 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: CLOUDINARY_CLOUD_NAME
+            - name: PRODUCTION_MODE
+              value: true
 ---
 apiVersion: v1
 kind: Service
