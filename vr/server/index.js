@@ -54,6 +54,7 @@ app.use('/', require('./routes/index.js'));
 
 // Serve the example and build the bundle in development.
 if (process.env.NODE_ENV === 'development') {
+  console.log('node_env === development');
   const webpackMiddleware = require('webpack-dev-middleware');
   const webpack = require('webpack');
   const config = require('../webpack.dev');
@@ -66,7 +67,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Start Express http server
-const webServer = process.env.PRODUCTION_MODE ? http.createServer(app) : https.createServer(credentials, app);
+const webServer = process.env.PRODUCTION_MODE
+  ? http.createServer(app)
+  : https.createServer(credentials, app);
 const io = require('socket.io')(webServer);
 
 const rooms = {};
