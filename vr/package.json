@@ -10,7 +10,7 @@
     "url": "https://github.com/networked-aframe/networked-aframe/issues"
   },
   "scripts": {
-    "build": "browserify src/index.js -o pages/build.js",
+    "build": "browserify src/index.js -o pages/honnban/honnban/build.js",
     "dev": "npm run build && node ./server/index.js",
     "dist": "webpack --config webpack.config.js && webpack -p --config webpack.prod.config.js",
     "lint": "eslint src tests *.js",
@@ -21,7 +21,7 @@
     "test": "karma start ./tests/unit/karma.conf.js",
     "test:firefox": "karma start ./tests/unit/karma.conf.js --browsers Firefox",
     "test:chrome": "karma start ./tests/unit/karma.conf.js --browsers Chrome",
-    "watch": "watchify src/index.js -o pages/build.js -v"
+    "watch": "watchify src/index.js -o pages/honnban/build.js -v"
   },
   "repository": "networked-aframe/networked-aframe",
   "dependencies": {
