@@ -135,7 +135,6 @@ import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
 import EventsApi from '../../plugins/axios/modules/events'
 import { Event } from '../../types/event'
-import events from '../../plugins/axios/modules/events'
 @Component({
   components: {
     CreateExhibitDialog,
