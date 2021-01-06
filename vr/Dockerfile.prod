@@ -2,8 +2,6 @@ FROM node:12.13
 
 WORKDIR /usr/src/app
 
-RUN apk add --update git 
-
 COPY package.json ./
 COPY yarn.lock ./
 COPY webpack.config.js ./
