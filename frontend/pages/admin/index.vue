@@ -26,7 +26,11 @@
                     <v-col class="mt-5">
                       <v-card-actions>
                         <v-spacer></v-spacer
-                        ><v-btn rounded outlined color="#ffffff"
+                        ><v-btn
+                          rounded
+                          outlined
+                          color="#ffffff"
+                          @click="openEventTimeModal"
                           >イベント設定</v-btn
                         >
                       </v-card-actions>
@@ -128,6 +132,7 @@
           </v-col>
         </v-col>
       </v-row>
+      <EventTimeDialog v-model="isOpenEventTimeDialog" />
     </v-container>
   </div>
 </template>
@@ -137,11 +142,12 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import Breadcrumbs from '../../components/breadcrums.vue'
 import LineChart from '@/components/charts/lineChart.vue'
 import PieChart from '@/components/charts/pieChart.vue'
+import EventTimeDialog from '@/components/EventTimeDialog.vue'
 
 @Component({
   auth: false,
   layout: 'admin',
-  components: { Breadcrumbs, LineChart, PieChart },
+  components: { Breadcrumbs, LineChart, PieChart, EventTimeDialog },
 })
 export default class Signin extends Vue {
   breadcrum = [
@@ -183,6 +189,13 @@ export default class Signin extends Vue {
 
   value = [423, 446, 675, 510, 590, 610, 760]
   labels = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
+
+  isOpenEventTimeDialog: boolean = false
+
+  openEventTimeModal() {
+    // 作品登録用モーダルを開く
+    this.isOpenEventTimeDialog = true
+  }
 }
 </script>
 
