@@ -16,10 +16,13 @@ var router = require('express').Router();
 
 //
 router.get('/honnban/select_avatar', function (req, res) {
+  console.log('get select-avatar invoked');
+
   res.render(__dirname + './../../pages/honnban/select_avatar.ejs');
 });
 
 router.post('/honnban/select_avatar', function (req, res) {
+  console.log('post select-avatar invoked');
   // post
   const username = req.body.username;
   const avatar = req.body.avatar;
@@ -33,6 +36,8 @@ router.post('/honnban/select_avatar', function (req, res) {
 
 // ロビー画面
 router.get('/honnban', async function (req, res) {
+  console.log('honnbann invoked');
+
   const username = req.query.username;
   const avatar = req.query.avatar;
   if (!username || !avatar) {
@@ -53,6 +58,8 @@ router.get('/honnban', async function (req, res) {
 
 // ブース画面(クエリパラメータで、作品のIDを指定する)
 router.get('/honnban/booths/:exhibitId', async function (req, res) {
+  console.log('boothejs invoked');
+
   const username = req.query.username;
   const avatar = req.query.avatar;
   if (!username || !avatar) {
