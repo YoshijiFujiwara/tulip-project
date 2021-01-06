@@ -35,7 +35,7 @@ metadata:
   name: vr-srv
 spec:
   selector:
-    app: vr-srv
+    app: vr
   ports:
     - name: vr
       protocol: TCP
