@@ -1,3 +1,6 @@
+$(eval BACKEND_POD=$(shell kubectl get pod -l app=backend -o jsonpath="{.items[0].metadata.name}"))
+$(eval FRONTEND_POD=$(shell kubectl get pod -l app=frontend -o jsonpath="{.items[0].metadata.name}"))
+
 # ============== コンテナに入る基本コマンド ================ 
 # frontendのコンテナに入る
 enter-frontend:
@@ -34,3 +37,6 @@ create-prod-secrets:
 
 delete-secrets:
 	kubectl delete secrets tulip-local-secrets
+
+prod-schema-sync:
+	kubectl exec ${BACKEND_POD} -- sh -c "npm run typeorm:schema:drop && npm run typeorm:local:migration:run && npm run typeorm:local:seed:run"
