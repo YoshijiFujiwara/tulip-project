@@ -9,7 +9,7 @@ COPY yarn.lock ./
 COPY webpack.config.js ./
 COPY webpack.prod.config.js ./
 
-# RUN npm install -g yarn
+RUN npm install -g yarn
 
 ENV NODE_ENV development
 
