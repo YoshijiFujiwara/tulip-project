@@ -45,8 +45,8 @@ router.get('/honnban', async function (req, res) {
   }
 
   // 作品情報一覧の取得
-  const result = await axiosInstance.get('exhibits');
   console.log('axios Instance', axiosInstance);
+  const result = await axiosInstance.get('exhibits');
   console.log('get exhibits result', result);
 
   const exhibits = result.data;
@@ -70,8 +70,8 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   }
   // 作品のidのブース情報の取得
   const exhibitId = req.params.exhibitId;
-  const result = await axiosInstance.get(`exhibits/${exhibitId}`);
   console.log('axios Instance', axiosInstance);
+  const result = await axiosInstance.get(`exhibits/${exhibitId}`);
   console.log('get exhibits result', result);
 
   const exhibit = result.data;
