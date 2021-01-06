@@ -4,7 +4,7 @@ const https = require('https');
 // axiosリクエスト時のSSL周りのエラーを防止
 // [FYI] https://github.com/axios/axios/issues/535
 const axiosInstance = axios.create({
-  baseURL: process.env.VR_API_URL,
+  baseURL: process.env.VR_SSR_API_URL, // ここSSR時の環境変数を指定しなあかんのや！
   httpsAgent: process.env.PRODUCTION_MODE
     ? undefined
     : new https.Agent({
