@@ -6,7 +6,9 @@ const https = require('https');
 const axiosInstance = axios.create({
   baseURL: process.env.VR_SSR_API_URL, // ここSSR時の環境変数を指定しなあかんのや！
   httpsAgent: process.env.PRODUCTION_MODE
-    ? undefined
+    ? new https.Agent({
+        rejectUnauthorized: false,
+      })
     : new https.Agent({
         rejectUnauthorized: false,
       }),
