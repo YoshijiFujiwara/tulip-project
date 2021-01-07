@@ -35,7 +35,6 @@ export default class Signin extends Vue {
     { text: 'title', value: 'title' },
     { text: 'genre', value: 'genre' },
     { text: 'description', value: 'description' },
-    { text: 'presentationImage', value: 'presentationImage' },
     { text: 'thumbnail', value: 'thumbnail' },
   ]
 
