@@ -27,8 +27,27 @@
         audio: true;
       "
       cursor="rayOrigin: mouse"
-      renderer="colorManagement: true"
     >
+      <!-- camera -->
+      <a-camera
+        id="player"
+        position="0 1.6 0"
+        networked="template:#avatar-template;attachTemplateToLocal:false;"
+        spawn-in-circle="radius:3"
+        universal-controls
+        kinematic-body
+      >
+        <!-- SELECTIVE INTERSECTIONS -->
+        <a-cursor
+          id="cursor-item"
+          raycaster="objects: a-gltf-model"
+          scale="0.1 0.1 0.1"
+          geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
+          material="color: #ACACAC; shader: flat; opacity: 0.6"
+        >
+        </a-cursor>
+        <a-sphere class="head" visible="false"></a-sphere>
+      </a-camera>
       <!-- アバター -->
       <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
       <!-- 空 -->
@@ -58,20 +77,7 @@
       <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
 
       <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
-      <!-- camera -->
-      <a-camera
-        id="player"
-        position="0 0 0"
-        networked="template:#avatar-template;attachTemplateToLocal:false;"
-        spawn-in-circle="radius:3"
-        universal-controls
-        kinematic-body
-        cursor="rayOrigin: mouse"
-      >
-        <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects:  a-gltf-model"></a-cursor>
-        <a-sphere class="head" visible="false"></a-sphere>
-      </a-camera>
+
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
     </a-scene>
