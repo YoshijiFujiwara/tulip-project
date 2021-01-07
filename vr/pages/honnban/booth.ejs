@@ -60,7 +60,7 @@
       <!-- camera -->
       <a-camera
         id="player"
-        position="0 1.6 0"
+        position="0 0 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
         universal-controls
@@ -71,25 +71,6 @@
         <a-cursor raycaster="objects:  a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-
-      <!-- クリックイベント -->
-      <a-entity
-        position="0 1.6 0"
-        look-controls
-        wasd-controls
-        camera
-        cursor
-        raycaster="objects: a-gltf-model"
-      >
-        <a-entity
-          raycaster="far: 30; objects: a-gltf-model"
-          cursor=""
-          geometry="primitive: ring; radiusOuter: 0.015;
-          radiusInner: 0.01; segmentsTheta: 32"
-          material="color: #283644; shader: flat"
-          position="0 0 -0.75"
-        ></a-entity>
-      </a-entity>
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
     </a-scene>
