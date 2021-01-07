@@ -50,6 +50,7 @@ class NetworkEntities {
         break;
       case 'scarlet_macaw':
         avatarModel.setAttribute('scale', '0.0018 0.002 0.002');
+        avatarModel.setAttribute('position', '0 -0.7 0.05791');
         break;
       default:
     }
