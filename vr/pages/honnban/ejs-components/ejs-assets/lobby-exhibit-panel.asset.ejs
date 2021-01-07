@@ -11,6 +11,16 @@
     src="<%=exhibit.presentationImage%>"
   ></a-asset-item>
   <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
+  <!-- いいね -->
+  <a-asset-item
+    id="asset-like"
+    src="/honnban/assets/model/little_chick/scene.gltf"
+  ></a-asset-item>
+  <!-- いいね_ASSET -->
+  <a-asset-item
+    id="asset-nice"
+    src="/honnban/assets/model/beating_heart/scene.gltf"
+  ></a-asset-item>
 </a-assets>
 
 <!-- TODO: 混雑度合いによって画像を変更したいが、今は固定-->
@@ -77,7 +87,7 @@
 ></a-entity>
 <a-gltf-model
   id="exhibit-panel-like-<%=exhibit.id%>"
-  src="#likes"
+  src="#asset-like"
   scale="<%=position.iLike.scale%>"
   position="<%=position.iLike.position%>"
   rotation="<%=position.iLike.rotation%>"
@@ -105,7 +115,7 @@
 ></a-text>
 <a-gltf-model
   id="exhibit-panel-like-<%=exhibit.id%>"
-  src="#nice1"
+  src="#asset-nice"
   scale="<%=position.like.scale%>"
   position="<%=position.like.position%>"
   rotation="<%=position.like.rotation%>"
@@ -140,4 +150,4 @@
   rotation="<%=position.thumbnail.rotation%>"
   rotation="0.4875870836563306 -91.02351308125336 -0.37070369344964266"
 ></a-image>
---> <% } %>
+<% } %>
