@@ -61,14 +61,13 @@
                   <v-list-item-content>
                     <v-list-item-title>
                       あと
-                      <span class="text-h4 mr-2"
+                      <span class="text-h5 mr-1"
                         >{{ eventLimitTime.date }}日</span
                       >
-                      <span class="text-h4"
-                        >{{ eventLimitTime.hour }}h{{
-                          eventLimitTime.minute
-                        }}m</span
-                      >
+                      <span class="text-h5">
+                        {{ eventLimitTime.hour }}時
+                        {{ eventLimitTime.minute }}分
+                      </span>
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
