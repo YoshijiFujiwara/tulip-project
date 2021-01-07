@@ -17,6 +17,7 @@
             <v-text-field
               v-model="form.date"
               label="開催日"
+              :rules="rules.date"
               prepend-icon="mdi-calendar"
               readonly
               border
@@ -32,7 +33,7 @@
         <v-row>
           <v-col cols="5">
             <v-menu
-              ref="menu"
+              ref="menu1"
               v-model="startTimePicker"
               :close-on-content-click="false"
               :nudge-right="40"
@@ -47,6 +48,7 @@
                   v-model="form.startTime"
                   label="開始時間"
                   prepend-icon="mdi-clock-time-four-outline"
+                  :rules="rules.startTime"
                   readonly
                   v-bind="attrs"
                   v-on="on"
@@ -56,13 +58,13 @@
                 v-if="startTimePicker"
                 v-model="form.startTime"
                 full-width
-                @click:minute="$refs.menu.save(form.startTime)"
+                @click:minute="$refs.menu1.save(form.startTime)"
               ></v-time-picker>
             </v-menu>
           </v-col>
           <v-col cols="5">
             <v-menu
-              ref="menu"
+              ref="menu2"
               v-model="endTimePicker"
               :close-on-content-click="false"
               :nudge-right="40"
@@ -75,6 +77,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="form.endTime"
+                  :rules="rules.endTime"
                   label="終了時間"
                   prepend-icon="mdi-clock-time-four-outline"
                   readonly
@@ -86,12 +89,18 @@
                 v-if="endTimePicker"
                 v-model="form.endTime"
                 full-width
-                @click:minute="$refs.menu.save(form.endTime)"
+                @click:minute="$refs.menu2.save(form.endTime)"
               ></v-time-picker>
             </v-menu>
           </v-col>
         </v-row>
-        <v-btn block large class="white--text" color="deep-purple darken-4">
+        <v-btn
+          block
+          large
+          class="white--text"
+          color="deep-purple darken-4"
+          @click="onSubmit"
+        >
           開催日時を登録
         </v-btn>
       </v-form>
@@ -114,6 +123,10 @@ export default class EventTimeDialog extends Vue {
     startTime: '00:00',
     endTime: '00:00',
   }
+  rules = {
+    date: [(v: string) => !!v || '開催日は必須です'],
+    time: [(v: string) => !!v || '学習時間は必須です'],
+  }
 
   // モーダルの開閉のために必要
   get dialog(): boolean {
@@ -128,5 +141,19 @@ export default class EventTimeDialog extends Vue {
   datePicker = false
   startTimePicker = false
   endTimePicker = false
+
+  onSubmit() {
+    this.isLoading = true
+    BoothsApi.postBooth(this.form.positionNumber!)
+      .then(() => {
+        this.$toast.success('ブースの登録が完了しました')
+      })
+      .catch((res) => {
+        this.$toast.error(res.data.message)
+      })
+
+    this.dialog = false
+    this.isLoading = false
+  }
 }
 </script>
