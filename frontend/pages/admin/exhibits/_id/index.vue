@@ -1,5 +1,8 @@
 <template>
-  <div style="background-color: #f9f9f9; height: 100vh" class="mainText--text">
+  <div
+    style="background-color: #f9f9f9; height: 100vh"
+    class="mainText--text pa-12"
+  >
     <v-row v-if="exhibit">
       <v-col cols="7">
         <v-row>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="pa-14">
     <breadcrums :items="breadcrum" />
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
