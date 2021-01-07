@@ -44,10 +44,10 @@
           </v-form>
         </v-app-bar>
         <v-layout column style="height: 100vh">
-          <v-flex style="overflow: auto">  
+          <v-flex style="overflow: auto">
             <nuxt />
           </v-flex>
-        </v-layout>    
+        </v-layout>
       </v-main>
     </v-app>
   </div>
