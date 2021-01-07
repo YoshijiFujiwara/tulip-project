@@ -1,4 +1,33 @@
-export function randomJapaneseFullName() {
+import { dummyGroup, dummyGroups } from './groups.seed.provider';
+
+export interface dummyExhibitor {
+  studentNumber: string;
+  password: string;
+  name: string;
+  group?: dummyGroup;
+  attendedAt: Date;
+}
+
+const provideDummyExhibitors = () => {
+  let exhibitors: dummyExhibitor[] = [];
+  for (let id = 1; id <= 72; id++) {
+    exhibitors = [
+      ...exhibitors,
+      {
+        studentNumber: `ohs7${('0000' + id).slice(-4)}`,
+        password: 'B19990101',
+        name: randomJapaneseFullName(),
+        attendedAt: new Date(),
+        group: dummyGroups[(id - 1) % 8],
+      },
+    ];
+  }
+  return exhibitors;
+};
+
+export const dummyExhibitors = provideDummyExhibitors();
+
+export function randomJapaneseFullName(): string {
   const lastAry = [
     '佐藤',
     '鈴木',
@@ -347,5 +376,5 @@ export function randomJapaneseFullName() {
   ];
   const last = lastAry[Math.floor(Math.random() * lastAry.length)];
   const first = firstAry[Math.floor(Math.random() * firstAry.length)];
-  return last + ' ' + first;
+  return `${last} ${first}`;
 }

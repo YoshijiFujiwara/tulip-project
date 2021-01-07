@@ -1,7 +1,7 @@
 import { define } from 'typeorm-seeding';
 import * as Faker from 'faker/locale/ja';
 import { ExhibitorEntity } from '../../entities/exhibitor.entity';
-import { randomJapaneseFullName } from '../../func/random.func';
+import { randomJapaneseFullName } from '../seeds/providers/exhibitors.seed.provider';
 
 interface Context {
   id: number;
