@@ -99,6 +99,7 @@
           large
           class="white--text"
           color="deep-purple darken-4"
+          :disabled="!valid || isLoading"
           @click="onSubmit"
         >
           開催日時を登録
@@ -110,6 +111,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import EventApi from '../plugins/axios/modules/event'
+import { Event } from '../types/event'
 
 @Component
 export default class EventTimeDialog extends Vue {
@@ -117,11 +120,11 @@ export default class EventTimeDialog extends Vue {
   @Prop({ required: true }) value: boolean = false
 
   isLoading: boolean = false // ローディング判定
-
+  valid = false
   form = {
     date: '',
-    startTime: '00:00',
-    endTime: '00:00',
+    startTime: '',
+    endTime: '',
   }
 
   rules = {
@@ -146,7 +149,32 @@ export default class EventTimeDialog extends Vue {
   onSubmit() {
     this.isLoading = true
     //実装
+    let creatAt: Date | null = null
+    let endAt: Date | null = null
+
+    if (this.form.startTime && this.form.date && this.form.endTime) {
+      creatAt = new Date(
+        this.form.date.replace(/-/g, '/') + ' ' + this.form.startTime + ':00'
+      )
+
+      endAt = new Date(
+        this.form.date.replace(/-/g, '/') + ' ' + this.form.endTime + ':00'
+      )
+      console.log(creatAt)
+    }
+    EventApi.updateEvent({
+      creatAt,
+      endAt,
+    })
+      .then((res) => {
+        this.$toast.success('イベントを登録しました')
+      })
+      .catch(() => {
+        this.$toast.error('イベント登録の際にエラーが発生しました')
+      })
+
     this.isLoading = false
+    this.dialog = false
   }
 }
 </script>
