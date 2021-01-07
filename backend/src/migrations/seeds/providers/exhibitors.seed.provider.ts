@@ -5,7 +5,7 @@ export interface DummyExhibitor {
   password: string;
   name: string;
   group?: DummyGroup;
-  attendedAt: Date;
+  attendedAt?: Date;
 }
 
 export const provideDummyExhibitors = (groupId = 0, count = 9) => {
@@ -17,7 +17,6 @@ export const provideDummyExhibitors = (groupId = 0, count = 9) => {
         studentNumber: `ohs7${('0000' + id).slice(-4)}`,
         password: 'B19990101',
         name: randomJapaneseFullName(),
-        attendedAt: new Date(),
         group: dummyGroups[groupId],
       },
     ];
