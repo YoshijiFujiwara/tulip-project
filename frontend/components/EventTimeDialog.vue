@@ -148,7 +148,6 @@ export default class EventTimeDialog extends Vue {
 
   onSubmit() {
     this.isLoading = true
-    //実装
     let creatAt: Date | null = null
     let endAt: Date | null = null
 
