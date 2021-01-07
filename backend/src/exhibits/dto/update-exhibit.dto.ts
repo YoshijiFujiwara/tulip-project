@@ -69,7 +69,7 @@ export class UpdateExhibitDto {
 
   @ApiPropertyOptional({
     example:
-      'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1609993587/kgzaddhq4nmtsnrnf1oc.mp4',
     type: 'string',
   })
   @IsOptional()
