@@ -350,5 +350,5 @@ export function randomJapaneseFullName(): string {
   ];
   const last = lastAry[Math.floor(Math.random() * lastAry.length)];
   const first = firstAry[Math.floor(Math.random() * firstAry.length)];
-  return `${last} ${first}`;
+  return `${last}${first}`;
 }

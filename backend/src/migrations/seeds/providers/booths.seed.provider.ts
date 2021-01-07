@@ -1,15 +1,17 @@
 import { dummyOriginExhibits } from './exhibits.seed.provider';
 
-interface DummyBooth {
+export interface DummyBooth {
+  id: number;
   positionNumber: number;
 }
 
 const provideDummyBooths = (limit = dummyOriginExhibits.length) => {
-  let booths: DummyBooth[];
+  let booths: DummyBooth[] = [];
   for (let id = 1; id <= limit; id++) {
     booths = [
       ...booths,
       {
+        id,
         positionNumber: id,
       },
     ];

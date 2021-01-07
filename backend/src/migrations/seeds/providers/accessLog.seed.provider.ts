@@ -52,7 +52,7 @@ function urlGenerate({
   const url =
     randRange(1) === 0
       ? `/honnban/`
-      : `/booths/${randRange(dummyBooths.length - 1)}`;
+      : `/booths/${randRange(dummyBooths.length, 1)}`;
   return `${url}?username=${username}&avatar=${avatar}`;
 }
 
