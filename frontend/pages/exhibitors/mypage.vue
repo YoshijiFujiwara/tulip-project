@@ -34,13 +34,25 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-icon>
-                    <v-icon color="#389c0a">mdi-check-circle</v-icon>
+                    <v-icon :color="exhibit ? '#389c0a' : '#ff5252'">{{
+                      exhibit ? 'mdi-check-circle' : 'mdi-close-circle'
+                    }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>作品登録</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item>
+                <v-list-item v-if="exhibit">
+                  <v-list-item-icon>
+                    <v-icon :color="exhibit.booth ? '#389c0a' : '#ff5252'">{{
+                      exhibit.booth ? 'mdi-check-circle' : 'mdi-close-circle'
+                    }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>ブース作成</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-else>
                   <v-list-item-icon>
                     <v-icon color="#ff5252">mdi-close-circle</v-icon>
                   </v-list-item-icon>
@@ -205,6 +217,7 @@ export default class MyPage extends Vue {
     // 開催時間の取得
     this.eventStartTime = await EventsApi.getEvents()
     this.diffTime()
+    console.log(this.exhibit)
   }
 
   diffTime() {
