@@ -30,18 +30,14 @@
           <v-col cols="2">
             <v-toolbar-title>{{ mainTitle }}</v-toolbar-title>
           </v-col>
-          <v-divider vertical></v-divider>
-          <v-btn icon>
-            <v-icon>mdi-reload</v-icon>
-          </v-btn>
-          <v-spacer></v-spacer>
+          <!-- <v-spacer></v-spacer>
           <v-form>
             <v-text-field
               label="Search"
               append-icon="mdi-magnify"
               class="mt-7"
             ></v-text-field>
-          </v-form>
+          </v-form> -->
         </v-app-bar>
         <nuxt />
       </v-main>
@@ -69,11 +65,6 @@ export default class Admin extends Vue {
       icon: 'mdi-contacts',
       url: '/admin/exhibitors',
       title: '出展者一覧',
-    },
-    {
-      icon: 'mdi-account-supervisor',
-      url: '/admin/exhibitors',
-      title: '来場者',
     },
     {
       icon: 'mdi-home',
