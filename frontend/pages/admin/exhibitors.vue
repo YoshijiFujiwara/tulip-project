@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pa-14">
     <breadcrums :items="breadcrum" />
     <h3>99人中9人が会場にログインしています</h3>
     <h3>出席中｜未出席</h3>

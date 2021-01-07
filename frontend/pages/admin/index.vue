@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pa-14">
     <breadcrums :items="breadcrum" />
     <v-layout col wrap class="mt-6">
       <!-- ダッシュボードの一列目 -->

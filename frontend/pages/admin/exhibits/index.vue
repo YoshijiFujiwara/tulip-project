@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="pa-14">
     <breadcrums :items="breadcrum" />
-    <h1>作品一覧ページです</h1>
     <v-data-table
       :headers="headers"
       :items="exhibits"
