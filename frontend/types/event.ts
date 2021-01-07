@@ -3,4 +3,3 @@ export type Event = {
   createdAt: Date
   updatedAt: Date
 }
-  
