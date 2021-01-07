@@ -16,6 +16,11 @@ spec:
         - name: vr
           image: yoshijifujiwara/tulip-vr
           env:
+            - name: VR_SSR_API_URL
+              valueFrom:
+                secretKeyRef:
+                  name: tulip-local-secrets
+                  key: VR_SSR_API_URL
             - name: VR_API_URL
               valueFrom:
                 secretKeyRef:
@@ -26,6 +31,8 @@ spec:
                 secretKeyRef:
                   name: tulip-local-secrets
                   key: VR_PORT
+            - name: PRODUCTION_MODE
+              value: "true"
 ---
 apiVersion: v1
 kind: Service
@@ -33,7 +40,7 @@ metadata:
   name: vr-srv
 spec:
   selector:
-    app: vr-srv
+    app: vr
   ports:
     - name: vr
       protocol: TCP

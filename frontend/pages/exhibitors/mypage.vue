@@ -61,8 +61,14 @@
                   <v-list-item-content>
                     <v-list-item-title>
                       あと
-                      <span class="text-h4 mr-2">99日</span>
-                      <span class="text-h4">23:59</span>
+                      <span class="text-h4 mr-2"
+                        >{{ eventLimitTime.date }}日</span
+                      >
+                      <span class="text-h4"
+                        >{{ eventLimitTime.hour }}h{{
+                          eventLimitTime.minute
+                        }}m</span
+                      >
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -97,7 +103,7 @@
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
                 exhibit.id
-              }?username=${user.name.trim()}&avatar=presenter`"
+              }?username=${user.name.trim()}&avatar=scarlet_macaw`"
               frameborder="0"
             ></iframe>
 
@@ -127,6 +133,8 @@ import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.
 import { User } from '../../types/auth'
 import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
+import EventsApi from '../../plugins/axios/modules/events'
+import { Event } from '../../types/event'
 @Component({
   components: {
     CreateExhibitDialog,
@@ -147,6 +155,13 @@ export default class MyPage extends Vue {
   // 出席しているか
   isAttend: boolean = false
 
+  eventStartTime: Event | null = null
+  eventLimitTime = {
+    date: 99,
+    hour: 23,
+    minute: 59,
+  }
+
   openCreateExhibitsModal() {
     // 作品登録用モーダルを開く
     this.isOpenCreateExhibitDialog = true
@@ -160,7 +175,7 @@ export default class MyPage extends Vue {
   connectEntrance() {
     const exhibitId = this.exhibit ? this.exhibit.id : 0
     const username = this.user ? this.user.name.replace(/\s/g, '') : ''
-    const url = `${this.vrUrl}honnban/booths/${exhibitId}?username=${username}&avatar=presenter`
+    const url = `${this.vrUrl}honnban/booths/${exhibitId}?username=${username}&avatar=scarlet_macaw`
     window.location.href = url
   }
 
@@ -186,6 +201,23 @@ export default class MyPage extends Vue {
     this.exhibit = exhibit
 
     this.vrUrl = process.env.vrBaseUrl!
+
+    // 開催時間の取得
+    this.eventStartTime = await EventsApi.getEvents()
+    this.diffTime()
+  }
+
+  diffTime() {
+    if (this.eventLimitTime) {
+      const limitTime = new Date(this.eventStartTime!!.startAt) // 開催時間
+      const nowTime = new Date().getTime() // 現在時刻
+      const diffTime = limitTime.getTime() - nowTime
+      this.eventLimitTime.date = Math.floor(diffTime / (1000 * 60 * 60 * 24)) // 日
+      let diff2Dates = diffTime % (1000 * 60 * 60 * 24)
+      this.eventLimitTime.hour = Math.floor(diff2Dates / (1000 * 60 * 60)) // 時間
+      diff2Dates = diff2Dates % (1000 * 60 * 60)
+      this.eventLimitTime.minute = Math.floor(diff2Dates / (1000 * 60)) // 分
+    }
   }
 }
 </script>

@@ -17,7 +17,15 @@
     <a-scene
       physics="debug : false;"
       renderer="colorManagement: true; antialias: true;"
-      networked-scene="room: exhibit-<%=exhibit.id%>;debug: true;adapter: webrtc; username: <%=username%>;avatar: <%=avatar%>;"
+      networked-scene="
+        room: exhibit-<%=exhibit.id%>;
+        debug: true;
+        adapter: webrtc;
+        username: <%=username%>;
+        avatar: <%=avatar%>;
+        serverURL: <%=wsServerUrl%>;
+        audio: true;
+      "
       cursor="rayOrigin: mouse"
       renderer="colorManagement: true"
     >
@@ -35,12 +43,13 @@
       include('./ejs-components/ejs-assets/booth-presentation-image.asset.ejs')
       %>
       <!-- デモ動画、上のタイトル -->
-      <%- include('./ejs-components/ejs-assets/booth-demo-video.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/booth-demo-video.asset.ejs', {
+      exhibit }) %>
       <!-- 真ん中の作品 -->
       <%- include('./ejs-components/ejs-assets/booth-exhibit.asset.ejs') %>
       <!-- リアクションパネル -->
-      <%-
-      include('./ejs-components/ejs-assets/booth-reaction-panel.asset.ejs')%>
+      <%- include('./ejs-components/ejs-assets/booth-reaction-panel.asset.ejs')
+      %>
       <!-- いいね -->
       <%- include('./ejs-components/ejs-assets/booth-like.asset.ejs') %>
       <!-- 現在時間を表示 -->
@@ -52,7 +61,7 @@
       <!-- camera -->
       <a-camera
         id="player"
-        position="0 1.6 0"
+        position="0 0 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
         spawn-in-circle="radius:3"
         universal-controls
@@ -63,25 +72,6 @@
         <a-cursor raycaster="objects:  a-gltf-model"></a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-
-      <!-- クリックイベント -->
-      <a-entity
-        position="0 1.6 0"
-        look-controls
-        wasd-controls
-        camera
-        cursor
-        raycaster="objects: a-gltf-model"
-      >
-        <a-entity
-          raycaster="far: 30; objects: a-gltf-model"
-          cursor=""
-          geometry="primitive: ring; radiusOuter: 0.015;
-          radiusInner: 0.01; segmentsTheta: 32"
-          material="color: #283644; shader: flat"
-          position="0 0 -0.75"
-        ></a-entity>
-      </a-entity>
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
     </a-scene>

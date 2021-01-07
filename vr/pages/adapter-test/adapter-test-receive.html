@@ -5,7 +5,7 @@
     <meta name="description" content="Dev Example — Networked-Aframe">
 
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-    <script src="/build.js"></script>
+    <script src="/honnban/build.js"></script>
 
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
@@ -28,25 +28,25 @@
     </style>
 
     <script>
-      NAF.connection.subscribeToDataChannel('reliableBroadcast', function() {
+      NAF.connection.subscribeToDataChannel('reliableBroadcast', function () {
         var label = document.getElementById('reliable-broadcast');
         label.innerHTML = 'success';
         label.className = 'success';
       });
 
-      NAF.connection.subscribeToDataChannel('unreliableBroadcast', function() {
+      NAF.connection.subscribeToDataChannel('unreliableBroadcast', function () {
         var label = document.getElementById('unreliable-broadcast');
         label.innerHTML = 'success';
         label.className = 'success';
       });
 
-      NAF.connection.subscribeToDataChannel('reliableSend', function() {
+      NAF.connection.subscribeToDataChannel('reliableSend', function () {
         var label = document.getElementById('reliable-send');
         label.innerHTML = 'success';
         label.className = 'success';
       });
 
-      NAF.connection.subscribeToDataChannel('unreliableSend', function() {
+      NAF.connection.subscribeToDataChannel('unreliableSend', function () {
         var label = document.getElementById('unreliable-send');
         label.innerHTML = 'success';
         label.className = 'success';

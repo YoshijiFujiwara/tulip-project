@@ -30,18 +30,21 @@ export default {
 
   // 環境変数
   env: {
-    cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
-    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    axiosBaseUrl: process.env.AXIOS_BASE_URL,
-    vrBaseUrl: process.env.VR_BASE_URL,
+    cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET || 'himawari',
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || 'db32y726v',
+    axiosBaseUrl:
+      process.env.AXIOS_BASE_URL || 'https://www.tulipgumi.xyz/api/',
+    vrBaseUrl: process.env.VR_BASE_URL || 'https://www.tulipgumi.xyz/',
   },
 
   // server proxy setting ()
   server: {
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
-      cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
-    },
+    https: process.env.PRODUCTION_MODE
+      ? undefined
+      : {
+          key: fs.readFileSync(path.resolve(__dirname, 'localhost-key.pem')),
+          cert: fs.readFileSync(path.resolve(__dirname, 'localhost.pem')),
+        },
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -162,7 +165,7 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   // FIXME: plugins/axiosディレクトリとの設定の整理が必要そうかな
   axios: {
-    baseURL: process.env.AXIOS_BASE_URL,
+    baseURL: process.env.AXIOS_BASE_URL || 'https://www.tulipgumi.xyz/api/',
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
