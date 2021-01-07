@@ -123,6 +123,7 @@ export default class EventTimeDialog extends Vue {
     startTime: '00:00',
     endTime: '00:00',
   }
+
   rules = {
     date: [(v: string) => !!v || '開催日は必須です'],
     time: [(v: string) => !!v || '学習時間は必須です'],
@@ -144,15 +145,7 @@ export default class EventTimeDialog extends Vue {
 
   onSubmit() {
     this.isLoading = true
-    BoothsApi.postBooth(this.form.positionNumber!)
-      .then(() => {
-        this.$toast.success('ブースの登録が完了しました')
-      })
-      .catch((res) => {
-        this.$toast.error(res.data.message)
-      })
-
-    this.dialog = false
+    //実装
     this.isLoading = false
   }
 }
