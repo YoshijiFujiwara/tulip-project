@@ -1,20 +1,23 @@
 import { define } from 'typeorm-seeding';
 import { PresentationImageEntity } from '../../entities/presentationImage.entity';
 import * as Faker from 'faker/locale/ja';
+import { ReqDummyExhibit } from '../seeds/providers/exhibits.seed.provider';
+import { DummyPresentaionImage } from '../seeds/providers/presentationImages.seed.provider';
 
 interface Context {
-  page: number;
-  exhibitId: number;
+  dummyPresentationImage: DummyPresentaionImage;
+  dummyExhibit: ReqDummyExhibit;
 }
 
 define(PresentationImageEntity, (
   _: typeof Faker,
-  { page, exhibitId }: Context,
+  { dummyPresentationImage, dummyExhibit }: Context,
 ) => {
+  const { url, page } = dummyPresentationImage;
   const presentationImage = new PresentationImageEntity();
-  presentationImage.url =
-    'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
+  presentationImage.url = url;
   presentationImage.page = page;
-  presentationImage.exhibitId = exhibitId;
+  presentationImage.exhibitId = dummyExhibit.id;
+
   return presentationImage;
 });

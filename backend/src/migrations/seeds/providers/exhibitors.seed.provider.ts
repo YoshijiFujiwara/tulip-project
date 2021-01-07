@@ -1,19 +1,21 @@
 import { DummyGroup, dummyGroups } from './groups.seed.provider';
 
 export interface DummyExhibitor {
+  id: number;
   studentNumber: string;
   password: string;
   name: string;
-  group?: DummyGroup;
+  group: DummyGroup;
   attendedAt?: Date;
 }
 
-export const provideDummyExhibitors = (groupId = 0, count = 9) => {
+export const provideDummyExhibitors = (groupId, count = 9) => {
   let exhibitors: DummyExhibitor[] = [];
-  for (let id = 1 + groupId * 8; id <= groupId * 8 + count; id++) {
+  for (let id = 1 + groupId * count; id <= groupId * count + count; id++) {
     exhibitors = [
       ...exhibitors,
       {
+        id,
         studentNumber: `ohs7${('0000' + id).slice(-4)}`,
         password: 'B19990101',
         name: randomJapaneseFullName(),
