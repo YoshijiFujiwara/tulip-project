@@ -1,9 +1,9 @@
-export interface dummyGroup {
+export interface DummyGroup {
   id: number;
   name: string;
 }
 
-export const dummyGroups: dummyGroup[] = [
+export const dummyGroups: DummyGroup[] = [
   {
     id: 1,
     name: 'Polyrhythm',
