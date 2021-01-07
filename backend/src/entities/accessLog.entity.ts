@@ -7,6 +7,7 @@ import {
   Column,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { AccessLogSerializer } from './serializer/accessLog.serializer';
 
 @Entity({
   name: 'access_log',
@@ -54,4 +55,16 @@ export class AccessLogEntity extends BaseEntity {
   })
   @ApiProperty()
   updatedAt!: Date;
+
+  transformToSerializer = (): AccessLogSerializer => {
+    const accessLogSerializer = new AccessLogSerializer();
+    accessLogSerializer.id = this.id;
+    accessLogSerializer.url = this.url;
+    accessLogSerializer.useragent = this.useragent;
+    accessLogSerializer.username = this.username;
+    accessLogSerializer.avatar = this.avatar;
+    accessLogSerializer.accessedAt = this.createdAt;
+
+    return accessLogSerializer;
+  };
 }
