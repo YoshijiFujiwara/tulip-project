@@ -1,22 +1,18 @@
 import { define } from 'typeorm-seeding';
 import * as Faker from 'faker/locale/ja';
 import { ExhibitorEntity } from '../../entities/exhibitor.entity';
-import { randomJapaneseFullName } from '../../func/random.func';
+import { DummyExhibitor } from '../seeds/providers/exhibitors.seed.provider';
 
-interface Context {
-  id: number;
-  groupId: number;
-}
-
-define(ExhibitorEntity, (_: typeof Faker, context: Context) => {
-  const { id, groupId } = context;
-
+define(ExhibitorEntity, (
+  _: typeof Faker,
+  { id, studentNumber, password, name, group }: DummyExhibitor,
+) => {
   const exhibitor = new ExhibitorEntity();
-  exhibitor.studentNumber = `ohs7${('0000' + id).slice(-4)}`;
-  exhibitor.password = 'B19990101';
-  exhibitor.name = `${randomJapaneseFullName()}`;
-  exhibitor.groupId = groupId;
-  exhibitor.attendedAt = new Date();
+  exhibitor.id = id;
+  exhibitor.studentNumber = studentNumber;
+  exhibitor.password = password;
+  exhibitor.name = name;
+  exhibitor.groupId = group.id;
 
   return exhibitor;
 });

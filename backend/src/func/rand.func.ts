@@ -1,4 +1,7 @@
-export function randomJapaneseFullName() {
+export const randRange = (max = 20, min = 0) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+export function randomJapaneseFullName(): string {
   const lastAry = [
     '佐藤',
     '鈴木',
@@ -347,5 +350,5 @@ export function randomJapaneseFullName() {
   ];
   const last = lastAry[Math.floor(Math.random() * lastAry.length)];
   const first = firstAry[Math.floor(Math.random() * firstAry.length)];
-  return last + ' ' + first;
+  return `${last}${first}`;
 }

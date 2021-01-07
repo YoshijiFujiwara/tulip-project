@@ -7,6 +7,7 @@ interface Context {
 
 define(AdministratorEntity, (_, { id }: Context): AdministratorEntity => {
   const administrator = new AdministratorEntity();
+  administrator.id = id;
   administrator.name = `admin${id}`;
   administrator.password = `admin`;
 
