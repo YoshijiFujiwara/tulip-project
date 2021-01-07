@@ -40,6 +40,10 @@ spec:
             backend:
               serviceName: frontend-srv
               servicePort: 3000
+          - path: /_nuxt/?(.*)
+            backend:
+              serviceName: frontend-srv
+              servicePort: 3000
           - path: /?(.*)
             backend:
               serviceName: vr-srv

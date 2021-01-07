@@ -7,78 +7,81 @@
   <img id="asset-think" src="/honnban/assets/img/emo_think.svg" />
   <img id="asset-twincle" src="/honnban/assets/img/emo_twincle.svg" />
 </a-assets>
-<a-image
-  id="i-love"
-  src="#asset-love"
-  scale="0.27661 0.29119 0.5"
-  position="-0.64357 1.27987 -0.61076"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
-<a-image
-  id="i-twincle"
-  src="#asset-twincle"
-  scale="0.27661 0.29119 0.5"
-  position="-0.655 1.2786 -1.19534"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
-<a-image
-  id="i-smile"
-  src="#asset-smile"
-  scale="0.27661 0.29119 0.5"
-  position="-0.655 1.27838 -1.78385"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
-<a-image
-  id="i-think"
-  src="#asset-think"
-  scale="0.27661 0.29119 0.5"
-  position="-0.655 0.87007 -0.61403"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
-<a-image
-  id="i-cry"
-  src="#asset-cry"
-  scale="0.27661 0.29119 0.5"
-  position="-0.655 0.86913 -1.20737"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
-<a-image
-  id="i-angry"
-  src="#asset-angry"
-  scale="0.27661 0.29119 0.5"
-  position="-0.655 0.8679 -1.78503"
-  rotation="0 90.61556713112022 0"
-  visible="false"
-></a-image>
 
-<!-- パネル -->
-<a-entity
-  id="menu"
-  geometry="primitive: plane; width: 3.4; height: 1.82"
-  material="color: #000000; opacity: 0.7"
-  radius="200"
-  theta-length="110"
-  position="-0.70126 1.06574 -1.18901"
-  rotation="0 89.834 0"
-  scale="0.515 0.4621 1"
-  visible="false"
-></a-entity>
-<a-entity
-  id="menuBackground"
-  geometry="primitive: plane; width: 3.4; height: 1.82"
-  material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
-  color="#000000"
-  opacity="0.1"
-  render-order="menu"
-  radius="200"
-  theta-length="110"
-  position="-0.70304 1.06159 -1.195"
-  rotation="0 89.834 0"
-  scale="0.53472 0.496 1.5"
-  visible="false"
-></a-entity>
+<!-- <a-entity id="reaction-entity" look-at="#player"> --><!-- 傾くので一旦コメントアウト -->
+<a-entity id="reaction-entity">
+  <!-- パネル -->
+  <a-entity
+    id="menu"
+    geometry="primitive: plane; width: 3.4; height: 1.82"
+    material="color: #000000; opacity: 0.7"
+    radius="200"
+    theta-length="110"
+    position="-0.686 1.836 0.021"
+    rotation="-0.784 91.014 0.000"
+    scale="0.515 0.4621 1"
+    visible="false"
+  ></a-entity>
+  <a-entity
+    id="menuBackground"
+    geometry="primitive: plane; width: 3.4; height: 1.82"
+    material="shader: gradientshader; topColor: #f971c3; bottomColor: #6ff9ea"
+    color="#000000"
+    opacity="0.1"
+    render-order="menu"
+    radius="200"
+    theta-length="110"
+    position="-0.703 1.829 0.027"
+    rotation="-0.878 91.413 0.000"
+    scale="0.53472 0.496 1.5"
+    visible="false"
+  ></a-entity>
+  <a-image
+    id="i-love"
+    src="#asset-love"
+    scale="0.27661 0.29119 0.5"
+    position="-0.67526 2.054 0.628"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+  <a-image
+    id="i-twincle"
+    src="#asset-twincle"
+    scale="0.27661 0.29119 0.5"
+    position="-0.683 2.044 0.020"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+  <a-image
+    id="i-smile"
+    src="#asset-smile"
+    scale="0.27661 0.29119 0.5"
+    position="-0.695 2.041 -0.596"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+  <a-image
+    id="i-think"
+    src="#asset-think"
+    scale="0.27661 0.29119 0.5"
+    position="-0.669 1.631 0.616"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+  <a-image
+    id="i-cry"
+    src="#asset-cry"
+    scale="0.27661 0.29119 0.5"
+    position="-0.678 1.628 0.021"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+  <a-image
+    id="i-angry"
+    src="#asset-angry"
+    scale="0.27661 0.29119 0.5"
+    position="-0.687 1.622 -0.578"
+    rotation="0 90.616 0"
+    visible="false"
+  ></a-image>
+</a-entity>
