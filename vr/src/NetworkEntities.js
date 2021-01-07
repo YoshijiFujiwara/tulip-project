@@ -34,7 +34,7 @@ class NetworkEntities {
     switch (entityData.avatar) {
       case 'super_carrot':
         avatarModel.setAttribute('scale', '0.01 0.01 0.01');
-        avatarModel.setAttribute('rotation', '0 180 -15');
+        avatarModel.setAttribute('rotation', '0 165 -15');
         avatarModel.setAttribute('position', '0 -1.426 0');
         break;
       case 'cute_penguin':
