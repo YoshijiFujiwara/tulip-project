@@ -39,10 +39,6 @@
           <v-col class="text-h6">{{ exhibit.group.name }}</v-col>
         </v-row>
         <v-row>
-          <v-col class="text-h5 font-weight-bold"> グループリーダー </v-col>
-          <v-col class="text-h6">リーダー名が入る</v-col>
-        </v-row>
-        <v-row>
           <v-col class="text-h5 font-weight-bold"> ジャンル </v-col>
           <v-col class="text-h6">{{ exhibit.genre }}</v-col>
         </v-row>

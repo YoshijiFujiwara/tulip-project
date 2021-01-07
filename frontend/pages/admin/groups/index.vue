@@ -48,7 +48,6 @@ export default class Groups extends Vue {
       value: 'id',
     },
     { text: 'グループ名', value: 'name', sortable: true },
-    { text: 'リーダー名', value: 'name', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
 
