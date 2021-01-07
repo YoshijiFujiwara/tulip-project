@@ -114,7 +114,7 @@
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
                 exhibit.id
-              }?username=${user.name.trim()}&avatar=scarlet_macaw`"
+              }?username=${user.name.trim()}&avatar=none`"
               frameborder="0"
             ></iframe>
 
