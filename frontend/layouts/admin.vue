@@ -26,7 +26,7 @@
       </v-navigation-drawer>
 
       <v-main>
-        <v-app-bar absolute flat>
+        <v-app-bar app clipped>
           <v-col cols="2">
             <v-toolbar-title>{{ mainTitle }}</v-toolbar-title>
           </v-col>
