@@ -43,7 +43,8 @@
       include('./ejs-components/ejs-assets/booth-presentation-image.asset.ejs')
       %>
       <!-- デモ動画、上のタイトル -->
-      <%- include('./ejs-components/ejs-assets/booth-demo-video.asset.ejs') %>
+      <%- include('./ejs-components/ejs-assets/booth-demo-video.asset.ejs', {
+      exhibit }) %>
       <!-- 真ん中の作品 -->
       <%- include('./ejs-components/ejs-assets/booth-exhibit.asset.ejs') %>
       <!-- リアクションパネル -->
