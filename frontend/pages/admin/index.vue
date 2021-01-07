@@ -139,10 +139,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import Breadcrumbs from '../../components/breadcrums.vue'
 import LineChart from '@/components/charts/lineChart.vue'
 import PieChart from '@/components/charts/pieChart.vue'
 import EventTimeDialog from '@/components/EventTimeDialog.vue'
+import Breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
   auth: false,
