@@ -103,7 +103,7 @@
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
                 exhibit.id
-              }?username=${user.name.trim()}&avatar=presenter`"
+              }?username=${user.name.trim()}&avatar=scarlet_macaw`"
               frameborder="0"
             ></iframe>
 
@@ -175,7 +175,7 @@ export default class MyPage extends Vue {
   connectEntrance() {
     const exhibitId = this.exhibit ? this.exhibit.id : 0
     const username = this.user ? this.user.name.replace(/\s/g, '') : ''
-    const url = `${this.vrUrl}honnban/booths/${exhibitId}?username=${username}&avatar=presenter`
+    const url = `${this.vrUrl}honnban/booths/${exhibitId}?username=${username}&avatar=scarlet_macaw`
     window.location.href = url
   }
 
