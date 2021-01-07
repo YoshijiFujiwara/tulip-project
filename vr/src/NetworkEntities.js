@@ -48,6 +48,10 @@ class NetworkEntities {
       case 'scarlet_macaw':
         avatarModel.setAttribute('scale', '0.002 0.002 0.002');
         break;
+      case 'none':
+        avatarModel.remove();
+        name.remove();
+        break;
       default:
     }
     // console.log('name', name);
