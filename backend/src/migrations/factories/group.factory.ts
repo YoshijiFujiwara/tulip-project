@@ -1,16 +1,11 @@
 import { define } from 'typeorm-seeding';
 import { GroupEntity } from '../../entities/group.entity';
-import * as Faker from 'faker/locale/ja';
+import { DummyGroup } from '../seeds/providers/groups.seed.provider';
 
-interface Context {
-  id: number;
-}
-
-define(GroupEntity, (_: typeof Faker, context: Context) => {
-  const { id } = context;
-
+define(GroupEntity, (_, { id, name }: DummyGroup) => {
   const group = new GroupEntity();
-  group.name = `チーム${id}`;
+  group.id = id;
+  group.name = name;
 
   return group;
 });

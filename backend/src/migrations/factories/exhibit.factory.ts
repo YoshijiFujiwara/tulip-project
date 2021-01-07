@@ -1,30 +1,24 @@
 import { define } from 'typeorm-seeding';
 import * as Faker from 'faker/locale/ja';
-import { ExhibitEntity, GENRE } from '../../entities/exhibit.entity';
+import { ExhibitEntity } from '../../entities/exhibit.entity';
+import { DummyExhibit } from '../seeds/providers/exhibits.seed.provider';
 
-interface Context {
-  groupNum: number;
-  groupId: number;
-}
+const randRange = (max = 20, min = 0) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
 
-define(ExhibitEntity, (_: typeof Faker, context: Context) => {
-  const { groupNum, groupId } = context;
-  const genres: GENRE[] = Object.keys(GENRE).map(k => GENRE[k]);
-  const genre = genres[groupNum % genres.length];
-
+define(ExhibitEntity, (
+  _: typeof Faker,
+  { id, title, description, thumbnail, genre, group }: DummyExhibit,
+) => {
   const exhibit = new ExhibitEntity();
-  exhibit.title = `作品${groupNum}`;
-  exhibit.description = 'hogehoge';
-  exhibit.thumbnail =
-    'https://res.cloudinary.com/db32y726v/image/upload/v1596079557/vjzwcimeqkmtwj6fugbj.jpg';
-  exhibit.viewsCount = 10;
-  exhibit.goodCount = 10;
-  exhibit.demo =
-    'https://res.cloudinary.com/db32y726v/video/upload/v1609993587/kgzaddhq4nmtsnrnf1oc.mp4';
-  exhibit.modelUrl =
-    'https://poly.googleapis.com/downloads/fp/1608558449118091/9C-MLNfxaor/fgIw32pFZy_/model.gltf';
+  exhibit.id = id;
+  exhibit.title = title;
+  exhibit.description = description;
+  exhibit.thumbnail = thumbnail;
+  exhibit.viewsCount = randRange();
+  exhibit.goodCount = randRange(randRange());
   exhibit.genre = genre;
-  exhibit.groupId = groupId;
+  exhibit.groupId = group.id;
 
   return exhibit;
 });
