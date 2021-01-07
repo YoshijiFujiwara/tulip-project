@@ -108,8 +108,7 @@
 
             <v-card class="ma-auto card-area ml-5 mr-5" outlined>
               <v-card-title class="justify-center">
-                <v-icon>mdi-information-outline</v-icon>
-                ただいまテストサーバで公開中です。
+                プレゼンテーションを開始するには、こちらから入場してください
               </v-card-title>
               <v-card-actions class="justify-center">
                 <v-btn large class="px-15" @click="connectEntrance">入場</v-btn>
