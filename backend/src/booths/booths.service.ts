@@ -20,15 +20,19 @@ export class BoothsService {
     exhibitor: ExhibitorEntity,
   ): Promise<BoothEntity> {
     const group = await this.groupRepository.findOne({
-      relations: ['exhibit'],
+      relations: ['exhibit', 'exhibit.booth'],
       where: { id: exhibitor.groupId },
     });
+    if (group.exhibit.booth) {
+      throw new ConflictException(
+        'ブース番号が登録済みです。(API接続先切り替えエラー)',
+      );
+    }
 
-    const isDuplicated = await this.boothRepository.isDuplicatedOtherGroup(
+    const isDuplicatedOtherGroup = await this.boothRepository.isDuplicatedOtherGroup(
       createBoothDto.positionNumber,
     );
-
-    if (isDuplicated) {
+    if (isDuplicatedOtherGroup) {
       throw new ConflictException(
         'このブース番号はすでに登録済みです。他の番号を指定してください。',
       );
