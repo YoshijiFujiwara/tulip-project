@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app light>
-      <v-navigation-drawer app color="#27303d" absolute permanent>
+      <v-navigation-drawer app color="#27303d" permanent>
         <v-list>
           <v-list-item>
             <v-img :src="require('@/assets/logo_main.png')" />
@@ -26,7 +26,7 @@
       </v-navigation-drawer>
 
       <v-main>
-        <v-app-bar flat>
+        <v-app-bar app clipped>
           <v-col cols="2">
             <v-toolbar-title>{{ mainTitle }}</v-toolbar-title>
           </v-col>
@@ -43,7 +43,11 @@
             ></v-text-field>
           </v-form>
         </v-app-bar>
-        <nuxt />
+        <v-layout column style="height: 100vh">
+          <v-flex style="overflow: auto">
+            <nuxt />
+          </v-flex>
+        </v-layout>
       </v-main>
     </v-app>
   </div>
