@@ -5,14 +5,17 @@ import { dummyExhibits } from './providers/exhibits.seed.provider';
 export default class CreatePresentationImages implements Seeder {
   public async run(factory: Factory) {
     await Promise.all(
-      dummyExhibits.map(async dummyExhibit =>
-        dummyExhibit.presentationImages.map(
-          async dummyPresentationImage =>
-            await factory(PresentationImageEntity)({
-              dummyExhibit,
-              dummyPresentationImage,
-            }).create(),
-        ),
+      dummyExhibits.map(
+        async dummyExhibit =>
+          await Promise.all(
+            dummyExhibit.presentationImages.map(
+              async dummyPresentationImage =>
+                await factory(PresentationImageEntity)({
+                  dummyExhibit,
+                  dummyPresentationImage,
+                }).create(),
+            ),
+          ),
       ),
     );
   }
