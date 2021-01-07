@@ -112,7 +112,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import EventApi from '../plugins/axios/modules/event'
-import { Event } from '../types/event'
 
 @Component
 export default class EventTimeDialog extends Vue {
@@ -165,7 +164,7 @@ export default class EventTimeDialog extends Vue {
       creatAt,
       endAt,
     })
-      .then((res) => {
+      .then(() => {
         this.$toast.success('イベントを登録しました')
       })
       .catch(() => {
