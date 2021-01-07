@@ -57,6 +57,7 @@ errorShots
 
 # Temp build file
 pages/build.js
+pages/honnban/build.js
 
 # Webstorm
 /.idea/*
