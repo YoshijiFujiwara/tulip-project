@@ -133,7 +133,7 @@
           prepend-icon="mdi-video"
           @change="onVideoPicked"
         ></v-file-input>
-        <p>
+        <!-- <p>
           <span class="font-weight-bold">
             3Dモデル
             <br />
@@ -151,7 +151,7 @@
           required
           show-size
           dense
-        ></v-file-input>
+        ></v-file-input> -->
         <v-btn
           block
           large
@@ -200,7 +200,7 @@ export default class CreateExhibitDialog extends Vue {
     thumbnailImage: (null as unknown) as File | null,
     presentationImages: [] as File[],
     demoVideo: (null as unknown) as File | null,
-    modelData: (null as unknown) as File | null,
+    // modelData: (null as unknown) as File | null,
   }
 
   rules = {

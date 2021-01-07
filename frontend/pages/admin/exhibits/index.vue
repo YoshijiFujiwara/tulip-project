@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="pa-14">
     <breadcrums :items="breadcrum" />
-    <h1>作品一覧ページです</h1>
     <v-data-table
       :headers="headers"
       :items="exhibits"
@@ -36,7 +35,6 @@ export default class Signin extends Vue {
     { text: 'title', value: 'title' },
     { text: 'genre', value: 'genre' },
     { text: 'description', value: 'description' },
-    { text: 'presentationImage', value: 'presentationImage' },
     { text: 'thumbnail', value: 'thumbnail' },
   ]
 

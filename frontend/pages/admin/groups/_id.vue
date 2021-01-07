@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="pa-14">
     <div class="text-h3 mt-5 ml-4">
       {{ group.name }}
     </div>
