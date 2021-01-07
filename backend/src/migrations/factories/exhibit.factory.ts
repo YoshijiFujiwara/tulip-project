@@ -2,9 +2,7 @@ import { define } from 'typeorm-seeding';
 import * as Faker from 'faker/locale/ja';
 import { ExhibitEntity } from '../../entities/exhibit.entity';
 import { DummyExhibit } from '../seeds/providers/exhibits.seed.provider';
-
-const randRange = (max = 20, min = 0) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+import { randRange } from '../../func/rand.func';
 
 define(ExhibitEntity, (
   _: typeof Faker,
@@ -16,7 +14,7 @@ define(ExhibitEntity, (
   exhibit.description = description;
   exhibit.thumbnail = thumbnail;
   exhibit.viewsCount = randRange();
-  exhibit.goodCount = randRange(randRange());
+  exhibit.goodCount = randRange(exhibit.viewsCount);
   exhibit.genre = genre;
   exhibit.groupId = group.id;
 

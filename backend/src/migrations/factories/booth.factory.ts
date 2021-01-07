@@ -1,15 +1,12 @@
 import { define } from 'typeorm-seeding';
 import { BoothEntity } from '../../entities/booth.entity';
-import { ReqDummyExhibit } from '../seeds/providers/exhibits.seed.provider';
+import { DummyBooth } from '../seeds/providers/booths.seed.provider';
 
-define(BoothEntity, (
-  _,
-  { booth: dummyBooth, id: exhibitId }: ReqDummyExhibit,
-): BoothEntity => {
+define(BoothEntity, (_, { id, positionNumber }: DummyBooth): BoothEntity => {
   const booth = new BoothEntity();
-  booth.id = exhibitId;
-  booth.positionNumber = dummyBooth.positionNumber;
-  booth.exhibitId = exhibitId;
+  booth.id = id;
+  booth.positionNumber = positionNumber;
+  booth.exhibitId = id;
 
   return booth;
 });
