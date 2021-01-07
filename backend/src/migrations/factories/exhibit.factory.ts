@@ -3,7 +3,7 @@ import * as Faker from 'faker/locale/ja';
 import { ExhibitEntity } from '../../entities/exhibit.entity';
 import { DummyExhibit } from '../seeds/providers/exhibits.seed.provider';
 
-const randRange = (min = 0, max = 20) =>
+const randRange = (max = 20, min = 0) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
 define(ExhibitEntity, (
@@ -16,7 +16,7 @@ define(ExhibitEntity, (
   exhibit.description = description;
   exhibit.thumbnail = thumbnail;
   exhibit.viewsCount = randRange();
-  exhibit.goodCount = randRange();
+  exhibit.goodCount = randRange(randRange());
   exhibit.genre = genre;
   exhibit.groupId = group.id;
 
