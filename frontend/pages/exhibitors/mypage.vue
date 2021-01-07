@@ -65,9 +65,9 @@
                         >{{ eventLimitTime.date }}日</span
                       >
                       <span class="text-h4"
-                        >{{ eventLimitTime.hour }}:{{
+                        >{{ eventLimitTime.hour }}h{{
                           eventLimitTime.minute
-                        }}</span
+                        }}m</span
                       >
                     </v-list-item-title>
                   </v-list-item-content>
