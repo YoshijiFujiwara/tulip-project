@@ -14,7 +14,7 @@ define(ExhibitEntity, (
   exhibit.description = description;
   exhibit.thumbnail = thumbnail;
   exhibit.viewsCount = randRange();
-  exhibit.goodCount = randRange(randRange());
+  exhibit.goodCount = randRange(exhibit.viewsCount);
   exhibit.genre = genre;
   exhibit.groupId = group.id;
 
