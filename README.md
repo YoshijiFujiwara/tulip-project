@@ -2,11 +2,24 @@
 
 ## 環境構築
 
+.env.local をコピーして、.env ファイルを作成したあと
+
 ```
 $ docker-compose up
 ```
 
 でちょっとまちましょう(初回は 10 分はかかるかな。いろいろダウンロードするため)
+
+vr 空間は、、
+vr/.env.local をコピーして、vr/.env.local ファイルを作成したあと、
+
+```
+$ cd vr
+$ yarn install
+$ yarn dev
+```
+
+で動きます
 
 ## ローカル開発環境
 
