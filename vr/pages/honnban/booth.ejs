@@ -10,6 +10,13 @@
           .then((res) => res.json())
           .then((res) => console.log(res));
       };
+      // 既読情報を格納する
+      const thisExhibitId = <%=exhibit.id%>;
+        const alreadyVisitExhibits =
+          localStorage.getItem('alreadyVisitExhibits') ? JSON.parse(localStorage.getItem('alreadyVisitExhibits')) : [];
+        // このページの作品IDを追加して、重複を削る
+        const updatedVisitExhibits = [...new Set([...alreadyVisitExhibits, thisExhibitId])]
+        localStorage.setItem('alreadyVisitExhibits', JSON.stringify(updatedVisitExhibits));
     </script>
   </head>
   <body>
@@ -24,7 +31,7 @@
         username: <%=username%>;
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
-        audio: true;
+        audio: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
     >
@@ -76,8 +83,6 @@
       <%- include('./ejs-components/ejs-assets/booth-current-time.asset.ejs') %>
       <!-- 出口 -->
       <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
-
-      <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
 
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>

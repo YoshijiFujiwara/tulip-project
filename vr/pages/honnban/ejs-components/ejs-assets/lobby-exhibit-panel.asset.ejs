@@ -23,9 +23,9 @@
   ></a-asset-item>
 </a-assets>
 
-<!-- TODO: 混雑度合いによって画像を変更したいが、今は固定-->
+<!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
 <a-image
-  id="lv1"
+  id="exhibit-congestion-image-<%=exhibit.id%>"
   src="#lv1"
   scale="<%=position.level.scale%>"
   position="<%=position.level.position%>"
@@ -66,11 +66,10 @@
 <a-image
   id="exhibit-panel-thumbnail-<%=exhibit.id%>"
   src="#asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
-  link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>"
+  link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>&enable_audio=<%= enableAudio %>"
   scale="<%=position.thumbnail.scale%>"
   position="<%=position.thumbnail.position%>"
   rotation="<%=position.thumbnail.rotation%>"
-  material="color:  #5c5c5c;"
 ></a-image>
 
 <!-- panel -->
