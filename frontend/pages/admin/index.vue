@@ -122,7 +122,7 @@
                     <v-tab @click="changeViewCount">視聴数</v-tab>
                   </v-tabs>
                 </template>
-                <PieChart :exhibits="exhibits" />
+                <PieChart :exhibits="exhibits" :order="order" />
                 <v-card-actions>
                   <v-spacer></v-spacer
                   ><v-btn text color="success">作品一覧</v-btn>
@@ -153,6 +153,7 @@ import Breadcrumbs from '../../components/breadcrums.vue'
 })
 export default class Signin extends Vue {
   exhibits: Exhibit[] = []
+  order = 'goodCount'
   breadcrum = [
     {
       text: 'ダッシュボード',
@@ -197,12 +198,14 @@ export default class Signin extends Vue {
 
   changeGoodCount() {
     this.exhibits.sort((a, b) => {
+      this.order = 'goodCount'
       return b.goodCount - a.goodCount
     })
   }
 
   changeViewCount() {
     this.exhibits.sort((a, b) => {
+      this.order = 'viewsCount'
       return b.viewsCount - a.viewsCount
     })
   }

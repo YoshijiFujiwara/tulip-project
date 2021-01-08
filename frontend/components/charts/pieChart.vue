@@ -8,16 +8,20 @@ export default {
       // eslint-disable-next-line vue/require-valid-default-prop
       default: [],
     },
+    order: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
       chartdata: {
-        labels: ['January', 'February'],
+        labels: [],
         datasets: [
           {
             label: ['Data One'],
             backgroundColor: '#f87979',
-            data: [40, 30],
+            data: [40, 30, 10, 20],
           },
         ],
       },
@@ -27,8 +31,26 @@ export default {
       },
     }
   },
-  mounted() {
-    this.renderChart(this.chartdata, this.options)
+  watch: {
+    exhibits() {
+      const labels = []
+      const data = []
+      this.exhibits.map(function (exhibit) {
+        return labels.push(exhibit.title)
+      })
+      this.chartdata.labels = labels
+      if (this.order === 'goodCount') {
+        this.exhibits.map(function (exhibit) {
+          return data.push(exhibit.goodCount)
+        })
+      } else {
+        this.exhibits.map(function (exhibit) {
+          return data.push(exhibit.viewsCount)
+        })
+      }
+      this.chartdata.datasets[0].data = data
+      this.renderChart(this.chartdata, this.options)
+    },
   },
 }
 </script>
