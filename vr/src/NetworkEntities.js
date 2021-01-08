@@ -34,7 +34,7 @@ class NetworkEntities {
     switch (entityData.avatar) {
       case 'super_carrot':
         avatarModel.setAttribute('scale', '0.01 0.01 0.01');
-        avatarModel.setAttribute('rotation', '0 180 -15');
+        avatarModel.setAttribute('rotation', '0 165 -15');
         avatarModel.setAttribute('position', '0 -1.426 0');
         break;
       case 'cute_penguin':
@@ -203,6 +203,25 @@ class NetworkEntities {
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     var id = data.networkId;
     return this.removeEntity(id);
+  }
+
+  reactRemoteEntity(toClient, dataType, data, source) {
+    NAF.log.write('reactRemoteEntity toClient', toClient);
+    NAF.log.write('reactRemoteEntity dataType', dataType);
+    NAF.log.write('reactRemoteEntity data', data);
+    NAF.log.write('reactRemoteEntity source', source);
+
+    const { networkId, reactionType } = data;
+    const reactionPlayerEl = document.getElementById(`naf-${networkId}`);
+    const avatarReactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
+    avatarReactionEl.setAttribute(
+      'src',
+      `/honnban/assets/img/emo_${reactionType}.svg`,
+    );
+    avatarReactionEl.setAttribute('visible', true);
+    setTimeout(() => {
+      avatarReactionEl.setAttribute('visible', false);
+    }, 3000);
   }
 
   removeEntitiesOfClient(clientId) {

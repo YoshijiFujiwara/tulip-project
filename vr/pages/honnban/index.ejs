@@ -2,8 +2,7 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
-
-    <script type="text/javascript">
+    <script>
       // スマホ用コントローラのスタイルの読み込み
       if (
         (navigator.userAgent.indexOf('iPhone') > 0 &&
@@ -18,6 +17,20 @@
       } else {
         console.log('ウェブ');
       }
+      window.onload = (evt) => {
+        const alreadyVisitExhibits = localStorage.getItem(
+          'alreadyVisitExhibits',
+        )
+          ? JSON.parse(localStorage.getItem('alreadyVisitExhibits'))
+          : [];
+        alreadyVisitExhibits.forEach((exhibitId) => {
+          const thubmnailEl = document.getElementById(
+            `exhibit-panel-thumbnail-${exhibitId}`,
+          );
+          if (!thubmnailEl) return;
+          thubmnailEl.setAttribute('material', 'color:  #5c5c5c;');
+        });
+      };
     </script>
   </head>
   <body>
@@ -34,7 +47,7 @@
         username: <%=username%>;
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
-        audio: true;
+        audio: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
       keyboard-shortcuts="enterVR: false;"
@@ -72,7 +85,6 @@
         <a-cursor
           id="cursor-item"
           raycaster="objects: a-gltf-model,a-image"
-          rayorigin="mouse"
           scale="0.1 0.1 0.1"
           geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
           material="color: #ACACAC; shader: flat; opacity: 0.6"
