@@ -20,11 +20,19 @@
       }
 
       window.onload = (event) => {
-        fetch(`<%= apiUrl %>exhibits/<%=exhibit.id%>/incrementViewsCount`, {
+        fetch(`<%= apiUrl %>exhibits/<%= exhibit.id%>/incrementViewsCount`, {
           method: 'PUT',
         })
           .then((res) => res.json())
-          .then((res) => console.log(res));
+          .then((res) => console.log('incrementViewsCount', res));
+
+        fetch(`<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: window.location.pathname })
+        })
+          .then((res) => res.json())
+          .then((res) => console.log('access_log', res));
       };
       // 既読情報を格納する
       const thisExhibitId = <%=exhibit.id%>;

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CountAccessLogDto {
+export class CountAccessLogQueryDto {
   @ApiProperty({
     example: '山田太郎',
     type: String,
