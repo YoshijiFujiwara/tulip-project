@@ -2,8 +2,28 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
+
+    <script type="text/javascript">
+      // スマホ用コントローラのスタイルの読み込み
+      if (
+        (navigator.userAgent.indexOf('iPhone') > 0 &&
+          navigator.userAgent.indexOf('iPad') == -1) ||
+        navigator.userAgent.indexOf('iPod') > 0 ||
+        navigator.userAgent.indexOf('Android') > 0
+      ) {
+        console.log('スマホ');
+        document.write(
+          '<link rel="stylesheet" type="text/css" href="/honnban/ejs-components/ejs-assets/mobile-controller-style.css"/>',
+        );
+      } else {
+        console.log('ウェブ');
+      }
+    </script>
   </head>
   <body>
+    <!-- スマホ用コントローラの読み込み -->
+    <%- include('./ejs-components/ejs-assets/mobile-controller.asset.ejs') %>
+
     <a-scene
       physics="debug : false;"
       renderer="colorManagement: true; antialias: true;"
@@ -17,6 +37,9 @@
         audio: true;
       "
       cursor="rayOrigin: mouse"
+      keyboard-shortcuts="enterVR: false;"
+      vr-mode-ui="enabled: false;"
+      screen-controls
     >
       <a-assets timeout="200000">
         <img id="comming_soon1" src="/honnban/assets/img/comming_soon1.jpg" />
@@ -43,6 +66,7 @@
         universal-controls
         kinematic-body
         look-controls="pointerLockEnabled: true"
+        extended-wasd-controls="flyEnabled: false; inputType: joystick;"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor

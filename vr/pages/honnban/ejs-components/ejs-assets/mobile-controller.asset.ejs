@@ -1,0 +1,44 @@
+<div class="mainUI" id="uiDiv" oncontextmenu="return false;">
+  <!-- top-left -->
+  <div
+    class="regionUI skyColor"
+    style="top: 10px; left: 10px"
+    oncontextmenu="return false;"
+  ></div>
+
+  <!-- top-right -->
+  <div class="regionUI" style="top: 10px; right: 10px"></div>
+
+  <!-- bottom-left -->
+  <div class="regionUI" style="bottom: 10px; left: 10px">
+    <div class="buttonUI" style="width: 128px; opacity: 0.8">
+      <img src="/honnban/assets/img/joystick-base.png" />
+      <div id="stick1" style="position: absolute; left: 32px; top: 32px">
+        <img src="/honnban/assets/img/gray-circle.png" />
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom-right -->
+  <div class="regionUI baseColor" style="bottom: 10px; right: 10px"></div>
+</div>
+
+<script>
+  // need to run javascript code after a-scene entities and components are loaded
+  AFRAME.registerComponent('screen-controls', {
+    init: function () {
+      this.component = document.getElementById('player').components[
+        'extended-wasd-controls'
+      ];
+      this.joystick1 = new Joystick('stick1', 64, 8);
+      console.log('controls initialized');
+    },
+
+    tick: function (time, deltaTime) {
+      // console.log( joystick1.value )
+      // console.log( this.component.movePercent )
+      this.component.movePercent.x = this.joystick1.value.x;
+      this.component.movePercent.z = -this.joystick1.value.y;
+    },
+  });
+</script>
