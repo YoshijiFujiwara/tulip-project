@@ -28,9 +28,13 @@ router.post('/honnban/select_avatar', function (req, res) {
   // post
   const username = req.body.username;
   const avatar = req.body.avatar;
+  const enableAudio =
+    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
 
   if (username || avatar) {
-    res.redirect(`/honnban?username=${username}&avatar=${avatar}`);
+    res.redirect(
+      `/honnban?username=${username}&avatar=${avatar}&enable_audio=${enableAudio}`,
+    );
   } else {
     res.redirect('/honnban/select_avatar');
   }
@@ -40,6 +44,9 @@ router.post('/honnban/select_avatar', function (req, res) {
 router.get('/honnban', async function (req, res) {
   const username = req.query.username;
   const avatar = req.query.avatar;
+  const enableAudio =
+    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
+
   if (!username || !avatar) {
     res.redirect('/honnban/select_avatar');
   }
@@ -53,6 +60,7 @@ router.get('/honnban', async function (req, res) {
     username,
     avatar,
     wsServerUrl,
+    enableAudio,
   };
 
   res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
@@ -64,6 +72,11 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
 
   const username = req.query.username;
   const avatar = req.query.avatar;
+  const enableAudio =
+    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
+
+  console.log('enableAudio', enableAudio);
+
   if (!username || !avatar) {
     res.redirect('/honnban/select_avatar');
   }
@@ -80,6 +93,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
     avatar,
     apiUrl,
     wsServerUrl,
+    enableAudio,
   };
 
   res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);
