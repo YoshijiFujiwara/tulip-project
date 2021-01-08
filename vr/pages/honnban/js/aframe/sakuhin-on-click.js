@@ -2,6 +2,21 @@ AFRAME.registerComponent('sakuhin-on-click', {
   init: function () {
     var self = this;
     this.el.addEventListener('click', function (evt) {
+      var sakuhinEl = document.querySelector('#i-sakuhin');
+      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:2');
+      sakuhinEl.components.sound.playSound();
+
+      // 自分のnetworkIdを取得する
+      const aScene = document.getElementsByTagName('a-scene')[0];
+      const myNetworkId = aScene.dataset.myNetworkId;
+
+      // TODO: リアクションのところでやるがいったんここでthink, smileをランダムに送る
+      NAF.connection.broadcastData('reaction', {
+        networkId: myNetworkId,
+        reactionType:
+          Math.floor(Math.random() * 11) % 2 === 0 ? 'think' : 'smile',
+      });
+
       var menuEl = document.querySelector('#menu');
       var menuBackgroundEl = document.querySelector('#menuBackground');
       var loveEl = document.querySelector('#i-love');
@@ -11,7 +26,7 @@ AFRAME.registerComponent('sakuhin-on-click', {
       var cryEl = document.querySelector('#i-cry');
       var angryEl = document.querySelector('#i-angry');
 
-      if(menuEl.getAttribute('visible') === false) {
+      if (menuEl.getAttribute('visible') === false) {
         menuEl.setAttribute('visible', true);
         menuBackgroundEl.setAttribute('visible', true);
         loveEl.setAttribute('visible', true);
