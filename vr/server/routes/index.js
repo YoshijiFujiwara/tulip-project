@@ -20,7 +20,7 @@ var router = require('express').Router();
 router.get('/honnban/select_avatar', function (req, res) {
   console.log('get select-avatar invoked');
 
-  res.render(__dirname + './../../pages/honnban/select_avatar.ejs');
+  return res.render(__dirname + './../../pages/honnban/select_avatar.ejs');
 });
 
 router.post('/honnban/select_avatar', function (req, res) {
@@ -30,9 +30,9 @@ router.post('/honnban/select_avatar', function (req, res) {
   const avatar = req.body.avatar;
 
   if (username || avatar) {
-    res.redirect(`/honnban?username=${username}&avatar=${avatar}`);
+    return res.redirect(`/honnban?username=${username}&avatar=${avatar}`);
   } else {
-    res.redirect('/honnban/select_avatar');
+    return res.redirect('/honnban/select_avatar');
   }
 });
 
@@ -43,7 +43,7 @@ router.get('/honnban', async function (req, res) {
   const username = req.query.username;
   const avatar = req.query.avatar;
   if (!username || !avatar) {
-    res.redirect('/honnban/select_avatar');
+    return res.redirect('/honnban/select_avatar');
   }
 
   // 作品情報一覧の取得
@@ -62,7 +62,7 @@ router.get('/honnban', async function (req, res) {
     wsServerUrl,
   };
 
-  res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
+  return res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
 });
 
 // ブース画面(クエリパラメータで、作品のIDを指定する)
@@ -72,7 +72,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   const username = req.query.username;
   const avatar = req.query.avatar;
   if (!username || !avatar) {
-    res.redirect('/honnban/select_avatar');
+    return res.redirect('/honnban/select_avatar');
   }
   // 作品のidのブース情報の取得
   const exhibitId = req.params.exhibitId;
@@ -91,7 +91,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
     wsServerUrl,
   };
 
-  res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);
+  return res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);
 });
 
 // サンプル画面
@@ -106,7 +106,7 @@ router.get('/honnban/sample', async function (req, res) {
   const renderData = {
     exhibits,
   };
-  res.render(__dirname + './../../pages/honnban/sample.ejs', renderData);
+  return res.render(__dirname + './../../pages/honnban/sample.ejs', renderData);
 });
 
 module.exports = router;
