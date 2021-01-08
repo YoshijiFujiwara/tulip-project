@@ -28,8 +28,7 @@ router.post('/honnban/select_avatar', function (req, res) {
   // post
   const username = req.body.username;
   const avatar = req.body.avatar;
-  const enableAudio =
-    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
+  const enableAudio = req.body.enable_audio === 'on' || false;
 
   if (username || avatar) {
     res.redirect(
