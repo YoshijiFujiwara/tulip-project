@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="pa-14">
     <breadcrums :items="breadcrum" />
     <div class="div-controller">
       <v-icon small left color="green">mdi-circle</v-icon
@@ -48,7 +48,6 @@ export default class Groups extends Vue {
       value: 'id',
     },
     { text: 'グループ名', value: 'name', sortable: true },
-    { text: 'リーダー名', value: 'name', sortable: false },
     { text: '操作', value: 'actions', sortable: false },
   ]
 

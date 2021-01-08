@@ -33,20 +33,28 @@ class NetworkEntities {
     );
     switch (entityData.avatar) {
       case 'super_carrot':
-        avatarModel.setAttribute('scale', '0.007 0.007 0.007');
+        avatarModel.setAttribute('scale', '0.01 0.01 0.01');
+        avatarModel.setAttribute('rotation', '0 180 -15');
+        avatarModel.setAttribute('position', '0 -1.426 0');
         break;
       case 'cute_penguin':
         avatarModel.setAttribute('scale', '0.003 0.003 0.003');
-        avatarModel.setAttribute('position', '0 -1.4 0.05791');
+        avatarModel.setAttribute('position', '0 -1.57 0.05791');
         break;
       case 'baby_carrot':
         avatarModel.setAttribute('scale', '0.3 0.3 0.3');
+        avatarModel.setAttribute('rotation', '0 90 0');
         break;
       case 'dragon':
-        avatarModel.setAttribute('scale', '0.018 0.018 0.018');
+        avatarModel.setAttribute('scale', '0.02 0.02 0.02');
         break;
       case 'scarlet_macaw':
-        avatarModel.setAttribute('scale', '0.002 0.002 0.002');
+        avatarModel.setAttribute('scale', '0.0018 0.002 0.002');
+        avatarModel.setAttribute('position', '0 -0.7 0.05791');
+        break;
+      case 'none':
+        avatarModel.remove();
+        name.remove();
         break;
       default:
     }

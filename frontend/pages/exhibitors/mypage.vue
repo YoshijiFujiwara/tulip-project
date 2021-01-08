@@ -34,13 +34,25 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-icon>
-                    <v-icon color="#389c0a">mdi-check-circle</v-icon>
+                    <v-icon :color="exhibit ? '#389c0a' : '#ff5252'">{{
+                      exhibit ? 'mdi-check-circle' : 'mdi-close-circle'
+                    }}</v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>作品登録</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
-                <v-list-item>
+                <v-list-item v-if="exhibit">
+                  <v-list-item-icon>
+                    <v-icon :color="exhibit.booth ? '#389c0a' : '#ff5252'">{{
+                      exhibit.booth ? 'mdi-check-circle' : 'mdi-close-circle'
+                    }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title>ブース作成</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-else>
                   <v-list-item-icon>
                     <v-icon color="#ff5252">mdi-close-circle</v-icon>
                   </v-list-item-icon>
@@ -61,14 +73,13 @@
                   <v-list-item-content>
                     <v-list-item-title>
                       あと
-                      <span class="text-h4 mr-2"
+                      <span class="text-h5 mr-1"
                         >{{ eventLimitTime.date }}日</span
                       >
-                      <span class="text-h4"
-                        >{{ eventLimitTime.hour }}h{{
-                          eventLimitTime.minute
-                        }}m</span
-                      >
+                      <span class="text-h5">
+                        {{ eventLimitTime.hour }}時
+                        {{ eventLimitTime.minute }}分
+                      </span>
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -103,14 +114,13 @@
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
                 exhibit.id
-              }?username=${user.name.trim()}&avatar=scarlet_macaw`"
+              }?username=${user.name.trim()}&avatar=none`"
               frameborder="0"
             ></iframe>
 
             <v-card class="ma-auto card-area ml-5 mr-5" outlined>
               <v-card-title class="justify-center">
-                <v-icon>mdi-information-outline</v-icon>
-                ただいまテストサーバで公開中です。
+                プレゼンテーションを開始するには、こちらから入場してください
               </v-card-title>
               <v-card-actions class="justify-center">
                 <v-btn large class="px-15" @click="connectEntrance">入場</v-btn>
@@ -205,6 +215,7 @@ export default class MyPage extends Vue {
     // 開催時間の取得
     this.eventStartTime = await EventsApi.getEvents()
     this.diffTime()
+    console.log(this.exhibit)
   }
 
   diffTime() {

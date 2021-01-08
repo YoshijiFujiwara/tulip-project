@@ -1,5 +1,8 @@
 <template>
-  <div style="background-color: #f9f9f9; height: 100vh" class="mainText--text">
+  <div
+    style="background-color: #f9f9f9; height: 100vh"
+    class="mainText--text pa-12"
+  >
     <v-row v-if="exhibit">
       <v-col cols="7">
         <v-row>
@@ -37,10 +40,6 @@
         <v-row>
           <v-col class="text-h5 font-weight-bold"> 作成グループ </v-col>
           <v-col class="text-h6">{{ exhibit.group.name }}</v-col>
-        </v-row>
-        <v-row>
-          <v-col class="text-h5 font-weight-bold"> グループリーダー </v-col>
-          <v-col class="text-h6">リーダー名が入る</v-col>
         </v-row>
         <v-row>
           <v-col class="text-h5 font-weight-bold"> ジャンル </v-col>

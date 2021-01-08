@@ -121,6 +121,7 @@ export default {
   // トースト通知設定
   toast: {
     position: 'top-center',
+    duration: 2000,
     register: [
       // ここにカスタム通知をセットする
       {
