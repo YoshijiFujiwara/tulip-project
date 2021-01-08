@@ -51,7 +51,17 @@
   position="<%=position.title.position%>"
   rotation="<%=position.title.rotation%>"
 ></a-text>
-
+<!-- グループ名 -->
+<a-text
+  id="exhibit-panel-group-<%=exhibit.booth.positionNumber%>"
+  value="<%=exhibit.group.name%>"
+  negate="false"
+  scale="<%=position.groupName.scale%>"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  position="<%=position.groupName.position%>"
+  rotation="<%=position.groupName.rotation%>"
+></a-text>
 <!-- サムネイル -->
 <a-image
   id="exhibit-panel-thumbnail-<%=exhibit.id%>"

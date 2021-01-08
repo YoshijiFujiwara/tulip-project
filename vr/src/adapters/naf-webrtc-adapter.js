@@ -456,8 +456,6 @@ class WebrtcAdapter {
           const congestionEl = document.getElementById(
             `exhibit-congestion-image-${exhibitId}`,
           );
-          NAF.log.write('exhibitId', exhibitId);
-          NAF.log.write('congestionEl', congestionEl);
 
           if (congestionEl) {
             let src = '#lv1';
