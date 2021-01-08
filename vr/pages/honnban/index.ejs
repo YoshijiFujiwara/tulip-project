@@ -29,14 +29,11 @@
         <img id="lv1" src="/honnban/assets/img/lv1.svg" />
         <img id="lv2" src="/honnban/assets/img/lv2.svg" />
         <img id="lv3" src="/honnban/assets/img/lv3.svg" />
-
         <!-- bgm -->
         <audio id="bgm" src="/honnban/assets/music/theme14.mp3"></audio>
       </a-assets>
-
       <!-- アバター -->
       <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
-
       <!-- camera -->
       <a-camera
         id="player"
@@ -45,18 +42,23 @@
         spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
-        cursor="rayOrigin: mouse"
       >
         <!-- SELECTIVE INTERSECTIONS -->
-        <a-cursor raycaster="objects: a-gltf-model"></a-cursor>
+        <a-cursor
+          id="cursor-item"
+          raycaster="objects: a-gltf-model,a-image"
+          rayorigin="mouse"
+          scale="0.1 0.1 0.1"
+          geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
+          material="color: #ACACAC; shader: flat; opacity: 0.6"
+        >
+        </a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
-
       <!-- 空 -->
       <%- include('./ejs-components/ejs-assets/sky.asset.ejs') %>
       <!-- ロビー -->
       <%- include('./ejs-components/ejs-assets/lobby.asset.ejs') %>
-
       <!-- prettier-ignore -->
       <%
       include('./ejs-components/exhibition-information.ejs')
@@ -83,7 +85,6 @@
       <!-- パネル -->
       <%#-include('./ejs-components/ejs-assets/lobby-panel.asset.ejs') %>
     </a-scene>
-
     <!-- フッター部分のscriptあれば読み込み -->
     <%- include('./ejs-components/footer.ejs') %>
   </body>
