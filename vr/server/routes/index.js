@@ -74,8 +74,6 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
   const enableAudio =
     (req.query.enable_audio && req.query.enable_audio === 'true') || false;
 
-  console.log('enableAudio', enableAudio);
-
   if (!username || !avatar) {
     res.redirect('/honnban/select_avatar');
   }
