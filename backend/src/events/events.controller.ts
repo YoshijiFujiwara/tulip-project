@@ -10,14 +10,14 @@ import {
   ApiBadRequestResponse,
   ApiOkResponse,
   ApiTags,
-  ApiBearerAuth,
+  // ApiBearerAuth,
 } from '@nestjs/swagger';
 import { EventSerializer } from '../entities/serializer/event.serializer';
-import { GetUser } from '../auth/get-user-decorator';
-import { AdministratorEntity } from '../entities/administrator.entity';
+// import { GetUser } from '../auth/get-user-decorator';
+// import { AdministratorEntity } from '../entities/administrator.entity';
 import { UpdateEventDto } from './dto/update-event.dto';
-import { UseGuards, Get } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Get } from '@nestjs/common';
+// import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('events')
 @Controller('events')
@@ -26,8 +26,9 @@ export class EventsController {
 
   @Put()
   @HttpCode(200)
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
+  // TODO: admin権限のフロント制御が出来るまで、一時的にコメントアウトしております！
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @ApiOkResponse({
     type: EventSerializer,
     description: 'イベント更新完了',
@@ -37,7 +38,8 @@ export class EventsController {
   })
   async updateEvent(
     @Body(ValidationPipe) updateEventDto: UpdateEventDto,
-    @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
+    // TODO: admin権限のフロント制御が出来るまで、一時的にコメントアウトしております！
+    // @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
   ): Promise<EventSerializer> {
     const event = await this.eventsService.updateEvent(updateEventDto);
     return event.transformToSerializer();
