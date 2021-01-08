@@ -51,11 +51,14 @@ router.get('/honnban', async function (req, res) {
   const result = await axiosInstance.get('exhibits');
   // console.log('get exhibits result', result);
 
+  const apiUrl = process.env.VR_API_URL;
+
   const exhibits = result.data;
   const renderData = {
     exhibits,
     username,
     avatar,
+    apiUrl,
     wsServerUrl,
   };
 
