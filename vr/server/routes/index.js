@@ -28,9 +28,12 @@ router.post('/honnban/select_avatar', function (req, res) {
   // post
   const username = req.body.username;
   const avatar = req.body.avatar;
+  const enableAudio = req.body.enable_audio === 'on' || false;
 
   if (username || avatar) {
-    return res.redirect(`/honnban?username=${username}&avatar=${avatar}`);
+    return res.redirect(
+      `/honnban?username=${username}&avatar=${avatar}&enable_audio=${enableAudio}`,
+    );
   } else {
     return res.redirect('/honnban/select_avatar');
   }
@@ -38,18 +41,17 @@ router.post('/honnban/select_avatar', function (req, res) {
 
 // ロビー画面
 router.get('/honnban', async function (req, res) {
-  console.log('honnbann invoked');
-
   const username = req.query.username;
   const avatar = req.query.avatar;
+  const enableAudio =
+    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
+
   if (!username || !avatar) {
     return res.redirect('/honnban/select_avatar');
   }
 
   // 作品情報一覧の取得
-  // console.log('axios Instance', axiosInstance);
   const result = await axiosInstance.get('exhibits');
-  // console.log('get exhibits result', result);
 
   const apiUrl = process.env.VR_API_URL;
 
@@ -60,6 +62,7 @@ router.get('/honnban', async function (req, res) {
     avatar,
     apiUrl,
     wsServerUrl,
+    enableAudio,
   };
 
   return res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
@@ -71,14 +74,15 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
 
   const username = req.query.username;
   const avatar = req.query.avatar;
+  const enableAudio =
+    (req.query.enable_audio && req.query.enable_audio === 'true') || false;
+
   if (!username || !avatar) {
     return res.redirect('/honnban/select_avatar');
   }
   // 作品のidのブース情報の取得
   const exhibitId = req.params.exhibitId;
-  // console.log('axios Instance', axiosInstance);
   const result = await axiosInstance.get(`exhibits/${exhibitId}`);
-  // console.log('get exhibits result', result);
 
   const exhibit = result.data;
   const apiUrl = process.env.VR_API_URL;
@@ -89,6 +93,7 @@ router.get('/honnban/booths/:exhibitId', async function (req, res) {
     avatar,
     apiUrl,
     wsServerUrl,
+    enableAudio,
   };
 
   return res.render(__dirname + './../../pages/honnban/booth.ejs', renderData);

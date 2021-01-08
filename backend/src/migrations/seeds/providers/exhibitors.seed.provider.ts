@@ -10,7 +10,10 @@ export interface DummyExhibitor {
   attendedAt?: Date;
 }
 
-export const provideDummyExhibitors = (groupId, count = 9) => {
+export const factoryDummyExhibitors = (
+  groupId,
+  count = 9,
+): DummyExhibitor[] => {
   let exhibitors: DummyExhibitor[] = [];
   for (let id = 1 + groupId * count; id <= groupId * count + count; id++) {
     exhibitors = [
@@ -26,3 +29,15 @@ export const provideDummyExhibitors = (groupId, count = 9) => {
   }
   return exhibitors;
 };
+
+export const provideDummyExhibitors = (
+  limit = dummyGroups.length,
+): DummyExhibitor[] => {
+  let exhibitors: DummyExhibitor[] = [];
+  for (let groupId = 0; groupId < limit; groupId++) {
+    exhibitors = [...exhibitors, ...factoryDummyExhibitors(groupId)];
+  }
+  return exhibitors;
+};
+
+export const dummyExhibitors = provideDummyExhibitors();
