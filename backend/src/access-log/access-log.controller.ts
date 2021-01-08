@@ -5,6 +5,7 @@ import {
   Headers,
   Query,
   Get,
+  Body,
 } from '@nestjs/common';
 import { AccessLogService } from './access-log.service';
 import {
@@ -13,7 +14,8 @@ import {
   ApiTags,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import { CountAccessLogDto } from './dto/count-access-log.dto';
+import { CountAccessLogQueryDto } from './dto/count-access-log-query.dto';
+import { CountAccessLogBodyDto } from './dto/count-access-log-body.dto';
 import { GetUser } from 'src/auth/get-user-decorator';
 import { AdministratorEntity } from '../entities/administrator.entity';
 import { AccessLogSerializer } from '../entities/serializer/accessLog.serializer';
@@ -39,20 +41,17 @@ export class AccessLogController {
           'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
       },
     },
-    {
-      name: 'referer',
-      description: 'この入力値は反映されません。',
-      schema: {
-        default: 'https://localhost:3001/swagger/',
-      },
-    },
   ])
   async countUp(
     @Headers('user-agent') useragent: string,
-    @Headers('referer') url: string,
-    @Query() countAccessLogDto: CountAccessLogDto,
+    @Query() countAccessLogQueryDto: CountAccessLogQueryDto,
+    @Body() countAccessLogBodyDto: CountAccessLogBodyDto,
   ): Promise<void> {
-    await this.accessLogService.countUp({ useragent, url }, countAccessLogDto);
+    await this.accessLogService.countUp(
+      { useragent },
+      countAccessLogQueryDto,
+      countAccessLogBodyDto,
+    );
   }
 
   @Get()
