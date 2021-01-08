@@ -89,8 +89,9 @@ export default class CreateExhibitDialog extends Vue {
     await ProfileApi.getProfileExhibit().then((exhibit: Exhibit) => {
       this.exhibitId = exhibit.id
     })
+    if (!this.exhibitId) return
     await ExhibitApi.getExhibit(this.exhibitId).then((exhibit: Exhibit) => {
-      this.boothNumber = exhibit.booth?.positionNumber
+      this.boothNumber = exhibit.booth ? exhibit.booth.positionNumber : null
     })
   }
 
