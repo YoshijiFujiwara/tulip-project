@@ -10,6 +10,13 @@
           .then((res) => res.json())
           .then((res) => console.log(res));
       };
+      // 既読情報を格納する
+      const thisExhibitId = <%=exhibit.id%>;
+        const alreadyVisitExhibits =
+          localStorage.getItem('alreadyVisitExhibits') ? JSON.parse(localStorage.getItem('alreadyVisitExhibits')) : [];
+        // このページの作品IDを追加して、重複を削る
+        const updatedVisitExhibits = [...new Set([...alreadyVisitExhibits, thisExhibitId])]
+        localStorage.setItem('alreadyVisitExhibits', JSON.stringify(updatedVisitExhibits));
     </script>
   </head>
   <body>
