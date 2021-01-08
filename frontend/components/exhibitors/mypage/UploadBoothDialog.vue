@@ -86,22 +86,12 @@ export default class CreateExhibitDialog extends Vue {
   }
 
   async getExhibitId() {
-    await ProfileApi.getProfileExhibit()
-      .then((exhibit: Exhibit) => {
-        this.exhibitId = exhibit.id
-      })
-      .catch(() => {
-        this.$toast.error('getProfileExhibitエラーが発生しました')
-        this.dialog = false
-      })
-    await ExhibitApi.getExhibit(this.exhibitId)
-      .then((exhibit: Exhibit) => {
-        this.boothNumber = exhibit.booth?.positionNumber
-      })
-      .catch(() => {
-        this.$toast.error('getExhibitIdエラーが発生しました')
-        this.dialog = false
-      })
+    await ProfileApi.getProfileExhibit().then((exhibit: Exhibit) => {
+      this.exhibitId = exhibit.id
+    })
+    await ExhibitApi.getExhibit(this.exhibitId).then((exhibit: Exhibit) => {
+      this.boothNumber = exhibit.booth?.positionNumber
+    })
   }
 
   onSubmit() {
