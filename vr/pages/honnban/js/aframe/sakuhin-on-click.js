@@ -2,9 +2,20 @@ AFRAME.registerComponent('sakuhin-on-click', {
   init: function () {
     var self = this;
     this.el.addEventListener('click', function (evt) {
-      console.log('sakuhin on click');
-      console.log('NAF', NAF);
-      NAF.connection.broadcastData('reaction', { hoge: 'fuga' });
+      var sakuhinEl = document.querySelector('#i-sakuhin');
+      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:2');
+      sakuhinEl.components.sound.playSound();
+
+      // 自分のnetworkIdを取得する
+      const aScene = document.getElementsByTagName('a-scene')[0];
+      const myNetworkId = aScene.dataset.myNetworkId;
+
+      // TODO: リアクションのところでやるがいったんここでthink, smileをランダムに送る
+      NAF.connection.broadcastData('reaction', {
+        networkId: myNetworkId,
+        reactionType:
+          Math.floor(Math.random() * 11) % 2 === 0 ? 'think' : 'smile',
+      });
 
       var menuEl = document.querySelector('#menu');
       var menuBackgroundEl = document.querySelector('#menuBackground');

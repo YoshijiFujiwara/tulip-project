@@ -20,7 +20,6 @@ AFRAME.registerComponent('networked-scene', {
     el.addEventListener('connect', this.connect);
     if (this.data.connectOnLoad) {
       el.emit('connect', null, false);
-      el.emit('testhogehoge', null, false);
     }
   },
 

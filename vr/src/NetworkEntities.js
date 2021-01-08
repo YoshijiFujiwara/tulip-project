@@ -212,6 +212,18 @@ class NetworkEntities {
     NAF.log.write('reactRemoteEntity dataType', dataType);
     NAF.log.write('reactRemoteEntity data', data);
     NAF.log.write('reactRemoteEntity source', source);
+
+    const { networkId, reactionType } = data;
+    const reactionPlayerEl = document.getElementById(`naf-${networkId}`);
+    const avatarReactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
+    avatarReactionEl.setAttribute(
+      'src',
+      `/honnban/assets/img/emo_${reactionType}.svg`,
+    );
+    avatarReactionEl.setAttribute('visible', true);
+    setTimeout(() => {
+      avatarReactionEl.setAttribute('visible', false);
+    }, 3000);
   }
 
   removeEntitiesOfClient(clientId) {
