@@ -2,6 +2,17 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
+    <script>
+      window.onload = (event) => {
+        fetch(`<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: window.location.pathname })
+        })
+          .then((res) => res.json())
+          .then((res) => console.log('access_log', res))
+      };
+    </script>
   </head>
   <body>
     <a-scene
