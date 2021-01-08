@@ -2,6 +2,29 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
+    <script>
+      var watched = localStorage.getItem('alreadyRead');
+      console.log('watched:' + watched);
+
+      var readArray = localStorage.getItem('readArray');
+
+      // let fruits = ['りんご', 'バナナ'];
+      // fruits.push('マンゴー');
+      // localStorage.setItem('readArray', fruits);
+      if ((readArray = 'null')) {
+        readArray = watched;
+        localStorage.setItem('readArray', readArray);
+        console.log('null' + readArray);
+      } else {
+        readArray = [localStorage.getItem('readArray')];
+        readArray.push(watched);
+        localStorage.setItem('readArray', readArray);
+        console.log('not null' + readArray);
+      }
+      readArray = localStorage.getItem('readArray');
+      console.log('観覧したブース:' + readArray);
+      // localStorage.removeItem('readArray');
+    </script>
   </head>
   <body>
     <a-scene
@@ -42,12 +65,12 @@
         spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
+        look-controls="pointerLockEnabled: true"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor
           id="cursor-item"
           raycaster="objects: a-gltf-model,a-image"
-          rayorigin="mouse"
           scale="0.1 0.1 0.1"
           geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
           material="color: #ACACAC; shader: flat; opacity: 0.6"

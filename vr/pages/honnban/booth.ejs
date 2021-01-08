@@ -10,6 +10,12 @@
           .then((res) => res.json())
           .then((res) => console.log(res));
       };
+
+      //既読情報を格納する
+      var alreayRead = <%=exhibit.id%>;
+      localStorage.setItem('alreadyRead', alreayRead);
+      var watched = localStorage.getItem('alreadyRead');
+      console.log('watched:' + watched);
     </script>
   </head>
   <body>
@@ -36,6 +42,7 @@
         spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
+        look-controls="pointerLockEnabled: true"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor
