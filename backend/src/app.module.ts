@@ -10,6 +10,7 @@ import { ExhibitorsModule } from './exhibitors/exhibitors.module';
 import { GroupsModule } from './groups/groups.module';
 import { AdministratorsModule } from './administrators/administrators.module';
 import { EventsModule } from './events/events.module';
+import { AccessLogModule } from './access-log/access-log.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { EventsModule } from './events/events.module';
     GroupsModule,
     AdministratorsModule,
     EventsModule,
+    AccessLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
