@@ -30,7 +30,7 @@
         username: <%=username%>;
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
-        audio: true;
+        audio: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
     >
@@ -82,8 +82,6 @@
       <%- include('./ejs-components/ejs-assets/booth-current-time.asset.ejs') %>
       <!-- 出口 -->
       <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
-
-      <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
 
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>

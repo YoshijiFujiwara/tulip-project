@@ -6,4 +6,10 @@ export default {
       positionNumber,
     })
   },
+
+  updateBooth(positionNumber: number): Promise<any> {
+    return axios.put('booths', {
+      positionNumber,
+    })
+  },
 }

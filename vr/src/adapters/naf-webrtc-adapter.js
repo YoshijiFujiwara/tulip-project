@@ -302,6 +302,10 @@ class WebrtcAdapter {
     // username, avatar情報
     this.username = '';
     this.avatar = '';
+
+    // 誰かのリアクション情報
+    this.reactionOwnerId = null;
+    this.reactionEmoji = '';
   }
 
   setServerUrl(wsUrl) {
@@ -374,6 +378,10 @@ class WebrtcAdapter {
         self.joinRoom();
       });
 
+      socket.on('testhogehoge', () => {
+        NAF.log.write('testhogehoge invoked');
+      });
+
       socket.on('connectSuccess', (data) => {
         const { joinedTime } = data;
 
@@ -421,8 +429,49 @@ class WebrtcAdapter {
 
       socket.on('occupantsChanged', (data) => {
         const { occupants } = data;
-        NAF.log.write('occupants changed', data);
+        NAF.log.write('occupants changed in webrtc', data);
         self.receivedOccupants(occupants);
+      });
+
+      socket.on('congestionSituationSync', (data) => {
+        const { rooms } = data;
+        NAF.log.write('congestionSituationSync rooms', rooms);
+        if (!rooms || !Object.keys(rooms).length) return;
+
+        const aScene = document.getElementsByTagName('a-scene')[0];
+        aScene.dataset.congestionSituation = rooms;
+
+        // roomの中から、該当のexhibit-idの混雑状況の画像を変更する
+        // 0 ~ 2: lv1
+        // 3 ~ 5: lv2
+        // 6 ~  : lv3
+        Object.keys(rooms).forEach((roomId) => {
+          NAF.log.write('congestionSituationSync roomId', roomId);
+          const isExhibitRoom = roomId.indexOf('exhibit-') === 0;
+          NAF.log.write('isExhibitRoom', isExhibitRoom);
+          if (!isExhibitRoom) return;
+          const exhibitId = roomId.split('-')[1];
+          const howManyPeople = Object.keys(rooms[roomId].occupants).length;
+
+          const congestionEl = document.getElementById(
+            `exhibit-congestion-image-${exhibitId}`,
+          );
+          NAF.log.write('exhibitId', exhibitId);
+          NAF.log.write('congestionEl', congestionEl);
+
+          if (congestionEl) {
+            let src = '#lv1';
+            if (howManyPeople < 3) {
+              src = '#lv1';
+            } else if (howManyPeople < 6) {
+              src = '#lv2';
+            } else {
+              src = '#lv3';
+            }
+
+            congestionEl.setAttribute('src', src);
+          }
+        });
       });
 
       function receiveData(packet) {
@@ -443,11 +492,18 @@ class WebrtcAdapter {
 
   joinRoom() {
     NAF.log.write('Joining room', this.room);
-    // console.log('joinRoom method invoked');
     this.socket.emit('joinRoom', {
       room: this.room,
       username: this.username,
       avatar: this.avatar,
+    });
+  }
+
+  reaction() {
+    NAF.log.write('Someone Reaction!');
+    this.socket.emit('reaction', {
+      reactionOwnerId: this.reactionOwnerId,
+      reactionEmoji: this.reactionEmoji,
     });
   }
 

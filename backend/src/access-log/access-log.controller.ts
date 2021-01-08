@@ -1,9 +1,26 @@
-import { Controller, HttpCode, Post, Headers, Query } from '@nestjs/common';
+import {
+  Controller,
+  HttpCode,
+  Post,
+  Headers,
+  Query,
+  Get,
+} from '@nestjs/common';
 import { AccessLogService } from './access-log.service';
-import { ApiHeaders, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeaders,
+  ApiOkResponse,
+  ApiTags,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { CountAccessLogDto } from './dto/count-access-log.dto';
+import { GetUser } from 'src/auth/get-user-decorator';
+import { AdministratorEntity } from '../entities/administrator.entity';
+import { AccessLogSerializer } from '../entities/serializer/accessLog.serializer';
+import { AuthGuard } from '@nestjs/passport';
+import { UseGuards } from '@nestjs/common';
 
-@ApiTags('access-log')
+@ApiTags('access_log')
 @Controller('access_log')
 export class AccessLogController {
   constructor(private accessLogService: AccessLogService) {}
@@ -36,5 +53,17 @@ export class AccessLogController {
     @Query() countAccessLogDto: CountAccessLogDto,
   ): Promise<void> {
     await this.accessLogService.countUp({ useragent, url }, countAccessLogDto);
+  }
+
+  @Get()
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  @ApiOkResponse({
+    description: 'アクセスログ集計完了',
+  })
+  async getAccessLog(): // @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
+  Promise<AccessLogSerializer[]> {
+    const accessLog = await this.accessLogService.getAccessLog();
+    return accessLog.map(access => access.transformToSerializer());
   }
 }

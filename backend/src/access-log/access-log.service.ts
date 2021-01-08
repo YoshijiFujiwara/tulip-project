@@ -16,4 +16,8 @@ export class AccessLogService {
   ): Promise<void> {
     await this.accessLogRepository.countUp(header, countAccessLogDto);
   }
+
+  async getAccessLog() {
+    return await this.accessLogRepository.find();
+  }
 }

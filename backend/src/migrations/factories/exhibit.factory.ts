@@ -6,13 +6,14 @@ import { randRange } from '../../func/rand.func';
 
 define(ExhibitEntity, (
   _: typeof Faker,
-  { id, title, description, thumbnail, genre, group }: DummyExhibit,
+  { id, title, description, thumbnail, demo, genre, group }: DummyExhibit,
 ) => {
   const exhibit = new ExhibitEntity();
   exhibit.id = id;
   exhibit.title = title;
   exhibit.description = description;
   exhibit.thumbnail = thumbnail;
+  exhibit.demo = demo;
   exhibit.viewsCount = randRange();
   exhibit.goodCount = randRange(exhibit.viewsCount);
   exhibit.genre = genre;
