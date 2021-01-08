@@ -9,8 +9,6 @@
         })
           .then((res) => res.json())
           .then((res) => console.log(res));
-
-        console.log('window.location', window.location);
       };
     </script>
   </head>
@@ -26,7 +24,7 @@
         username: <%=username%>;
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
-        audio: false;
+        audio: true;
       "
       cursor="rayOrigin: mouse"
     >

@@ -103,7 +103,6 @@ class NetworkEntities {
   }
 
   updateEntityMulti(client, dataType, entityDatas, source) {
-    // 頻繁に呼ばれていることはわかった
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     for (let i = 0, l = entityDatas.d.length; i < l; i++) {
       this.updateEntity(client, 'u', entityDatas.d[i], source);
@@ -111,7 +110,6 @@ class NetworkEntities {
   }
 
   updateEntity(client, dataType, entityData, source) {
-    // 頻繁に呼ばれていることはわかった
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     var networkId = entityData.networkId;
 

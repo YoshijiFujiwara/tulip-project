@@ -11,7 +11,7 @@ AFRAME.registerComponent('effect-on-click', {
       const reactionType = evt.target.id.replace('i-', '');
 
       // reaction情報をブロードキャストする
-      NAF.connection.broadcastData('reaction', { reactionType });
+      // TODO: 今は動かないので、sakuhin-on-clickの中で仮実装をしています
     });
   },
 });

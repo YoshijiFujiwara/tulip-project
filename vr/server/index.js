@@ -113,8 +113,6 @@ io.on('connection', (socket) => {
     io.in(curRoom).emit('occupantsChanged', { occupants });
   });
 
-  // TODO: 多分ここで、どのuserがreactionしたかっていうのを書く
-
   socket.on('send', (data) => {
     io.to(data.to).emit('send', data);
   });
