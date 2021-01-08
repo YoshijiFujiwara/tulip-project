@@ -103,6 +103,7 @@ class NetworkEntities {
   }
 
   updateEntityMulti(client, dataType, entityDatas, source) {
+    // 頻繁に呼ばれていることはわかった
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     for (let i = 0, l = entityDatas.d.length; i < l; i++) {
       this.updateEntity(client, 'u', entityDatas.d[i], source);
@@ -110,6 +111,7 @@ class NetworkEntities {
   }
 
   updateEntity(client, dataType, entityData, source) {
+    // 頻繁に呼ばれていることはわかった
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     var networkId = entityData.networkId;
 
@@ -203,6 +205,13 @@ class NetworkEntities {
     if (NAF.options.syncSource && source !== NAF.options.syncSource) return;
     var id = data.networkId;
     return this.removeEntity(id);
+  }
+
+  reactRemoteEntity(toClient, dataType, data, source) {
+    NAF.log.write('reactRemoteEntity toClient', toClient);
+    NAF.log.write('reactRemoteEntity dataType', dataType);
+    NAF.log.write('reactRemoteEntity data', data);
+    NAF.log.write('reactRemoteEntity source', source);
   }
 
   removeEntitiesOfClient(clientId) {

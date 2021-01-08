@@ -302,6 +302,10 @@ class WebrtcAdapter {
     // username, avatar情報
     this.username = '';
     this.avatar = '';
+
+    // 誰かのリアクション情報
+    this.reactionOwnerId = null;
+    this.reactionEmoji = '';
   }
 
   setServerUrl(wsUrl) {
@@ -374,6 +378,10 @@ class WebrtcAdapter {
         self.joinRoom();
       });
 
+      socket.on('testhogehoge', () => {
+        NAF.log.write('testhogehoge invoked');
+      });
+
       socket.on('connectSuccess', (data) => {
         const { joinedTime } = data;
 
@@ -421,8 +429,13 @@ class WebrtcAdapter {
 
       socket.on('occupantsChanged', (data) => {
         const { occupants } = data;
-        NAF.log.write('occupants changed', data);
+        NAF.log.write('occupants changed in webrtc', data);
         self.receivedOccupants(occupants);
+      });
+
+      socket.on('reaction', (data) => {
+        // TODO: リアクション処理
+        NAF.log.write('someone reaction in webrtc', data);
       });
 
       function receiveData(packet) {
@@ -443,11 +456,18 @@ class WebrtcAdapter {
 
   joinRoom() {
     NAF.log.write('Joining room', this.room);
-    // console.log('joinRoom method invoked');
     this.socket.emit('joinRoom', {
       room: this.room,
       username: this.username,
       avatar: this.avatar,
+    });
+  }
+
+  reaction() {
+    NAF.log.write('Someone Reaction!');
+    this.socket.emit('reaction', {
+      reactionOwnerId: this.reactionOwnerId,
+      reactionEmoji: this.reactionEmoji,
     });
   }
 

@@ -1,5 +1,10 @@
 /* global NAF */
-var ReservedDataType = { Update: 'u', UpdateMulti: 'um', Remove: 'r' };
+var ReservedDataType = {
+  Update: 'u',
+  UpdateMulti: 'um',
+  Remove: 'r',
+  Reaction: 'reaction',
+};
 
 class NetworkConnection {
   constructor(networkEntities) {
@@ -21,8 +26,6 @@ class NetworkConnection {
       ReservedDataType.Update
     ] = this.entities.updateEntity.bind(this.entities);
 
-    // console.log('setup なんとかかんとか', this.entities);
-
     this.dataChannelSubs[
       ReservedDataType.UpdateMulti
     ] = this.entities.updateEntityMulti.bind(this.entities);
@@ -30,6 +33,10 @@ class NetworkConnection {
     this.dataChannelSubs[
       ReservedDataType.Remove
     ] = this.entities.removeRemoteEntity.bind(this.entities);
+
+    this.dataChannelSubs[
+      ReservedDataType.Reaction
+    ] = this.entities.reactRemoteEntity.bind(this.entities);
   }
 
   connect(serverUrl, appName, roomName, enableAudio = false, username, avatar) {

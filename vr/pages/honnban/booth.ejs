@@ -9,6 +9,8 @@
         })
           .then((res) => res.json())
           .then((res) => console.log(res));
+
+        console.log('window.location', window.location);
       };
     </script>
   </head>
@@ -76,8 +78,6 @@
       <%- include('./ejs-components/ejs-assets/booth-current-time.asset.ejs') %>
       <!-- 出口 -->
       <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
-
-      <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
 
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>
