@@ -94,8 +94,6 @@ io.on('connection', (socket) => {
     console.log('joinRoom username', username);
     console.log('joinRoom avatar', avatar);
 
-    console.log('rooms', rooms);
-
     if (!rooms[room]) {
       rooms[room] = {
         name: room,
