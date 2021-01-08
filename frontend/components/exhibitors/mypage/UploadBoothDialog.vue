@@ -97,7 +97,14 @@ export default class CreateExhibitDialog extends Vue {
   onSubmit() {
     this.isLoading = true
     if (this.isUpdateMode) {
-      alert('更新する処理')
+      BoothsApi.updateBooth(this.form.positionNumber!)
+        .then((res) => {
+          this.boothNumber = res.data.positionNumber
+          this.$toast.success('ブースの更新が完了しました')
+        })
+        .catch((res) => {
+          this.$toast.error(res.data.message)
+        })
     } else {
       BoothsApi.postBooth(this.form.positionNumber!)
         .then(() => {
