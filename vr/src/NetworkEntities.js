@@ -52,6 +52,10 @@ class NetworkEntities {
         avatarModel.setAttribute('scale', '0.0018 0.002 0.002');
         avatarModel.setAttribute('position', '0 -0.7 0.05791');
         break;
+      case 'none':
+        avatarModel.remove();
+        name.remove();
+        break;
       default:
     }
     // console.log('name', name);
