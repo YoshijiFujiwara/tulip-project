@@ -56,14 +56,13 @@ export class AccessLogController {
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @ApiOkResponse({
     description: 'アクセスログ集計完了',
   })
-  async getAccessLog(
-    @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
-  ): Promise<AccessLogSerializer[]> {
+  async getAccessLog(): // @GetUser(['admin']) _: AdministratorEntity, // eslint-disable-line @typescript-eslint/no-unused-vars
+  Promise<AccessLogSerializer[]> {
     const accessLog = await this.accessLogService.getAccessLog();
     return accessLog.map(access => access.transformToSerializer());
   }
