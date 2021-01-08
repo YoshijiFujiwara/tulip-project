@@ -3,24 +3,20 @@
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
     <script>
-      var watched = localStorage.getItem('alreadyRead');
-      console.log('watched:' + watched);
-
-      var readArray = localStorage.getItem('readArray');
-
-      if ((readArray = 'null')) {
-        readArray = watched;
-        localStorage.setItem('readArray', readArray);
-        console.log('null' + readArray);
-      } else {
-        readArray = [localStorage.getItem('readArray')];
-        readArray.push(watched);
-        localStorage.setItem('readArray', readArray);
-        console.log('not null' + readArray);
-      }
-      readArray = localStorage.getItem('readArray');
-      console.log('観覧したブース:' + readArray);
-      // localStorage.removeItem('readArray');
+      window.onload = (evt) => {
+        const alreadyVisitExhibits = localStorage.getItem(
+          'alreadyVisitExhibits',
+        )
+          ? JSON.parse(localStorage.getItem('alreadyVisitExhibits'))
+          : [];
+        alreadyVisitExhibits.forEach((exhibitId) => {
+          const thubmnailEl = document.getElementById(
+            `exhibit-panel-thumbnail-${exhibitId}`,
+          );
+          if (!thubmnailEl) return;
+          thubmnailEl.setAttribute('material', 'color:  #5c5c5c;');
+        });
+      };
     </script>
   </head>
   <body>
