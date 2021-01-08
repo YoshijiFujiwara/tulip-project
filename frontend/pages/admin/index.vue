@@ -118,8 +118,8 @@
                 <div class="sm_font">人気作品</div>
                 <template>
                   <v-tabs right>
-                    <v-tab>いいね数</v-tab>
-                    <v-tab>視聴数</v-tab>
+                    <v-tab @click="changeGoodCount">いいね数</v-tab>
+                    <v-tab @click="changeViewCount">視聴数</v-tab>
                   </v-tabs>
                 </template>
                 <PieChart :exhibits="exhibits" />
@@ -195,6 +195,18 @@ export default class Signin extends Vue {
 
   isOpenEventTimeDialog: boolean = false
 
+  changeGoodCount() {
+    this.exhibits.sort((a, b) => {
+      return b.goodCount - a.goodCount
+    })
+  }
+
+  changeViewCount() {
+    this.exhibits.sort((a, b) => {
+      return b.viewsCount - a.viewsCount
+    })
+  }
+
   openEventTimeModal() {
     // 作品登録用モーダルを開く
     this.isOpenEventTimeDialog = true
@@ -206,7 +218,6 @@ export default class Signin extends Vue {
     this.exhibits.sort((a, b) => {
       return b.goodCount - a.goodCount
     })
-    console.log(this.exhibits)
   }
 }
 </script>
