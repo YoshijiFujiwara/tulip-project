@@ -2,6 +2,13 @@
 import { Pie } from 'vue-chartjs'
 export default {
   extends: Pie,
+  props: {
+    exhibits: {
+      type: Array,
+      // eslint-disable-next-line vue/require-valid-default-prop
+      default: [],
+    },
+  },
   data() {
     return {
       chartdata: {

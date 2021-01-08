@@ -122,7 +122,7 @@
                     <v-tab>視聴数</v-tab>
                   </v-tabs>
                 </template>
-                <PieChart />
+                <PieChart :exhibits="exhibits" />
                 <v-card-actions>
                   <v-spacer></v-spacer
                   ><v-btn text color="success">作品一覧</v-btn>
@@ -142,6 +142,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import LineChart from '@/components/charts/lineChart.vue'
 import PieChart from '@/components/charts/pieChart.vue'
 import EventTimeDialog from '@/components/EventTimeDialog.vue'
+import { Exhibit } from '../../types/exhibit'
+import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import Breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
@@ -150,6 +152,7 @@ import Breadcrumbs from '../../components/breadcrums.vue'
   components: { Breadcrumbs, LineChart, PieChart, EventTimeDialog },
 })
 export default class Signin extends Vue {
+  exhibits: Exhibit[] = []
   breadcrum = [
     {
       text: 'ダッシュボード',
@@ -195,6 +198,15 @@ export default class Signin extends Vue {
   openEventTimeModal() {
     // 作品登録用モーダルを開く
     this.isOpenEventTimeDialog = true
+  }
+
+  async created() {
+    const exhibits = await ExhibitApi.getExhibits()
+    this.exhibits = exhibits
+    this.exhibits.sort((a, b) => {
+      return b.goodCount - a.goodCount
+    })
+    console.log(this.exhibits)
   }
 }
 </script>
