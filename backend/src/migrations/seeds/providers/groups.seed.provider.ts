@@ -6,7 +6,7 @@ export interface DummyGroup {
 export const dummyGroups: DummyGroup[] = [
   {
     id: 1,
-    name: 'Polyrhythm',
+    name: 'Yonomi',
   },
   {
     id: 2,
@@ -14,19 +14,19 @@ export const dummyGroups: DummyGroup[] = [
   },
   {
     id: 3,
-    name: '星空ドロップ制作委員会',
+    name: 'フロムSOFTWARE',
   },
   {
     id: 4,
-    name: 'OUTOF SOFTWARE',
+    name: 'オトモクリエイティブ',
   },
   {
     id: 5,
-    name: 'reelcast',
+    name: 'Motion',
   },
   {
     id: 6,
-    name: 'Project OASITH',
+    name: 'ステジオヤスイ',
   },
   {
     id: 7,
