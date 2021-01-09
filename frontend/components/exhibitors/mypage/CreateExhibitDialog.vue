@@ -30,16 +30,6 @@
           row-height="40"
           outlined
         ></v-textarea>
-        <v-select
-          v-model="form.genre"
-          class="pb-3"
-          :rules="rules.genre"
-          :items="items"
-          label="ジャンル"
-          placeholder="選択"
-          color="deep-purple darken-4"
-          outlined
-        ></v-select>
         <p>
           <span class="font-weight-bold">
             サムネイル
@@ -132,25 +122,6 @@
           prepend-icon="mdi-video"
           @change="onVideoPicked"
         ></v-file-input>
-        <!-- <p>
-          <span class="font-weight-bold">
-            3Dモデル
-            <br />
-          </span>
-          表示する3Dモデルがある場合はアップロードしましょう。
-        </p>
-        <v-file-input
-          v-model="form.modelData"
-          class="pb-3"
-          color="deep-purple accent-4"
-          accept=".obj, .gltf, .glb"
-          label="3Dモデルをアップロード"
-          prepend-icon="mdi-video-3d"
-          outlined
-          required
-          show-size
-          dense
-        ></v-file-input> -->
         <v-btn
           block
           large
@@ -278,6 +249,7 @@ export default class CreateExhibitDialog extends Vue {
 
     ExhibitApi.createExhibit({
       ...this.form,
+      genre: 'music',
       thumbnail: thumbnailImageUrl,
       presentationImages: presentationImageUrls,
       demo: demoVideoUrl || undefined,
