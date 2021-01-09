@@ -70,7 +70,6 @@
         id="player"
         position="0 1.6 0"
         networked="template:#avatar-template;attachTemplateToLocal:false;"
-        spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
         look-controls="pointerLockEnabled: true"
@@ -79,10 +78,11 @@
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor
           id="cursor-item"
-          raycaster="objects: a-gltf-model"
+          raycaster="objects: a-gltf-model,a-image"
           scale="0.1 0.1 0.1"
           geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
           material="color: #ACACAC; shader: flat; opacity: 0.6"
+          far="30"
         >
         </a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>

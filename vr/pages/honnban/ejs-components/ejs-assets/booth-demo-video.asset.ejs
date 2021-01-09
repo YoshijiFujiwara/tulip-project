@@ -1,5 +1,7 @@
 <!-- デモ動画_ASSET -->
 <a-assets timeout="200000">
+  <img id="asset-play" src="/honnban/assets/img/play.png" />
+  <img id="asset-pause" src="/honnban/assets/img/pause.png" />
   <video
     id="asset-demo"
     preload="auto"
@@ -31,6 +33,18 @@
   rotation="0 90 0"
   scale="-1 1 1"
 ></a-entity>
+<!-- Play/Pause -->
+<a-image
+  id="video-controls"
+  src="#asset-play"
+  position="3.02294 3.43645 2.71608"
+  scale="0.4 0.4 0.4"
+  booth-video-player
+  rotation="0 52.09332273329445 0"
+>
+</a-image>
+
+</a-image>
 <!-- グループ名 -->
 <a-text
   id="group-name"
