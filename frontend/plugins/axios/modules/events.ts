@@ -9,4 +9,3 @@ export default {
     return axios.$put('events', body)
   },
 }
-
