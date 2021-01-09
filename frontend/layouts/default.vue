@@ -7,7 +7,7 @@
         max-width="250"
       />
       <v-spacer />
-      <v-btn @click="logout"> ログアウト(仮) </v-btn>
+      <v-btn @click="logout"> ログアウト </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
