@@ -10,9 +10,9 @@
       sort-by="ID"
     >
       <!-- eslint-disable-next-line -->
-      <template v-slot:item.status="{ item }">
+      <template v-slot:item.status="{item}">
         <v-badge
-          v-if="item.id % 2 == 0"
+          v-if="item.status"
           bordered
           left
           inline
@@ -71,7 +71,11 @@ export default class Signin extends Vue {
 
   async created() {
     const exhibitors = await ExhibitorApi.getExhibitors()
-    this.exhibitors = exhibitors
+    this.exhibitors = exhibitors.map((exhibitor) => ({
+      ...exhibitor,
+      status: !!exhibitor.attendedAt,
+    }))
+    console.log('this.exhibitors', this.exhibitors)
   }
 }
 </script>
