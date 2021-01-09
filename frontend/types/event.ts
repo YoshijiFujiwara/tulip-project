@@ -1,5 +1,5 @@
 export type Event = {
   id: number
-  startAt: Date
-  endAt: Date
+  startAt: string
+  endAt: string
 }

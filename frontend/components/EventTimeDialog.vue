@@ -111,7 +111,9 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import EventApi from '../plugins/axios/modules/event'
+import { Event } from '../types/event'
+import EventApi from '../plugins/axios/modules/events'
+import events from '../plugins/axios/modules/events'
 
 @Component
 export default class EventTimeDialog extends Vue {
@@ -144,6 +146,16 @@ export default class EventTimeDialog extends Vue {
   datePicker = false
   startTimePicker = false
   endTimePicker = false
+
+  created() {
+    EventApi.getEvents()
+      .then((event: Event) => {
+        this.form.date = event.startAt.substring(0, 10)
+        this.form.startTime = event.startAt.substring(11, 16)
+        this.form.endTime = event.endAt.substring(11, 16)
+      })
+      .catch(() => (this.dialog = false))
+  }
 
   onSubmit() {
     this.isLoading = true
