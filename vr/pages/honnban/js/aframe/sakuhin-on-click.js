@@ -3,7 +3,7 @@ AFRAME.registerComponent('sakuhin-on-click', {
     var self = this;
     this.el.addEventListener('click', function (evt) {
       var sakuhinEl = document.querySelector('#i-sakuhin');
-      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:1');
+      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:0.07');
       sakuhinEl.components.sound.playSound();
 
       var menuEl = document.querySelector('#menu');
