@@ -236,7 +236,7 @@ class NetworkEntities {
 
     reactionElements[networkId].setAttribute(
       'sound',
-      `src: #assets-${reactionType}-effect; volume:2`,
+      `src: #assets-${reactionType}-effect; volume:1`,
     );
     reactionElements[networkId].components.sound.playSound();
     endAndStartTimer(networkId);
