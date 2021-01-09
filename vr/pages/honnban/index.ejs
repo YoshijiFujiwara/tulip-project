@@ -41,13 +41,6 @@
           if (!thubmnailEl) return;
           thubmnailEl.setAttribute('material', 'color:  #5c5c5c;');
         });
-
-        const aScene = document.getElementsByTagName('a-scene')[0];
-        const exhibitsArrayString =
-          '[<%= exhibits.map(exhibit => exhibit.id) %>]';
-        aScene.dataset.exhibits = JSON.stringify(
-          JSON.parse(exhibitsArrayString),
-        );
       };
     </script>
   </head>
