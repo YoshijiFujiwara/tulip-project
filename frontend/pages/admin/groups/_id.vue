@@ -64,7 +64,6 @@ export default class Groups extends Vue {
     { text: '学籍番号', value: 'studentNumber', sortable: true },
     { text: '名前', value: 'name', sortable: false },
     { text: '出席ステータス', value: 'status', sortable: false },
-    { text: '操作', value: 'actions', sortable: false },
   ]
 
   async created() {
