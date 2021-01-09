@@ -7,7 +7,7 @@
         <v-col cols="9">
           <v-row>
             <v-card
-              class="px-3 mr-1"
+              class="px-3 mx-auto"
               max-width="280px"
               color="#f44336"
               cols="4"
@@ -40,7 +40,7 @@
               </v-card-text>
             </v-card>
             <v-card
-              class="px-3 mr-1"
+              class="px-3 mx-auto"
               max-width="290px"
               color="#009688"
               cols="4"
@@ -73,7 +73,7 @@
               </v-card-text>
             </v-card>
             <v-card
-              class="px-3 mr-1"
+              class="px-3 mx-auto"
               max-width="290px"
               color="#2196f3"
               cols="4"
