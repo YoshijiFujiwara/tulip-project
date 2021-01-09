@@ -8,6 +8,7 @@
       :items-per-page="10"
       :search="search"
       class="elevation-1"
+      @click:row="clickRow"
     >
       <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
@@ -63,6 +64,10 @@ export default class Groups extends Vue {
     // this.user = await this.$auth.user
     const groups = await GroupApi.getGroups()
     this.groups = groups
+  }
+
+  clickRow(row: any) {
+    this.$router.push({ path: `/admin/groups/${row.id}` })
   }
 }
 </script>
