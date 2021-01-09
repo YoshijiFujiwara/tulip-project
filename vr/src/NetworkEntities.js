@@ -1,6 +1,18 @@
 /* global NAF */
 var ChildEntityCache = require('./ChildEntityCache');
 
+var reactionElements = [];
+
+var endAndStartTimer = (function (networkId) {
+  var timer; // variable persisted here
+  return function () {
+    window.clearTimeout(timer);
+    //var millisecBeforeRedirect = 10000;
+    timer = window.setTimeout(function () {
+      reactionElements[networkId].setAttribute('visible', false);
+    }, 3000);
+  };
+})();
 class NetworkEntities {
   constructor() {
     this.entities = {};
@@ -213,15 +225,21 @@ class NetworkEntities {
 
     const { networkId, reactionType } = data;
     const reactionPlayerEl = document.getElementById(`naf-${networkId}`);
-    const avatarReactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
-    avatarReactionEl.setAttribute(
+    reactionElements[networkId] = reactionPlayerEl.querySelector(
+      '#avatar_reaction',
+    );
+    reactionElements[networkId].setAttribute(
       'src',
       `/honnban/assets/img/emo_${reactionType}.svg`,
     );
-    avatarReactionEl.setAttribute('visible', true);
-    setTimeout(() => {
-      avatarReactionEl.setAttribute('visible', false);
-    }, 3000);
+    reactionElements[networkId].setAttribute('visible', true);
+
+    reactionElements[networkId].setAttribute(
+      'sound',
+      `src: #assets-${reactionType}-effect; volume:2`,
+    );
+    reactionElements[networkId].components.sound.playSound();
+    endAndStartTimer(networkId);
   }
 
   removeEntitiesOfClient(clientId) {
