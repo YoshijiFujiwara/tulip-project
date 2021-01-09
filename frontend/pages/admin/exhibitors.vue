@@ -75,7 +75,6 @@ export default class Signin extends Vue {
       ...exhibitor,
       status: !!exhibitor.attendedAt,
     }))
-    console.log('this.exhibitors', this.exhibitors)
   }
 }
 </script>
