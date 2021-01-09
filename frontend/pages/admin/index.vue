@@ -21,7 +21,11 @@
                     </v-col>
                     <v-col cols="8" class="md-2">
                       <div>あと</div>
-                      <div style="font-size: 25px">99日 99:99</div>
+                      <div style="font-size: 25px">
+                        {{ eventLimitTime.date }}日 {{ eventLimitTime.hour }}:{{
+                          eventLimitTime.minute
+                        }}
+                      </div>
                     </v-col>
                     <v-col class="mt-5">
                       <v-card-actions>
@@ -58,12 +62,16 @@
                       style="font-size: 30px"
                       align-self="center"
                     >
-                      99人
+                      {{ exhibitorsNumber }}人
                     </v-col>
                     <v-col class="mt-5">
                       <v-card-actions>
                         <v-spacer></v-spacer
-                        ><v-btn rounded outlined color="#ffffff"
+                        ><v-btn
+                          rounded
+                          outlined
+                          color="#ffffff"
+                          @click="goToExhibitors"
                           >出展者一覧</v-btn
                         >
                       </v-card-actions>
@@ -91,12 +99,16 @@
                       style="font-size: 30px"
                       align-self="center"
                     >
-                      9 グループ
+                      {{ groupNumber }} グループ
                     </v-col>
                     <v-col class="mt-5">
                       <v-card-actions>
                         <v-spacer></v-spacer
-                        ><v-btn rounded outlined color="#ffffff"
+                        ><v-btn
+                          rounded
+                          outlined
+                          color="#ffffff"
+                          @click="goToGroup"
                           >グループ一覧</v-btn
                         >
                       </v-card-actions>
@@ -143,7 +155,11 @@ import LineChart from '@/components/charts/lineChart.vue'
 import PieChart from '@/components/charts/pieChart.vue'
 import EventTimeDialog from '@/components/EventTimeDialog.vue'
 import { Exhibit } from '../../types/exhibit'
+import { Event } from '../../types/event'
+import EventsApi from '../../plugins/axios/modules/events'
 import ExhibitApi from '../../plugins/axios/modules/exhibit'
+import GroupApi from '../../plugins/axios/modules/group'
+import ExhibitorsApi from '../../plugins/axios/modules/exhibitors'
 import Breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
@@ -153,7 +169,16 @@ import Breadcrumbs from '../../components/breadcrums.vue'
 })
 export default class Signin extends Vue {
   exhibits: Exhibit[] = []
+  exhibitorsNumber: number = 0
+  groupNumber: number = 0
   order = 'goodCount'
+  eventStartTime: Event | null = null
+  eventLimitTime = {
+    date: 99,
+    hour: 23,
+    minute: 59,
+  }
+
   breadcrum = [
     {
       text: 'ダッシュボード',
@@ -221,6 +246,34 @@ export default class Signin extends Vue {
     this.exhibits.sort((a, b) => {
       return b.goodCount - a.goodCount
     })
+    const exhibitors = await ExhibitorsApi.getExhibitors()
+    this.exhibitorsNumber = exhibitors.length
+    const groups = await GroupApi.getGroups()
+    this.groupNumber = groups.length
+
+    this.eventStartTime = await EventsApi.getEvents()
+    this.diffTime()
+  }
+
+  diffTime() {
+    if (this.eventLimitTime) {
+      const limitTime = new Date(this.eventStartTime!!.startAt) // 開催時間
+      const nowTime = new Date().getTime() // 現在時刻
+      const diffTime = limitTime.getTime() - nowTime
+      this.eventLimitTime.date = Math.floor(diffTime / (1000 * 60 * 60 * 24)) // 日
+      let diff2Dates = diffTime % (1000 * 60 * 60 * 24)
+      this.eventLimitTime.hour = Math.floor(diff2Dates / (1000 * 60 * 60)) // 時間
+      diff2Dates = diff2Dates % (1000 * 60 * 60)
+      this.eventLimitTime.minute = Math.floor(diff2Dates / (1000 * 60)) // 分
+    }
+  }
+
+  goToExhibitors() {
+    this.$router.push({ path: `/admin/exhibitors/` })
+  }
+
+  goToGroup() {
+    this.$router.push({ path: `/admin/groups/` })
   }
 }
 </script>
