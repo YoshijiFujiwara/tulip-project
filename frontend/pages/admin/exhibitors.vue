@@ -52,7 +52,7 @@ export default class Signin extends Vue {
     { text: 'ID', value: 'id' },
     { text: '展示者名', value: 'name' },
     { text: '所属グループ名', value: 'group.name' },
-    { text: '出席ステータス', value: 'status', sortable: false },
+    { text: '出席ステータス', value: 'status' },
     { text: '操作', value: 'actions', sortable: false },
   ]
 
