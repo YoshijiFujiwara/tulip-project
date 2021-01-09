@@ -118,11 +118,11 @@
                 <div class="sm_font">人気作品</div>
                 <template>
                   <v-tabs right>
-                    <v-tab>いいね数</v-tab>
-                    <v-tab>視聴数</v-tab>
+                    <v-tab @click="changeGoodCount">いいね数</v-tab>
+                    <v-tab @click="changeViewCount">視聴数</v-tab>
                   </v-tabs>
                 </template>
-                <PieChart />
+                <PieChart :exhibits="exhibits" :order="order" />
                 <v-card-actions>
                   <v-spacer></v-spacer
                   ><v-btn text color="success">作品一覧</v-btn>
@@ -142,6 +142,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import LineChart from '@/components/charts/lineChart.vue'
 import PieChart from '@/components/charts/pieChart.vue'
 import EventTimeDialog from '@/components/EventTimeDialog.vue'
+import { Exhibit } from '../../types/exhibit'
+import ExhibitApi from '../../plugins/axios/modules/exhibit'
 import Breadcrumbs from '../../components/breadcrums.vue'
 
 @Component({
@@ -150,6 +152,8 @@ import Breadcrumbs from '../../components/breadcrums.vue'
   components: { Breadcrumbs, LineChart, PieChart, EventTimeDialog },
 })
 export default class Signin extends Vue {
+  exhibits: Exhibit[] = []
+  order = 'goodCount'
   breadcrum = [
     {
       text: 'ダッシュボード',
@@ -192,9 +196,31 @@ export default class Signin extends Vue {
 
   isOpenEventTimeDialog: boolean = false
 
+  changeGoodCount() {
+    this.exhibits.sort((a, b) => {
+      this.order = 'goodCount'
+      return b.goodCount - a.goodCount
+    })
+  }
+
+  changeViewCount() {
+    this.exhibits.sort((a, b) => {
+      this.order = 'viewsCount'
+      return b.viewsCount - a.viewsCount
+    })
+  }
+
   openEventTimeModal() {
     // 作品登録用モーダルを開く
     this.isOpenEventTimeDialog = true
+  }
+
+  async created() {
+    const exhibits = await ExhibitApi.getExhibits()
+    this.exhibits = exhibits
+    this.exhibits.sort((a, b) => {
+      return b.goodCount - a.goodCount
+    })
   }
 }
 </script>
