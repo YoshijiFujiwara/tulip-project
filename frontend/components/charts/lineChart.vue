@@ -2,7 +2,6 @@
 import { Line } from 'vue-chartjs'
 import { format } from 'date-fns'
 import AcceslogApi from '../../plugins/axios/modules/getAcceslog'
-import { Acceslog } from '~/types/acceslog'
 
 export default {
   extends: Line,
