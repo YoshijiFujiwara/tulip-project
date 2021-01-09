@@ -109,22 +109,24 @@
       include('./ejs-components/exhibition-information.ejs')
       positions = positions();
       %>
-      <%# 1~8までループ %>
-      <% for (var i = 1; i < 9; i++) { %>
+      <%# boothsの数だけループ %>
       <%
-        exhibit = exhibits.find(e => e.booth.positionNumber === i);
-        position = positions["at"+i];
-        boothId = i;
+        exhibitsEnableBooth = exhibits.filter(e => !!e.booth);
+        exhibitsEnableBooth.forEach((exhibit, index) => {
       %>
-      <!-- prettier-ignore -->
-      <%-
-        include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
-          exhibit,
-          position,
-          boothId
-        })
-      %>
-      <% } %>
+        <%
+          position = positions[`at${exhibit.booth.positionNumber}`];
+          boothId = exhibit.booth.id;
+        %>
+        <!-- prettier-ignore -->
+        <%-
+          include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
+            exhibit,
+            position,
+            boothId
+          })
+        %>
+      <% }); %>
       <!-- 現在時間を表示 -->
       <%- include('./ejs-components/ejs-assets/lobby-current-time.asset.ejs') %>
       <!-- パネル -->
