@@ -6,34 +6,34 @@ export interface DummyGroup {
 export const dummyGroups: DummyGroup[] = [
   {
     id: 1,
-    name: 'Yonomi',
+    name: '3年B組',
   },
   {
     id: 2,
-    name: 'teamWaterfall',
+    name: '3年A組',
   },
   {
     id: 3,
-    name: 'フロムSOFTWARE',
+    name: '2年A組',
   },
   {
     id: 4,
-    name: 'オトモクリエイティブ',
+    name: '2年B組',
   },
   {
     id: 5,
-    name: 'Motion',
+    name: '柔道部',
   },
   {
     id: 6,
-    name: 'ステジオヤスイ',
+    name: '卓球部',
   },
   {
     id: 7,
-    name: 'SOZO',
+    name: '1年A組',
   },
   {
     id: 8,
-    name: 'サンプルチーム',
+    name: '1年B組',
   },
 ];
