@@ -20,7 +20,16 @@ export default {
         datasets: [
           {
             label: ['Data One'],
-            backgroundColor: '#f87979',
+            backgroundColor: [
+              '#FC365B',
+              '#1F97FF',
+              '#FFF733',
+              '#0AF516',
+              '#44A0EE',
+              '#2EAF1D',
+              '#F86868',
+              '#0A7FFF',
+            ],
             data: [40, 30, 10, 20],
           },
         ],
