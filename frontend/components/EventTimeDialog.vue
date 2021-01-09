@@ -147,21 +147,17 @@ export default class EventTimeDialog extends Vue {
 
   onSubmit() {
     this.isLoading = true
-    let creatAt: Date | null = null
-    let endAt: Date | null = null
+    let startAt: string | null = null
+    let endAt: string | null = null
 
     if (this.form.startTime && this.form.date && this.form.endTime) {
-      creatAt = new Date(
-        this.form.date.replace(/-/g, '/') + ' ' + this.form.startTime + ':00'
-      )
-
-      endAt = new Date(
-        this.form.date.replace(/-/g, '/') + ' ' + this.form.endTime + ':00'
-      )
-      console.log(creatAt)
+      startAt = new Date(
+        this.form.date + 'T' + this.form.startTime
+      ).toISOString()
+      endAt = new Date(this.form.date + 'T' + this.form.endTime).toISOString()
     }
     EventApi.updateEvent({
-      creatAt,
+      startAt,
       endAt,
     })
       .then(() => {

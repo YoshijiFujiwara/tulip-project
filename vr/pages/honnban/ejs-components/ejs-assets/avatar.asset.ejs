@@ -3,15 +3,16 @@
   <template id="avatar-template">
     <a-entity class="avatar" networked-audio-source>
       <!-- リアクション_ASSET -->
-      <!-- 今だけコメントアウト！！ -->
-      <!-- <a-image
-        id="reaction"
+      <!-- idがavatar_reactionじゃないと動かないです -->
+      <a-image
+        id="avatar_reaction"
         src="/honnban/assets/img/emo_cry.svg"
         position="-0.04 0.05 0.32"
         rotation="0 0 0"
         scale="0.4 0.4 0.4"
         look-at="#player"
-      ></a-image> -->
+        visible="false"
+      ></a-image>
       <!-- ユーザー名_ASSET -->
       <a-entity
         class="head"
@@ -21,16 +22,6 @@
         scale="2 2 2"
         look-at="#player"
       ></a-entity>
-      <!-- 🐧 -->
-      <!-- <a-gltf-model
-        id="avatar_model"
-        class="head"
-        src="/honnban/assets/model/cute_penguin/scene.gltf"
-        scale="0.003 0.003 0.003"
-        rotation="-10 180 0"
-        position="0 -1.4 0.05791"
-      ></a-gltf-model> -->
-      <!-- 🥕 -->
       <!-- idをavatar_modelにしないと動かないです -->
       <a-gltf-model
         id="avatar_model"

@@ -2,17 +2,51 @@
   <head>
     <!-- ヘッダーのスクリプト群の読み込み -->
     <%- include('./ejs-components/header.ejs') %>
-    <script>
+
+    <script type="text/javascript">
+      // スマホ用コントローラのスタイルの読み込み
+      if (
+        (navigator.userAgent.indexOf('iPhone') > 0 &&
+          navigator.userAgent.indexOf('iPad') == -1) ||
+        navigator.userAgent.indexOf('iPod') > 0 ||
+        navigator.userAgent.indexOf('Android') > 0
+      ) {
+        console.log('スマホ');
+        document.write(
+          '<link rel="stylesheet" type="text/css" href="/honnban/ejs-components/ejs-assets/mobile-controller-style.css"/>',
+        );
+      } else {
+        console.log('ウェブ');
+      }
+
       window.onload = (event) => {
-        fetch(`<%= apiUrl %>exhibits/<%=exhibit.id%>/incrementViewsCount`, {
+        fetch(`<%= apiUrl %>exhibits/<%= exhibit.id%>/incrementViewsCount`, {
           method: 'PUT',
         })
           .then((res) => res.json())
-          .then((res) => console.log(res));
+          .then((res) => console.log('incrementViewsCount', res));
+
+        fetch(`<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: window.location.pathname })
+        })
+          .then((res) => res.json())
+          .then((res) => console.log('access_log', res));
       };
+      // 既読情報を格納する
+      const thisExhibitId = <%=exhibit.id%>;
+        const alreadyVisitExhibits =
+          localStorage.getItem('alreadyVisitExhibits') ? JSON.parse(localStorage.getItem('alreadyVisitExhibits')) : [];
+        // このページの作品IDを追加して、重複を削る
+        const updatedVisitExhibits = [...new Set([...alreadyVisitExhibits, thisExhibitId])]
+        localStorage.setItem('alreadyVisitExhibits', JSON.stringify(updatedVisitExhibits));
     </script>
   </head>
   <body>
+    <!-- スマホ用コントローラの読み込み -->
+    <%- include('./ejs-components/ejs-assets/mobile-controller.asset.ejs') %>
+
     <!-- audio: trueを付与すると音声も取り入れられるけど、動作が重くなる問題があるので、コメントアウト -->
     <a-scene
       physics="debug : false;"
@@ -24,9 +58,12 @@
         username: <%=username%>;
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
-        audio: true;
+        audio: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
+      keyboard-shortcuts="enterVR: false;"
+      vr-mode-ui="enabled: false;"
+      screen-controls
     >
       <!-- camera -->
       <a-camera
@@ -36,6 +73,8 @@
         spawn-in-circle="radius:3"
         universal-controls
         kinematic-body
+        look-controls="pointerLockEnabled: true"
+        extended-wasd-controls="flyEnabled: false; inputType: joystick;"
       >
         <!-- SELECTIVE INTERSECTIONS -->
         <a-cursor
@@ -75,8 +114,6 @@
       <%- include('./ejs-components/ejs-assets/booth-current-time.asset.ejs') %>
       <!-- 出口 -->
       <%- include('./ejs-components/ejs-assets/booth-exit.asset.ejs') %>
-
-      <!-- ロビーに戻る用のボックスを出口アセットに被せる（visible: falseにして、隠している） -->
 
       <!-- 展示側Exit -->
       <%- include('./ejs-components/ejs-assets/lectern.asset.ejs') %>

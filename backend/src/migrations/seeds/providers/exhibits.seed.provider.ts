@@ -1,7 +1,7 @@
 import { DummyGroup, dummyGroups } from './groups.seed.provider';
 import {
   DummyExhibitor,
-  provideDummyExhibitors,
+  factoryDummyExhibitors,
 } from './exhibitors.seed.provider';
 import {
   DummyPresentaionImage,
@@ -24,7 +24,7 @@ export interface DummyExhibit {
   exhibitors?: DummyExhibitor[];
 }
 
-export const dummyOriginExhibits: Array<DummyExhibit | null> = [
+export const dummyOriginExhibits: Array<DummyExhibit> = [
   {
     title: '律音',
     genre: GENRE.MUSIC,
@@ -102,32 +102,6 @@ export const dummyOriginExhibits: Array<DummyExhibit | null> = [
       'http://res.cloudinary.com/db32y726v/image/upload/v1610008150/fffmfwyzicd7awmbchhd.png',
     ]),
   },
-  {
-    title: 'ソーゾー工房',
-    genre: GENRE.IT,
-    description:
-      '企画・設計に最も時間をかけ、見えないところまでしっかり設定やプロットをつくり込みました。 API化してより使いやすくAWSで実装できているのもアピールポイントです。',
-    demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
-    thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008207/mm8aofycop71crzf5m0i.jpg',
-    presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008207/mm8aofycop71crzf5m0i.jpg',
-    ]),
-  },
-  {
-    title: 'ゾーゾー工房',
-    genre: GENRE.IT,
-    description:
-      '企画・設計に最も時間をかけ、見えないところまでしっかり設定やプロットをつくり込みました。 API化してより使いやすくAWSで実装できているのもアピールポイントです。',
-    demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
-    thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008207/mm8aofycop71crzf5m0i.jpg',
-    presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008207/mm8aofycop71crzf5m0i.jpg',
-    ]),
-  },
 ];
 
 export type ReqDummyExhibit = Required<DummyExhibit> | null;
@@ -138,8 +112,9 @@ export const dummyExhibits: ReqDummyExhibit[] = dummyOriginExhibits.map(
     ...exhibit,
     group: dummyGroups[index],
     booth: {
+      id: index + 1,
       positionNumber: index + 1,
     },
-    exhibitors: provideDummyExhibitors(index),
+    exhibitors: factoryDummyExhibitors(index),
   }),
 );

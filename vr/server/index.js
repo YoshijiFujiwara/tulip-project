@@ -111,6 +111,9 @@ io.on('connection', (socket) => {
     socket.emit('connectSuccess', { joinedTime });
     const occupants = rooms[room].occupants;
     io.in(curRoom).emit('occupantsChanged', { occupants });
+    if (rooms['lobby']) {
+      io.in('lobby').emit('congestionSituationSync', { rooms });
+    }
   });
 
   socket.on('send', (data) => {
@@ -128,7 +131,12 @@ io.on('connection', (socket) => {
 
       delete rooms[curRoom].occupants[socket.id];
       const occupants = rooms[curRoom].occupants;
-      socket.to(curRoom).broadcast.emit('occupantsChanged', { occupants });
+      socket
+        .to(curRoom)
+        .broadcast.emit('occupantsChanged', { occupants, rooms });
+      if (rooms['lobby']) {
+        io.in('lobby').emit('congestionSituationSync', { rooms });
+      }
 
       if (occupants == {}) {
         console.log('everybody left room');

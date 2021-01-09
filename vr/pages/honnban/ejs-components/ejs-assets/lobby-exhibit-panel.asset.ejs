@@ -23,9 +23,9 @@
   ></a-asset-item>
 </a-assets>
 
-<!-- TODO: 混雑度合いによって画像を変更したいが、今は固定-->
+<!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
 <a-image
-  id="lv1"
+  id="exhibit-congestion-image-<%=exhibit.id%>"
   src="#lv1"
   scale="<%=position.level.scale%>"
   position="<%=position.level.position%>"
@@ -33,11 +33,13 @@
 ></a-image>
 <a-text
   id="ID<%=exhibit.booth.positionNumber%>"
-  value="ID<%=exhibit.booth.positionNumber%>"
-  negate="true"
+  value="ブースNo.<%=exhibit.booth.positionNumber%>"
+  negate="false"
   scale="<%=position.idText.scale%>"
   position="<%=position.idText.position%>"
   rotation="<%=position.idText.rotation%>"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
   text="color: #ffffff"
 ></a-text>
 
@@ -51,16 +53,25 @@
   position="<%=position.title.position%>"
   rotation="<%=position.title.rotation%>"
 ></a-text>
-
+<!-- グループ名 -->
+<a-text
+  id="exhibit-panel-group-<%=exhibit.booth.positionNumber%>"
+  value="<%=exhibit.group.name%>"
+  negate="false"
+  scale="<%=position.groupName.scale%>"
+  font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+  font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+  position="<%=position.groupName.position%>"
+  rotation="<%=position.groupName.rotation%>"
+></a-text>
 <!-- サムネイル -->
 <a-image
   id="exhibit-panel-thumbnail-<%=exhibit.id%>"
   src="#asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
-  link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>"
+  link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>&enable_audio=<%= enableAudio %>"
   scale="<%=position.thumbnail.scale%>"
   position="<%=position.thumbnail.position%>"
   rotation="<%=position.thumbnail.rotation%>"
-  material="color:  #5c5c5c;"
 ></a-image>
 
 <!-- panel -->

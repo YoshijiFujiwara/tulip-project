@@ -125,8 +125,15 @@ AFRAME.registerComponent('networked', {
     this.initNetworkParent();
 
     if (this.data.networkId === '') {
+      const createdNetworkId = NAF.utils.createNetworkId();
+      console.log('createdNetworkId', createdNetworkId);
+      console.log('this.name', this.name);
+
+      const aScene = document.getElementsByTagName('a-scene')[0];
+      aScene.dataset.myNetworkId = createdNetworkId;
+
       this.el.setAttribute(this.name, {
-        networkId: NAF.utils.createNetworkId(),
+        networkId: createdNetworkId,
       });
     }
 
