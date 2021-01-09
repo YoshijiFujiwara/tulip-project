@@ -1,8 +1,8 @@
 <script>
 import { Line } from 'vue-chartjs'
+import { format } from 'date-fns'
 import AcceslogApi from '../../plugins/axios/modules/getAcceslog'
 import { Acceslog } from '~/types/acceslog'
-import { format } from 'date-fns'
 
 export default {
   extends: Line,
@@ -35,7 +35,7 @@ export default {
       }
     })
     this.accessLog = formatedLog
-    let result = []
+    const result = []
     this.accessLog.forEach((el) => {
       if (result[el.accessedAt] == null) {
         this.chartdata.labels.push(el.accessedAt)
@@ -55,15 +55,15 @@ export default {
         ]
       })
   },
-  methods: {
-    parseISO(s) {
-      var b = s.split(/\D+/)
-      return new Date(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])
-    },
-  },
 
   mounted() {
     this.renderChart(this.chartdata, this.options)
+  },
+  methods: {
+    parseISO(s) {
+      const b = s.split(/\D+/)
+      return new Date(b[0], --b[1], b[2], b[3], b[4], b[5], b[6])
+    },
   },
 }
 </script>
