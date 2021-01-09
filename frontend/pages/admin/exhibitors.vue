@@ -1,7 +1,6 @@
 <template>
   <div class="pa-14">
     <breadcrums :items="breadcrum" />
-    <h3>99人中9人が会場にログインしています</h3>
     <h3>出席中｜未出席</h3>
     <v-data-table
       :headers="headers"
@@ -10,9 +9,9 @@
       sort-by="ID"
     >
       <!-- eslint-disable-next-line -->
-      <template v-slot:item.status="{ item }">
+      <template v-slot:item.status="{item}">
         <v-badge
-          v-if="item.id % 2 == 0"
+          v-if="item.status"
           bordered
           left
           inline
@@ -52,8 +51,7 @@ export default class Signin extends Vue {
     { text: 'ID', value: 'id' },
     { text: '展示者名', value: 'name' },
     { text: '所属グループ名', value: 'group.name' },
-    { text: '出席ステータス', value: 'status', sortable: false },
-    { text: '操作', value: 'actions', sortable: false },
+    { text: '出席ステータス', value: 'status' },
   ]
 
   breadcrum = [
@@ -71,7 +69,10 @@ export default class Signin extends Vue {
 
   async created() {
     const exhibitors = await ExhibitorApi.getExhibitors()
-    this.exhibitors = exhibitors
+    this.exhibitors = exhibitors.map((exhibitor) => ({
+      ...exhibitor,
+      status: !!exhibitor.attendedAt,
+    }))
   }
 }
 </script>
