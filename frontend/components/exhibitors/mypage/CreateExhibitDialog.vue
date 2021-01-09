@@ -232,7 +232,6 @@ export default class CreateExhibitDialog extends Vue {
         this.exhibitId = exhibit.id
       })
       .catch(() => {
-        this.$toast.error('作品取得の際にエラーが発生しました')
         this.dialog = false
       })
   }
