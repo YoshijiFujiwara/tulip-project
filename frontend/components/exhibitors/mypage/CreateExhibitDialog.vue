@@ -24,7 +24,6 @@
           label="説明"
           placeholder="来場者に向けて作品の内容を紹介しましょう"
           class="pb-3"
-          counter="40"
           auto-grow
           color="deep-purple darken-4"
           rows="2"
@@ -204,7 +203,6 @@ export default class CreateExhibitDialog extends Vue {
         this.exhibitId = exhibit.id
       })
       .catch(() => {
-        this.$toast.error('作品取得の際にエラーが発生しました')
         this.dialog = false
       })
   }
