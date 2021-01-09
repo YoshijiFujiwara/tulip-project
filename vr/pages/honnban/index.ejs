@@ -41,6 +41,13 @@
           if (!thubmnailEl) return;
           thubmnailEl.setAttribute('material', 'color:  #5c5c5c;');
         });
+
+        const aScene = document.getElementsByTagName('a-scene')[0];
+        const exhibitsArrayString =
+          '[<%= exhibits.map(exhibit => exhibit.id) %>]';
+        aScene.dataset.exhibits = JSON.stringify(
+          JSON.parse(exhibitsArrayString),
+        );
       };
     </script>
   </head>
@@ -98,7 +105,7 @@
           raycaster="objects: a-gltf-model,a-image"
           scale="0.1 0.1 0.1"
           geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
-          material="color: #ACACAC; shader: flat; opacity: 0.6"
+          material="color: #ffffff; shader: flat; opacity: 0.6"
         >
         </a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
