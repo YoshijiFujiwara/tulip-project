@@ -1,14 +1,13 @@
 export type Acceslog = {
-    id: number
+  id: number
 
-    url: string
+  url: string
 
-    useragent: string
+  useragent: string
 
-    username: string
+  username: string
 
-    avatar: string
-    
-    accessedAt: string
+  avatar: string
 
+  accessedAt: string
 }
