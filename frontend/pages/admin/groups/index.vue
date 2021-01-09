@@ -1,15 +1,11 @@
 <template>
   <v-app class="pa-14">
     <breadcrums :items="breadcrum" />
-    <div class="div-controller">
-      <v-icon small left color="green">mdi-circle</v-icon
-      >会場にログインしているユーザ
-    </div>
 
     <v-data-table
       :headers="headers"
       :items="groups"
-      :items-per-page="5"
+      :items-per-page="10"
       :search="search"
       class="elevation-1"
     >
@@ -48,7 +44,6 @@ export default class Groups extends Vue {
       value: 'id',
     },
     { text: 'グループ名', value: 'name', sortable: true },
-    { text: '操作', value: 'actions', sortable: false },
   ]
 
   breadcrum = [

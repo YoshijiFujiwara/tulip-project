@@ -1,7 +1,6 @@
 <template>
   <div class="pa-14">
     <breadcrums :items="breadcrum" />
-    <h3>99人中9人が会場にログインしています</h3>
     <h3>出席中｜未出席</h3>
     <v-data-table
       :headers="headers"
@@ -53,7 +52,6 @@ export default class Signin extends Vue {
     { text: '展示者名', value: 'name' },
     { text: '所属グループ名', value: 'group.name' },
     { text: '出席ステータス', value: 'status', sortable: false },
-    { text: '操作', value: 'actions', sortable: false },
   ]
 
   breadcrum = [
