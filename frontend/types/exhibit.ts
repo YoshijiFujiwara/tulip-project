@@ -30,4 +30,8 @@ export type Exhibit = {
   group: Group
 
   booth?: Booth
+
+  goodCount: number
+
+  viewsCount: number
 }
