@@ -108,7 +108,7 @@
           </v-row>
         </v-col>
         <v-col cols="8">
-          <div class="vr-booth" v-if="exhibit && exhibit.booth">
+          <div v-if="exhibit && exhibit.booth" class="vr-booth">
             <iframe
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
@@ -126,8 +126,8 @@
               </v-card-actions>
             </v-card>
           </div>
-          <div class="vr-booth" v-else>
-              <v-card class="ma-auto  ml-5 mr-5 cardvent" outlined>
+          <div v-else class="vr-booth">
+              <v-card class="ma-auto ml-5 mr-5 cardvent" outlined>
                   <v-card-title class="justify-center">
                     作品登録とブース選択が完了すると、こちらでブースのプレビューを閲覧することが出来ます
                   </v-card-title>
