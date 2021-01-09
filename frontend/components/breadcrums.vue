@@ -2,7 +2,7 @@
   <div>
     <v-breadcrumbs :items="items">
       <template v-slot:item="{ item }">
-        <v-breadcrumbs-item :href="item.href" :disabled="item.disabled">
+        <v-breadcrumbs-item :to="item.href" :disable="item.disabled">
           {{ item.text }}
         </v-breadcrumbs-item>
       </template>
