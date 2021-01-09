@@ -53,9 +53,6 @@ export default {
           result[label],
         ]
       })
-  },
-
-  mounted() {
     this.renderChart(this.chartdata, this.options)
   },
   methods: {
