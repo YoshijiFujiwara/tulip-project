@@ -1,17 +1,14 @@
 <template>
   <v-app class="pa-14">
     <breadcrums :items="breadcrum" />
-    <div class="div-controller">
-      <v-icon small left color="green">mdi-circle</v-icon
-      >会場にログインしているユーザ
-    </div>
 
     <v-data-table
       :headers="headers"
       :items="groups"
-      :items-per-page="5"
+      :items-per-page="10"
       :search="search"
       class="elevation-1"
+      @click:row="clickRow"
     >
       <!-- eslint-disable-next-line -->
       <template v-slot:item.actions="{ item }">
@@ -48,7 +45,6 @@ export default class Groups extends Vue {
       value: 'id',
     },
     { text: 'グループ名', value: 'name', sortable: true },
-    { text: '操作', value: 'actions', sortable: false },
   ]
 
   breadcrum = [
@@ -68,6 +64,10 @@ export default class Groups extends Vue {
     // this.user = await this.$auth.user
     const groups = await GroupApi.getGroups()
     this.groups = groups
+  }
+
+  clickRow(row: any) {
+    this.$router.push({ path: `/admin/groups/${row.id}` })
   }
 }
 </script>
