@@ -31,8 +31,6 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: window.location.pathname })
         })
-          .then((res) => res.json())
-          .then((res) => console.log('access_log', res));
       };
       // 既読情報を格納する
       const thisExhibitId = <%=exhibit.id%>;
