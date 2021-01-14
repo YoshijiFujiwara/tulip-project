@@ -233,7 +233,7 @@ class NetworkEntities {
 
     reactionEl.setAttribute(
       'sound',
-      `src: #assets-${reactionType}-effect; volume:2`,
+      `src: #assets-${reactionType}-effect; volume:0.07`,
     );
     reactionEl.components.sound.playSound();
     visibleFalseTimer(reactionEl, networkId);
