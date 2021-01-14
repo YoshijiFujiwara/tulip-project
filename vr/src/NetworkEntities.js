@@ -227,7 +227,7 @@ class NetworkEntities {
     const reactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
     reactionEl.setAttribute(
       'src',
-      `/honnban/assets/img/emo_${reactionType}.svg`,
+      `/honnban/assets/img/emo_${reactionType}.png`,
     );
     reactionEl.setAttribute('visible', true);
 
