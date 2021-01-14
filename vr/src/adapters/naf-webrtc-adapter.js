@@ -302,10 +302,6 @@ class WebrtcAdapter {
     // username, avatar情報
     this.username = '';
     this.avatar = '';
-
-    // 誰かのリアクション情報
-    this.reactionOwnerId = null;
-    this.reactionEmoji = '';
   }
 
   setServerUrl(wsUrl) {
@@ -494,14 +490,6 @@ class WebrtcAdapter {
       room: this.room,
       username: this.username,
       avatar: this.avatar,
-    });
-  }
-
-  reaction() {
-    NAF.log.write('Someone Reaction!');
-    this.socket.emit('reaction', {
-      reactionOwnerId: this.reactionOwnerId,
-      reactionEmoji: this.reactionEmoji,
     });
   }
 
