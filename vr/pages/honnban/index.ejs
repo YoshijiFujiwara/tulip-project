@@ -17,7 +17,12 @@
       } else {
         console.log('ウェブ');
       }
+
+      shortcut.add("Ctrl+Shift+R", () => {
+        console.log("Hi there!");
+      });
       window.onload = (evt) => {
+
         fetch(
           `<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`,
           {
