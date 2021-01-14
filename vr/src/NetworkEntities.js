@@ -230,7 +230,7 @@ class NetworkEntities {
     );
     reactionElements[networkId].setAttribute(
       'src',
-      `/honnban/assets/img/emo_${reactionType}.svg`,
+      `/honnban/assets/img/emo_${reactionType}.png`,
     );
     reactionElements[networkId].setAttribute('visible', true);
 
