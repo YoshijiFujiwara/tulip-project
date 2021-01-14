@@ -113,7 +113,6 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Event } from '../types/event'
 import EventApi from '../plugins/axios/modules/events'
-import events from '../plugins/axios/modules/events'
 
 @Component
 export default class EventTimeDialog extends Vue {

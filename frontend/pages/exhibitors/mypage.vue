@@ -13,12 +13,10 @@
         color="success"
         dark
         @click="onPresence"
+        >出席する</v-btn
       >
-        出席する
-      </v-btn>
       <v-btn v-if="isAttend" depressed x-large color="white">
-        <v-icon color="#389c0a">mdi-check-circle</v-icon>
-        出席済み
+        <v-icon color="#389c0a">mdi-check-circle</v-icon>出席済み
       </v-btn>
     </v-col>
     <v-card width="100%">
@@ -34,9 +32,9 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-icon>
-                    <v-icon :color="exhibit ? '#389c0a' : '#ff5252'">{{
-                      exhibit ? 'mdi-check-circle' : 'mdi-close-circle'
-                    }}</v-icon>
+                    <v-icon :color="exhibit ? '#389c0a' : '#ff5252'">
+                      {{ exhibit ? 'mdi-check-circle' : 'mdi-close-circle' }}
+                    </v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>作品登録</v-list-item-title>
@@ -44,9 +42,11 @@
                 </v-list-item>
                 <v-list-item v-if="exhibit">
                   <v-list-item-icon>
-                    <v-icon :color="exhibit.booth ? '#389c0a' : '#ff5252'">{{
-                      exhibit.booth ? 'mdi-check-circle' : 'mdi-close-circle'
-                    }}</v-icon>
+                    <v-icon :color="exhibit.booth ? '#389c0a' : '#ff5252'">
+                      {{
+                        exhibit.booth ? 'mdi-check-circle' : 'mdi-close-circle'
+                      }}
+                    </v-icon>
                   </v-list-item-icon>
                   <v-list-item-content>
                     <v-list-item-title>ブース作成</v-list-item-title>
@@ -100,7 +100,9 @@
             <v-col cols="6" class="booth">
               <v-card>
                 <a class="text-h5 text-center" @click="openUploadBoothModal">
-                  <div><v-icon color="grey" size="120">mdi-apps</v-icon></div>
+                  <div>
+                    <v-icon color="grey" size="120">mdi-apps</v-icon>
+                  </div>
                   <div class="link-string">ブース設定</div>
                 </a>
               </v-card>
@@ -108,9 +110,8 @@
           </v-row>
         </v-col>
         <v-col cols="8">
-          <div class="vr-booth">
+          <div v-if="exhibit && exhibit.booth" class="vr-booth">
             <iframe
-              v-if="exhibit"
               id="iframe-details"
               :src="`${vrUrl}honnban/booths/${
                 exhibit.id
@@ -119,12 +120,19 @@
             ></iframe>
 
             <v-card class="ma-auto card-area ml-5 mr-5" outlined>
-              <v-card-title class="justify-center">
-                プレゼンテーションを開始するには、こちらから入場してください
-              </v-card-title>
+              <v-card-title class="justify-center"
+                >プレゼンテーションを開始するには、こちらから入場してください</v-card-title
+              >
               <v-card-actions class="justify-center">
                 <v-btn large class="px-15" @click="connectEntrance">入場</v-btn>
               </v-card-actions>
+            </v-card>
+          </div>
+          <div v-else class="vr-booth">
+            <v-card class="ma-auto ml-5 mr-5 cardvent" outlined>
+              <v-card-title class="justify-center"
+                >作品登録とブース選択が完了すると、こちらでブースのプレビューを閲覧することが出来ます</v-card-title
+              >
             </v-card>
           </div>
         </v-col>
@@ -260,5 +268,11 @@ a {
 #iframe-details {
   width: 100%;
   height: 100%;
+}
+.cardvent {
+  z-index: 1;
+  position: relative;
+  top: 300px;
+  opacity: 0.6;
 }
 </style>

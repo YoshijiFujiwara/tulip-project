@@ -25,9 +25,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: window.location.pathname }),
           },
-        )
-          .then((res) => res.json())
-          .then((res) => console.log('access_log', res));
+        );
 
         const alreadyVisitExhibits = localStorage.getItem(
           'alreadyVisitExhibits',
@@ -95,7 +93,7 @@
           raycaster="objects: a-gltf-model,a-image"
           scale="0.1 0.1 0.1"
           geometry="primitive: ring; radiusInner: 0.1; radiusOuter: 0.15;"
-          material="color: #ACACAC; shader: flat; opacity: 0.6"
+          material="color: #ffffff; shader: flat; opacity: 0.6"
         >
         </a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
@@ -109,22 +107,24 @@
       include('./ejs-components/exhibition-information.ejs')
       positions = positions();
       %>
-      <%# 1~8までループ %>
-      <% for (var i = 1; i < 9; i++) { %>
+      <%# boothsの数だけループ %>
       <%
-        exhibit = exhibits.find(e => e.booth.positionNumber === i);
-        position = positions["at"+i];
-        boothId = i;
+        exhibitsEnableBooth = exhibits.filter(e => !!e.booth);
+        exhibitsEnableBooth.forEach((exhibit, index) => {
       %>
+        <%
+          position = positions[`at${exhibit.booth.positionNumber}`];
+          boothId = exhibit.booth.id;
+        %>
       <!-- prettier-ignore -->
       <%-
-        include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
-          exhibit,
-          position,
-          boothId
-        })
-      %>
-      <% } %>
+          include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
+            exhibit,
+            position,
+            boothId
+          })
+        %>
+      <% }); %>
       <!-- 現在時間を表示 -->
       <%- include('./ejs-components/ejs-assets/lobby-current-time.asset.ejs') %>
       <!-- パネル -->

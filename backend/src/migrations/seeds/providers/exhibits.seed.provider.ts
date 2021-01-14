@@ -26,80 +26,79 @@ export interface DummyExhibit {
 
 export const dummyOriginExhibits: Array<DummyExhibit> = [
   {
-    title: '律音',
+    title: 'ロボティックガール',
     genre: GENRE.MUSIC,
     description:
-      '重めのリアルロボットアクションゲームのカットシーンを想定し、ストーリーの壮大さと、後半にかけて熱くなる感じが伝わるよう制作しました。サビ前のいかにもなブレイク、わかりやすいメロディーで壮大感と熱いストーリーをイメージしやすく、なおかつロボットでの戦闘を連想しやすいように、機械っぽい音、金属音を要所に入れました。サビの繰り返すときは、パーカッションなどの刻みをやめることで、心に訴えてくる感じになるようにアレンジしました。エピックオーケストラらしい派手で重いミックス、オーケストラ音源のアーティキュレーションの細かいエディットでよりリアルに聴こえるように、曲全体の構成ではわかりやすい展開を意識して、前半は静か、後半で壮大になる2段構えを意識しました。',
+      'エモーショナルかつ"ゆめかわ"をテーマに。暗いシーンにも明るいシーンにもそういう色使いを入れつつ、クールにもキュートにも見える映像づくりを心がけてます。 ロボットみたいに傷つかない心でいられたらいいのにって思うことをミュージックにしました。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610202834/kvulzgvfm3dai8vl4yp6.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007853/yb9kntuyha1gbvufxnxp.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610164025/dlxrbjzqvljpg6ae4dhz.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007853/yb9kntuyha1gbvufxnxp.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610164030/mwanwxdbtydpjpvllvei.jpg',
     ]),
   },
   {
-    title: '青い滴',
+    title: 'Rain',
     genre: GENRE.MUSIC,
     description:
       '「水」と「青色」をキーワードに、ファンタジーゲームでの水や洞窟のシーンで使われるBGMを想定して制作しました。水をピアノのアルペジオで表現し、テンションノートをたくさん入れることで水面の不安定さを出しました。ピアノのフレーズにベル系のシンセサイザーを重ねたことにより、水の透明感や光の反射による輝きが増したと思います。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610169578/z1ntvvqulbsdc9qmzz6d.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007853/yb9kntuyha1gbvufxnxp.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610169572/jp4f9pvsran8tf2jith2.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007853/yb9kntuyha1gbvufxnxp.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610169572/jp4f9pvsran8tf2jith2.jpg',
     ]),
   },
   {
-    title: '星空ドロップ',
+    title: 'sekiro',
     genre: GENRE.GAME,
     description:
-      'このゲームは、☆と☆をつないで星座をつくり、その星座を落としてハム☆スターとともに星のかけらを集めてゆく物理パズルゲームです。落とす星座の形を考える面白さや、物理の動きを利用する面白さを27ステージ楽しめます。絵からステージへ遷移する演出や、背景やハム☆スターの見た目、BGMや星をつなぐ音、各ステージのレベルデザイン等、ゲームの細部にまでこだわって作った完成度の高さがウリです。',
+      '隻腕の狼、戦国に忍ぶ。完全新作アクション・アドベンチャー、架空の戦国末期を舞台に隻腕の忍者の活躍を描く和風アクションゲーム。',
     demo:
       'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007966/s81dgyx9alzkloif0n4w.png',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610165527/dvlvaklnod0f9otwn7su.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610007966/s81dgyx9alzkloif0n4w.png',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610165529/pombklmsq9iczycvkwqb.jpg',
     ]),
   },
   {
-    title: 'AboveSoul',
+    title: 'モンスターハンターライズ',
     genre: GENRE.GAME,
     description:
-      'DirectX11のHLSLを使ったシェーダーとパーティクルエフェクト。A*アルゴリズムを使った経路探索。',
+      'ハンティングアクションに新風を巻き起こす『モンスターハンターライズ』 狩猟に新風を巻き起こす、縦横無尽に躍動するアクション。 思いのままに翔けあがれる、新たなハンティングフィールド。 そして、未知の興奮や驚きをもたらす、全く新しいモンスターたち。',
     demo:
       'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008034/jnmw3zu4lwbyj1pik62t.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610160941/wsbz0u4cirbfq1skrtor.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008034/jnmw3zu4lwbyj1pik62t.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610160944/dnjnt6hdhl6k9lrpasxw.jpg',
     ]),
   },
   {
-    title: 'Complex Reel',
+    title: 'Emotion',
     genre: GENRE.MOVIE,
-    description:
-      '美しいと思う見せ方や映像表現を追求し、リアリティある映像を目指して制作しました。',
+    description: '躍動的で見栄えのいいアニメーションを作成しました。',
     demo:
       'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008099/ge1vlzwd2ngpntaczpis.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610170290/hamgzafimtyqvw9knezx.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008099/ge1vlzwd2ngpntaczpis.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610170290/hamgzafimtyqvw9knezx.jpg',
     ]),
   },
   {
-    title: 'OASITH',
+    title: '朱',
     genre: GENRE.MOVIE,
-    description: '最新の映像表現とリアリティある生物の動きにこだわりました。',
+    description: '一人の少女が妖怪に追いかけられて…',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610171586/qdqt8j32iil4ktskn2qt.mp4',
     thumbnail:
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008150/fffmfwyzicd7awmbchhd.png',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610171566/jrmglt4bqry3dgxmufvf.jpg',
     presentationImages: paging([
-      'http://res.cloudinary.com/db32y726v/image/upload/v1610008150/fffmfwyzicd7awmbchhd.png',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610171568/hux1sssq5xbobewsm1yf.jpg',
     ]),
   },
 ];

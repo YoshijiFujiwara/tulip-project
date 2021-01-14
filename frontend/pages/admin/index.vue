@@ -131,7 +131,7 @@
                 <template>
                   <v-tabs right>
                     <v-tab @click="changeGoodCount">いいね数</v-tab>
-                    <v-tab @click="changeViewCount">視聴数</v-tab>
+                    <v-tab @click="changeViewCount">閲覧数</v-tab>
                   </v-tabs>
                 </template>
                 <PieChart :exhibits="exhibits" :order="order" />

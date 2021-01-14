@@ -94,22 +94,25 @@
                 camera-controls
               ></model-viewer
             ></label>
-            <input
-              id="enable_audio_checkbox"
-              type="checkbox"
-              name="enable_audio"
-            />
-            <label
-              for="enable_audio_checkbox"
-              style="color: white; margin-left: -60px"
-              >音声チャットを有効化する</label
-            >
           </fieldset>
+          <input
+            id="enable_audio_checkbox"
+            class="voice-input"
+            type="checkbox"
+            name="enable_audio"
+          />
+          <label
+            class="voice-check"
+            for="enable_audio_checkbox"
+            style="color: white"
+            >音声チャットを有効化する</label
+          >
           <div class="btn-wrap--perspective">
             <button
               id="button"
               type="submit"
               class="btn btn-3d btn-3db btn-primary btn-block btn-large"
+              style="margin-top: 30px; margin-left: 10px"
             >
               VR空間に入場する
             </button>
