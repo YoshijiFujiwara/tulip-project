@@ -264,11 +264,15 @@ class NetworkEntities {
     const { nowPlaying } = data;
     NAF.log.write('nowPlaying', nowPlaying);
 
+    const videocontrolsEl = document.querySelector('#video-controls');
     const myVideo = document.getElementById('asset-demo');
+
     if (nowPlaying) {
       myVideo.play();
+      videocontrolsEl.setAttribute('src', '#asset-play');
     } else {
       myVideo.pause();
+      videocontrolsEl.setAttribute('src', '#asset-pause');
     }
   }
 
