@@ -3,19 +3,8 @@ AFRAME.registerComponent('sakuhin-on-click', {
     var self = this;
     this.el.addEventListener('click', function (evt) {
       var sakuhinEl = document.querySelector('#i-sakuhin');
-      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:2');
+      sakuhinEl.setAttribute('sound', 'src: #assets-click-effect; volume:0.07');
       sakuhinEl.components.sound.playSound();
-
-      // // 自分のnetworkIdを取得する
-      // const aScene = document.getElementsByTagName('a-scene')[0];
-      // const myNetworkId = aScene.dataset.myNetworkId;
-
-      // // TODO: リアクションのところでやるがいったんここでthink, smileをランダムに送る
-      // NAF.connection.broadcastData('reaction', {
-      //   networkId: myNetworkId,
-      //   reactionType:
-      //     Math.floor(Math.random() * 11) % 2 === 0 ? 'think' : 'smile',
-      // });
 
       var menuEl = document.querySelector('#menu');
       var menuBackgroundEl = document.querySelector('#menuBackground');

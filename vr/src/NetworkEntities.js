@@ -1,18 +1,17 @@
 /* global NAF */
 var ChildEntityCache = require('./ChildEntityCache');
 
-var reactionElements = [];
+var visibleFalseTimer = (function () {
+  var timers = []; // variable persisted here
 
-var endAndStartTimer = (function (networkId) {
-  var timer; // variable persisted here
-  return function () {
-    window.clearTimeout(timer);
-    //var millisecBeforeRedirect = 10000;
-    timer = window.setTimeout(function () {
-      reactionElements[networkId].setAttribute('visible', false);
-    }, 3000);
+  return function (element, timerId, timerMillSec = 3000) {
+    window.clearTimeout(timers[timerId]);
+    timers[timerId] = window.setTimeout(function () {
+      element.setAttribute('visible', false);
+    }, timerMillSec);
   };
 })();
+
 class NetworkEntities {
   constructor() {
     this.entities = {};
@@ -225,21 +224,19 @@ class NetworkEntities {
 
     const { networkId, reactionType } = data;
     const reactionPlayerEl = document.getElementById(`naf-${networkId}`);
-    reactionElements[networkId] = reactionPlayerEl.querySelector(
-      '#avatar_reaction',
-    );
-    reactionElements[networkId].setAttribute(
+    const reactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
+    reactionEl.setAttribute(
       'src',
-      `/honnban/assets/img/emo_${reactionType}.svg`,
+      `/honnban/assets/img/emo_${reactionType}.png`,
     );
-    reactionElements[networkId].setAttribute('visible', true);
+    reactionEl.setAttribute('visible', true);
 
-    reactionElements[networkId].setAttribute(
+    reactionEl.setAttribute(
       'sound',
-      `src: #assets-${reactionType}-effect; volume:2`,
+      `src: #assets-${reactionType}-effect; volume:0.07`,
     );
-    reactionElements[networkId].components.sound.playSound();
-    endAndStartTimer(networkId);
+    reactionEl.components.sound.playSound();
+    visibleFalseTimer(reactionEl, networkId);
   }
 
   removeEntitiesOfClient(clientId) {

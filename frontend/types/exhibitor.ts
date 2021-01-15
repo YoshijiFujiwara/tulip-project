@@ -12,4 +12,6 @@ export type Exhibitor = {
   groupId: number
 
   group?: Group
+
+  attendedAt: Date | null
 }

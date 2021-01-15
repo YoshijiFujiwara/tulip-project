@@ -25,9 +25,7 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: window.location.pathname }),
           },
-        )
-          .then((res) => res.json())
-          .then((res) => console.log('access_log', res));
+        );
 
         const alreadyVisitExhibits = localStorage.getItem(
           'alreadyVisitExhibits',
@@ -70,11 +68,9 @@
         <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
         <img id="comming_soon3" src="/honnban/assets/img/comming_soon3.png" />
         <img id="comming_soon4" src="/honnban/assets/img/comming_soon4.png" />
-        <img id="lv1" src="/honnban/assets/img/lv1.svg" />
-        <img id="lv2" src="/honnban/assets/img/lv2.svg" />
-        <img id="lv3" src="/honnban/assets/img/lv3.svg" />
-        <!-- bgm -->
-        <audio id="bgm" src="/honnban/assets/music/theme14.mp3"></audio>
+        <img id="lv1" src="/honnban/assets/img/lv1.png" />
+        <img id="lv2" src="/honnban/assets/img/lv2.png" />
+        <img id="lv3" src="/honnban/assets/img/lv3.png" />
       </a-assets>
       <!-- アバター -->
       <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>
@@ -109,22 +105,24 @@
       include('./ejs-components/exhibition-information.ejs')
       positions = positions();
       %>
-      <%# 1~8までループ %>
-      <% for (var i = 1; i < 9; i++) { %>
+      <%# boothsの数だけループ %>
       <%
-        exhibit = exhibits.find(e => e.booth.positionNumber === i);
-        position = positions["at"+i];
-        boothId = i;
+        exhibitsEnableBooth = exhibits.filter(e => !!e.booth);
+        exhibitsEnableBooth.forEach((exhibit, index) => {
       %>
+        <%
+          position = positions[`at${exhibit.booth.positionNumber}`];
+          boothId = exhibit.booth.id;
+        %>
       <!-- prettier-ignore -->
       <%-
-        include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
-          exhibit,
-          position,
-          boothId
-        })
-      %>
-      <% } %>
+          include('./ejs-components/ejs-assets/lobby-exhibit-panel.asset.ejs', {
+            exhibit,
+            position,
+            boothId
+          })
+        %>
+      <% }); %>
       <!-- 現在時間を表示 -->
       <%- include('./ejs-components/ejs-assets/lobby-current-time.asset.ejs') %>
       <!-- パネル -->

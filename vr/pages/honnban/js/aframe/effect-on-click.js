@@ -12,7 +12,7 @@ AFRAME.registerComponent('effect-on-click', {
       // TODO: 今は動かないので、sakuhin-on-clickの中で仮実装をしています
       reactionSelectEl.setAttribute(
         'sound',
-        `src: #assets-${reactionType}-effect; volume:2`,
+        `src: #assets-${reactionType}-effect; volume:0.07`,
       );
       reactionSelectEl.components.sound.playSound();
 
