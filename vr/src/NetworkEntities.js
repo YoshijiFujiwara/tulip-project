@@ -255,6 +255,23 @@ class NetworkEntities {
     likeNumEl.setAttribute('value', sum);
   }
 
+  demoVideoRemotePlayingEntity(toClient, dataType, data, source) {
+    NAF.log.write('demoVideoRemotePlayingEntity toClient', toClient);
+    NAF.log.write('demoVideoRemotePlayingEntity dataType', dataType);
+    NAF.log.write('demoVideoRemotePlayingEntity data', data);
+    NAF.log.write('demoVideoRemotePlayingEntity source', source);
+
+    const { nowPlaying } = data;
+    NAF.log.write('nowPlaying', nowPlaying);
+
+    const myVideo = document.getElementById('asset-demo');
+    if (nowPlaying) {
+      myVideo.play();
+    } else {
+      myVideo.pause();
+    }
+  }
+
   removeEntitiesOfClient(clientId) {
     var entityList = [];
     for (var id in this.entities) {
