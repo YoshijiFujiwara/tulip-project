@@ -276,10 +276,10 @@ class NetworkEntities {
 
     if (nowPlaying) {
       myVideo.play();
-      videocontrolsEl.setAttribute('src', '#asset-play');
+      videocontrolsEl.setAttribute('src', '#asset-pause');
     } else {
       myVideo.pause();
-      videocontrolsEl.setAttribute('src', '#asset-pause');
+      videocontrolsEl.setAttribute('src', '#asset-play');
     }
   }
 
