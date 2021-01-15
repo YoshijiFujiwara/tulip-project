@@ -75,7 +75,7 @@ export default class Signin extends Vue {
     },
     {
       text: '作品一覧',
-      disabled: true,
+      disabled: false,
       href: '/admin/exhibits',
     },
   ]
