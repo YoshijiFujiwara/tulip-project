@@ -31,7 +31,7 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     description:
       '行き過ぎた欲望と力。飲み込まれた正義を取り戻す、希望を賭けた聖戦。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610675862/gsoztdwe6cdlxrvffalj.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610697313/ks1sypu4ufolv18ek6rz.mp4',
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
     presentationImages: paging([
@@ -57,7 +57,7 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     description:
       'ARPG×SRPG×ローグライクの新世代ミックスジャンルゲーム。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610678485/xfzyaax1wdvk46vvguh0.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610698355/b8wqtphvxayecthsvgbe.mp4',
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610678667/md5ynzmbphbgys2nhqzk.jpg',
     presentationImages: paging([
@@ -70,7 +70,7 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     description:
       '霧に包まれた、その上空から見た世界。雲がないため夜間に地上の気温が下がる「放射冷却」により、地表付近の空気が一定温度以下になることによって発生する霧。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610677213/r9gefizuxsgmifdm2sxf.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610693805/z1i91ohomewmyjwcvxbl.mp4',
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610677196/egkecxnqyllnqjjw7wmy.jpg',
     presentationImages: paging([
@@ -82,7 +82,7 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     genre: GENRE.GAME,
     description: '「未来創造展2020」で4年制HAL大賞を受賞した作品です。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610683800/j3j9fhzvlibjclodkzxm.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610699066/smxeq9o3swm6igwkionf.mp4',
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610683145/kxdrbx2ltgguwa2sm5yb.png',
     presentationImages: paging([
@@ -94,9 +94,9 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     genre: GENRE.MOVIE,
     description: 'モーショングラフィックスを使った動画です。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610680480/kynnpmrnpxwlz08dl5rr.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610699459/xmeavuwwce09ddknuuim.mp4',
     thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610680462/s6kn4ijajgcth1u58kyp.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610699970/aswvxj1tlpcdppekrhmi.jpg',
     presentationImages: paging([
       'https://res.cloudinary.com/db32y726v/image/upload/v1610680465/s0vfhnkyinnx49nslfrh.jpg',
     ]),
