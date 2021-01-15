@@ -165,6 +165,7 @@ import { Exhibit } from '../../types/exhibit'
 import { Booth } from '../../types/booth'
 import EventsApi from '../../plugins/axios/modules/events'
 import { Event } from '../../types/event'
+
 @Component({
   components: {
     CreateExhibitDialog,
@@ -263,7 +264,7 @@ export default class MyPage extends Vue {
     this.exhibit = {
       ...this.exhibit,
       booth,
-    }
+    } as Exhibit
   }
 }
 </script>
