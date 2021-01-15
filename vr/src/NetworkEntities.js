@@ -239,6 +239,22 @@ class NetworkEntities {
     visibleFalseTimer(reactionEl, networkId);
   }
 
+  iineRemoteEntity(toClient, dataType, data, source) {
+    NAF.log.write('iineRemoteEntity toClient', toClient);
+    NAF.log.write('iineRemoteEntity dataType', dataType);
+    NAF.log.write('iineRemoteEntity data', data);
+    NAF.log.write('iineRemoteEntity source', source);
+
+    //　iineに＋１する
+    const { networkId } = data;
+    const likeNumEl = document.getElementById('number-of-like');
+    NAF.log.write("likeNumEl:", likeNumEl)
+    const num = parseInt(likeNumEl.getAttribute('value'));
+    const sum = num + 1;
+    NAF.log.write("count-up::" + sum)
+    likeNumEl.setAttribute('value', sum);
+  }
+
   removeEntitiesOfClient(clientId) {
     var entityList = [];
     for (var id in this.entities) {
