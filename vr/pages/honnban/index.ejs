@@ -19,10 +19,10 @@
       }
 
       shortcut.add("Ctrl+Shift+R", () => {
-        console.log("Hi there!");
+        document.getElementById('player').setAttribute("position", "0 2.5 0");
       });
-      window.onload = (evt) => {
 
+      window.onload = (evt) => {
         fetch(
           `<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`,
           {
