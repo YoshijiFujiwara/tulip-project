@@ -108,7 +108,8 @@ export default class CreateExhibitDialog extends Vue {
         })
     } else {
       BoothsApi.postBooth(this.form.positionNumber!)
-        .then(() => {
+        .then((res) => {
+          this.$emit('catchBooth', res.data)
           this.$toast.success('ブースの登録が完了しました')
         })
         .catch((res) => {
