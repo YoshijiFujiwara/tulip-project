@@ -5,6 +5,7 @@ var ReservedDataType = {
   Remove: 'r',
   Reaction: 'reaction',
   Iine: 'iine',
+  DemoVideoPlaying: 'demoVideoPlaying',
 };
 
 class NetworkConnection {
@@ -42,6 +43,10 @@ class NetworkConnection {
     this.dataChannelSubs[
       ReservedDataType.Iine
     ] = this.entities.iineRemoteEntity.bind(this.entities);
+
+    this.dataChannelSubs[
+      ReservedDataType.DemoVideoPlaying
+    ] = this.entities.demoVideoRemotePlayingEntity.bind(this.entities);
   }
 
   connect(

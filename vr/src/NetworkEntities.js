@@ -262,6 +262,27 @@ class NetworkEntities {
     likeNumEl.setAttribute('value', sum);
   }
 
+  demoVideoRemotePlayingEntity(toClient, dataType, data, source) {
+    NAF.log.write('demoVideoRemotePlayingEntity toClient', toClient);
+    NAF.log.write('demoVideoRemotePlayingEntity dataType', dataType);
+    NAF.log.write('demoVideoRemotePlayingEntity data', data);
+    NAF.log.write('demoVideoRemotePlayingEntity source', source);
+
+    const { nowPlaying } = data;
+    NAF.log.write('nowPlaying', nowPlaying);
+
+    const videocontrolsEl = document.querySelector('#video-controls');
+    const myVideo = document.getElementById('asset-demo');
+
+    if (nowPlaying) {
+      myVideo.play();
+      videocontrolsEl.setAttribute('src', '#asset-play');
+    } else {
+      myVideo.pause();
+      videocontrolsEl.setAttribute('src', '#asset-pause');
+    }
+  }
+
   removeEntitiesOfClient(clientId) {
     var entityList = [];
     for (var id in this.entities) {
