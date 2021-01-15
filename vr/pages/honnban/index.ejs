@@ -18,8 +18,8 @@
         console.log('ウェブ');
       }
 
-      shortcut.add("P", () => {
-        document.getElementById('player').setAttribute("position", "0 2.5 0");
+      shortcut.add('P', () => {
+        document.getElementById('player').setAttribute('position', '0 2.5 0');
       });
 
       window.onload = (evt) => {
@@ -62,6 +62,7 @@
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
         audio: <%=enableAudio ? 'true' : 'false'%>;
+        chatOn: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
       keyboard-shortcuts="enterVR: false;"

@@ -44,7 +44,15 @@ class NetworkConnection {
     ] = this.entities.iineRemoteEntity.bind(this.entities);
   }
 
-  connect(serverUrl, appName, roomName, enableAudio = false, username, avatar) {
+  connect(
+    serverUrl,
+    appName,
+    roomName,
+    enableAudio = false,
+    username,
+    avatar,
+    chatOn,
+  ) {
     NAF.app = appName;
     NAF.room = roomName;
 
@@ -53,6 +61,7 @@ class NetworkConnection {
     this.adapter.setRoom(roomName);
     this.adapter.setUsername(username);
     this.adapter.setAvatar(avatar);
+    this.adapter.setChatOn(chatOn);
 
     var webrtcOptions = {
       audio: enableAudio,

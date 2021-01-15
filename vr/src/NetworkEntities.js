@@ -37,6 +37,8 @@ class NetworkEntities {
       'text',
       `value: ${entityData.username}; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png`,
     );
+
+    // アバターの切り替え
     var avatarModel = el.querySelector('#avatar_model');
     avatarModel.setAttribute(
       'src',
@@ -69,9 +71,14 @@ class NetworkEntities {
         break;
       default:
     }
-    // console.log('name', name);
-    // console.log('avatarModel', avatarModel);
 
+    // チャットONの場合のみ、サウンドアイコンを表示する
+    if (entityData.chatOn) {
+      const avatarChatOnEl = el.querySelector('#avatar_chat_on');
+      avatarChatOnEl.setAttribute('visible', 'true');
+    }
+
+    // ここから下はいじらない事
     el.setAttribute('id', 'naf-' + networkId);
 
     this.initPosition(el, entityData.components);
@@ -248,10 +255,10 @@ class NetworkEntities {
     //　iineに＋１する
     const { networkId } = data;
     const likeNumEl = document.getElementById('number-of-like');
-    NAF.log.write("likeNumEl:", likeNumEl)
+    NAF.log.write('likeNumEl:', likeNumEl);
     const num = parseInt(likeNumEl.getAttribute('value'));
     const sum = num + 1;
-    NAF.log.write("count-up::" + sum)
+    NAF.log.write('count-up::' + sum);
     likeNumEl.setAttribute('value', sum);
   }
 
