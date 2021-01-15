@@ -4,6 +4,7 @@ var ReservedDataType = {
   UpdateMulti: 'um',
   Remove: 'r',
   Reaction: 'reaction',
+  Iine: 'iine',
 };
 
 class NetworkConnection {
@@ -37,6 +38,10 @@ class NetworkConnection {
     this.dataChannelSubs[
       ReservedDataType.Reaction
     ] = this.entities.reactRemoteEntity.bind(this.entities);
+
+    this.dataChannelSubs[
+      ReservedDataType.Iine
+    ] = this.entities.iineRemoteEntity.bind(this.entities);
   }
 
   connect(serverUrl, appName, roomName, enableAudio = false, username, avatar) {
