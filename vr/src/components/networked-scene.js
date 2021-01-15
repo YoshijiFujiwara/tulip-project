@@ -12,6 +12,7 @@ AFRAME.registerComponent('networked-scene', {
     debug: { default: false },
     username: { default: '' },
     avatar: { default: '' },
+    chatOn: { default: false },
   },
 
   init: function () {
@@ -43,6 +44,7 @@ AFRAME.registerComponent('networked-scene', {
       this.data.audio,
       this.data.username,
       this.data.avatar,
+      this.data.chatOn,
     );
   },
 

@@ -302,6 +302,7 @@ class WebrtcAdapter {
     // username, avatar情報
     this.username = '';
     this.avatar = '';
+    this.chatOn = false;
   }
 
   setServerUrl(wsUrl) {
@@ -322,6 +323,10 @@ class WebrtcAdapter {
 
   setAvatar(avatar) {
     this.avatar = avatar;
+  }
+
+  setChatOn(chatOn) {
+    this.chatOn = chatOn;
   }
 
   setWebRtcOptions(options) {
