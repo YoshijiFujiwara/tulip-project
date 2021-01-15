@@ -28,6 +28,13 @@ AFRAME.registerComponent('like-count-up', {
         likesEl.setAttribute('visible', true);
         likeNumEl.setAttribute('value', sum);
       }
+
+      // 自分のnetworkIdを取得する
+      const aScene = document.getElementsByTagName('a-scene')[0];
+      const myNetworkId = aScene.dataset.myNetworkId;
+      NAF.connection.broadcastData('iine', {
+        networkId: myNetworkId,
+      });
     });
   },
 });

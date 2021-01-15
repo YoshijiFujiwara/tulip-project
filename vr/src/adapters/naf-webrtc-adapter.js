@@ -302,10 +302,7 @@ class WebrtcAdapter {
     // username, avatar情報
     this.username = '';
     this.avatar = '';
-
-    // 誰かのリアクション情報
-    this.reactionOwnerId = null;
-    this.reactionEmoji = '';
+    this.chatOn = false;
   }
 
   setServerUrl(wsUrl) {
@@ -326,6 +323,10 @@ class WebrtcAdapter {
 
   setAvatar(avatar) {
     this.avatar = avatar;
+  }
+
+  setChatOn(chatOn) {
+    this.chatOn = chatOn;
   }
 
   setWebRtcOptions(options) {
@@ -376,10 +377,6 @@ class WebrtcAdapter {
         NAF.log.write('User connected webrtc', socket.id);
         self.myId = socket.id;
         self.joinRoom();
-      });
-
-      socket.on('testhogehoge', () => {
-        NAF.log.write('testhogehoge invoked');
       });
 
       socket.on('connectSuccess', (data) => {
@@ -449,7 +446,10 @@ class WebrtcAdapter {
           NAF.log.write('congestionSituationSync roomId', roomId);
           const isExhibitRoom = roomId.indexOf('exhibit-') === 0;
           NAF.log.write('isExhibitRoom', isExhibitRoom);
+          // ブースのroomの場合は処理しない
           if (!isExhibitRoom) return;
+
+          // 作品ID
           const exhibitId = roomId.split('-')[1];
           const howManyPeople = Object.keys(rooms[roomId].occupants).length;
 
@@ -494,14 +494,6 @@ class WebrtcAdapter {
       room: this.room,
       username: this.username,
       avatar: this.avatar,
-    });
-  }
-
-  reaction() {
-    NAF.log.write('Someone Reaction!');
-    this.socket.emit('reaction', {
-      reactionOwnerId: this.reactionOwnerId,
-      reactionEmoji: this.reactionEmoji,
     });
   }
 
