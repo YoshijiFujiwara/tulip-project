@@ -103,7 +103,12 @@
                   <div>
                     <v-icon color="grey" size="120">mdi-apps</v-icon>
                   </div>
-                  <div class="link-string">ブース設定</div>
+                  <div
+                    class="link-string"
+                    :class="exhibit ? 'black--text' : 'grey--text'"
+                  >
+                    ブース設定
+                  </div>
                 </a>
               </v-card>
             </v-col>
@@ -139,8 +144,14 @@
       </v-row>
     </v-card>
 
-    <CreateExhibitDialog v-model="isOpenCreateExhibitDialog" />
-    <UploadBoothDialog v-model="isOpenUploadBoothDialog" />
+    <CreateExhibitDialog
+      v-model="isOpenCreateExhibitDialog"
+      @catchExhibit="setExhibit"
+    />
+    <UploadBoothDialog
+      v-model="isOpenUploadBoothDialog"
+      @catchBooth="setBooth"
+    />
   </v-row>
 </template>
 
@@ -151,8 +162,10 @@ import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.
 import { User } from '../../types/auth'
 import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
+import { Booth } from '../../types/booth'
 import EventsApi from '../../plugins/axios/modules/events'
 import { Event } from '../../types/event'
+
 @Component({
   components: {
     CreateExhibitDialog,
@@ -187,7 +200,12 @@ export default class MyPage extends Vue {
 
   openUploadBoothModal() {
     // ブース登録用モーダルを開く
-    this.isOpenUploadBoothDialog = true
+    if (this.exhibit) {
+      this.isOpenUploadBoothDialog = true
+    } else {
+      this.$toast.error('先に作品登録を行ってください')
+      this.isOpenUploadBoothDialog = false
+    }
   }
 
   connectEntrance() {
@@ -223,7 +241,6 @@ export default class MyPage extends Vue {
     // 開催時間の取得
     this.eventStartTime = await EventsApi.getEvents()
     this.diffTime()
-    console.log(this.exhibit)
   }
 
   diffTime() {
@@ -237,6 +254,17 @@ export default class MyPage extends Vue {
       diff2Dates = diff2Dates % (1000 * 60 * 60)
       this.eventLimitTime.minute = Math.floor(diff2Dates / (1000 * 60)) // 分
     }
+  }
+
+  setExhibit(exhibit: Exhibit) {
+    this.exhibit = exhibit
+  }
+
+  setBooth(booth: Booth) {
+    this.exhibit = {
+      ...this.exhibit,
+      booth,
+    } as Exhibit
   }
 }
 </script>

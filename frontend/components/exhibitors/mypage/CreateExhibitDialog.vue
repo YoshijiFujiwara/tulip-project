@@ -256,6 +256,7 @@ export default class CreateExhibitDialog extends Vue {
     })
       .then((res) => {
         this.exhibitId = res.id
+        this.$emit('catchExhibit', this.form)
         this.form.thumbnailImage = null
         this.form.presentationImages = []
         this.$toast.success('作品を登録しました')
