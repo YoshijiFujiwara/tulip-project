@@ -4,13 +4,14 @@
     id="asset-lobby"
     src="/honnban/assets/model/lobby/scene.gltf"
   ></a-asset-item>
+  <!-- bgm -->
+  <audio id="bgm" src="/honnban/assets/music/theme14.mp3"></audio>
 </a-assets>
-<!-- 開発中だけいったんautoplay: false -->
 <a-gltf-model
   src="#asset-lobby"
   scale="0.21742 0.21742 0.21742"
   position="-0.18153 0 -0.80929"
-  sound="src: #bgm; autoplay: false"
+  sound="src: #bgm; autoplay: true; volume: 0.06;"
 ></a-gltf-model>
 <!-- 床 -->
 <a-plane
