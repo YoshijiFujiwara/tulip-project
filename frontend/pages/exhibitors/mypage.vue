@@ -103,7 +103,12 @@
                   <div>
                     <v-icon color="grey" size="120">mdi-apps</v-icon>
                   </div>
-                  <div class="link-string">ブース設定</div>
+                  <div
+                    class="link-string"
+                    :class="exhibit ? 'black--text' : 'grey--text'"
+                  >
+                    ブース設定
+                  </div>
                 </a>
               </v-card>
             </v-col>
@@ -187,7 +192,12 @@ export default class MyPage extends Vue {
 
   openUploadBoothModal() {
     // ブース登録用モーダルを開く
-    this.isOpenUploadBoothDialog = true
+    if (this.exhibit) {
+      this.isOpenUploadBoothDialog = true
+    } else {
+      this.$toast.error('先に作品登録を行ってください')
+      this.isOpenUploadBoothDialog = false
+    }
   }
 
   connectEntrance() {
