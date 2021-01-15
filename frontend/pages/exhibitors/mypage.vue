@@ -144,8 +144,14 @@
       </v-row>
     </v-card>
 
-    <CreateExhibitDialog v-model="isOpenCreateExhibitDialog" />
-    <UploadBoothDialog v-model="isOpenUploadBoothDialog" />
+    <CreateExhibitDialog
+      v-model="isOpenCreateExhibitDialog"
+      @catchExhibit="setExhibit"
+    />
+    <UploadBoothDialog
+      v-model="isOpenUploadBoothDialog"
+      @catchBooth="setBooth"
+    />
   </v-row>
 </template>
 
@@ -156,6 +162,7 @@ import UploadBoothDialog from '@/components/exhibitors/mypage/UploadBoothDialog.
 import { User } from '../../types/auth'
 import ProfileApi from '../../plugins/axios/modules/profile'
 import { Exhibit } from '../../types/exhibit'
+import { Booth } from '../../types/booth'
 import EventsApi from '../../plugins/axios/modules/events'
 import { Event } from '../../types/event'
 @Component({
@@ -233,7 +240,6 @@ export default class MyPage extends Vue {
     // 開催時間の取得
     this.eventStartTime = await EventsApi.getEvents()
     this.diffTime()
-    console.log(this.exhibit)
   }
 
   diffTime() {
@@ -246,6 +252,17 @@ export default class MyPage extends Vue {
       this.eventLimitTime.hour = Math.floor(diff2Dates / (1000 * 60 * 60)) // 時間
       diff2Dates = diff2Dates % (1000 * 60 * 60)
       this.eventLimitTime.minute = Math.floor(diff2Dates / (1000 * 60)) // 分
+    }
+  }
+
+  setExhibit(exhibit: Exhibit) {
+    this.exhibit = exhibit
+  }
+
+  setBooth(booth: Booth) {
+    this.exhibit = {
+      ...this.exhibit,
+      booth,
     }
   }
 }
