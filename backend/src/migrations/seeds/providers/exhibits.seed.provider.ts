@@ -31,7 +31,7 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     description:
       '行き過ぎた欲望と力。飲み込まれた正義を取り戻す、希望を賭けた聖戦。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610697313/ks1sypu4ufolv18ek6rz.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610702163/msjaqedgvflswtooea9r.mp4',
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
     presentationImages: paging([
