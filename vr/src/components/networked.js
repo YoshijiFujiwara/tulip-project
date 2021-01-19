@@ -82,6 +82,7 @@ AFRAME.registerComponent('networked', {
 
     username: { default: '' },
     avatar: { default: '' },
+    chatOn: { default: false },
   },
 
   init: function () {
@@ -244,6 +245,7 @@ AFRAME.registerComponent('networked', {
         creator: NAF.clientId,
         username: NAF.connection.adapter.username,
         avatar: NAF.connection.adapter.avatar,
+        chatOn: NAF.connection.adapter.chatOn,
       });
 
       setTimeout(() => {
@@ -404,6 +406,7 @@ AFRAME.registerComponent('networked', {
 
     syncData.username = data.username;
     syncData.avatar = data.avatar;
+    syncData.chatOn = data.chatOn;
 
     return syncData;
   },
