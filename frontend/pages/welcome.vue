@@ -9,7 +9,11 @@
     <!-- 本サービスの楽しみ方 -->
     <ThirdOperationManualSection />
 
+    <!-- 入場ボタン -->
     <v-btn>VR空間へ入場</v-btn>
+
+    <!-- フッターをここに -->
+    <div>フッター</div>
   </div>
 </template>
 
