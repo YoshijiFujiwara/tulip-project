@@ -13,7 +13,13 @@
     <v-btn>VR空間へ入場</v-btn>
 
     <!-- フッターをここに -->
-    <div>フッター</div>
+    <v-footer color="black" padless>
+      <v-row justify="center" no-gutters>
+        <v-col class="black lighten-2 py-4 text-center white--text" cols="12">
+          {{ new Date().getFullYear() }} — <span>tulip group</span>
+        </v-col>
+      </v-row>
+    </v-footer>
   </div>
 </template>
 
