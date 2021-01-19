@@ -1,6 +1,10 @@
 <template>
   <v-app>
-    <v-container class="pa-0 wrapper" fluid>
+    <v-container
+      class="pa-0 wrapper welcomeMainText--text welcomeBackground"
+      style="font-family: HiraginoSans-W4"
+      fluid
+    >
       <nuxt />
     </v-container>
   </v-app>
