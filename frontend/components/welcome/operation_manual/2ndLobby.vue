@@ -6,14 +6,14 @@
       class="text-h2 font-weight-black"
       style="font-color: #ffffff"
     >
-      <v-icon size=90 color="purple darken-2"> mdi-numeric-2-box </v-icon>
+      <v-icon size="90" color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
     <v-row align="center" justify="space-between">
       <v-col cols="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_avatar.png')"
@@ -45,7 +45,7 @@
       <v-col col="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_lobby.png')"
@@ -75,7 +75,7 @@
       <v-col>
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_thum.png')"
@@ -112,7 +112,7 @@
       <v-col>
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_sound.png')"
