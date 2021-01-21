@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <v-row align="center" justify="center"> 操作説明やで </v-row>
+    <v-row align="center" justify="center"> ※Chrome推奨 </v-row>
     <v-col>
       <FirstBasic />
       <SecondLobby />
