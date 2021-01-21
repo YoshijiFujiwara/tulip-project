@@ -3,11 +3,6 @@
     <div class="text-h3 mt-5 ml-4">
       {{ group.name }}
     </div>
-    <div class="div-controller">
-      <v-icon small left color="green">mdi-circle</v-icon
-      >会場にログインしているユーザ
-    </div>
-
     <v-data-table
       :headers="headers"
       :items="group.exhibitors"
