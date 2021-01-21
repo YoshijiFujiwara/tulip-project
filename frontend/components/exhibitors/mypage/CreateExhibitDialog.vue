@@ -68,7 +68,9 @@
         <v-card class="ml-8 mx-auto my-4" max-width="300">
           <v-img
             v-if="
-              uploadPresentationImageUrls && uploadPresentationImageUrls.length && uploadPresentationImageUrls[0] != ''
+              uploadPresentationImageUrls &&
+              uploadPresentationImageUrls.length &&
+              uploadPresentationImageUrls[0] != ''
             "
             :src="
               uploadPresentationImageUrls && uploadPresentationImageUrls.length
