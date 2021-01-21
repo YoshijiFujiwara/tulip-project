@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <v-row align="center" justify="center" class="text-h4 font-weight-black">
+    <v-row
+      align="center"
+      justify="center"
+      class="text-h4 font-weight-black"
+      style="font-color: #ffffff"
+    >
       <v-icon x-large color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
@@ -86,7 +91,7 @@
                   <v-row align="center" justify="center" class="mx-auto">
                     混雑状況などの情報がブース内に入らなくても
                   </v-row>
-                  <v-row align="center" justify="center" class="mx-auto mt-4">
+                  <v-row align="center" justify="center" class="mx-auto mb-4">
                     わかるようになっています。
                   </v-row>
                   <v-row align="center" justify="center" class="mx-auto">
@@ -120,7 +125,7 @@
                   <v-row align="center" justify="center" class="mx-auto">
                     イベントの参加者です。もちろん、
                   </v-row>
-                  <v-row align="center" justify="center" class="mx-auto mt-4">
+                  <v-row align="center" justify="center" class="mx-auto mb-4">
                     自分が選択したアバターが相手側にも見えます。
                   </v-row>
                   <v-row align="center" justify="center" class="mx-auto">
