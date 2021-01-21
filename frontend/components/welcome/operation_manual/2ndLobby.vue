@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <v-row align="center" justify="center" class="text-h4 font-weight-black">
+    <v-row
+      align="center"
+      justify="center"
+      class="text-h4 font-weight-black"
+      style="font-color: #ffffff"
+    >
       <v-icon x-large color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
