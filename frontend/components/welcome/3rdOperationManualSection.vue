@@ -1,6 +1,8 @@
 <template>
   <v-col>
-    <v-row style="font-size: 45px" justify="center"> 本サービスについて </v-row>
+    <v-row style="font-size: 45px" justify="center">
+      本サービスの楽しみ方
+    </v-row>
     <v-row justify="center">
       <v-col cols="2" align-center>
         <div style="border: solid 2px #7769d1"></div>
