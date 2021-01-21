@@ -8,12 +8,12 @@
     </v-row>
     <div style="font-size: 35px">
       <v-row justify="center"> コロナ渦に巻き込まれた今、</v-row>
-      <v-row justify="center"
-        >学校の文化祭が開催できなくなってしまいました。
+      <v-row justify="center">
+        学校の文化祭が開催できなくなってしまいました。
       </v-row>
       <v-row justify="center">そこで、少し先の未来では</v-row>
-      <v-row justify="center"
-        >「VRを使って開催するのが主になるのではないか？」
+      <v-row justify="center">
+        「VRを使って開催するのが主になるのではないか？」
       </v-row>
       <v-row justify="center">と考え、私たちのサービス</v-row>
       <v-row style="color: #7769d1; font-size: 40px" justify="center">
