@@ -5,8 +5,8 @@
       ロビー編
     </v-row>
     <v-row align="center" justify="center">
-      <v-col col="6" class="mx-auto"
-        ><v-hover>
+      <v-col col="6" class="mx-auto">
+        <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="500">
               <v-img
@@ -35,10 +35,10 @@
               </v-fade-transition>
             </v-card>
           </template>
-        </v-hover></v-col
-      >
-      <v-col col="6" class="mx-auto"
-        ><v-hover>
+        </v-hover>
+      </v-col>
+      <v-col col="6" class="mx-auto">
+        <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="500">
               <v-img
@@ -63,19 +63,18 @@
               </v-fade-transition>
             </v-card>
           </template>
-        </v-hover></v-col
-      >
+        </v-hover>
+      </v-col>
     </v-row>
     <v-row align="center" justify="center">
-      <v-col
-        ><v-hover>
+      <v-col>
+        <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="500">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_thum.png')"
               ></v-img>
-
               <v-fade-transition>
                 <v-overlay v-if="hover" absolute color="#036358">
                   <v-row align="center" justify="center" class="mx-auto">
@@ -103,17 +102,16 @@
               </v-fade-transition>
             </v-card>
           </template>
-        </v-hover></v-col
-      >
-      <v-col
-        ><v-hover>
+        </v-hover>
+      </v-col>
+      <v-col>
+        <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="500">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_sound.png')"
               ></v-img>
-
               <v-fade-transition>
                 <v-overlay v-if="hover" absolute color="#036358">
                   <v-row align="center" justify="center" class="mx-auto">
@@ -135,8 +133,8 @@
               </v-fade-transition>
             </v-card>
           </template>
-        </v-hover></v-col
-      >
+        </v-hover>
+      </v-col>
     </v-row>
   </v-container>
 </template>
