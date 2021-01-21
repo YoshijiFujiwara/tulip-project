@@ -44,7 +44,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import FirstTopImageSection from '@/components/welcome/1stTopImageSection.vue'
 import SecondAboutSection from '@/components/welcome/2ndAboutSection.vue'
 import ThirdOperationManualSection from '@/components/welcome/3rdOperationManualSection.vue'
-import colors from 'vuetify/es5/util/colors'
 
 @Component({
   auth: false,
