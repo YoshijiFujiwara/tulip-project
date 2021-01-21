@@ -3,17 +3,17 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h4 font-weight-black"
+      class="text-h2 font-weight-black"
       style="font-color: #ffffff"
     >
-      <v-icon x-large color="purple darken-2"> mdi-numeric-2-box </v-icon>
+      <v-icon size=90 color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
-    <v-row align="center" justify="center">
-      <v-col col="6" class="mx-auto">
+    <v-row align="center" justify="space-between">
+      <v-col cols="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card max-width="500">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_avatar.png')"
