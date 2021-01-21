@@ -11,10 +11,10 @@ const Responsive = {
         _isPC(): boolean {
           // @ts-ignore
           return !this.$vuetify.breakpoint.xs && !this.$vuetify.breakpoint.sm
-        }
-      }
+        },
+      },
     })
-  }
+  },
 }
 
 Vue.use(Responsive)
