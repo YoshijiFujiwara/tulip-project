@@ -1,5 +1,11 @@
 <template>
   <v-col>
+    <v-row style="font-size: 45px" justify="center"> 本サービスについて </v-row>
+    <v-row justify="center">
+      <v-col cols="2" align-center>
+        <div style="border: solid 2px #7769d1"></div>
+      </v-col>
+    </v-row>
     <v-row align="center" justify="center"> ※Chrome推奨 </v-row>
     <v-col>
       <FirstBasic />
