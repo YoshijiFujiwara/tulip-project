@@ -2,8 +2,8 @@
   <v-container align="center" justify="center">
     <v-row align="center" justify="center">
       <v-col cols="12" align="center">
-        <span class="text-h3 bg-7769d1 mr-5">１</span>
-        <span class="text-h3">基本操作編</span>
+        <span class="text-h2 bg-7769d1 mr-5">１</span>
+        <span class="text-h2">基本操作編</span>
       </v-col>
     </v-row>
     <v-row justify="center">
