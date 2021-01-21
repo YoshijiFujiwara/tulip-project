@@ -17,6 +17,11 @@
       } else {
         console.log('ウェブ');
       }
+
+      shortcut.add('P', () => {
+        document.getElementById('player').setAttribute('position', '0 2.5 0');
+      });
+
       window.onload = (evt) => {
         fetch(
           `<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`,
@@ -57,8 +62,8 @@
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
         audio: <%=enableAudio ? 'true' : 'false'%>;
+        chatOn: <%=enableAudio ? 'true' : 'false'%>;
       "
-      cursor="rayOrigin: mouse"
       keyboard-shortcuts="enterVR: false;"
       vr-mode-ui="enabled: false;"
       screen-controls

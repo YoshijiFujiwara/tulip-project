@@ -26,16 +26,16 @@ export interface DummyExhibit {
 
 export const dummyOriginExhibits: Array<DummyExhibit> = [
   {
-    title: 'ロボティックガール',
+    title: 'たったそれだけの物語',
     genre: GENRE.MUSIC,
     description:
-      'エモーショナルかつ"ゆめかわ"をテーマに。暗いシーンにも明るいシーンにもそういう色使いを入れつつ、クールにもキュートにも見える映像づくりを心がけてます。 ロボットみたいに傷つかない心でいられたらいいのにって思うことをミュージックにしました。',
+      '行き過ぎた欲望と力。飲み込まれた正義を取り戻す、希望を賭けた聖戦。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610202834/kvulzgvfm3dai8vl4yp6.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610702496/zeppfb1hn0qa3rxbhhcz.mp4',
     thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610164025/dlxrbjzqvljpg6ae4dhz.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610164030/mwanwxdbtydpjpvllvei.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
     ]),
   },
   {
@@ -52,53 +52,53 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     ]),
   },
   {
-    title: 'sekiro',
+    title: 'AbsentedAge',
     genre: GENRE.GAME,
     description:
-      '隻腕の狼、戦国に忍ぶ。完全新作アクション・アドベンチャー、架空の戦国末期を舞台に隻腕の忍者の活躍を描く和風アクションゲーム。',
+      'ARPG×SRPG×ローグライクの新世代ミックスジャンルゲーム。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610698355/b8wqtphvxayecthsvgbe.mp4',
     thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610165527/dvlvaklnod0f9otwn7su.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610678667/md5ynzmbphbgys2nhqzk.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610165529/pombklmsq9iczycvkwqb.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610678844/hzunjybzwpcjfsf3pp8d.jpg',
     ]),
   },
   {
-    title: 'モンスターハンターライズ',
-    genre: GENRE.GAME,
+    title: '幻想霧',
+    genre: GENRE.MOVIE,
     description:
-      'ハンティングアクションに新風を巻き起こす『モンスターハンターライズ』 狩猟に新風を巻き起こす、縦横無尽に躍動するアクション。 思いのままに翔けあがれる、新たなハンティングフィールド。 そして、未知の興奮や驚きをもたらす、全く新しいモンスターたち。',
+      '霧に包まれた、その上空から見た世界。雲がないため夜間に地上の気温が下がる「放射冷却」により、地表付近の空気が一定温度以下になることによって発生する霧。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610693805/z1i91ohomewmyjwcvxbl.mp4',
     thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610160941/wsbz0u4cirbfq1skrtor.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610677196/egkecxnqyllnqjjw7wmy.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610160944/dnjnt6hdhl6k9lrpasxw.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610677197/t6zw5xpgtcclkngzvudg.jpg',
+    ]),
+  },
+  {
+    title: 'A.C.I.D',
+    genre: GENRE.GAME,
+    description: '「未来創造展2020」で4年制HAL大賞を受賞した作品です。',
+    demo:
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610699066/smxeq9o3swm6igwkionf.mp4',
+    thumbnail:
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610683145/kxdrbx2ltgguwa2sm5yb.png',
+    presentationImages: paging([
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610683145/kxdrbx2ltgguwa2sm5yb.png',
     ]),
   },
   {
     title: 'Emotion',
     genre: GENRE.MOVIE,
-    description: '躍動的で見栄えのいいアニメーションを作成しました。',
+    description: 'モーショングラフィックスを使った動画です。',
     demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610077813/umhbtyfzbm5ztj2k5pfc.mp4',
+      'https://res.cloudinary.com/db32y726v/video/upload/v1610699459/xmeavuwwce09ddknuuim.mp4',
     thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610170290/hamgzafimtyqvw9knezx.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610699970/aswvxj1tlpcdppekrhmi.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610170290/hamgzafimtyqvw9knezx.jpg',
-    ]),
-  },
-  {
-    title: '朱',
-    genre: GENRE.MOVIE,
-    description: '一人の少女が妖怪に追いかけられて…',
-    demo:
-      'https://res.cloudinary.com/db32y726v/video/upload/v1610171586/qdqt8j32iil4ktskn2qt.mp4',
-    thumbnail:
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610171566/jrmglt4bqry3dgxmufvf.jpg',
-    presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610171568/hux1sssq5xbobewsm1yf.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1610680465/s0vfhnkyinnx49nslfrh.jpg',
     ]),
   },
 ];

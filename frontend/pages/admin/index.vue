@@ -137,7 +137,9 @@
                 <PieChart :exhibits="exhibits" :order="order" />
                 <v-card-actions>
                   <v-spacer></v-spacer
-                  ><v-btn text color="success">作品一覧</v-btn>
+                  ><v-btn text color="success" @click="goToExhibits"
+                    >作品一覧</v-btn
+                  >
                 </v-card-actions>
               </v-card-text>
             </v-card>
@@ -274,6 +276,10 @@ export default class Signin extends Vue {
 
   goToGroup() {
     this.$router.push({ path: `/admin/groups/` })
+  }
+
+  goToExhibits() {
+    this.$router.push({ path: `/admin/exhibits/` })
   }
 }
 </script>

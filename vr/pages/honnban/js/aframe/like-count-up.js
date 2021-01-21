@@ -1,3 +1,12 @@
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 AFRAME.registerComponent('like-count-up', {
   init: function () {
     var self = this;
@@ -27,6 +36,22 @@ AFRAME.registerComponent('like-count-up', {
         whiteLikesEl.setAttribute('visible', false);
         likesEl.setAttribute('visible', true);
         likeNumEl.setAttribute('value', sum);
+
+        likeNumEl.setAttribute(
+          'sound',
+          `src: /honnban/assets/music/iine_voice.wav; volume:0.1`,
+        );
+        likeNumEl.components.sound.playSound();
+        
+        const iinePlayer = getParameterByName('username');
+
+        // 自分のnetworkIdを取得する
+        const aScene = document.getElementsByTagName('a-scene')[0];
+        const myNetworkId = aScene.dataset.myNetworkId;
+        NAF.connection.broadcastData('iine', {
+          networkId: myNetworkId,
+          iinePlayer,
+        });
       }
     });
   },

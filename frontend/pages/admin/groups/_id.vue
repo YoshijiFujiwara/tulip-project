@@ -2,6 +2,9 @@
   <v-app class="pa-14">
     <breadcrums :items="breadcrum" />
 
+    <div class="text-h3 mt-5 ml-4">
+      {{ group.name }}
+    </div>
     <v-data-table
       :headers="headers"
       :items="group.exhibitors"
