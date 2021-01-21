@@ -87,6 +87,20 @@
           material="color: #ACACAC; shader: flat; opacity: 0.6"
           far="30"
         >
+          <!-- いいねボタンが押された時に表示される文字 -->
+          <a-text
+            id="iine-text"
+            value="さんがいいねボタンを押しました！"
+            font="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json"
+            font-image="/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png"
+            negate="false"
+            color="#ff00ae"
+            scale="3 3.5 10"
+            position="-0.25845 2.7548 -0.03306"
+            look-at="#player"
+            text="align: center"
+            visible="false"
+          ></a-text>
         </a-cursor>
         <a-sphere class="head" visible="false"></a-sphere>
       </a-camera>
