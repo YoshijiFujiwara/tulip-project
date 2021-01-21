@@ -9,7 +9,7 @@
       sort-by="ID"
     >
       <!-- eslint-disable-next-line -->
-      <template v-slot:item.status="{item}">
+      <template v-slot:item.status="{ item }">
         <v-badge
           v-if="item.status"
           bordered
@@ -61,7 +61,7 @@ export default class Signin extends Vue {
       href: '/admin',
     },
     {
-      text: '来場者一覧',
+      text: '出展者一覧',
       disabled: true,
       href: '/admin/exhibitors',
     },

@@ -54,7 +54,7 @@ export default class Groups extends Vue {
       href: '/admin',
     },
     {
-      text: 'グループ一覧',
+      text: '出展者グループ一覧',
       disabled: true,
       href: '/admin/exhibitors',
     },
