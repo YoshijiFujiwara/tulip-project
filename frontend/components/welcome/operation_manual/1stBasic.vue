@@ -15,9 +15,9 @@
         />
         <div>
           <p>「W」… 前進</p>
-          <p>「A」… 左　</p>
+          <p>「A」… 左&nbsp;</p>
           <p>「S」… 後退</p>
-          <p>「D」… 右　</p>
+          <p>「D」… 右&nbsp;</p>
         </div>
       </v-col>
       <v-col cols="4" align="center">
