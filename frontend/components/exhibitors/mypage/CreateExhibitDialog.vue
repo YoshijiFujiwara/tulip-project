@@ -65,17 +65,20 @@
           作品のプレゼン資料をアップロードしましょう。
         </p>
         <!-- TODO: プレビューいったんコメントアウト -->
-        <v-card class="ml-8 mx-auto my-4" max-width="300">
-          <v-img
+        <v-card class="ml-8 mx-auto my-4" max-width="auto">
+          <v-carousel
             v-if="
               uploadPresentationImageUrls && uploadPresentationImageUrls.length
             "
-            :src="
-              uploadPresentationImageUrls && uploadPresentationImageUrls.length
-                ? uploadPresentationImageUrls[0]
-                : ''
-            "
-          ></v-img>
+          >
+            <v-carousel-item
+              v-for="(item, i) in uploadPresentationImageUrls"
+              :key="i"
+              :src="item"
+              reverse-transition="fade-transition"
+              transition="fade-transition"
+            ></v-carousel-item>
+          </v-carousel>
         </v-card>
         <v-file-input
           v-model="form.presentationImages"
@@ -333,19 +336,21 @@ export default class CreateExhibitDialog extends Vue {
 
   // presentationImageのプレビュー
   onPresentationImagePicked(files: File[]) {
-    if (files && files[0] !== undefined && files[0] !== null) {
-      if (files[0].name.lastIndexOf('.') <= 0) {
-        return
-      }
-      const fr = new FileReader()
-      fr.readAsDataURL(files[0])
-      fr.addEventListener('load', () => {
-        if (typeof fr.result === 'string') {
-          this.uploadPresentationImageUrls[0] = fr.result
+    for (const file in files) {
+      if (files && files[file] !== undefined && files[file] !== null) {
+        if (files[file].name.lastIndexOf('.') <= 0) {
+          return
         }
-      })
-    } else {
-      this.uploadPresentationImageUrls[0] = ''
+        const fr = new FileReader()
+        fr.readAsDataURL(files[file])
+        fr.addEventListener('load', () => {
+          if (typeof fr.result === 'string') {
+            this.uploadPresentationImageUrls[file] = fr.result
+          }
+        })
+      } else {
+        this.uploadPresentationImageUrls[file] = ''
+      }
     }
   }
 
