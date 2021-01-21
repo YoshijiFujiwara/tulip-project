@@ -21,6 +21,7 @@
             class="white--text text-center"
             height="4.5em"
             x-large
+            :href="`${vrUrl}honnban/select_avatar`"
           >
             <span>VR空間へ入場</span>
           </v-btn>
@@ -54,7 +55,13 @@ import ThirdOperationManualSection from '@/components/welcome/3rdOperationManual
     ThirdOperationManualSection,
   },
 })
-export default class Welcome extends Vue {}
+export default class Welcome extends Vue {
+  vrUrl: string = ''
+
+  created() {
+    this.vrUrl = process.env.vrBaseUrl!
+  }
+}
 </script>
 
 <style scoped>
