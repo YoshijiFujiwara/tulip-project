@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ログのリストを出すサンプル実装</title>
+  </head>
+  <body>
+    <button id="div_iine_button">divタグ用いいねボタン</button>
+
+    <!-- ここにログが流れるイメージ -->
+    <div id="div_log_list">
+      <div>ここにdivタグのいいねが流れます</div>
+    </div>
+
+    <script>
+      // elementを指定秒後に削除するタイマー関数
+      const removeElementTimer = (function () {
+        const timers = []; // variable persisted here
+
+        return function (element, timerMillSec = 4000) {
+          // ランダムIDを生成
+          const uniqueId = Math.floor(Math.random() * 1000);
+          // timerをクリアする（タイマーをidで指定する必要があります）
+          window.clearTimeout(timers[uniqueId]);
+
+          timers[uniqueId] = window.setTimeout(function () {
+            element.remove();
+          }, timerMillSec);
+        };
+      })();
+
+      // DIVのいいねボタンのクリックイベントを登録する
+      const divIineButtonEl = document.getElementById('div_iine_button');
+      divIineButtonEl.addEventListener('click', () => {
+        // ログのリストの要素
+        const logListEl = document.getElementById('div_log_list');
+        // 新規に追加する要素
+        const newLogEl = document.createElement('div');
+        const randomNum = Math.floor(Math.random() * 100);
+        newLogEl.innerHTML = `ほげほげ その${randomNum}さんがいいねしました`;
+        // 要素を追加
+        logListEl.appendChild(newLogEl);
+        // その新要素は数秒後に削除する
+        removeElementTimer(newLogEl);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ログのリストを出すサンプル実装</title>
+  </head>
+  <body>
+    <button id="position_iine_button">position指定用いいねボタン</button>
+
+    <!-- ここにログが流れるイメージ -->
+    <div id="position_log_list" style="position: relative"></div>
+
+    <script>
+      // css要素からtopの値を取得する専用関数
+      const getTopValue = (element) => {
+        const cssTexts = element.style.cssText.split(';');
+        console.log('csstexts', cssTexts);
+        const topText = cssTexts.find((text) => {
+          console.log(text);
+          return text.includes('top');
+        });
+
+        return topText ? topText.replace(/\D/g, '') : null;
+      };
+
+      // elementを指定秒後に削除しつつ、指定コンポーネントの子要素の全てを上にスライドする関数
+      // ちょっとややこしいかも🙏
+      const removePositionElementTimer = (function () {
+        const timers = []; // variable persisted here
+
+        return function (element, timerMillSec = 4000) {
+          // ランダムIDを生成
+          const uniqueId = Math.floor(Math.random() * 1000);
+          // timerをクリアする（タイマーをidで指定する必要があります）
+          window.clearTimeout(timers[uniqueId]);
+
+          timers[uniqueId] = window.setTimeout(function () {
+            // 要素の削除
+            element.remove();
+            // 子要素の全てを上にスライドする
+            const positionLogListEl = document.getElementById(
+              'position_log_list',
+            );
+            const logElChildren = positionLogListEl.children;
+            for (let i = 0; i < logElChildren.length; i++) {
+              const topValue = getTopValue(logElChildren[i]);
+              logElChildren[i].setAttribute(
+                'style',
+                `position: absolute; top: ${+topValue - 30}px`,
+              );
+            }
+          }, timerMillSec);
+        };
+      })();
+
+      // ポジション指定用のいいねボタンのクリックイベントを登録する
+      const positionIineButtonEl = document.getElementById(
+        'position_iine_button',
+      );
+      positionIineButtonEl.addEventListener('click', () => {
+        // ログのリストの要素
+        const logListEl = document.getElementById('position_log_list');
+        // 新規に追加する要素
+        const newLogEl = document.createElement('div');
+        const randomNum = Math.floor(Math.random() * 100);
+        newLogEl.innerHTML = `ほげほげ その${randomNum}さんがいいねしました`;
+
+        // 最後の小要素があれば、それからtopの値を取得して、それに20px加算する
+        // なければ0pxとする
+        const lastLogEl = logListEl.lastElementChild;
+        let lastTopValue = 0;
+        if (lastLogEl) {
+          lastTopValue = getTopValue(lastLogEl);
+        }
+        newLogEl.setAttribute(
+          'style',
+          `position: absolute; top: ${+lastTopValue + 30}px`,
+        );
+
+        // 要素を追加
+        logListEl.appendChild(newLogEl);
+        // その新要素は数秒後に削除する
+        removePositionElementTimer(newLogEl);
+      });
+    </script>
+  </body>
+</html>
