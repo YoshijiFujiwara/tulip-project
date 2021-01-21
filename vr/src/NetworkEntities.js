@@ -4,7 +4,7 @@ var ChildEntityCache = require('./ChildEntityCache');
 var visibleFalseTimer = (function () {
   var timers = []; // variable persisted here
 
-  return function (element, timerId, timerMillSec = 3000) {
+  return function (element, timerId, timerMillSec = 4000) {
     window.clearTimeout(timers[timerId]);
     timers[timerId] = window.setTimeout(function () {
       element.setAttribute('visible', false);
@@ -253,13 +253,30 @@ class NetworkEntities {
     NAF.log.write('iineRemoteEntity source', source);
 
     //　iineに＋１する
-    const { networkId } = data;
+    const { networkId, iinePlayer } = data;
     const likeNumEl = document.getElementById('number-of-like');
     NAF.log.write('likeNumEl:', likeNumEl);
+
     const num = parseInt(likeNumEl.getAttribute('value'));
     const sum = num + 1;
-    NAF.log.write('count-up::' + sum);
+    NAF.log.write('count-up:' + sum);
     likeNumEl.setAttribute('value', sum);
+
+    likeNumEl.setAttribute(
+      'sound',
+      `src: /honnban/assets/music/iine_voice.wav; volume:0.1`,
+    );
+    likeNumEl.components.sound.playSound();
+
+    const iineTextEl = document.querySelector('#iine-text');
+    // const iineText = iineUserNameEl.getAttribute('value');
+    NAF.log.write('iine-text:' + iineTextEl);
+    NAF.log.write('iine-player:' + iinePlayer);
+    const iinetext = iinePlayer + 'がいいねボタンを押しました';
+    iineTextEl.setAttribute('value', iinetext);
+    iineTextEl.setAttribute('visible', true);
+
+    visibleFalseTimer(iineTextEl, `iine-${networkId}`);
   }
 
   demoVideoRemotePlayingEntity(toClient, dataType, data, source) {
