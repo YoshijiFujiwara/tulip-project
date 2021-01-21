@@ -1,30 +1,17 @@
 /* global NAF */
 var ChildEntityCache = require('./ChildEntityCache');
 
-var reactionElements = [];
-var iineTextEl = [];
+var visibleFalseTimer = (function () {
+  var timers = []; // variable persisted here
 
-var endAndStartTimer = (function (networkId) {
-  var timer; // variable persisted here
-  return function () {
-    window.clearTimeout(timer);
-    //var millisecBeforeRedirect = 10000;
-    timer = window.setTimeout(function () {
-      reactionElements[networkId].setAttribute('visible', false);
-    }, 3000);
+  return function (element, timerId, timerMillSec = 4000) {
+    window.clearTimeout(timers[timerId]);
+    timers[timerId] = window.setTimeout(function () {
+      element.setAttribute('visible', false);
+    }, timerMillSec);
   };
 })();
 
-var endStartIineTimer = (function () {
-  var timer; // variable persisted here
-  return function () {
-    window.clearTimeout(timer);
-    //var millisecBeforeRedirect = 10000;
-    timer = window.setTimeout(function () {
-      iineTextEl.setAttribute('visible', false);
-    }, 5000);
-  };
-})();
 class NetworkEntities {
   constructor() {
     this.entities = {};
@@ -50,6 +37,8 @@ class NetworkEntities {
       'text',
       `value: ${entityData.username}; align: center; negate:false; font: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json; font-image: /honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png`,
     );
+
+    // アバターの切り替え
     var avatarModel = el.querySelector('#avatar_model');
     avatarModel.setAttribute(
       'src',
@@ -82,9 +71,14 @@ class NetworkEntities {
         break;
       default:
     }
-    // console.log('name', name);
-    // console.log('avatarModel', avatarModel);
 
+    // チャットONの場合のみ、サウンドアイコンを表示する
+    if (entityData.chatOn) {
+      const avatarChatOnEl = el.querySelector('#avatar_chat_on');
+      avatarChatOnEl.setAttribute('visible', 'true');
+    }
+
+    // ここから下はいじらない事
     el.setAttribute('id', 'naf-' + networkId);
 
     this.initPosition(el, entityData.components);
@@ -237,21 +231,19 @@ class NetworkEntities {
 
     const { networkId, reactionType } = data;
     const reactionPlayerEl = document.getElementById(`naf-${networkId}`);
-    reactionElements[networkId] = reactionPlayerEl.querySelector(
-      '#avatar_reaction',
-    );
-    reactionElements[networkId].setAttribute(
+    const reactionEl = reactionPlayerEl.querySelector('#avatar_reaction');
+    reactionEl.setAttribute(
       'src',
-      `/honnban/assets/img/emo_${reactionType}.svg`,
+      `/honnban/assets/img/emo_${reactionType}.png`,
     );
-    reactionElements[networkId].setAttribute('visible', true);
+    reactionEl.setAttribute('visible', true);
 
-    reactionElements[networkId].setAttribute(
+    reactionEl.setAttribute(
       'sound',
       `src: #assets-${reactionType}-effect; volume:0.07`,
     );
-    reactionElements[networkId].components.sound.playSound();
-    endAndStartTimer(networkId);
+    reactionEl.components.sound.playSound();
+    visibleFalseTimer(reactionEl, networkId);
   }
 
   iineRemoteEntity(toClient, dataType, data, source) {
@@ -263,11 +255,11 @@ class NetworkEntities {
     //　iineに＋１する
     const { networkId, iinePlayer } = data;
     const likeNumEl = document.getElementById('number-of-like');
-    NAF.log.write("likeNumEl:", likeNumEl)
+    NAF.log.write('likeNumEl:', likeNumEl);
 
     const num = parseInt(likeNumEl.getAttribute('value'));
     const sum = num + 1;
-    NAF.log.write("count-up:" + sum)
+    NAF.log.write('count-up:' + sum);
     likeNumEl.setAttribute('value', sum);
 
     likeNumEl.setAttribute(
@@ -275,17 +267,37 @@ class NetworkEntities {
       `src: /honnban/assets/music/iine_voice.wav; volume:0.1`,
     );
     likeNumEl.components.sound.playSound();
-    
-    iineTextEl = document.querySelector('#iine-text');
+
+    const iineTextEl = document.querySelector('#iine-text');
     // const iineText = iineUserNameEl.getAttribute('value');
-    NAF.log.write("iine-text:" + iineTextEl)
-    NAF.log.write("iine-player:" + iinePlayer)
-    const iinetext = iinePlayer + "がいいねボタンを押しました";
+    NAF.log.write('iine-text:' + iineTextEl);
+    NAF.log.write('iine-player:' + iinePlayer);
+    const iinetext = iinePlayer + 'がいいねボタンを押しました';
     iineTextEl.setAttribute('value', iinetext);
     iineTextEl.setAttribute('visible', true);
 
-    endStartIineTimer();
+    visibleFalseTimer(iineTextEl, `iine-${networkId}`);
+  }
 
+  demoVideoRemotePlayingEntity(toClient, dataType, data, source) {
+    NAF.log.write('demoVideoRemotePlayingEntity toClient', toClient);
+    NAF.log.write('demoVideoRemotePlayingEntity dataType', dataType);
+    NAF.log.write('demoVideoRemotePlayingEntity data', data);
+    NAF.log.write('demoVideoRemotePlayingEntity source', source);
+
+    const { nowPlaying } = data;
+    NAF.log.write('nowPlaying', nowPlaying);
+
+    const videocontrolsEl = document.querySelector('#video-controls');
+    const myVideo = document.getElementById('asset-demo');
+
+    if (nowPlaying) {
+      myVideo.play();
+      videocontrolsEl.setAttribute('src', '#asset-pause');
+    } else {
+      myVideo.pause();
+      videocontrolsEl.setAttribute('src', '#asset-play');
+    }
   }
 
   removeEntitiesOfClient(clientId) {

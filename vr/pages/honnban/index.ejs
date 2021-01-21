@@ -17,6 +17,11 @@
       } else {
         console.log('ウェブ');
       }
+
+      shortcut.add('P', () => {
+        document.getElementById('player').setAttribute('position', '0 2.5 0');
+      });
+
       window.onload = (evt) => {
         fetch(
           `<%= apiUrl %>access_log?username=<%= username %>&avatar=<%= avatar %>`,
@@ -57,6 +62,7 @@
         avatar: <%=avatar%>;
         serverURL: <%=wsServerUrl%>;
         audio: <%=enableAudio ? 'true' : 'false'%>;
+        chatOn: <%=enableAudio ? 'true' : 'false'%>;
       "
       cursor="rayOrigin: mouse"
       keyboard-shortcuts="enterVR: false;"
@@ -68,11 +74,9 @@
         <img id="comming_soon2" src="/honnban/assets/img/comming_soon2.jpg" />
         <img id="comming_soon3" src="/honnban/assets/img/comming_soon3.png" />
         <img id="comming_soon4" src="/honnban/assets/img/comming_soon4.png" />
-        <img id="lv1" src="/honnban/assets/img/lv1.svg" />
-        <img id="lv2" src="/honnban/assets/img/lv2.svg" />
-        <img id="lv3" src="/honnban/assets/img/lv3.svg" />
-        <!-- bgm -->
-        <audio id="bgm" src="/honnban/assets/music/theme14.mp3"></audio>
+        <img id="lv1" src="/honnban/assets/img/lv1.png" />
+        <img id="lv2" src="/honnban/assets/img/lv2.png" />
+        <img id="lv3" src="/honnban/assets/img/lv3.png" />
       </a-assets>
       <!-- アバター -->
       <%- include('./ejs-components/ejs-assets/avatar.asset.ejs') %>

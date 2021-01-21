@@ -5,6 +5,7 @@ var ReservedDataType = {
   Remove: 'r',
   Reaction: 'reaction',
   Iine: 'iine',
+  DemoVideoPlaying: 'demoVideoPlaying',
 };
 
 class NetworkConnection {
@@ -42,9 +43,21 @@ class NetworkConnection {
     this.dataChannelSubs[
       ReservedDataType.Iine
     ] = this.entities.iineRemoteEntity.bind(this.entities);
+
+    this.dataChannelSubs[
+      ReservedDataType.DemoVideoPlaying
+    ] = this.entities.demoVideoRemotePlayingEntity.bind(this.entities);
   }
 
-  connect(serverUrl, appName, roomName, enableAudio = false, username, avatar) {
+  connect(
+    serverUrl,
+    appName,
+    roomName,
+    enableAudio = false,
+    username,
+    avatar,
+    chatOn,
+  ) {
     NAF.app = appName;
     NAF.room = roomName;
 
@@ -53,6 +66,7 @@ class NetworkConnection {
     this.adapter.setRoom(roomName);
     this.adapter.setUsername(username);
     this.adapter.setAvatar(avatar);
+    this.adapter.setChatOn(chatOn);
 
     var webrtcOptions = {
       audio: enableAudio,
