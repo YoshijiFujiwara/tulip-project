@@ -1,5 +1,5 @@
 <template>
-  <v-app class="pa-14">
+  <v-app v-if="group" class="pa-14">
     <breadcrums :items="breadcrum" />
 
     <div class="text-h3 mt-5 ml-4">
@@ -50,7 +50,7 @@ import Breadcrumbs from '../../../components/breadcrums.vue'
   components: { Breadcrumbs },
 })
 export default class Groups extends Vue {
-  group: Group[] = []
+  group: Group | null = null
 
   search = ''
   headers = [
@@ -84,7 +84,7 @@ export default class Groups extends Vue {
     this.breadcrum = [
       ...this.breadcrum,
       {
-        text: this.group.name,
+        text: this.group ? this.group.name : '',
         disabled: true,
         href: `/admin/exhibitors/${this.$route.params.id}`,
       },
