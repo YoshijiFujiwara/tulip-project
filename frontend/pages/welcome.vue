@@ -1,9 +1,8 @@
 <template>
   <div>
+    <!-- トップの画像のところ -->
+    <FirstTopImageSection />
     <div class="px-16">
-      <!-- トップの画像のところ -->
-      <FirstTopImageSection />
-
       <!-- 本サービスについて -->
       <SecondAboutSection />
 
@@ -32,7 +31,8 @@
     <v-footer color="black" padless>
       <v-row justify="center" no-gutters>
         <v-col class="black py-4 text-center white--text">
-          {{ new Date().getFullYear() }} — <span>tulip group</span>
+          {{ new Date().getFullYear() }} —
+          <span>tulip group</span>
         </v-col>
       </v-row>
     </v-footer>
