@@ -1,27 +1,24 @@
 <template>
   <div>
-    <v-row style="font-size: 45px" justify="center"> 本サービスについて </v-row>
+    <v-row class="text-h3" justify="center">本サービスについて</v-row>
     <v-row justify="center">
       <v-col cols="2" align-center>
         <div style="border: solid 2px #7769d1"></div>
       </v-col>
     </v-row>
-    <div style="font-size: 35px">
-      <v-row justify="center"> コロナ渦に巻き込まれた今、</v-row>
-      <v-row justify="center">
-        学校の文化祭が開催できなくなってしまいました。
+    <div class="mt-12 text-h4 text-center">
+      <v-row justify="center" style="line-height:180%">
+        コロナ渦に巻き込まれた今、
+        <br />学校の文化祭が開催できなくなってしまいました。
+        <br />そこで、少し先の未来では
+        <br />「VRを使って開催するのが主になるのではないか？」
+        <br />と考え、私たちのサービス
       </v-row>
-      <v-row justify="center">そこで、少し先の未来では</v-row>
-      <v-row justify="center">
-        「VRを使って開催するのが主になるのではないか？」
-      </v-row>
-      <v-row justify="center">と考え、私たちのサービス</v-row>
-      <v-row style="color: #7769d1; font-size: 40px" justify="center">
-        <span class="pt-2" style="color: #fafafa; font-size: 35px"> 「 </span>
+
+      <v-row style="color: #7769d1;" class="text-h3" justify="center">
+        <span class="text-h4 pt-3 welcomeMainText--text">「</span>
         文
-        <span class="pt-2" style="color: #fafafa; font-size: 35px">
-          化祭から始まるVR生活」が生まれました。
-        </span>
+        <span class="text-h4 pt-3 welcomeMainText--text">化祭から始まるVR生活」が生まれました。</span>
       </v-row>
     </div>
   </div>
