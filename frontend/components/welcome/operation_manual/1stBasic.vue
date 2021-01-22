@@ -3,10 +3,10 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h2 font-weight-black"
+      class="text-h3 mt-6"
       style="font-color: #ffffff"
     >
-      <v-icon size="90" color="purple darken-2">mdi-numeric-1-box</v-icon>
+      <v-icon size="70" color="purple darken-2">mdi-numeric-1-box</v-icon>
       基本操作編
     </v-row>
     <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">

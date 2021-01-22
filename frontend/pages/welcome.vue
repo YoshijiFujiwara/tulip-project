@@ -5,10 +5,10 @@
       <FirstTopImageSection />
 
       <!-- 本サービスについて -->
-      <SecondAboutSection class="mt-12"/>
+      <SecondAboutSection class="mt-12" />
 
       <!-- 本サービスの楽しみ方 -->
-      <ThirdOperationManualSection class="mt-12"/>
+      <ThirdOperationManualSection class="mt-12" />
 
       <!-- 入場ボタン -->
       <v-row justify="center" no-gutters class="mt-12">

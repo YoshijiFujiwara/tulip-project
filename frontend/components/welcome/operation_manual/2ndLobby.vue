@@ -3,13 +3,13 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h2 font-weight-black"
+      class="text-h3 mt-6"
       style="font-color: #ffffff"
     >
-      <v-icon size="90" color="purple darken-2"> mdi-numeric-2-box </v-icon>
+      <v-icon size="70" color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
-    <v-row align="center" justify="space-between">
+    <v-row align="center" class="mt-9" justify="space-between">
       <v-col cols="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
