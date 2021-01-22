@@ -20,7 +20,7 @@ spec:
             backend:
               serviceName: backend-phpmyadmin-srv
               servicePort: 80
-    # プロダクションのdomain name
+    # プロダクションのdomain name!
     - host: www.tulipgumi.xyz
       http:
         paths:
