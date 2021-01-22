@@ -7,7 +7,7 @@
         autoplay
         muted
         class="mask"
-        style="clip-path: inset(0em 0em 10em 0em)"
+        style="clip-path: inset(0em 0em 20em 0em)"
         gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
         max-height="900px"
       ></video>
@@ -30,7 +30,7 @@ export default class Section extends Vue {}
   height: 124px;
   width: 389px;
   position: absolute;
-  bottom: 20%;
+  bottom: 30%;
   left: 10%;
 }
 </style>
