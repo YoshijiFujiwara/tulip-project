@@ -12,6 +12,22 @@ var visibleFalseTimer = (function () {
   };
 })();
 
+// elementを指定秒後に削除するタイマー関数
+const removeElementTimer = (function () {
+  const timers = []; // variable persisted here
+
+  return function (element, timerMillSec = 4000) {
+    // ランダムIDを生成
+    const uniqueId = Math.floor(Math.random() * 1000);
+    // timerをクリアする（タイマーをidで指定する必要があります）
+    window.clearTimeout(timers[uniqueId]);
+
+    timers[uniqueId] = window.setTimeout(function () {
+      element.remove();
+    }, timerMillSec);
+  };
+})();
+
 class NetworkEntities {
   constructor() {
     this.entities = {};
@@ -268,15 +284,25 @@ class NetworkEntities {
     );
     likeNumEl.components.sound.playSound();
 
-    const iineTextEl = document.querySelector('#iine-text');
-    // const iineText = iineUserNameEl.getAttribute('value');
-    NAF.log.write('iine-text:' + iineTextEl);
-    NAF.log.write('iine-player:' + iinePlayer);
-    const iinetext = iinePlayer + 'がいいねボタンを押しました';
-    iineTextEl.setAttribute('value', iinetext);
-    iineTextEl.setAttribute('visible', true);
-
-    visibleFalseTimer(iineTextEl, `iine-${networkId}`);
+    // ログのリストの要素
+    const logListEl = document.getElementById('entity_log_list');
+    // 新規に追加する要素
+    const newLogEl = document.createElement('a-text');
+    const iinetext = iinePlayer + 'がいいねしました';
+    newLogEl.setAttribute('value', iinetext);
+    newLogEl.setAttribute('font', '/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.json');
+    newLogEl.setAttribute('font-image', '/honnban/assets/fonts/noto-sans-cjk-jp/noto-sans-cjk-jp-msdf.png');
+    newLogEl.setAttribute('negate', false);
+    newLogEl.setAttribute('color', '#ff00ae');
+    newLogEl.setAttribute('scale', '3 3.5 10');
+    newLogEl.setAttribute('position', '-0.25845 2.7548 -0.03306');
+    newLogEl.setAttribute('text', 'align: center');
+    newLogEl.setAttribute('visible', true);
+    newLogEl.setAttribute('animation', 'property: position; to: 0 4.5 0; dur: 4000; easing: linear;')
+    // 要素を追加
+    logListEl.appendChild(newLogEl);
+    // その新要素は数秒後に削除する
+    removeElementTimer(newLogEl);
   }
 
   demoVideoRemotePlayingEntity(toClient, dataType, data, source) {
