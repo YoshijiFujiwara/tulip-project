@@ -1,17 +1,16 @@
 <template>
   <div>
+    <!-- トップの画像のところ -->
+    <FirstTopImageSection />
     <div class="px-16">
-      <!-- トップの画像のところ -->
-      <FirstTopImageSection />
-
       <!-- 本サービスについて -->
-      <SecondAboutSection />
+      <SecondAboutSection class="mt-12" />
 
       <!-- 本サービスの楽しみ方 -->
-      <ThirdOperationManualSection />
+      <ThirdOperationManualSection class="mt-12" />
 
       <!-- 入場ボタン -->
-      <v-row justify="center" no-gutters>
+      <v-row justify="center" no-gutters class="mt-12">
         <v-col class="py-12">
           <v-btn
             id="enterVR"
@@ -33,7 +32,8 @@
     <v-footer color="black" padless>
       <v-row justify="center" no-gutters>
         <v-col class="black py-4 text-center white--text">
-          {{ new Date().getFullYear() }} — <span>tulip group</span>
+          {{ new Date().getFullYear() }} —
+          <span>tulip group</span>
         </v-col>
       </v-row>
     </v-footer>

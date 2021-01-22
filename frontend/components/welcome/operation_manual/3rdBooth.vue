@@ -3,17 +3,17 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h4 font-weight-black"
+      class="text-h3 mt-6"
       style="font-color: #ffffff"
     >
-      <v-icon x-large color="purple darken-2"> mdi-numeric-3-box </v-icon>
+      <v-icon size="70" color="purple darken-2"> mdi-numeric-3-box </v-icon>
       ブース編
     </v-row>
-    <v-row align="center" justify="center">
+    <v-row align="center" class="mt-9" justify="center">
       <v-col col="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_booth.png')"
@@ -48,7 +48,7 @@
       <v-col col="6" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_reaction.png')"
@@ -78,7 +78,7 @@
       <v-col>
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_bird.png')"
@@ -106,7 +106,7 @@
       <v-col>
         <v-hover>
           <template v-slot:default="{ hover }">
-            <v-card class="mx-auto" max-width="500">
+            <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_exit.png')"
