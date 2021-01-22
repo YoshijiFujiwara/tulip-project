@@ -97,7 +97,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['@/plugins/axios/index', '@/plugins/aframe'],
+  plugins: [
+    '@/plugins/axios/index',
+    '@/plugins/aframe',
+    '@/plugins/responsive.ts',
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -189,6 +193,9 @@ export default {
 
           // ログインページ関連
           color_signinFormHeader: 'rgba(255, 255, 255, 0.18)',
+          // ウェルカムぺージ関連
+          welcomeBackground: '#27303d',
+          welcomeMainText: '#fafafa',
         },
       },
     },
