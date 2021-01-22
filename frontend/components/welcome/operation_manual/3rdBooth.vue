@@ -51,7 +51,7 @@
             <v-card class="mx-auto" max-width="1000">
               <v-img
                 :aspect-ratio="16 / 10"
-                :src="require('@/assets/img_reaction.png')"
+                :src="require('@/assets/img_reaction.PNG')"
               ></v-img>
               <v-fade-transition>
                 <v-overlay v-if="hover" absolute color="#036358">
