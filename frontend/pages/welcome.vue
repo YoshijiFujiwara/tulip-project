@@ -4,13 +4,13 @@
     <FirstTopImageSection />
     <div class="px-16">
       <!-- 本サービスについて -->
-      <SecondAboutSection />
+      <SecondAboutSection class="mt-12" />
 
       <!-- 本サービスの楽しみ方 -->
-      <ThirdOperationManualSection />
+      <ThirdOperationManualSection class="mt-12" />
 
       <!-- 入場ボタン -->
-      <v-row justify="center" no-gutters>
+      <v-row justify="center" no-gutters class="mt-12">
         <v-col class="py-12">
           <v-btn
             id="enterVR"
