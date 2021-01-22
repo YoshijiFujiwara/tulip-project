@@ -3,6 +3,8 @@
     style="background-color: #f9f9f9; height: 100vh"
     class="mainText--text pa-12"
   >
+    <breadcrums :items="breadcrum" />
+
     <v-row v-if="exhibit">
       <v-col cols="7">
         <v-row>
@@ -54,14 +56,29 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import ExhibitApi from '../../../../plugins/axios/modules/exhibit'
 import { Exhibit } from '../../../../types/exhibit'
+import Breadcrumbs from '../../../../components/breadcrums.vue'
 
 @Component({
   auth: false,
   layout: 'admin',
+  components: { Breadcrumbs },
 })
 export default class Signin extends Vue {
   exhibit: Exhibit | null = null
   groupName: string = ''
+
+  breadcrum = [
+    {
+      text: 'ダッシュボード',
+      disabled: false,
+      href: '/admin',
+    },
+    {
+      text: '作品一覧',
+      disabled: false,
+      href: '/admin/exhibits',
+    },
+  ]
 
   model = 0
   colors = ['primary', 'secondary', 'yellow darken-2', 'red', 'orange']
@@ -69,6 +86,14 @@ export default class Signin extends Vue {
   async created() {
     const exhibit = await ExhibitApi.getExhibit(Number(this.$route.params.id))
     this.exhibit = exhibit
+    this.breadcrum = [
+      ...this.breadcrum,
+      {
+        text: this.exhibit.title,
+        disabled: true,
+        href: `/admin/exhibits/${this.$route.params.id}`,
+      },
+    ]
   }
 }
 </script>

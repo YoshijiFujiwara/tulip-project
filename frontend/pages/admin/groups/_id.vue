@@ -1,13 +1,10 @@
 <template>
-  <v-app class="pa-14">
+  <v-app v-if="group" class="pa-14">
+    <breadcrums :items="breadcrum" />
+
     <div class="text-h3 mt-5 ml-4">
       {{ group.name }}
     </div>
-    <div class="div-controller">
-      <v-icon small left color="green">mdi-circle</v-icon
-      >会場にログインしているユーザ
-    </div>
-
     <v-data-table
       :headers="headers"
       :items="group.exhibitors"
@@ -45,13 +42,15 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import GroupApi from '../../../plugins/axios/modules/group'
 import { Group } from '../../../types/group'
+import Breadcrumbs from '../../../components/breadcrums.vue'
 
 @Component({
   auth: false,
   layout: 'admin',
+  components: { Breadcrumbs },
 })
 export default class Groups extends Vue {
-  group: Group[] = []
+  group: Group | null = null
 
   search = ''
   headers = [
@@ -66,9 +65,30 @@ export default class Groups extends Vue {
     { text: '出席ステータス', value: 'status', sortable: false },
   ]
 
+  breadcrum = [
+    {
+      text: 'ダッシュボード',
+      disabled: false,
+      href: '/admin',
+    },
+    {
+      text: '出展者一覧',
+      disabled: false,
+      href: '/admin/exhibitors',
+    },
+  ]
+
   async created() {
     // this.user = await this.$auth.user
     this.group = await GroupApi.getGroup(Number(this.$route.params.id))
+    this.breadcrum = [
+      ...this.breadcrum,
+      {
+        text: this.group ? this.group.name : '',
+        disabled: true,
+        href: `/admin/exhibitors/${this.$route.params.id}`,
+      },
+    ]
   }
 }
 </script>

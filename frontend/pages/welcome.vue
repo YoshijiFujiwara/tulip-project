@@ -2,18 +2,41 @@
   <div>
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
+    <div class="px-16">
+      <!-- 本サービスについて -->
+      <SecondAboutSection class="mt-12" />
 
-    <!-- 本サービスについて -->
-    <SecondAboutSection />
+      <!-- 本サービスの楽しみ方 -->
+      <ThirdOperationManualSection class="mt-12" />
 
-    <!-- 本サービスの楽しみ方 -->
-    <ThirdOperationManualSection />
-
-    <!-- 入場ボタン -->
-    <v-btn>VR空間へ入場</v-btn>
+      <!-- 入場ボタン -->
+      <v-row justify="center" no-gutters class="mt-12">
+        <v-col class="py-12">
+          <v-btn
+            id="enterVR"
+            tile
+            depressed
+            block
+            class="white--text text-center"
+            height="4.5em"
+            x-large
+            :href="`${vrUrl}honnban/select_avatar`"
+          >
+            <span>VR空間へ入場</span>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
 
     <!-- フッターをここに -->
-    <div>フッター</div>
+    <v-footer color="black" padless>
+      <v-row justify="center" no-gutters>
+        <v-col class="black py-4 text-center white--text">
+          {{ new Date().getFullYear() }} —
+          <span>tulip group</span>
+        </v-col>
+      </v-row>
+    </v-footer>
   </div>
 </template>
 
@@ -32,5 +55,21 @@ import ThirdOperationManualSection from '@/components/welcome/3rdOperationManual
     ThirdOperationManualSection,
   },
 })
-export default class Welcome extends Vue {}
+export default class Welcome extends Vue {
+  vrUrl: string = ''
+
+  created() {
+    this.vrUrl = process.env.vrBaseUrl!
+  }
+}
 </script>
+
+<style scoped>
+#enterVR {
+  background-color: #635aab;
+}
+
+#enterVR span {
+  font-size: 1.3em;
+}
+</style>

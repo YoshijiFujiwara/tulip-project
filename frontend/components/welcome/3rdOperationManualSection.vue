@@ -1,6 +1,16 @@
 <template>
   <v-col>
-    <v-row align="center" justify="center"> 操作説明やで </v-row>
+    <v-row style="font-size: 45px" justify="center">
+      本サービスの楽しみ方
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="2" align-center>
+        <div style="border: solid 2px #7769d1"></div>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="center" class="text-h5 mt-4">
+      ※Chrome推奨
+    </v-row>
     <v-col>
       <FirstBasic />
       <SecondLobby />
