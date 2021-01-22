@@ -2,7 +2,7 @@
   <div>
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
-    <div class="px-16">
+    <div :class="_isPC ? 'px-16' : ''">
       <!-- 本サービスについて -->
       <SecondAboutSection class="mt-12" />
 
