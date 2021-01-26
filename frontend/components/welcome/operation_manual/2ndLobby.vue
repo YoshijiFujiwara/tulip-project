@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-row
       align="center"
       justify="center"
@@ -146,7 +146,7 @@
         </v-hover>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

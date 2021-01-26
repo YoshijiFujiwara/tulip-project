@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-row
       align="center"
       justify="center"
@@ -9,7 +9,6 @@
       <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
         mdi-numeric-2-box
       </v-icon>
-
       ブース編
     </v-row>
     <v-row
@@ -134,7 +133,7 @@
         </v-hover>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
