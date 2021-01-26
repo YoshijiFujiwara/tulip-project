@@ -9,8 +9,8 @@
       <v-icon size="70" color="purple darken-2"> mdi-numeric-2-box </v-icon>
       ロビー編
     </v-row>
-    <v-row align="center" class="mt-9" justify="space-between">
-      <v-col cols="6" class="mx-auto">
+    <v-row align="center" class="mt-9" justify="space-between" grid>
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -42,7 +42,7 @@
           </template>
         </v-hover>
       </v-col>
-      <v-col col="6" class="mx-auto">
+      <v-col :col="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -70,9 +70,7 @@
           </template>
         </v-hover>
       </v-col>
-    </v-row>
-    <v-row align="center" justify="center">
-      <v-col>
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -109,7 +107,7 @@
           </template>
         </v-hover>
       </v-col>
-      <v-col>
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
