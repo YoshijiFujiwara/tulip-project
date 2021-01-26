@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-row
       align="center"
       justify="center"
@@ -10,7 +10,7 @@
       ブース編
     </v-row>
     <v-row align="center" class="mt-9" justify="center">
-      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
+      <v-col :cols="_isPC ? 6 : 12" :class="_isPC ? 'mx-auto' : ''">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -127,7 +127,7 @@
         </v-hover>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

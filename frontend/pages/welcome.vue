@@ -2,13 +2,14 @@
   <div>
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
-    <div :class="_isPC ? 'px-16' : ''">
+    <div :class="_isPC ? 'px-16' : 'px-4'">
       <!-- 本サービスについて -->
       <SecondAboutSection class="mt-12" />
 
       <!-- 本サービスの楽しみ方 -->
       <ThirdOperationManualSection class="mt-12" />
-
+    </div>
+    <div :class="_isPC ? 'px-16' : ''">
       <!-- 入場ボタン -->
       <v-row justify="center" no-gutters :class="_isPC ? 'mt-12' : ''">
         <v-col :class="_isPC ? 'py-12' : ''">
