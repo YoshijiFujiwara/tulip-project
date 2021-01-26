@@ -10,8 +10,8 @@
       <ThirdOperationManualSection class="mt-12" />
 
       <!-- 入場ボタン -->
-      <v-row justify="center" no-gutters class="mt-12">
-        <v-col class="py-12">
+      <v-row justify="center" no-gutters :class="_isPC ? 'mt-12' : ''">
+        <v-col :class="_isPC ? 'py-12' : ''">
           <v-btn
             id="enterVR"
             tile
