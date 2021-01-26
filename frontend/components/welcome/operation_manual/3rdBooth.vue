@@ -10,7 +10,7 @@
       ブース編
     </v-row>
     <v-row align="center" class="mt-9" justify="center">
-      <v-col col="6" class="mx-auto">
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -45,7 +45,7 @@
           </template>
         </v-hover>
       </v-col>
-      <v-col col="6" class="mx-auto">
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -73,9 +73,7 @@
           </template>
         </v-hover>
       </v-col>
-    </v-row>
-    <v-row align="center" justify="center">
-      <v-col>
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
@@ -103,7 +101,7 @@
           </template>
         </v-hover>
       </v-col>
-      <v-col>
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
