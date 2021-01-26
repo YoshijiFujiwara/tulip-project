@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="second-wrap">
     <v-row class="text-h3" justify="center">本サービスについて</v-row>
     <v-row justify="center">
       <v-col cols="2" align-center>
@@ -32,3 +32,11 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component({})
 export default class Section extends Vue {}
 </script>
+
+<style lang="scss">
+.second-wrap {
+  display: block;
+  position: relative;
+  top: -20em;
+}
+</style>
