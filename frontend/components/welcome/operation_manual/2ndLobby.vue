@@ -11,7 +11,7 @@
       </v-icon>
       ロビー編
     </v-row>
-    <v-row align="center" justify="center" class="text-h7 mt-4">
+    <v-row v-if="_isSP" align="center" justify="center" class="text-h7 mt-4">
       ※画像をタップすると説明が表示されます
     </v-row>
     <v-row
