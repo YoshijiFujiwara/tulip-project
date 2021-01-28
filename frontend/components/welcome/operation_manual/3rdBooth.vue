@@ -31,15 +31,16 @@
                   color="#036358"
                   :class="_isPC ? 'text-h5' : _isSP ? 'text-caption' : ''"
                 >
-                  <p align="center">
+                  <p align="center" class="mt-4">
                     こちらはブースエリアになります。<br />
-                    真ん中のスクリーンには作品の動画が流れています。
+                    真ん中のスクリーンには<br />
+                    作品の動画が流れています。
                   </p>
-                  <p align="center" class="mt-4 mx-auto">
+                  <p align="center" class="mt-4">
                     また、時計回りに右から<br />
                     作品説明、作品の説明画像があります。
                   </p>
-                  <p align="center" class="mx-auto mt-4">
+                  <p align="center" class="mt-4">
                     気に入った作品にはスクリーン右下にある<br />
                     いいねボタンを押しましょう。
                   </p>
