@@ -2,12 +2,12 @@
   <div>
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
-    <div :class="_isPC ? 'px-16' : 'px-4'">
+    <div :class="_isPC ? 'px-16' : _isSP ? 'px-4' : ''">
       <!-- 本サービスについて -->
-      <SecondAboutSection class="mt-12" />
+      <SecondAboutSection :class="_isPC ? 'mt-12' : 'mt-6'" />
 
       <!-- 本サービスの楽しみ方 -->
-      <ThirdOperationManualSection class="mt-12" />
+      <ThirdOperationManualSection :class="_isPC ? 'mt-12' : 'mt-6'" />
     </div>
     <div :class="_isPC ? 'px-16' : ''">
       <!-- 入場ボタン -->

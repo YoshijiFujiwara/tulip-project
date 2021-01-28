@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="_isSP ? 'px-5' : ''">
     <v-row :class="_isPC ? 'text-h3' : _isSP ? 'text-h5' : ''" justify="center"
       >本サービスについて</v-row
     >
@@ -30,7 +30,7 @@
         >
       </v-row>
     </div>
-    <div v-if="_isSP" class="mt-12 text-h6 text-center">
+    <div v-if="_isSP" class="mt-3 text-h6 text-center">
       <v-row justify="center" style="line-height: 180%">
         コロナ渦に巻き込まれた今、
         学校の文化祭が開催できなくなってしまいました。 そこで、少し先の未来では

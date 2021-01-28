@@ -8,7 +8,7 @@
         <div style="border: solid 2px #7769d1"></div>
       </v-col>
     </v-row>
-    <v-row align="center" justify="center" class="text-h5 mt-4">
+    <v-row align="center" justify="center" class="text-h5 mt-3">
       ※Chrome推奨
     </v-row>
     <v-col>
