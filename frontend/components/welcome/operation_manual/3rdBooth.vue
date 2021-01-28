@@ -3,11 +3,11 @@
     <v-row
       align="center"
       justify="center"
-      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h4' : ''"
+      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h5 mt-3' : ''"
       style="font-color: #ffffff"
     >
-      <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
-        mdi-numeric-2-box
+      <v-icon :size="_isPC ? 70 : _isSP ? 35 : 100" color="purple darken-2">
+        mdi-numeric-3-box
       </v-icon>
       ブース編
     </v-row>
