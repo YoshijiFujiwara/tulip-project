@@ -50,13 +50,7 @@
         </p>
       </v-col>
     </v-row>
-    <v-row align="center" justify="center">
-      <v-col align="center">
-        <span :class="_isPC ?'red--text text-h5':'red--text text-h6'"
-          >※VR画面では音が出ますので音量にはご注意ください</span
-        >
-      </v-col>
-    </v-row>
+    
   </v-container>
 </template>
 

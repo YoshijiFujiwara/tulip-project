@@ -10,6 +10,16 @@
       <ThirdOperationManualSection class="mt-12" />
     </div>
     <div :class="_isPC ? 'px-16' : ''">
+      <v-row align="center" justify="center" class="text-h6 mt-4">
+      ※Chrome推奨
+    </v-row>
+    <v-row align="center" justify="center">
+      <v-col align="center">
+        <span :class="_isPC ?'red--text text-h5':'red--text text-h6'"
+          >※VR画面では音が出ますので音量にはご注意ください</span
+        >
+      </v-col>
+    </v-row>
       <!-- 入場ボタン -->
       <v-row justify="center" no-gutters :class="_isPC ? 'mt-12' : ''">
         <v-col :class="_isPC ? 'py-12' : ''">

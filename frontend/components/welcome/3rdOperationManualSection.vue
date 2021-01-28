@@ -8,9 +8,7 @@
         <div style="border: solid 2px #7769d1"></div>
       </v-col>
     </v-row>
-    <v-row align="center" justify="center" class="text-h6 mt-4">
-      ※Chrome推奨
-    </v-row>
+    
     <v-col>
       <FirstBasic />
       <SecondLobby />
