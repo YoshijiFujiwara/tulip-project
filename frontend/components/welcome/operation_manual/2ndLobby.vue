@@ -3,7 +3,7 @@
     <v-row
       align="center"
       justify="center"
-      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h4' : ''"
+      :class="_isPC ? 'text-h5 mt-6' : _isSP ? 'text-h5' : ''"
       style="font-color: #ffffff"
     >
       <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
@@ -27,22 +27,21 @@
               ></v-img>
 
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
-                  <v-row align="center" justify="center" class="mx-auto">
-                    ユーザ名を入力し、
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
+                  <p align="center">
+                    ユーザ名を入力し、<br />
                     ４種類のアバターが選択できます。
-                  </v-row>
-                  <v-row align="center" class="mt-4 mx-auto" justify="center">
-                    音声チャットを有効にすると
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    ロビーエリア、ブースエリアで音声通話を
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
+                  </p>
+                  <p align="center" class="mt-4">
+                    音声チャットを有効にすると<br />
+                    ロビーエリア、ブースエリアで音声通話を<br />
                     お楽しみいただけます。
-                  </v-row>
+                  </p>
                 </v-overlay>
               </v-fade-transition>
             </v-card>
@@ -58,19 +57,18 @@
                 :src="require('@/assets/img_lobby.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
-                  <v-row align="center" justify="center" class="mx-auto">
-                    こちらがロビーエリアになります。
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    ロビーエリアでは作品パネルが並んでおり、
-                  </v-row>
-                  <v-row align="center" class="mt-4 mx-auto" justify="center">
-                    作品パネルの情報から
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
+                  <p align="center">こちらがロビーエリアになります。</p>
+                  <p align="center" class="mt-4">
+                    ロビーエリアでは作品パネルが並んでおり、<br />
+                    作品パネルの情報から<br />
                     どの作品を見るか選択します
-                  </v-row>
+                  </p>
                 </v-overlay>
               </v-fade-transition>
             </v-card>
@@ -86,28 +84,23 @@
                 :src="require('@/assets/img_thum.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
-                  <v-row align="center" justify="center" class="mx-auto">
-                    作品パネルには、
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    作品タイトル、来場者累計といいね数、
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    混雑状況などの情報がブース内に入らなくても
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto mb-4">
-                    わかるようになっています。
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    また、パネルの真ん中にある
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    サムネイル画像をクリックすることで
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-caption' : ''"
+                >
+                  <p align="center">
+                    作品パネルには、<br />
+                    作品タイトル、来場者累計といいね数、<br />
+                    混雑状況などの情報が<br />
+                    ブース内に入らなくてもわかるようになっています。
+                  </p>
+                  <p align="center" class="mt-4">
+                    また、パネルの真ん中にある、<br />
+                    サムネイル画像をクリックすることで<br />
                     ブース内に入ることができます。
-                  </v-row>
+                  </p>
                 </v-overlay>
               </v-fade-transition>
             </v-card>
@@ -123,22 +116,21 @@
                 :src="require('@/assets/img_sound.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
-                  <v-row align="center" justify="center" class="mx-auto">
-                    ブース内に他のアバターが出現しているのは、
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    イベントの参加者です。もちろん、
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto mb-4">
-                    自分が選択したアバターが相手側にも見えます。
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
-                    また、音声チャットを有効化することで
-                  </v-row>
-                  <v-row align="center" justify="center" class="mx-auto">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
+                  <p align="center">
+                    ブース内に出現している他のアバターは、<br />
+                    イベントの参加者です。<br />
+                    もちろん、自分が選択したアバターが相手側にも見えます。
+                  </p>
+                  <p align="center" class="mt-4">
+                    また、音声チャットを有効化することで、<br />
                     参加者と交流することも可能です。
-                  </v-row>
+                  </p>
                 </v-overlay>
               </v-fade-transition>
             </v-card>
