@@ -28,7 +28,7 @@
           "
         />
         <div>
-          <p class="pt-10">
+          <p :class="_isPC ? 'pt-10' : ''">
             「W」… 前<br />
             「A」… 左<br v-if="_isSP" />
             「S」… 後<br v-if="_isSP" />
@@ -62,7 +62,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col align="center">
-        <span class="red--text text-h5"
+        <span class="red--text" :class="_isPC ? 'text-h5' : 'text-h6'"
           >※VR画面では音が出ますので音量にはご注意ください</span
         >
       </v-col>
