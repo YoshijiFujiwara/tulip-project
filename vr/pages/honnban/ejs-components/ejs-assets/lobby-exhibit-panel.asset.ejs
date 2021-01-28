@@ -28,9 +28,11 @@
 </a-assets>
 
 <!-- 人気ランキング -->
+<% var min = 1; var max = 3; var rankNum = Math.floor( Math.random() * (max + 1
+- min) ) + min; %>
 <a-image
   id="ranking-<%= exhibit.id %>"
-  src="#asset-rank1"
+  src="#asset-rank<%= rankNum %>"
   scale="<%= position.rank.scale%>"
   position="<%= position.rank.position%>"
   rotation="<%= position.rank.rotation%>"
