@@ -69,10 +69,13 @@
   id="exhibit-panel-thumbnail-<%=exhibit.id%>"
   src="#asset-exhibit-panel-thumbnail-<%=exhibit.id%>"
   link="href: /honnban/booths/<%= exhibit.id %>?username=<%= username %>&avatar=<%= avatar %>&enable_audio=<%= enableAudio %>"
-  scale="<%=position.thumbnail.scale%>"
+  geometry="primitive: box;"
+  scale="2.6 2.7 1"
   position="<%=position.thumbnail.position%>"
   rotation="<%=position.thumbnail.rotation%>"
   thumbnail-on-hover
+  animation__scale="dur: 200; property: scale; startEvents: mouseenter; to: 3 3.2 1"
+  animation__scale_reverse="dur: 200; property: scale; startEvents: mouseleave; to: 2.6 2.7 1"
 ></a-image>
 
 <!-- panel -->
