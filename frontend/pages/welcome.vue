@@ -10,7 +10,12 @@
       <ThirdOperationManualSection :class="_isPC ? 'mt-12' : 'mt-6'" />
     </div>
     <div :class="_isPC ? 'px-16' : ''">
-      <v-row align="center" justify="center" class="text-h6 mt-4">
+      <v-row
+        align="center"
+        justify="center"
+        class="text-h6"
+        :class="_isPC ? 'mt-4' : ''"
+      >
         ※Chrome推奨
       </v-row>
       <v-row align="center" justify="center" :class="_isSP ? 'px-6' : ''">
