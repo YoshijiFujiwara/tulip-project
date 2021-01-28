@@ -1,27 +1,37 @@
 <!-- ギャラリー_作品紹介 -->
 <a-assets>
   <!-- prettier-ignore -->
+  <img id="asset-slide-no-image" src="https://placehold.jp/3d4070/ffffff/150x150.jpg?text=NO%0ATHUMBNAIL%0A" />
   <% 
     const images = exhibit.presentationImages;
     images.forEach((image, index) => {%>
   <img id="asset-slide-<%=index%>" src="<%=image.url%>" />
   <% }) %>
 </a-assets>
-<% if (images.length > 0) {%>
-<a-image
+<% if (images.length == 0) {%>
+<!-- <a-image
   id="slide0"
   src="#asset-slide-0"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="3.08606 1.23617 -3.09248"
   rotation="0 -47.63 0"
-></a-image>
+></a-image> -->
 <% } %>
 <!-- prettier-ignore -->
-<% if (images.length > 1) { %>
-<a-image
+<% if (images.length > 0) { %>
+  <a-image
   id="slide1"
-  src="#asset-slide-1"
+  src="#asset-slide-0"
+  geometry="primitive: box"
+  scale="0.8 1 0.2"
+  position="4.38366 1.23617 0.24475"
+  rotation="0 88.45 0"
+></a-image>
+<% } else { %>
+  <a-image
+  id="slide1"
+  src="#asset-slide-no-image"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="4.38366 1.23617 0.24475"
@@ -29,10 +39,19 @@
 ></a-image>
 <% } %>
 <!-- prettier-ignore -->
-<% if (images.length > 2) { %>
+<% if (images.length > 1) { %>
 <a-image
   id="slide2"
-  src="#asset-slide-2"
+  src="#asset-slide-1"
+  geometry="primitive: box"
+  scale="0.8 1 0.2"
+  position="2.87774 1.24431 3.38673"
+  rotation="0 44.73 0"
+></a-image>
+<% } else { %>
+<a-image
+  id="slide2"
+  src="#asset-slide-no-image"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="2.87774 1.24431 3.38673"
@@ -40,10 +59,18 @@
 ></a-image>
 <% } %>
 <!-- prettier-ignore -->
-<% if (images.length > 3) { %>
+<% if (images.length > 2) { %>
 <a-image
   id="slide3"
-  src="#asset-slide-3"
+  src="#asset-slide-2"
+  geometry="primitive: box"
+  scale="0.8 1 0.2"
+  position="-0.34878 1.23617 4.69281"
+></a-image>
+<% } else { %>
+<a-image
+  id="slide3"
+  src="#asset-slide-no-image"
   geometry="primitive: box"
   scale="0.8 1 0.2"
   position="-0.34878 1.23617 4.69281"
