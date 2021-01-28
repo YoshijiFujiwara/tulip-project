@@ -40,9 +40,9 @@
           height="345"
           :src="require('@/assets/firstBasic_smart.jpeg')"
         />
-        <p class="py-10">
-          スマホは
-          <br />画面左下の移動スティックを使用
+        <p class="pt-10">
+          スマホは画面左下の<br />
+          移動スティックを使用
         </p>
       </v-col>
       <v-col :cols="_isPC ? 4 : 12" align="center">
@@ -51,9 +51,10 @@
           height="345"
           :src="require('@/assets/firstBasic_click.png')"
         />
-        <p class="py-10">
-          クリック 又は タップ
-          <br />できる場所はカーソルの色が <br />青色に変化します
+        <p class="pt-10">
+          クリック 又は<br v-if="_isSP" />
+          タップできる場所は<br />カーソルの色が<br v-if="_isSP" />
+          青色に変化します
         </p>
       </v-col>
     </v-row>
