@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container
-      class="pa-0 wrapper welcomeMainText--text welcomeBackground"
+      class="pa-0 ma-0 wrapper welcomeMainText--text welcomeBackground"
       style="font-family: HiraginoSans-W4"
       fluid
     >
