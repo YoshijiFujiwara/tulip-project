@@ -1,9 +1,6 @@
 <template>
   <div>
-    <v-row v-if="_isPC" class="text-h3" justify="center"
-      >本サービスについて</v-row
-    >
-    <v-row v-if="_isSP" class="text-h5" justify="center"
+    <v-row :class="_isPC ? 'text-h3' : _isSP ? 'text-h5' : ''" justify="center"
       >本サービスについて</v-row
     >
     <v-row v-if="_isPC" justify="center">

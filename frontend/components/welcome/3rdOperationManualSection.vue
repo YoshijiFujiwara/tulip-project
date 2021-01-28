@@ -1,10 +1,10 @@
 <template>
   <v-col>
-    <v-row style="font-size: 45px" justify="center">
+    <v-row :class="_isPC ? 'text-h3' : _isSP ? 'text-h5' : ''" justify="center">
       本サービスの楽しみ方
     </v-row>
     <v-row justify="center">
-      <v-col cols="2" align-center>
+      <v-col cols="6" align-center>
         <div style="border: solid 2px #7769d1"></div>
       </v-col>
     </v-row>
