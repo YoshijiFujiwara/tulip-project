@@ -14,7 +14,8 @@
         <v-img
           width="467"
           height="345"
-          :src="require('@/assets/firstBasic_wasd.png')"
+          contain
+          :src="_isPC ? require('@/assets/firstBasic_wasd.png') : require('@/assets/joystick-base.png')"
         />
         <div>
           <p>
