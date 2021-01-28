@@ -10,7 +10,7 @@
       基本操作編
     </v-row>
     <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">
-      <v-col cols="4" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
@@ -23,7 +23,7 @@
           </p>
         </div>
       </v-col>
-      <v-col cols="4" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
@@ -34,7 +34,7 @@
           <br />画面左下の移動スティックを使用
         </p>
       </v-col>
-      <v-col cols="4" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
