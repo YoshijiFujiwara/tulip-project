@@ -28,13 +28,14 @@
 </a-assets>
 
 <!-- 人気ランキング -->
-<!-- <a-image
-  id=""
-  src="#asset-rank<%= %>"
-  scale=""
-  position=""
-  rotation=""
-></a-image> -->
+<a-image
+  id="ranking-<%= exhibit.id %>"
+  src="#asset-rank1"
+  scale="<%= position.rank.scale%>"
+  position="<%= position.rank.position%>"
+  rotation="<%= position.rank.rotation%>"
+></a-image>
+<!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
 
 <!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
 <a-image
