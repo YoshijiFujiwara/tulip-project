@@ -3,19 +3,25 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h3 mt-6"
+      :class="_isPC ? 'text-h5 mt-6' : _isSP ? 'text-h5' : ''"
       style="font-color: #ffffff"
     >
-      <v-icon size="70" color="purple darken-2">mdi-numeric-1-box</v-icon>
+      <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
+        mdi-numeric-1-box
+      </v-icon>
       基本操作編
     </v-row>
-    <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">
-      <v-col :cols="_isPC ? 4 : 12" align="center">
+    <v-row
+      justify="center"
+      :class="_isPC ? 'text-h5 mt-9' : 'text-h6 mt-9'"
+      style="line-height: 180%"
+    >
+      <v-col v-if="_isPC" :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
           contain
-          :src="_isPC ? require('@/assets/firstBasic_wasd.png') : require('@/assets/joystick-base.png')"
+          :src="require('@/assets/firstBasic_wasd.png')"
         />
         <div>
           <p>
@@ -28,7 +34,8 @@
         <v-img
           width="467"
           height="345"
-          :src="require('@/assets/firstBasic_smart.jpeg')"
+          contain
+          :src="require('@/assets/joystick-base.png')"
         />
         <p class="py-10">
           スマホは
@@ -45,13 +52,6 @@
           クリック 又は タップ
           <br />できる場所はカーソルの色が <br />青色に変化します
         </p>
-      </v-col>
-    </v-row>
-    <v-row align="center" justify="center">
-      <v-col align="center">
-        <span class="red--text text-h5"
-          >※VR画面では音が出ますので音量にはご注意ください</span
-        >
       </v-col>
     </v-row>
   </v-container>
