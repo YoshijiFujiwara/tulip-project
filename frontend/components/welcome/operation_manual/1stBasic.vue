@@ -11,7 +11,7 @@
       </v-icon>
       基本操作編
     </v-row>
-    <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">
+    <v-row justify="center" :class="_isPC ? 'text-h5 mt-9':'text-h6 mt-9'" style="line-height: 180%">
       <v-col :cols="_isPC ? 4 : 12" align="center" v-if="_isPC">
         <v-img
           width="467"
@@ -52,7 +52,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col align="center">
-        <span class="red--text text-h5"
+        <span :class="_isPC ?'red--text text-h5':'red--text text-h6'"
           >※VR画面では音が出ますので音量にはご注意ください</span
         >
       </v-col>
