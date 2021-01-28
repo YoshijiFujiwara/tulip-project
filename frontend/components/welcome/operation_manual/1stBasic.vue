@@ -3,54 +3,58 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h3 mt-6"
+      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h5 mt-3' : ''"
       style="font-color: #ffffff"
     >
-      <v-icon size="70" color="purple darken-2">mdi-numeric-1-box</v-icon>
+      <v-icon :size="_isPC ? 70 : _isSP ? 35 : 100" color="purple darken-2">
+        mdi-numeric-1-box
+      </v-icon>
       基本操作編
     </v-row>
-    <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">
-      <v-col cols="4" align="center">
+    <v-row
+      justify="center"
+      :class="_isPC ? 'text-h5 mt-9' : 'text-h6'"
+      style="line-height: 180%"
+    >
+      <v-col v-if="_isPC" :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
+          contain
           :src="require('@/assets/firstBasic_wasd.png')"
         />
         <div>
-          <p>
-            「W」… 前進
-            <br />「A」… 左&nbsp; <br />「S」… 後退 <br />「D」… 右&nbsp;
+          <p :class="_isPC ? 'pt-10' : ''">
+            「W」… 前<br />
+            「A」… 左<br v-if="_isSP" />
+            「S」… 後<br v-if="_isSP" />
+            「D」… 右
           </p>
         </div>
       </v-col>
-      <v-col cols="4" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
-          :src="require('@/assets/firstBasic_smart.jpeg')"
+          contain
+          :src="require('@/assets/joystick-base.png')"
         />
-        <p class="py-10">
-          スマホは
-          <br />画面左下の移動スティックを使用
+        <p :class="_isPC ? 'pt-10' : ''">
+          スマホは画面左下の<br />
+          移動スティックを使用
         </p>
       </v-col>
-      <v-col cols="4" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
           :src="require('@/assets/firstBasic_click.png')"
         />
-        <p class="py-10">
-          クリック 又は タップ
-          <br />できる場所はカーソルの色が <br />青色に変化します
+        <p class="pt-10">
+          クリック 又は<br v-if="_isSP" />
+          タップできる場所は<br />カーソルの色が<br v-if="_isSP" />
+          青色に変化します
         </p>
-      </v-col>
-    </v-row>
-    <v-row align="center" justify="center">
-      <v-col align="center">
-        <span class="red--text text-h5"
-          >※VR画面では音が出ますので音量にはご注意ください</span
-        >
       </v-col>
     </v-row>
   </v-container>
