@@ -28,9 +28,11 @@
           "
         />
         <div>
-          <p>
-            「W」… 前進
-            <br />「A」… 左&nbsp; <br />「S」… 後退 <br />「D」… 右&nbsp;
+          <p class="pt-10">
+            「W」… 前<br />
+            「A」… 左<br v-if="_isSP" />
+            「S」… 後<br v-if="_isSP" />
+            「D」… 右
           </p>
         </div>
       </v-col>
