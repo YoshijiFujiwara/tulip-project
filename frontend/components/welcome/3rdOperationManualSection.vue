@@ -8,7 +8,6 @@
         <div style="border: solid 2px #7769d1"></div>
       </v-col>
     </v-row>
-    
     <v-col>
       <FirstBasic />
       <SecondLobby />

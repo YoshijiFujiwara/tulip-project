@@ -11,8 +11,12 @@
       </v-icon>
       基本操作編
     </v-row>
-    <v-row justify="center" :class="_isPC ? 'text-h5 mt-9':'text-h6 mt-9'" style="line-height: 180%">
-      <v-col :cols="_isPC ? 4 : 12" align="center" v-if="_isPC">
+    <v-row
+      justify="center"
+      :class="_isPC ? 'text-h5 mt-9' : 'text-h6 mt-9'"
+      style="line-height: 180%"
+    >
+      <v-col v-if="_isPC" :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
@@ -50,7 +54,6 @@
         </p>
       </v-col>
     </v-row>
-    
   </v-container>
 </template>
 

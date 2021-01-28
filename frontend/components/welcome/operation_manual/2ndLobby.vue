@@ -28,7 +28,6 @@
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_avatar.png')"
               ></v-img>
-
               <v-fade-transition>
                 <v-overlay
                   v-if="hover"
