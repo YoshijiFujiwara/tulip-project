@@ -3,14 +3,20 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h3 mt-6"
+      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h4' : ''"
       style="font-color: #ffffff"
     >
-      <v-icon size="70" color="purple darken-2"> mdi-numeric-3-box </v-icon>
+      <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
+        mdi-numeric-2-box
+      </v-icon>
       ブース編
     </v-row>
-    <v-row align="center" class="mt-9" justify="center">
-      <v-col :cols="_isPC ? 6 : 12" :class="_isPC ? 'mx-auto' : ''">
+    <v-row
+      align="center"
+      :class="_isPC ? 'mt-9' : _isSP ? 'mt-1' : ''"
+      justify="center"
+    >
+      <v-col :cols="_isPC ? 6 : 12" class="mx-auto">
         <v-hover>
           <template v-slot:default="{ hover }">
             <v-card class="mx-auto" max-width="1000">
