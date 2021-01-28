@@ -11,6 +11,9 @@
       </v-icon>
       ロビー編
     </v-row>
+    <v-row align="center" justify="center" class="text-h7 mt-4">
+      ※画像をタップすると説明が表示されます
+    </v-row>
     <v-row
       align="center"
       :class="_isPC ? 'mt-9' : _isSP ? 'mt-1' : ''"
@@ -25,7 +28,6 @@
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_avatar.png')"
               ></v-img>
-
               <v-fade-transition>
                 <v-overlay
                   v-if="hover"

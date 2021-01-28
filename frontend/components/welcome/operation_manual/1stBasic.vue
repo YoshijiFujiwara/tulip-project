@@ -13,19 +13,15 @@
     </v-row>
     <v-row
       justify="center"
-      :class="_isPC ? 'text-h5 mt-9' : 'text-h5'"
+      :class="_isPC ? 'text-h5 mt-9' : 'text-h6'"
       style="line-height: 180%"
     >
-      <v-col :cols="_isPC ? 4 : 12" align="center">
+      <v-col v-if="_isPC" :cols="_isPC ? 4 : 12" align="center">
         <v-img
           width="467"
           height="345"
           contain
-          :src="
-            _isPC
-              ? require('@/assets/firstBasic_wasd.png')
-              : require('@/assets/joystick-base.png')
-          "
+          :src="require('@/assets/firstBasic_wasd.png')"
         />
         <div>
           <p :class="_isPC ? 'pt-10' : ''">
@@ -40,9 +36,10 @@
         <v-img
           width="467"
           height="345"
-          :src="require('@/assets/firstBasic_smart.jpeg')"
+          contain
+          :src="require('@/assets/joystick-base.png')"
         />
-        <p class="pt-10">
+        <p :class="_isPC ? 'pt-10' : ''">
           スマホは画面左下の<br />
           移動スティックを使用
         </p>
@@ -58,13 +55,6 @@
           タップできる場所は<br />カーソルの色が<br v-if="_isSP" />
           青色に変化します
         </p>
-      </v-col>
-    </v-row>
-    <v-row align="center" justify="center">
-      <v-col align="center">
-        <span class="red--text" :class="_isPC ? 'text-h5' : 'text-h6'"
-          >※VR画面では音が出ますので音量にはご注意ください</span
-        >
       </v-col>
     </v-row>
   </v-container>

@@ -10,9 +10,19 @@
       <ThirdOperationManualSection :class="_isPC ? 'mt-12' : 'mt-6'" />
     </div>
     <div :class="_isPC ? 'px-16' : ''">
+      <v-row align="center" justify="center" class="text-h6 mt-4">
+        ※Chrome推奨
+      </v-row>
+      <v-row align="center" justify="center" :class="_isSP ? 'px-6' : ''">
+        <v-col align="center">
+          <span class="red--text" :class="_isPC ? 'text-h5' : 'text-h6'"
+            >※VR画面では音が出ますので音量にはご注意ください
+          </span>
+        </v-col>
+      </v-row>
       <!-- 入場ボタン -->
       <v-row justify="center" no-gutters :class="_isPC ? 'mt-12' : ''">
-        <v-col :class="_isPC ? 'py-12' : ''">
+        <v-col :class="_isPC ? 'pb-12' : ''">
           <v-btn
             id="enterVR"
             tile
