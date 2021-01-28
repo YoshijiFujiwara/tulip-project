@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <v-row :class="_isPC ? 'text-h3' : 'text-h5'" justify="center">
+    <v-row :class="_isPC ? 'text-h3' : _isSP ? 'text-h5' : ''" justify="center">
       本サービスの楽しみ方
     </v-row>
     <v-row justify="center">
