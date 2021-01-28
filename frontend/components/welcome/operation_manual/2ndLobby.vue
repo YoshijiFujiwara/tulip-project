@@ -3,7 +3,7 @@
     <v-row
       align="center"
       justify="center"
-      :class="_isPC ? 'text-h3 mt-6' : _isSP ? 'text-h4' : ''"
+      :class="_isPC ? 'text-h5 mt-6' : _isSP ? 'text-h5' : ''"
       style="font-color: #ffffff"
     >
       <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
@@ -27,7 +27,12 @@
               ></v-img>
 
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">
                     ユーザ名を入力し、<br />
                     ４種類のアバターが選択できます。
@@ -52,7 +57,12 @@
                 :src="require('@/assets/img_lobby.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">こちらがロビーエリアになります。</p>
                   <p align="center" class="mt-4">
                     ロビーエリアでは作品パネルが並んでおり、<br />
@@ -74,10 +84,16 @@
                 :src="require('@/assets/img_thum.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-caption' : ''"
+                >
                   <p align="center">
                     作品パネルには、<br />
-                    作品タイトル、来場者累計といいね数、混雑状況などの情報が、<br />
+                    作品タイトル、来場者累計といいね数、<br />
+                    混雑状況などの情報が<br />
                     ブース内に入らなくてもわかるようになっています。
                   </p>
                   <p align="center" class="mt-4">
@@ -100,7 +116,12 @@
                 :src="require('@/assets/img_sound.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">
                     ブース内に出現している他のアバターは、<br />
                     イベントの参加者です。<br />

@@ -24,9 +24,13 @@
                 :aspect-ratio="16 / 10"
                 :src="require('@/assets/img_booth.png')"
               ></v-img>
-
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-caption' : ''"
+                >
                   <p align="center">
                     こちらはブースエリアになります。<br />
                     真ん中のスクリーンには作品の動画が流れています。
@@ -54,7 +58,12 @@
                 :src="require('@/assets/img_reaction.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">
                     ブースエリアの真ん中には、<br />
                     リアクションマシーンがあります。
@@ -78,7 +87,12 @@
                 :src="require('@/assets/img_bird.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">
                     ブースエリアには、<br />
                     プレゼンテーターが存在します。
@@ -102,10 +116,16 @@
                 :src="require('@/assets/img_exit.png')"
               ></v-img>
               <v-fade-transition>
-                <v-overlay v-if="hover" absolute color="#036358">
+                <v-overlay
+                  v-if="hover"
+                  absolute
+                  color="#036358"
+                  :class="_isPC ? 'text-h5' : _isSP ? 'text-body-2' : ''"
+                >
                   <p align="center">
-                    一通り作品を楽しんだあとは<br />
-                    スクリーンの左側にある出口から退場できます。
+                    一通り作品を楽しんだあとは、<br />
+                    スクリーンの左側にある出口から<br />
+                    退場できます。
                   </p>
                   <p align="center" class="mt-4">
                     さて、次はどのブースをみようかな？
