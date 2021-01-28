@@ -3,19 +3,21 @@
     <v-row
       align="center"
       justify="center"
-      class="text-h3 mt-6"
+      :class="_isPC ? 'text-h5 mt-6' : _isSP ? 'text-h5' : ''"
       style="font-color: #ffffff"
     >
-      <v-icon size="70" color="purple darken-2">mdi-numeric-1-box</v-icon>
+      <v-icon :size="_isPC ? 70 : _isSP ? 50 : 100" color="purple darken-2">
+        mdi-numeric-1-box
+      </v-icon>
       基本操作編
     </v-row>
     <v-row justify="center" class="text-h5 mt-9" style="line-height: 180%">
-      <v-col :cols="_isPC ? 4 : 12" align="center">
+      <v-col :cols="_isPC ? 4 : 12" align="center" v-if="_isPC">
         <v-img
           width="467"
           height="345"
           contain
-          :src="_isPC ? require('@/assets/firstBasic_wasd.png') : require('@/assets/joystick-base.png')"
+          :src="require('@/assets/firstBasic_wasd.png')"
         />
         <div>
           <p>
@@ -28,7 +30,8 @@
         <v-img
           width="467"
           height="345"
-          :src="require('@/assets/firstBasic_smart.jpeg')"
+          contain
+          :src="require('@/assets/joystick-base.png')"
         />
         <p class="py-10">
           スマホは
