@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
     <div :class="_isPC ? 'px-16' : _isSP ? 'px-4' : ''">
@@ -87,5 +87,9 @@ export default class Welcome extends Vue {
 
 #enterVR span {
   font-size: 1.3em;
+}
+
+.wrap{
+  overflow: hidden;
 }
 </style>
