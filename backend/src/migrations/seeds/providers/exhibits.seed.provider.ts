@@ -35,7 +35,9 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610675036/f0ihqaen3xklk9pfyfiq.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611883904/zhswzkex2gd1s9nwwgkg.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611883904/sbuz9em5dixpovqfyprh.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611883904/x7jalqakvrnmtsu2xzky.jpg',
     ]),
   },
   {
@@ -48,7 +50,9 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610169572/jp4f9pvsran8tf2jith2.jpg',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610169572/jp4f9pvsran8tf2jith2.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611884744/iirrgpjycfvbgx1ikij1.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611884745/qwh4qvz7oqehdkwn8ruy.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611884745/c9jk8jxed4qcsmmwgbws.jpg',
     ]),
   },
   {
@@ -62,6 +66,8 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
       'https://res.cloudinary.com/db32y726v/image/upload/v1610678667/md5ynzmbphbgys2nhqzk.jpg',
     presentationImages: paging([
       'https://res.cloudinary.com/db32y726v/image/upload/v1610678844/hzunjybzwpcjfsf3pp8d.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611807402/kx9e9srhjllkx3dcrnzm.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611884877/f6mw2klqfrhbrc22mic3.jpg',
     ]),
   },
   {
@@ -75,6 +81,8 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
       'https://res.cloudinary.com/db32y726v/image/upload/v1610677196/egkecxnqyllnqjjw7wmy.jpg',
     presentationImages: paging([
       'https://res.cloudinary.com/db32y726v/image/upload/v1610677197/t6zw5xpgtcclkngzvudg.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611814759/rfqmawze0qlavj2ohuis.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611814759/wapo51wm6ia9xalb05yt.jpg',
     ]),
   },
   {
@@ -86,7 +94,9 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
     thumbnail:
       'https://res.cloudinary.com/db32y726v/image/upload/v1610683145/kxdrbx2ltgguwa2sm5yb.png',
     presentationImages: paging([
-      'https://res.cloudinary.com/db32y726v/image/upload/v1610683145/kxdrbx2ltgguwa2sm5yb.png',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611814272/gwyc4khrxocz5ct225hx.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611814278/sz6tmuweef6bafxwsyfb.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611814215/mj3kinw8m99d6vkl54vb.jpg',
     ]),
   },
   {
@@ -99,6 +109,8 @@ export const dummyOriginExhibits: Array<DummyExhibit> = [
       'https://res.cloudinary.com/db32y726v/image/upload/v1610699970/aswvxj1tlpcdppekrhmi.jpg',
     presentationImages: paging([
       'https://res.cloudinary.com/db32y726v/image/upload/v1610680465/s0vfhnkyinnx49nslfrh.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611813567/tk2rzz0t2onxklssysxb.jpg',
+      'https://res.cloudinary.com/db32y726v/image/upload/v1611813570/nnrchmokryrze3c2xvad.jpg',
     ]),
   },
 ];
