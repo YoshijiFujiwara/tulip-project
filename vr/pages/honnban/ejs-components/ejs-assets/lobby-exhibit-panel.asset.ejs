@@ -28,16 +28,15 @@
 </a-assets>
 
 <!-- 人気ランキング -->
-<% var min = 1; var max = 3; var rankNum = Math.floor( Math.random() * (max + 1
-- min) ) + min; %>
+<% if(exhibit.rank > 0 && exhibit.rank < 4){%>
 <a-image
   id="ranking-<%= exhibit.id %>"
-  src="#asset-rank<%= rankNum %>"
+  src="#asset-rank<%= exhibit.rank %>"
   scale="<%= position.rank.scale%>"
   position="<%= position.rank.position%>"
   rotation="<%= position.rank.rotation%>"
 ></a-image>
-<!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
+<% } %>
 
 <!-- exhibit-congestion-image-idの形で指定しないと、混雑状況が反映されません --->
 <a-image
