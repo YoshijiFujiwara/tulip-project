@@ -104,6 +104,7 @@
           required
           dense
           show-size
+          @click:clear="resetPresentationImages"
           @change="onPresentationImagePicked"
         ></v-file-input>
         <p>
@@ -345,6 +346,13 @@ export default class CreateExhibitDialog extends Vue {
       })
   }
 
+  resetPresentationImages() {
+    this.uploadPresentationImageUrls.splice(
+      0,
+      this.uploadPresentationImageUrls.length
+    )
+  }
+
   // thumbnailImageのプレビュー
   onThumbnailImagePicked(file: File) {
     if (file !== undefined && file !== null) {
@@ -374,11 +382,11 @@ export default class CreateExhibitDialog extends Vue {
         fr.readAsDataURL(files[file])
         fr.addEventListener('load', () => {
           if (typeof fr.result === 'string') {
-            this.uploadPresentationImageUrls[file] = fr.result
+            this.$set(this.uploadPresentationImageUrls, file, fr.result)
           }
         })
       } else {
-        this.uploadPresentationImageUrls[file] = ''
+        this.$set(this.uploadPresentationImageUrls, file, '')
       }
     }
   }
