@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <!-- トップの画像のところ -->
     <FirstTopImageSection />
     <div :class="_isPC ? 'px-16' : _isSP ? 'px-4' : ''">
@@ -15,14 +15,13 @@
         justify="center"
         class="text-h6"
         :class="_isPC ? 'mt-4' : ''"
+        >※Chrome推奨</v-row
       >
-        ※Chrome推奨
-      </v-row>
       <v-row align="center" justify="center" :class="_isSP ? 'px-6' : ''">
         <v-col align="center">
           <span class="red--text" :class="_isPC ? 'text-h5' : 'text-h6'"
-            >※VR画面では音が出ますので音量にはご注意ください
-          </span>
+            >※VR画面では音が出ますので音量にはご注意ください</span
+          >
         </v-col>
       </v-row>
       <!-- 入場ボタン -->
@@ -87,5 +86,29 @@ export default class Welcome extends Vue {
 
 #enterVR span {
   font-size: 1.3em;
+}
+
+.wrap {
+  overflow: hidden;
+  animation: fadeIn 2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>

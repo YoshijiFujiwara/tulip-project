@@ -55,16 +55,27 @@ router.get('/honnban', async function (req, res) {
 
   const apiUrl = process.env.VR_API_URL;
 
-  const exhibits = result.data;
+  let exhibits = result.data;
+  const rankedExhibitIds = exhibits.sort((a, b) => {
+    return b.goodCount - a.goodCount;
+  }).map(exhibit=>exhibit.id);
+
+  exhibits = exhibits.map((exhibit, index) => {
+    const rank = rankedExhibitIds.findIndex(exhibitId => exhibitId === exhibit.id) + 1;
+
+    return {
+      ...exhibit,
+      rank
+    }
+  })
   const renderData = {
     exhibits,
     username,
     avatar,
     apiUrl,
     wsServerUrl,
-    enableAudio,
+    enableAudio
   };
-
   return res.render(__dirname + './../../pages/honnban/index.ejs', renderData);
 });
 
